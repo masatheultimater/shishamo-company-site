@@ -1,0 +1,22 @@
+# ========================================
+# Cloudflare Pages リダイレクト設定
+# ========================================
+
+# www から apex ドメインへリダイレクト
+https://www.shishamo-company.com/* https://shishamo-company.com/:splat 301
+
+# 旧URLからの転送（将来的に使用）
+# /blog/* /news/:splat 301
+
+# トレイリングスラッシュの正規化
+# Astroのデフォルト設定に準拠
+
+# サービス詳細ページのショートカット
+/dx /services/dx-consulting/ 301
+/ai /services/ai-consulting/ 301
+
+# お問い合わせのショートカット
+/inquiry /contact/ 301
+
+# 404ページ
+/* /404.html 404

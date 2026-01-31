@@ -1,0 +1,128 @@
+/**
+ * ========================================
+ * Design Tokens CSS Variables
+ * ========================================
+ * Generated from: shared/design-tokens.json
+ *
+ * IMPORTANT: Do not edit manually.
+ * Changes should be made in design-tokens.json
+ */
+
+:root {
+  /* ===== Colors ===== */
+  --color-primary: #2563EB;
+  --color-primary-dark: #1D4ED8;
+  --color-secondary: #F59E0B;
+  --color-accent: #10B981;
+  --color-dark: #1E293B;
+  --color-dark-lighter: #334155;
+  --color-light: #F8FAFC;
+  --color-gray: #64748B;
+  --color-gray-light: #E2E8F0;
+  --color-gray-lighter: #F1F5F9;
+
+  /* ===== Typography - Font Family ===== */
+  --font-display: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+
+  /* ===== Typography - Font Size ===== */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* ===== Typography - Font Weight ===== */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* ===== Typography - Line Height ===== */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.7;
+  --line-height-relaxed: 1.8;
+
+  /* ===== Spacing ===== */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 5rem;
+  --space-5xl: 8rem;
+
+  /* ===== Border Radius ===== */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* ===== Shadows ===== */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  --shadow-glow: 0 0 40px rgba(37,99,235,0.15);
+
+  /* ===== Breakpoints (for reference, use in media queries) ===== */
+  /* --breakpoint-sm: 480px; */
+  /* --breakpoint-md: 768px; */
+  /* --breakpoint-lg: 1024px; */
+  /* --breakpoint-xl: 1280px; */
+
+  /* ===== Gradients ===== */
+  --gradient-primary: linear-gradient(135deg, #2563EB, #1D4ED8);
+  --gradient-primary-accent: linear-gradient(135deg, #2563EB, #10B981);
+  --gradient-hero-bg: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%);
+  --gradient-footer-bg: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+  --gradient-cta-bg: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  --gradient-rainbow-bar: linear-gradient(90deg, #2563EB, #10B981, #F59E0B);
+
+  /* ===== Animation Durations ===== */
+  --animation-swim-duration: 3s;
+  --animation-morph-duration: 8s;
+  --animation-float-duration: 3s;
+  --animation-pulse-glow-duration: 3s;
+
+  /* ===== Legacy Variables (for backward compatibility) ===== */
+  /* These map old variable names to new token-based names */
+  --primary: var(--color-primary);
+  --primary-dark: var(--color-primary-dark);
+  --secondary: var(--color-secondary);
+  --accent: var(--color-accent);
+  --dark: var(--color-dark);
+  --dark-lighter: var(--color-dark-lighter);
+  --light: var(--color-light);
+  --gray: var(--color-gray);
+  --gray-light: var(--color-gray-light);
+  --gray-lighter: var(--color-gray-lighter);
+}
+
+/* ===== Animations (from design-tokens.json) ===== */
+@keyframes swim {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(3px) rotate(3deg); }
+  75% { transform: translateX(-3px) rotate(-3deg); }
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(37,99,235,0.3); }
+  50% { box-shadow: 0 0 40px rgba(37,99,235,0.5); }
+}

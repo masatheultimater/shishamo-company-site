@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サービス | ししゃも｜吉川昌宏</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563EB; --primary-dark: #1D4ED8; --secondary: #F59E0B; --accent: #10B981;
+      --dark: #1E293B; --dark-lighter: #334155; --light: #F8FAFC;
+      --gray: #64748B; --gray-light: #E2E8F0; --gray-lighter: #F1F5F9;
+      --font-display: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+      --font-body: 'Noto Sans JP', sans-serif;
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --shadow-glow: 0 0 40px rgba(37,99,235,0.15);
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--light); color: var(--dark); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    @keyframes swim { 0%, 100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(3px) rotate(3deg); } 75% { transform: translateX(-3px) rotate(-3deg); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes morph { 0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; } }
+
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
+    .logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; animation: swim 3s ease-in-out infinite; box-shadow: var(--shadow-md); }
+    .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; }
+    .logo-text span { color: var(--gray); font-weight: 500; font-size: 0.85rem; margin-left: 0.5rem; }
+    .nav { display: flex; gap: 2rem; align-items: center; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--dark); transition: all 0.3s; padding: 0.5rem 0; position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--primary); }
+    .nav-cta { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white !important; padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; box-shadow: var(--shadow-md); }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg), 0 0 20px rgba(37,99,235,0.3); }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.75rem; cursor: pointer; padding: 0.5rem; z-index: 110; }
+    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 105; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a { font-size: 1.25rem; font-weight: 600; color: var(--dark); padding: 1rem 2rem; }
+    .mobile-nav a:hover { color: var(--primary); }
+    .mobile-nav .nav-cta { margin-top: 1rem; padding: 1rem 2.5rem; font-size: 1.1rem; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1rem 2rem; border-radius: var(--radius-md); font-weight: 600; font-size: 1rem; transition: all 0.3s; box-shadow: var(--shadow-md); border: none; cursor: pointer; position: relative; overflow: hidden; }
+    .btn-primary::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl), 0 0 30px rgba(37,99,235,0.3); }
+
+    .page-header { padding: 8rem 2rem 3rem; background: linear-gradient(135deg, var(--light) 0%, #EFF6FF 50%, #DBEAFE 100%); text-align: center; position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(37,99,235,0.08) 0%, transparent 70%); }
+    .page-header-blob { position: absolute; left: 5%; top: 50%; transform: translateY(-50%); width: 300px; height: 300px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; opacity: 0.06; animation: morph 8s ease-in-out infinite; }
+    .page-header h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; margin-bottom: 0.75rem; background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position: relative; }
+    .page-header p { color: var(--gray); font-size: 1.1rem; position: relative; }
+
+    .service-nav { position: sticky; top: 70px; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 1rem 2rem; border-bottom: 1px solid var(--gray-light); }
+    .service-nav-inner { max-width: 800px; margin: 0 auto; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .service-nav a { padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.85rem; font-weight: 500; color: var(--gray); transition: all 0.3s; border: 2px solid transparent; white-space: nowrap; }
+    .service-nav a:hover { color: var(--primary); background: var(--gray-lighter); }
+    .service-nav a.active { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; box-shadow: var(--shadow-md); }
+
+    .service-section { padding: 5rem 2rem; }
+    .service-section:nth-child(even) { background: white; }
+    .service-section:nth-child(odd) { background: var(--light); }
+    .service-section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 3rem; }
+    .section-icon { font-size: 3.5rem; animation: float 3s ease-in-out infinite; flex-shrink: 0; padding: 1rem; background: linear-gradient(135deg, var(--gray-lighter), white); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+    .section-header-text h2 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--dark), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header-text p { color: var(--gray); font-size: 1rem; line-height: 1.7; }
+
+    .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card { background: white; border-radius: var(--radius-lg); padding: 2rem; border: 2px solid var(--gray-light); transition: all 0.4s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transition: transform 0.4s; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: var(--shadow-xl), var(--shadow-glow); }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .service-card h3::before { content: ''; width: 8px; height: 8px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; flex-shrink: 0; }
+    .service-card > p { font-size: 0.9rem; color: var(--gray); margin-bottom: 1.25rem; line-height: 1.7; }
+    .service-price { display: inline-flex; align-items: baseline; gap: 0.25rem; padding: 0.75rem 1.25rem; background: linear-gradient(135deg, var(--gray-lighter), #EFF6FF); border-radius: var(--radius-sm); margin-bottom: 1rem; }
+    .service-price .amount { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .service-price .unit { font-size: 0.85rem; color: var(--gray); }
+    .service-features { margin-bottom: 1.25rem; }
+    .service-features li { font-size: 0.85rem; color: var(--dark); padding: 0.375rem 0; padding-left: 1.5rem; position: relative; }
+    .service-features li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+    .service-link { font-size: 0.9rem; font-weight: 600; color: var(--primary); display: inline-flex; align-items: center; gap: 0.375rem; transition: gap 0.3s; }
+    .service-card:hover .service-link { gap: 0.75rem; }
+
+    .diagnosis-section { padding: 5rem 2rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, #1E40AF 100%); color: white; text-align: center; position: relative; overflow: hidden; }
+    .diagnosis-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%); }
+    .diagnosis-section > * { position: relative; }
+    .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; }
+    .diagnosis-section p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; }
+    .diagnosis-section .btn-primary { background: white; color: var(--primary); }
+    .diagnosis-section .btn-primary:hover { box-shadow: var(--shadow-xl), 0 0 40px rgba(255,255,255,0.3); }
+
+    .footer { background: linear-gradient(180deg, var(--dark) 0%, #0F172A 100%); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; position: relative; }
+    .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary)); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; }
+    .footer-brand .footer-logo { display: flex; align-items: center; gap: 0.625rem; color: white; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
+    .footer-brand .logo-icon { width: 36px; height: 36px; font-size: 1.25rem; }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4 { color: white; font-size: 0.9rem; margin-bottom: 1rem; position: relative; padding-bottom: 0.5rem; }
+    .footer-links h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 30px; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { font-size: 0.9rem; transition: all 0.3s; display: inline-block; }
+    .footer-links a:hover { color: var(--secondary); transform: translateX(5px); }
+    .footer-bottom { max-width: 1100px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+    .social-links { display: flex; gap: 0.875rem; }
+    .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s; }
+    .social-links a:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); transform: translateY(-3px); }
+
+    @media (max-width: 1024px) {
+      .footer-inner { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+      .header { padding: 0.875rem 1.5rem; }
+      .nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .page-header { padding: 6rem 1.5rem 2rem; }
+      .page-header h1 { font-size: 2rem; }
+      .page-header p { font-size: 1rem; }
+      .service-nav { top: 60px; padding: 0.75rem 1rem; }
+      .service-nav-inner { gap: 0.375rem; }
+      .service-nav a { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+      .section-header { flex-direction: column; text-align: center; }
+      .section-icon { margin: 0 auto; font-size: 3rem; padding: 0.75rem; }
+      .section-header-text h2 { font-size: 1.5rem; }
+      .service-section { padding: 3rem 1.5rem; }
+      .service-cards { grid-template-columns: 1fr; gap: 1rem; }
+      .service-card { padding: 1.5rem; }
+      .diagnosis-section { padding: 3rem 1.5rem; }
+      .diagnosis-section h2 { font-size: 1.5rem; }
+      .footer { padding: 3rem 1.5rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .footer-brand { grid-column: 1 / -1; text-align: center; }
+      .footer-brand .footer-logo { justify-content: center; }
+      .footer-links { text-align: center; }
+      .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0.75rem 1rem; }
+      .logo-icon { width: 38px; height: 38px; font-size: 1.25rem; }
+      .logo-text { font-size: 1.1rem; }
+      .logo-text span { display: none; }
+      .page-header { padding: 5.5rem 1rem 1.5rem; }
+      .page-header h1 { font-size: 1.75rem; }
+      .service-nav a { padding: 0.25rem 0.5rem; font-size: 0.7rem; }
+      .service-section { padding: 2.5rem 1rem; }
+      .section-header { margin-bottom: 2rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+    @media (hover: none) {
+      .service-card:hover { transform: none; }
+      .service-card:active { transform: scale(0.98); }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🐟</div>
+      <div class="logo-text">ししゃも<span>| 吉川昌宏</span></div>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">ホーム</a>
+      <a href="services.html" class="nav-link active">サービス</a>
+      <a href="profile.html" class="nav-link">プロフィール</a>
+      <a href="index.html#blog" class="nav-link">ブログ</a>
+      <a href="contact.html" class="nav-cta">お問い合わせ</a>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="メニュー" onclick="toggleMenu()">☰</button>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">ホーム</a>
+    <a href="services.html">サービス</a>
+    <a href="profile.html">プロフィール</a>
+    <a href="index.html#blog">ブログ</a>
+    <a href="contact.html" class="nav-cta">お問い合わせ</a>
+  </nav>
+
+  <section class="page-header">
+    <div class="page-header-blob"></div>
+    <h1>サービス</h1>
+    <p>IT × 経営 × 財務の3つの視点で、御社の課題解決をサポートします</p>
+  </section>
+
+  <nav class="service-nav">
+    <div class="service-nav-inner">
+      <a href="#dx" class="active">🚀 DX推進</a>
+      <a href="#ai">🤖 生成AI</a>
+      <a href="#data">📊 データ活用</a>
+      <a href="#management">🎯 経営支援</a>
+      <a href="#accounting">📝 経理</a>
+    </div>
+  </nav>
+
+  <section class="service-section" id="dx">
+    <div class="service-section-inner">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <div class="section-header-text">
+          <h2>DX推進・IT戦略</h2>
+          <p>「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>DX推進コンサルティング</h3>
+          <p>現状分析から課題特定、ロードマップ策定、導入支援まで一貫してサポート。経営視点でのIT活用を提案します。</p>
+          <div class="service-price"><span class="amount">15〜30</span><span class="unit">万円/月</span></div>
+          <ul class="service-features">
+            <li>現状業務プロセスの可視化</li>
+            <li>課題特定とロードマップ策定</li>
+            <li>ベンダー選定・導入支援</li>
+            <li>定着化サポート</li>
+          </ul>
+          <a href="services/dx-consulting.html" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>IT戦略策定</h3>
+          <p>経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位付けをサポートします。</p>
+          <div class="service-price"><span class="amount">30〜50</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>IT資産の棚卸し</li>
+            <li>投資対効果の試算</li>
+            <li>3カ年IT計画の策定</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>Webサイト・アプリ構築</h3>
+          <p>7年のWeb開発経験を活かし、要件定義から実装まで対応。シンプルなサイトから業務システムまで。</p>
+          <div class="service-price"><span class="amount">50〜200</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>コーポレートサイト制作</li>
+            <li>業務用Webアプリ開発</li>
+            <li>既存システム改修</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section" id="ai">
+    <div class="service-section-inner">
+      <div class="section-header">
+        <div class="section-icon">🤖</div>
+        <div class="section-header-text">
+          <h2>生成AI導入支援</h2>
+          <p>ChatGPT・Claudeなどの生成AIを業務に活かす方法を、設計から定着まで一貫して支援します。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>生成AI活用コンサルティング</h3>
+          <p>御社の業務に最適なAI活用シーンを特定し、プロンプト設計から社内展開までサポートします。</p>
+          <div class="service-price"><span class="amount">50〜150</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>活用シーン特定ワークショップ</li>
+            <li>業務別プロンプト設計</li>
+            <li>社内ガイドライン策定</li>
+            <li>活用研修の実施</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>AIツール開発</h3>
+          <p>ChatGPT APIやClaude APIを使った業務特化型ツールを開発。定型業務の自動化を実現します。</p>
+          <div class="service-price"><span class="amount">30〜100</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>議事録自動作成ツール</li>
+            <li>問い合わせ対応支援Bot</li>
+            <li>レポート自動生成</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section" id="data">
+    <div class="service-section-inner">
+      <div class="section-header">
+        <div class="section-icon">📊</div>
+        <div class="section-header-text">
+          <h2>データ活用支援</h2>
+          <p>「データはあるけど活用できていない」を解決。分析からダッシュボード構築まで、データドリブンな経営をサポートします。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>経営データ分析</h3>
+          <p>売上・顧客・業務データを分析し、意思決定に役立つインサイトを抽出。レポートとしてお届けします。</p>
+          <div class="service-price"><span class="amount">20〜50</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>売上・収益性分析</li>
+            <li>顧客セグメント分析</li>
+            <li>業務効率分析</li>
+            <li>分析レポート作成</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>KPIダッシュボード構築</h3>
+          <p>重要指標をリアルタイムで確認できるダッシュボードを構築。データに基づく迅速な意思決定を支援します。</p>
+          <div class="service-price"><span class="amount">30〜80</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>KPI設計支援</li>
+            <li>データ連携設計</li>
+            <li>ダッシュボード構築</li>
+            <li>運用トレーニング</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section" id="management">
+    <div class="service-section-inner">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <div class="section-header-text">
+          <h2>経営支援</h2>
+          <p>中小企業診断士として、経営課題の整理から改善施策の実行までサポート。補助金活用もお任せください。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>経営診断・改善提案</h3>
+          <p>財務分析と現場ヒアリングで経営課題を可視化。優先度を付けた改善提案を行います。</p>
+          <div class="service-price"><span class="amount">20〜40</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>財務諸表分析</li>
+            <li>強み・弱みの整理</li>
+            <li>改善施策の優先順位付け</li>
+            <li>アクションプラン策定</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>補助金申請サポート</h3>
+          <p>IT導入補助金、ものづくり補助金等の申請をサポート。採択率を高める事業計画書作成を支援します。</p>
+          <div class="service-price"><span class="amount">10〜30</span><span class="unit">万円 + 成功報酬</span></div>
+          <ul class="service-features">
+            <li>補助金選定アドバイス</li>
+            <li>事業計画書作成支援</li>
+            <li>申請手続きサポート</li>
+            <li>採択後の報告支援</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="service-section" id="accounting">
+    <div class="service-section-inner">
+      <div class="section-header">
+        <div class="section-icon">📝</div>
+        <div class="section-header-text">
+          <h2>経理・記帳サポート</h2>
+          <p>経理の負担を軽減し、本業に集中できる環境を作ります。クラウド会計の導入支援もお任せください。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>記帳代行</h3>
+          <p>月次の記帳業務を代行。正確な経理処理で経営数字の把握をサポートします。</p>
+          <div class="service-price"><span class="amount">3〜10</span><span class="unit">万円/月</span></div>
+          <ul class="service-features">
+            <li>仕訳入力代行</li>
+            <li>請求書・領収書整理</li>
+            <li>月次試算表作成</li>
+            <li>税理士との連携</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>クラウド会計導入</h3>
+          <p>freee・マネーフォワードなどのクラウド会計への移行をサポート。業務効率化と見える化を実現します。</p>
+          <div class="service-price"><span class="amount">10〜30</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>ツール選定支援</li>
+            <li>初期設定・移行作業</li>
+            <li>操作トレーニング</li>
+            <li>運用定着サポート</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="diagnosis-section">
+    <h2>どれが合うかわからない？</h2>
+    <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
+    <a href="contact.html" class="btn-primary">無料相談する →</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><span class="logo-icon">🐟</span>ししゃも｜吉川昌宏</div>
+        <p>中小企業の挑戦を後押しする<br>IT × 経営 × 財務のプロフェッショナル</p>
+      </div>
+      <div class="footer-links">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="#dx">DX推進</a></li>
+          <li><a href="#ai">生成AI導入</a></li>
+          <li><a href="#data">データ分析</a></li>
+          <li><a href="#accounting">記帳代行</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>情報</h4>
+        <ul>
+          <li><a href="profile.html">プロフィール</a></li>
+          <li><a href="index.html#blog">ブログ（準備中）</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="contact.html">無料相談</a></li>
+          <li><a href="contact.html">お見積り依頼</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 吉川昌宏（ししゃも）All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" title="X (Twitter)">𝕏</a>
+        <a href="#" title="note">n</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mobileNav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      nav.classList.toggle('active');
+      btn.textContent = nav.classList.contains('active') ? '✕' : '☰';
+    }
+  </script>
+</body>
+</html>

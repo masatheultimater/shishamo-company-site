@@ -1,0 +1,97 @@
+# ========================================
+# ししゃもサイト プロジェクトルール
+# ========================================
+
+## 命名規則
+
+### ファイル名
+- コンポーネント: PascalCase (例: HeroSection.astro, ServiceCard.astro)
+- ページ: kebab-case (例: dx-consulting.astro)
+- スタイル: kebab-case (例: design-tokens.css)
+- 型定義: PascalCase (例: MicroCMS.ts)
+
+### CSS
+- クラス名: BEM風 (例: .hero__title, .service-card--featured)
+- CSS変数: --{category}-{property} (例: --color-primary, --space-md)
+- scoped CSS優先、グローバルは src/styles/ に集約
+
+### TypeScript
+- 型名: PascalCase (例: BlogPost, ServiceItem)
+- 変数/関数: camelCase
+- 定数: UPPER_SNAKE_CASE
+- strict mode必須
+
+## ディレクトリ構造
+
+```
+src/
+├── components/
+│   ├── layout/       # Header, Footer, Navigation
+│   ├── sections/     # HeroSection, CTASection, etc.
+│   ├── features/     # ContactForm, ServiceCard, etc.
+│   ├── ui/           # Button, Badge, Card, etc.
+│   └── seo/          # StructuredData, MetaTags
+├── layouts/
+│   └── BaseLayout.astro
+├── pages/
+│   ├── index.astro
+│   ├── services/
+│   ├── profile.astro
+│   ├── blog/
+│   └── contact/
+├── styles/
+│   └── global.css
+├── types/
+│   └── index.ts
+└── lib/
+    └── microcms.ts
+```
+
+## 品質基準
+
+### パフォーマンス
+- Lighthouse Performance: ≥ 90
+- First Contentful Paint: < 1.5s
+- Largest Contentful Paint: < 2.5s
+- Cumulative Layout Shift: < 0.1
+
+### アクセシビリティ
+- Lighthouse Accessibility: 100
+- 全画像にalt属性
+- フォーム要素にlabel
+- 見出し階層を守る (h1 → h2 → h3)
+- 色コントラスト WCAG AA準拠
+- キーボード操作可能
+
+### SEO
+- Lighthouse SEO: 100
+- 各ページにユニークなtitle/description
+- 構造化データ (JSON-LD)
+- OGP設定
+
+### コード品質
+- TypeScript strict mode
+- ESLint / Prettier 準拠
+- コンポーネントはPropsインターフェース必須
+
+## 禁止事項
+
+1. design-tokens.json の値を直接ハードコードしない
+2. shared/contracts/ のインターフェースを破る変更
+3. inline style の多用（scoped CSS を使う）
+4. console.log を本番コードに残す
+5. any 型の使用（やむを得ない場合は // eslint-disable コメント付き）
+
+## コミット規約
+
+```
+<type>(<scope>): <subject>
+
+types: feat, fix, docs, style, refactor, test, chore
+scope: ui, content, infra, qa, config
+```
+
+例:
+- feat(ui): HeroSectionコンポーネントを追加
+- fix(content): ブログ記事の日付フォーマットを修正
+- chore(config): ESLint設定を更新

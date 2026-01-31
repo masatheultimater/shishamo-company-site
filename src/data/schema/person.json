@@ -1,0 +1,59 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://yoshikawa-masahiro.com/#person",
+  "name": "吉川昌宏",
+  "alternateName": "ししゃも",
+  "givenName": "昌宏",
+  "familyName": "吉川",
+  "description": "中小企業診断士・ITストラテジスト。IT × 経営 × 財務で、中小企業の挑戦を後押しする。データとテクノロジーの力で、あなたの会社の「なんとかしたい」を一緒に解決します。",
+  "url": "https://yoshikawa-masahiro.com/profile/",
+  "jobTitle": [
+    "中小企業診断士",
+    "ITストラテジスト",
+    "コンサルタント"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "吉川昌宏事務所",
+    "@id": "https://yoshikawa-masahiro.com/#organization"
+  },
+  "knowsAbout": [
+    "中小企業診断士",
+    "ITストラテジスト",
+    "E資格（JDLA Deep Learning）",
+    "データベーススペシャリスト",
+    "DX推進",
+    "生成AI導入",
+    "データ分析",
+    "経営コンサルティング",
+    "Web開発",
+    "経理・会計"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "中小企業診断士",
+      "credentialCategory": "国家資格"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "ITストラテジスト",
+      "credentialCategory": "国家資格"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "E資格（JDLA Deep Learning）",
+      "credentialCategory": "民間資格"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "データベーススペシャリスト",
+      "credentialCategory": "国家資格"
+    }
+  ],
+  "sameAs": [
+    "https://twitter.com/shishamo_tax",
+    "https://note.com/shishamo"
+  ]
+}

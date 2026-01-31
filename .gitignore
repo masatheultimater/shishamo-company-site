@@ -1,0 +1,17 @@
+# 環境変数
+.env
+.env.local
+.env.prod
+
+# Node
+node_modules/
+dist/
+.astro/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

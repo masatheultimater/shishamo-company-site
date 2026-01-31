@@ -1,0 +1,441 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="ししゃも｜吉川昌宏 - IT × 経営 × 財務"
+  description="中小企業向けコンサルタント「ししゃも｜吉川昌宏」。DX推進・生成AI導入・データ活用・経営支援で、御社の挑戦を後押しします。"
+  currentPage="home"
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">中小企業の「なんとかしたい」にお応えします</div>
+      <h1>IT × 経営 × 財務で<br>あなたの挑戦を後押し</h1>
+      <p>Web開発7年、会計事務所2年。ITストラテジスト・診断士として、デジタル変革から経営改善まで伴走支援します。</p>
+      <div class="hero-cta">
+        <a href="/contact/" class="btn-primary">無料相談する →</a>
+        <a href="/services/" class="btn-secondary">サービスを見る</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-photo">👨‍💻</div>
+      <div>
+        <div class="hero-card-name">吉川 昌宏</div>
+        <div class="hero-card-quals">
+          <span class="qual-tag">中小企業診断士</span>
+          <span class="qual-tag">ITストラテジスト</span>
+          <span class="qual-tag">E資格</span>
+          <span class="qual-tag">データベーススペシャリスト</span>
+          <span class="qual-tag">税理士（予定）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK ACCESS -->
+  <section class="quick-access">
+    <div class="quick-cards">
+      <a href="/services/" class="quick-card">
+        <span class="quick-icon">🚀</span>
+        <span class="quick-label">サービス</span>
+        <span class="quick-desc">何ができる？</span>
+      </a>
+      <a href="/profile/" class="quick-card">
+        <span class="quick-icon">👤</span>
+        <span class="quick-label">プロフィール</span>
+        <span class="quick-desc">どんな人？</span>
+      </a>
+      <a href="/contact/" class="quick-card">
+        <span class="quick-icon">💬</span>
+        <span class="quick-label">お問い合わせ</span>
+        <span class="quick-desc">相談したい</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PROBLEMS -->
+  <section class="problems">
+    <div class="section-header">
+      <div class="section-label">Problems</div>
+      <h2 class="section-title">こんなお悩みありませんか？</h2>
+      <p class="section-desc">一つでも当てはまれば、お力になれるかもしれません</p>
+    </div>
+    <div class="problem-grid">
+      <a href="/services/#dx" class="problem-card">
+        <span class="problem-icon">💻</span>
+        <span class="problem-text">「DXって何から始めれば...」</span>
+        <span class="problem-arrow">→</span>
+      </a>
+      <a href="/services/#ai" class="problem-card">
+        <span class="problem-icon">🤖</span>
+        <span class="problem-text">「ChatGPTを業務に活かしたい」</span>
+        <span class="problem-arrow">→</span>
+      </a>
+      <a href="/services/#data" class="problem-card">
+        <span class="problem-icon">📊</span>
+        <span class="problem-text">「データはあるけど活用できてない」</span>
+        <span class="problem-arrow">→</span>
+      </a>
+      <a href="/services/#accounting" class="problem-card">
+        <span class="problem-icon">📝</span>
+        <span class="problem-text">「経理の負担を減らしたい」</span>
+        <span class="problem-arrow">→</span>
+      </a>
+      <a href="/services/#management" class="problem-card">
+        <span class="problem-icon">🎯</span>
+        <span class="problem-text">「経営を客観的に見てほしい」</span>
+        <span class="problem-arrow">→</span>
+      </a>
+      <a href="/services/#management" class="problem-card">
+        <span class="problem-icon">💰</span>
+        <span class="problem-text">「補助金を使いたいけど難しそう」</span>
+        <span class="problem-arrow">→</span>
+      </a>
+    </div>
+    <div class="problem-cta">
+      <p>どれに当てはまるかわからなくても大丈夫です</p>
+      <a href="/contact/" class="btn-primary">まずは相談する →</a>
+    </div>
+  </section>
+
+  <!-- SERVICES OVERVIEW -->
+  <section class="services-overview">
+    <div class="section-header">
+      <div class="section-label">Services</div>
+      <h2 class="section-title">3つの強みでサポート</h2>
+      <p class="section-desc">IT・データ・経営財務を横断的に支援できるのが強みです</p>
+    </div>
+    <div class="service-categories">
+      <div class="category-card category-it">
+        <div class="category-icon">💻</div>
+        <h3>DX・IT戦略</h3>
+        <ul>
+          <li>DX推進コンサルティング</li>
+          <li>IT戦略策定</li>
+          <li>生成AI導入支援</li>
+          <li>Webサイト・アプリ構築</li>
+        </ul>
+        <a href="/services/#dx" class="category-link">詳しく見る →</a>
+      </div>
+      <div class="category-card category-data">
+        <div class="category-icon">📊</div>
+        <h3>データ活用</h3>
+        <ul>
+          <li>経営データ分析</li>
+          <li>KPIダッシュボード構築</li>
+          <li>業務可視化・改善</li>
+        </ul>
+        <a href="/services/#data" class="category-link">詳しく見る →</a>
+      </div>
+      <div class="category-card category-finance">
+        <div class="category-icon">🎯</div>
+        <h3>経営・財務</h3>
+        <ul>
+          <li>経営診断・改善提案</li>
+          <li>補助金申請サポート</li>
+          <li>記帳代行・経理サポート</li>
+        </ul>
+        <a href="/services/#management" class="category-link">詳しく見る →</a>
+      </div>
+    </div>
+    <div class="services-all-link">
+      <a href="/services/" class="btn-secondary">すべてのサービスを見る →</a>
+    </div>
+  </section>
+
+  <!-- BLOG COMING SOON -->
+  <section class="blog-coming" id="blog">
+    <div class="section-header">
+      <div class="section-label">Blog</div>
+      <h2 class="section-title">ブログ</h2>
+    </div>
+    <div class="coming-soon-box">
+      <div class="coming-icon">📝</div>
+      <h3>近日公開予定</h3>
+      <p>DX・AI活用・経営改善のノウハウを<br>わかりやすく発信していきます。</p>
+      <div class="coming-links">
+        <span>先行コンテンツはこちら →</span>
+        <a href="#" class="external-link">note ↗</a>
+        <a href="#" class="external-link">X (Twitter) ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>まずは気軽にご相談ください</h2>
+    <p>「こんなこと相談していいのかな？」も大歓迎。<br>初回30分の無料相談で、御社の課題を整理します。</p>
+    <a href="/contact/" class="btn-primary">無料相談する →</a>
+  </section>
+</Layout>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--light) 0%, #EFF6FF 50%, #DBEAFE 100%);
+    display: flex; justify-content: center; align-items: center; gap: 4rem;
+    flex-wrap: wrap; position: relative; overflow: hidden;
+    min-height: 100vh;
+  }
+  .hero::before {
+    content: ''; position: absolute;
+    top: -50%; right: -20%; width: 80%; height: 150%;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute;
+    bottom: -30%; left: -10%; width: 50%; height: 100%;
+    background: radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-blob {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: 400px; height: 400px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    opacity: 0.08; animation: morph 8s ease-in-out infinite; pointer-events: none;
+  }
+  .hero-inner { max-width: 550px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: white; padding: 0.5rem 1rem; border-radius: 50px;
+    font-size: 0.85rem; color: var(--gray); margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-md); border: 1px solid rgba(37,99,235,0.1);
+  }
+  .hero-badge::before { content: '🎯'; }
+  .hero h1 {
+    font-family: var(--font-display); font-size: 2.75rem; font-weight: 900;
+    line-height: 1.2; margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero p { font-size: 1.1rem; color: var(--gray); margin-bottom: 1.75rem; line-height: 1.8; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-card {
+    background: white; border-radius: var(--radius-lg); padding: 1.75rem;
+    box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 1.5rem;
+    border: 1px solid rgba(37,99,235,0.1); position: relative; z-index: 1; transition: all 0.3s;
+  }
+  .hero-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl), var(--shadow-glow); }
+  .hero-card-photo {
+    width: 90px; height: 90px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
+    font-size: 2.75rem; box-shadow: var(--shadow-md);
+  }
+  .hero-card-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin-bottom: 0.625rem; }
+  .hero-card-quals { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .qual-tag {
+    font-size: 0.7rem;
+    background: linear-gradient(135deg, var(--gray-lighter), #E8F4FD);
+    color: var(--gray); padding: 0.25rem 0.625rem; border-radius: 50px;
+    border: 1px solid var(--gray-light);
+  }
+
+  /* ===== QUICK ACCESS ===== */
+  .quick-access {
+    padding: 2.5rem 2rem; background: white;
+    border-bottom: 1px solid var(--gray-light); position: relative;
+  }
+  .quick-access::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+  }
+  .quick-cards { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+  .quick-card {
+    display: flex; flex-direction: column; align-items: center; gap: 0.625rem;
+    padding: 1.5rem 2.5rem;
+    background: linear-gradient(135deg, var(--gray-lighter), white);
+    border-radius: var(--radius-md); transition: all 0.3s; min-width: 180px;
+    border: 2px solid transparent; position: relative; overflow: hidden;
+  }
+  .quick-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .quick-card:hover::before { opacity: 1; }
+  .quick-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg), 0 0 30px rgba(37,99,235,0.2); }
+  .quick-card > * { position: relative; z-index: 1; transition: color 0.3s; }
+  .quick-card:hover > * { color: white; }
+  .quick-icon { font-size: 2rem; }
+  .quick-label { font-weight: 700; font-size: 1rem; }
+  .quick-desc { font-size: 0.8rem; opacity: 0.8; }
+
+  /* ===== PROBLEMS ===== */
+  .problems { padding: 5rem 2rem; background: linear-gradient(180deg, var(--light) 0%, white 100%); position: relative; }
+  .problem-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem; max-width: 1000px; margin: 0 auto 2.5rem;
+  }
+  .problem-card {
+    display: flex; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem;
+    background: white; border-radius: var(--radius-md); border: 2px solid var(--gray-light);
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .problem-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .problem-card:hover {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, white, #EFF6FF);
+    transform: translateX(8px); box-shadow: var(--shadow-lg);
+  }
+  .problem-card:hover::before { opacity: 1; }
+  .problem-icon { font-size: 2.25rem; flex-shrink: 0; }
+  .problem-text { font-size: 0.95rem; line-height: 1.5; flex: 1; font-weight: 500; }
+  .problem-arrow {
+    color: var(--primary); font-weight: bold; font-size: 1.25rem;
+    opacity: 0; transform: translateX(-10px); transition: all 0.3s;
+  }
+  .problem-card:hover .problem-arrow { opacity: 1; transform: translateX(0); }
+  .problem-cta { text-align: center; margin-top: 2rem; }
+  .problem-cta p { color: var(--gray); margin-bottom: 1rem; font-size: 0.95rem; }
+
+  /* ===== SERVICES OVERVIEW ===== */
+  .services-overview { padding: 5rem 2rem; background: white; position: relative; }
+  .service-categories {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; max-width: 1100px; margin: 0 auto;
+  }
+  .category-card {
+    padding: 2.25rem; border-radius: var(--radius-lg); transition: all 0.4s;
+    border: 2px solid transparent; position: relative; overflow: hidden;
+  }
+  .category-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .category-card:hover::before { transform: scaleX(1); }
+  .category-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl), var(--shadow-glow); }
+  .category-it { background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%); }
+  .category-it:hover { border-color: var(--primary); }
+  .category-data { background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); }
+  .category-data:hover { border-color: var(--accent); }
+  .category-finance { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); }
+  .category-finance:hover { border-color: var(--secondary); }
+  .category-icon { font-size: 3rem; margin-bottom: 1.25rem; display: inline-block; animation: float 3s ease-in-out infinite; }
+  .category-card:nth-child(2) .category-icon { animation-delay: 0.5s; }
+  .category-card:nth-child(3) .category-icon { animation-delay: 1s; }
+  .category-card h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 1rem; }
+  .category-card ul { margin-bottom: 1.25rem; }
+  .category-card li { font-size: 0.9rem; color: var(--gray); padding: 0.375rem 0; position: relative; padding-left: 1.25rem; }
+  .category-card li::before { content: '→'; position: absolute; left: 0; color: var(--primary); font-size: 0.8rem; }
+  .category-link { font-size: 0.9rem; font-weight: 600; color: var(--primary); display: inline-flex; align-items: center; gap: 0.375rem; transition: gap 0.3s; }
+  .category-card:hover .category-link { gap: 0.75rem; }
+  .services-all-link { text-align: center; margin-top: 3rem; }
+
+  /* ===== BLOG COMING SOON ===== */
+  .blog-coming { padding: 5rem 2rem; background: linear-gradient(180deg, white 0%, var(--light) 100%); }
+  .coming-soon-box {
+    max-width: 550px; margin: 0 auto; text-align: center;
+    padding: 3.5rem 2.5rem; background: white; border-radius: 30px;
+    border: 3px dashed var(--gray-light); position: relative;
+  }
+  .coming-soon-box::before {
+    content: '🚧'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+    font-size: 2.5rem; background: white; padding: 0 1rem;
+  }
+  .coming-icon { font-size: 4rem; margin-bottom: 1.25rem; animation: float 3s ease-in-out infinite; }
+  .coming-soon-box h3 {
+    font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 0.875rem;
+    background: linear-gradient(135deg, var(--gray), var(--dark-lighter));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .coming-soon-box p { color: var(--gray); margin-bottom: 1.75rem; font-size: 1rem; line-height: 1.8; }
+  .coming-links { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .coming-links span { font-size: 0.9rem; color: var(--gray); }
+  .external-link {
+    display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.9rem;
+    color: var(--primary); font-weight: 600; padding: 0.5rem 1rem;
+    background: var(--gray-lighter); border-radius: 50px; transition: all 0.3s;
+  }
+  .external-link:hover { background: var(--primary); color: white; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .hero { gap: 3rem; padding: 7rem 2rem 3rem; }
+    .hero h1 { font-size: 2.5rem; }
+    .hero-card-photo { width: 80px; height: 80px; font-size: 2.5rem; }
+    .service-categories { gap: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 6rem 1.5rem 3rem;
+      flex-direction: column;
+      gap: 2rem;
+      min-height: auto;
+    }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+    .hero-blob { width: 200px; height: 200px; right: -5%; opacity: 0.05; }
+    .hero-badge { font-size: 0.8rem; padding: 0.375rem 0.875rem; }
+    .hero-inner { text-align: center; }
+    .hero-cta { justify-content: center; }
+    .hero-card { width: 100%; max-width: 350px; padding: 1.25rem; gap: 1rem; }
+    .hero-card-photo { width: 70px; height: 70px; font-size: 2rem; }
+    .hero-card-name { font-size: 1.15rem; }
+    .qual-tag { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+
+    .quick-cards { gap: 0.75rem; }
+    .quick-card { min-width: 140px; padding: 1rem 1.25rem; }
+    .quick-icon { font-size: 1.5rem; }
+    .quick-label { font-size: 0.9rem; }
+
+    .problem-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .problem-card { padding: 1rem 1.25rem; }
+    .problem-icon { font-size: 1.75rem; }
+    .problem-text { font-size: 0.9rem; }
+
+    .service-categories { grid-template-columns: 1fr; }
+    .category-card { padding: 1.75rem; }
+    .category-icon { font-size: 2.5rem; }
+    .category-card h3 { font-size: 1.2rem; }
+
+    .coming-soon-box { padding: 2.5rem 1.5rem; margin: 0 1rem; }
+    .coming-icon { font-size: 3rem; }
+    .coming-soon-box h3 { font-size: 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 5.5rem 1rem 2.5rem; }
+    .hero h1 { font-size: 1.75rem; }
+    .hero p { font-size: 0.95rem; margin-bottom: 1.25rem; }
+    .hero-cta { flex-direction: column; width: 100%; }
+    .hero-card { flex-direction: column; text-align: center; padding: 1.5rem; }
+    .hero-card-quals { justify-content: center; }
+
+    .quick-access { padding: 1.5rem 1rem; }
+    .quick-cards { flex-direction: column; align-items: stretch; gap: 0.625rem; }
+    .quick-card {
+      flex-direction: row; justify-content: flex-start; gap: 1rem;
+      padding: 1rem 1.25rem; min-width: auto;
+    }
+    .quick-card > * { text-align: left; }
+
+    .problems, .services-overview, .blog-coming { padding: 3rem 1rem; }
+    .problem-card { gap: 0.75rem; }
+    .problem-arrow { display: none; }
+
+    .category-card { padding: 1.5rem; }
+
+    .coming-soon-box { padding: 2rem 1rem; border-radius: 20px; }
+    .coming-links { flex-direction: column; gap: 0.75rem; }
+  }
+
+  @media (hover: none) {
+    .quick-card:hover, .problem-card:hover,
+    .category-card:hover, .hero-card:hover {
+      transform: none;
+    }
+    .quick-card:active { transform: scale(0.98); }
+  }
+</style>

@@ -1,0 +1,88 @@
+---
+/**
+ * StructuredData.astro
+ * 構造化データ（JSON-LD）を出力するコンポーネント
+ *
+ * 使用例:
+ * <StructuredData type="Organization" />
+ * <StructuredData type="Person" />
+ * <StructuredData type="Article" data={articleData} />
+ */
+
+import type {
+  OrganizationSchema,
+  PersonSchema,
+  ArticleSchema,
+  BreadcrumbSchema
+} from '../../../shared/contracts/api';
+
+import organizationData from '../../data/schema/organization.json';
+import personData from '../../data/schema/person.json';
+
+interface Props {
+  type: 'Organization' | 'Person' | 'LocalBusiness' | 'Article' | 'BreadcrumbList';
+  data?: Record<string, unknown>;
+}
+
+const { type, data } = Astro.props;
+
+// 構造化データを取得
+function getStructuredData(type: string, customData?: Record<string, unknown>) {
+  switch (type) {
+    case 'Organization':
+    case 'LocalBusiness':
+      return customData ? { ...organizationData, ...customData } : organizationData;
+
+    case 'Person':
+      return customData ? { ...personData, ...customData } : personData;
+
+    case 'Article':
+      if (!customData) {
+        console.warn('Article type requires data prop');
+        return null;
+      }
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        author: {
+          '@type': 'Person',
+          '@id': 'https://yoshikawa-masahiro.com/#person',
+          name: '吉川昌宏'
+        },
+        publisher: {
+          '@type': 'Organization',
+          '@id': 'https://yoshikawa-masahiro.com/#organization',
+          name: '吉川昌宏事務所',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://yoshikawa-masahiro.com/logo.png'
+          }
+        },
+        ...customData
+      };
+
+    case 'BreadcrumbList':
+      if (!customData) {
+        console.warn('BreadcrumbList type requires data prop');
+        return null;
+      }
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        ...customData
+      };
+
+    default:
+      return customData;
+  }
+}
+
+const structuredData = getStructuredData(type, data);
+---
+
+{structuredData && (
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(structuredData, null, 0)}
+  />
+)}

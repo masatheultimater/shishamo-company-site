@@ -1,0 +1,290 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Formspreeエンドポイント - 後で実際のエンドポイントに置き換えてください
+// https://formspree.io/ でアカウント作成後、フォームを作成してエンドポイントURLを取得
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojwzwea";
+---
+
+<Layout
+  title="お問い合わせ | ししゃも｜吉川昌宏"
+  description="ご相談・お見積りは無料です。DX推進・生成AI導入・データ活用・経営支援について、お気軽にご連絡ください。"
+  currentPage="contact"
+>
+  <section class="page-header">
+    <div class="page-header-blob"></div>
+    <h1>お問い合わせ</h1>
+    <p>ご相談・お見積りは無料です。お気軽にご連絡ください。</p>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-form-card">
+        <h2>📬 メッセージを送る</h2>
+        <p>以下のフォームからお問い合わせください。</p>
+        <form action={FORMSPREE_ENDPOINT} method="POST" id="contactForm">
+          <input type="hidden" name="_subject" value="【ししゃも】お問い合わせ">
+          <input type="hidden" name="_next" value="/contact/thanks/">
+
+          <div class="form-group">
+            <label for="contact-name">
+              お名前<span class="required" aria-hidden="true">*</span>
+              <span class="sr-only">（必須）</span>
+            </label>
+            <input type="text" id="contact-name" name="name" required aria-required="true" placeholder="山田 太郎">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-company">会社名</label>
+            <input type="text" id="contact-company" name="company" placeholder="株式会社〇〇">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">
+              メールアドレス<span class="required" aria-hidden="true">*</span>
+              <span class="sr-only">（必須）</span>
+            </label>
+            <input type="email" id="contact-email" name="email" required aria-required="true" placeholder="example@company.com">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-phone">電話番号</label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="03-1234-5678">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-category">
+              ご相談内容<span class="required" aria-hidden="true">*</span>
+              <span class="sr-only">（必須）</span>
+            </label>
+            <select id="contact-category" name="category" required aria-required="true">
+              <option value="">選択してください</option>
+              <option value="dx">DX推進・IT戦略について</option>
+              <option value="ai">生成AI導入について</option>
+              <option value="data">データ活用について</option>
+              <option value="management">経営支援について</option>
+              <option value="accounting">経理・記帳について</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">
+              詳細<span class="required" aria-hidden="true">*</span>
+              <span class="sr-only">（必須）</span>
+            </label>
+            <textarea id="contact-message" name="message" required aria-required="true" placeholder="ご相談内容、現在の課題、ご要望などをお書きください"></textarea>
+            <p class="form-note">「こんなこと相談していいのかな？」も大歓迎です！</p>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" id="privacy" name="privacy" required>
+              <label for="privacy"><a href="#" target="_blank">プライバシーポリシー</a>に同意する</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">送信する →</button>
+        </form>
+      </div>
+
+      <div class="contact-sidebar">
+        <div class="sidebar-card response-card">
+          <h3>⚡ 返信目安</h3>
+          <div class="response-time">24時間以内</div>
+          <p>営業日以内に必ずご返信します</p>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>💬 初回相談無料</h3>
+          <p>30分のオンライン相談で、御社の課題を整理します。</p>
+          <ul>
+            <li>課題のヒアリング</li>
+            <li>解決の方向性のご提案</li>
+            <li>お見積りの概算</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>📍 対応エリア</h3>
+          <p>オンライン対応のため全国OK。対面をご希望の場合は関東圏で調整可能です。</p>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>🔒 情報管理</h3>
+          <p>お預かりした情報は適切に管理し、ご相談対応以外の目的には使用しません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <h2 class="faq-title">よくあるご質問</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-badge">Q</span>
+            相談は本当に無料ですか？
+          </div>
+          <p class="faq-a">はい、初回30分のオンライン相談は完全無料です。ご契約前に費用が発生することはありません。</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-badge">Q</span>
+            どんな規模の会社でも対応できますか？
+          </div>
+          <p class="faq-a">個人事業主から従業員100名程度の中小企業まで対応しています。大企業向けの複雑な案件は、信頼できる専門家をご紹介することも可能です。</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-badge">Q</span>
+            リモートでの対応は可能ですか？
+          </div>
+          <p class="faq-a">もちろんです。Zoom、Google Meet、Microsoft Teamsなどに対応しています。全国どこからでもご相談いただけます。</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-badge">Q</span>
+            まだ何を相談すればいいかわかりません
+          </div>
+          <p class="faq-a">それでも大丈夫です！「なんとなく困っている」「もっと良くなりそうな気がする」という段階でもお気軽にご相談ください。一緒に課題を整理するところから始められます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Screen reader only text */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Contact Section */
+  .contact-section { padding: 4rem 2rem 5rem; position: relative; }
+  .contact-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; position: relative;
+  }
+
+  /* Form Card */
+  .contact-form-card {
+    background: white; border-radius: var(--radius-lg); padding: 2.5rem;
+    box-shadow: var(--shadow-xl);
+  }
+  .contact-form-card h2 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .contact-form-card > p { color: var(--gray); font-size: 0.95rem; margin-bottom: 2rem; }
+
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .form-group label .required { color: #EF4444; margin-left: 0.25rem; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; padding: 0.875rem 1rem;
+    border: 2px solid var(--gray-light); border-radius: var(--radius-sm);
+    font-size: 1rem; font-family: inherit; transition: all 0.3s; background: white;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .form-group textarea { min-height: 150px; resize: vertical; }
+  .form-note { font-size: 0.8rem; color: var(--gray); margin-top: 0.375rem; }
+
+  .checkbox-group { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .checkbox-group input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--primary); }
+  .checkbox-group label { font-size: 0.9rem; line-height: 1.5; font-weight: normal; }
+  .checkbox-group a { color: var(--primary); text-decoration: underline; }
+
+  .contact-form-card .btn-primary { width: 100%; justify-content: center; }
+
+  /* Sidebar */
+  .contact-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+  .sidebar-card {
+    background: white; border-radius: var(--radius-md); padding: 1.5rem;
+    border: 2px solid var(--gray-light); transition: all 0.3s;
+  }
+  .sidebar-card:hover { border-color: var(--primary); }
+  .sidebar-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .sidebar-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.7; }
+  .sidebar-card ul { margin-top: 0.75rem; }
+  .sidebar-card li {
+    font-size: 0.85rem; color: var(--gray); padding: 0.25rem 0;
+    padding-left: 1.25rem; position: relative;
+  }
+  .sidebar-card li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); }
+
+  .response-card {
+    background: linear-gradient(135deg, var(--accent), #059669);
+    color: white; border: none; position: relative; overflow: hidden;
+  }
+  .response-card::before {
+    content: '⚡'; position: absolute; right: 10px; top: 10px;
+    font-size: 4rem; opacity: 0.15;
+  }
+  .response-card h3 { color: white; }
+  .response-time { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin: 0.5rem 0; }
+  .response-card p { opacity: 0.95; }
+
+  /* FAQ Section */
+  .faq-section { padding: 4rem 2rem 5rem; background: white; }
+  .faq-inner { max-width: 800px; margin: 0 auto; }
+  .faq-title { font-family: var(--font-display); font-size: 1.5rem; text-align: center; margin-bottom: 2rem; }
+  .faq-list { display: flex; flex-direction: column; gap: 1rem; }
+  .faq-item { background: var(--light); border-radius: var(--radius-md); padding: 1.5rem; }
+  .faq-q { font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+  .faq-q-badge {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+  }
+  .faq-a { font-size: 0.95rem; color: var(--gray); line-height: 1.8; padding-left: calc(28px + 0.75rem); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .contact-section { padding: 3rem 1.5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-sidebar { order: -1; flex-direction: row; flex-wrap: wrap; }
+    .sidebar-card { flex: 1; min-width: 200px; }
+    .contact-form-card { padding: 2rem 1.5rem; }
+    .contact-form-card h2 { font-size: 1.35rem; }
+
+    .faq-section { padding: 3rem 1.5rem; }
+    .faq-title { font-size: 1.35rem; }
+    .faq-item { padding: 1.25rem; }
+    .faq-q { font-size: 0.95rem; }
+    .faq-a { font-size: 0.9rem; padding-left: calc(24px + 0.5rem); }
+    .faq-q-badge { width: 24px; height: 24px; font-size: 0.7rem; }
+  }
+
+  @media (max-width: 480px) {
+    .contact-section { padding: 2rem 1rem; }
+    .contact-sidebar { flex-direction: column; }
+    .sidebar-card { min-width: auto; }
+    .contact-form-card { padding: 1.5rem 1rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.75rem; font-size: 16px; /* Prevent iOS zoom */
+    }
+
+    .faq-section { padding: 2.5rem 1rem; }
+  }
+</style>

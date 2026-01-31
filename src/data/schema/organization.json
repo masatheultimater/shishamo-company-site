@@ -1,0 +1,92 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "吉川昌宏事務所",
+  "alternateName": "ししゃも｜吉川昌宏",
+  "description": "IT × 経営 × 財務で、ビジネスを加速させる。中小企業向けDX推進・生成AI導入・データ活用・経営支援サービスを提供。",
+  "url": "https://yoshikawa-masahiro.com",
+  "logo": "https://yoshikawa-masahiro.com/logo.png",
+  "email": "contact@yoshikawa-masahiro.com",
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "東京都"
+  },
+  "founder": {
+    "@type": "Person",
+    "@id": "https://yoshikawa-masahiro.com/#person"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "サービス一覧",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "DX推進コンサルティング",
+          "description": "業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "生成AI導入支援",
+          "description": "ChatGPT・Claude活用から業務特化AIの構築まで。御社に最適なAI活用を設計。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "経営データ分析",
+          "description": "売上・顧客・在庫データを分析し、経営判断に使える洞察を提供。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "KPIダッシュボード構築",
+          "description": "経営数字をリアルタイムで可視化。意思決定のスピードを上げる。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Webサイト・アプリ構築",
+          "description": "コーポレートサイトから業務アプリまで、7年の開発経験で対応。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "記帳代行・経理サポート",
+          "description": "日々の記帳から月次レポートまで。経理の負担を軽減します。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "経営診断・改善提案",
+          "description": "財務分析から事業戦略まで、診断士として課題を洗い出し改善策を提案。"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "補助金申請サポート",
+          "description": "IT導入補助金、ものづくり補助金など、採択率を高める申請書作成。"
+        }
+      }
+    ]
+  },
+  "sameAs": [
+    "https://twitter.com/shishamo_tax",
+    "https://note.com/shishamo"
+  ]
+}

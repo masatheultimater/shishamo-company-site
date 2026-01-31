@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="送信完了 | ししゃも｜吉川昌宏"
+  description="お問い合わせありがとうございます。24時間以内にご返信いたします。"
+  currentPage="contact"
+>
+  <section class="thanks-section">
+    <div class="thanks-inner">
+      <div class="thanks-card">
+        <div class="thanks-icon">✅</div>
+        <h1>送信が完了しました</h1>
+        <p class="thanks-message">
+          お問い合わせいただきありがとうございます。<br>
+          内容を確認の上、<strong>24時間以内</strong>にご連絡いたします。
+        </p>
+
+        <div class="thanks-info">
+          <div class="info-item">
+            <span class="info-icon">📧</span>
+            <div>
+              <h3>返信メールについて</h3>
+              <p>masatheultimater@gmail.com からご連絡いたします。迷惑メールフォルダもご確認ください。</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">⏰</span>
+            <div>
+              <h3>お急ぎの場合</h3>
+              <p>緊急のご相談は、返信メール内の連絡先へお電話ください。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="thanks-cta">
+          <a href="/" class="btn-primary">トップページへ戻る</a>
+          <a href="/services/" class="btn-secondary">サービスを見る</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thanks-section {
+    min-height: calc(100vh - 200px);
+    padding: 8rem 2rem 4rem;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--light) 0%, #EFF6FF 50%, #DBEAFE 100%);
+    position: relative; overflow: hidden;
+  }
+  .thanks-section::before {
+    content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
+    background: radial-gradient(ellipse, rgba(16,185,129,0.1) 0%, transparent 70%);
+  }
+
+  .thanks-inner { max-width: 600px; width: 100%; position: relative; z-index: 1; }
+
+  .thanks-card {
+    background: white; border-radius: var(--radius-lg); padding: 3rem;
+    box-shadow: var(--shadow-xl); text-align: center;
+  }
+
+  .thanks-icon {
+    font-size: 4rem; margin-bottom: 1.5rem;
+    animation: bounce 1s ease-in-out;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .thanks-card h1 {
+    font-family: var(--font-display); font-size: 1.75rem; font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--dark), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .thanks-message {
+    font-size: 1rem; color: var(--gray); line-height: 1.8; margin-bottom: 2rem;
+  }
+  .thanks-message strong { color: var(--accent); }
+
+  .thanks-info {
+    background: var(--gray-lighter); border-radius: var(--radius-md);
+    padding: 1.5rem; margin-bottom: 2rem; text-align: left;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .info-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .info-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .info-item h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .info-item p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+
+  .thanks-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  @media (max-width: 768px) {
+    .thanks-section { padding: 6rem 1.5rem 3rem; }
+    .thanks-card { padding: 2rem 1.5rem; }
+    .thanks-icon { font-size: 3rem; }
+    .thanks-card h1 { font-size: 1.5rem; }
+    .thanks-message { font-size: 0.95rem; }
+    .thanks-cta { flex-direction: column; }
+    .thanks-cta .btn-primary,
+    .thanks-cta .btn-secondary { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .thanks-section { padding: 5.5rem 1rem 2.5rem; }
+    .thanks-card { padding: 1.5rem 1rem; }
+    .thanks-card h1 { font-size: 1.35rem; }
+    .info-item { flex-direction: column; gap: 0.5rem; }
+  }
+</style>

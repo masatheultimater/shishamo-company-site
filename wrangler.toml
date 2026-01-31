@@ -1,0 +1,20 @@
+# ========================================
+# Cloudflare Wrangler設定
+# ========================================
+
+name = "shishamo-site"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
+
+# 環境変数（本番環境）
+[vars]
+ENVIRONMENT = "production"
+
+# 将来のFunctions用設定（お問い合わせフォームなど）
+# [env.production.vars]
+# RESEND_API_KEY = ""
+
+# ルーティング設定
+# [[routes]]
+# pattern = "shishamo-company.com/*"
+# custom_domain = true

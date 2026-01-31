@@ -1,0 +1,146 @@
+{
+  "$schema": "https://design-tokens.org/schema.json",
+  "meta": {
+    "project": "shishamo-site",
+    "style": "modern-tech",
+    "description": "ししゃも｜吉川昌宏 サイト デザイントークン"
+  },
+  "colors": {
+    "primary": {
+      "value": "#2563EB",
+      "description": "メインブルー - IT先進性を表現"
+    },
+    "primary-dark": {
+      "value": "#1D4ED8",
+      "description": "プライマリの暗いバリエーション"
+    },
+    "secondary": {
+      "value": "#F59E0B",
+      "description": "アンバー - 温かみ・親しみやすさ"
+    },
+    "accent": {
+      "value": "#10B981",
+      "description": "エメラルド - 成長・挑戦・成功"
+    },
+    "dark": {
+      "value": "#1E293B",
+      "description": "スレートネイビー - 信頼感・プロフェッショナル"
+    },
+    "dark-lighter": {
+      "value": "#334155",
+      "description": "ダークの明るいバリエーション"
+    },
+    "light": {
+      "value": "#F8FAFC",
+      "description": "クリーンな白背景"
+    },
+    "gray": {
+      "value": "#64748B",
+      "description": "テキスト用グレー"
+    },
+    "gray-light": {
+      "value": "#E2E8F0",
+      "description": "ボーダー・区切り線"
+    },
+    "gray-lighter": {
+      "value": "#F1F5F9",
+      "description": "薄い背景色"
+    }
+  },
+  "typography": {
+    "font-family": {
+      "display": "'Space Grotesk', 'Noto Sans JP', sans-serif",
+      "body": "'Noto Sans JP', sans-serif"
+    },
+    "font-size": {
+      "xs": "0.75rem",
+      "sm": "0.875rem",
+      "base": "1rem",
+      "lg": "1.125rem",
+      "xl": "1.25rem",
+      "2xl": "1.5rem",
+      "3xl": "1.875rem",
+      "4xl": "2.25rem",
+      "5xl": "3rem"
+    },
+    "font-weight": {
+      "normal": "400",
+      "medium": "500",
+      "bold": "700",
+      "black": "900"
+    },
+    "line-height": {
+      "tight": "1.2",
+      "normal": "1.7",
+      "relaxed": "1.8"
+    }
+  },
+  "spacing": {
+    "xs": "0.25rem",
+    "sm": "0.5rem",
+    "md": "1rem",
+    "lg": "1.5rem",
+    "xl": "2rem",
+    "2xl": "3rem",
+    "3xl": "4rem",
+    "4xl": "5rem",
+    "5xl": "8rem"
+  },
+  "radius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "20px",
+    "full": "9999px"
+  },
+  "shadows": {
+    "sm": "0 1px 2px rgba(0,0,0,0.05)",
+    "md": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+    "lg": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
+    "xl": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)",
+    "glow": "0 0 40px rgba(37,99,235,0.15)"
+  },
+  "breakpoints": {
+    "sm": "480px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px"
+  },
+  "animations": {
+    "swim": {
+      "keyframes": "0%, 100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(3px) rotate(3deg); } 75% { transform: translateX(-3px) rotate(-3deg); }",
+      "duration": "3s",
+      "timing": "ease-in-out",
+      "iteration": "infinite",
+      "description": "ロゴの魚が泳ぐアニメーション"
+    },
+    "morph": {
+      "keyframes": "0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }",
+      "duration": "8s",
+      "timing": "ease-in-out",
+      "iteration": "infinite",
+      "description": "背景のblob変形アニメーション"
+    },
+    "float": {
+      "keyframes": "0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); }",
+      "duration": "3s",
+      "timing": "ease-in-out",
+      "iteration": "infinite",
+      "description": "アイコンがふわふわ浮くアニメーション"
+    },
+    "pulse-glow": {
+      "keyframes": "0%, 100% { box-shadow: 0 0 20px rgba(37,99,235,0.3); } 50% { box-shadow: 0 0 40px rgba(37,99,235,0.5); }",
+      "duration": "3s",
+      "timing": "ease-in-out",
+      "iteration": "infinite",
+      "description": "グロー効果のパルス"
+    }
+  },
+  "gradients": {
+    "primary": "linear-gradient(135deg, #2563EB, #1D4ED8)",
+    "primary-accent": "linear-gradient(135deg, #2563EB, #10B981)",
+    "hero-bg": "linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%)",
+    "footer-bg": "linear-gradient(180deg, #1E293B 0%, #0F172A 100%)",
+    "cta-bg": "linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%)",
+    "rainbow-bar": "linear-gradient(90deg, #2563EB, #10B981, #F59E0B)"
+  }
+}

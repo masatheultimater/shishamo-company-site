@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフィール | ししゃも｜吉川昌宏</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563EB; --primary-dark: #1D4ED8; --secondary: #F59E0B; --accent: #10B981;
+      --dark: #1E293B; --dark-lighter: #334155; --light: #F8FAFC;
+      --gray: #64748B; --gray-light: #E2E8F0; --gray-lighter: #F1F5F9;
+      --font-display: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+      --font-body: 'Noto Sans JP', sans-serif;
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1); --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1); --shadow-glow: 0 0 40px rgba(37,99,235,0.15);
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--light); color: var(--dark); line-height: 1.7; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    @keyframes swim { 0%, 100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(3px) rotate(3deg); } 75% { transform: translateX(-3px) rotate(-3deg); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(37,99,235,0.3); } 50% { box-shadow: 0 0 40px rgba(37,99,235,0.5); } }
+
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 30px rgba(0,0,0,0.05); }
+    .logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; animation: swim 3s ease-in-out infinite; box-shadow: var(--shadow-md); }
+    .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; }
+    .logo-text span { color: var(--gray); font-weight: 500; font-size: 0.85rem; margin-left: 0.5rem; }
+    .nav { display: flex; gap: 2rem; align-items: center; }
+    .nav-link { font-size: 0.9rem; font-weight: 500; color: var(--dark); transition: all 0.3s; padding: 0.5rem 0; position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: width 0.3s; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:hover, .nav-link.active { color: var(--primary); }
+    .nav-cta { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white !important; padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; box-shadow: var(--shadow-md); }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.75rem; cursor: pointer; padding: 0.5rem; z-index: 110; }
+    .mobile-nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); z-index: 105; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a { font-size: 1.25rem; font-weight: 600; color: var(--dark); padding: 1rem 2rem; }
+    .mobile-nav .nav-cta { margin-top: 1rem; padding: 1rem 2.5rem; font-size: 1.1rem; }
+
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1rem 2rem; border-radius: var(--radius-md); font-weight: 600; font-size: 1rem; transition: all 0.3s; box-shadow: var(--shadow-md); border: none; cursor: pointer; }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+
+    .profile-hero { padding: 8rem 2rem 4rem; background: linear-gradient(135deg, var(--dark) 0%, var(--dark-lighter) 50%, #1E3A5F 100%); color: white; position: relative; overflow: hidden; }
+    .profile-hero::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(37,99,235,0.15) 0%, transparent 70%); }
+    .profile-hero-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; gap: 3rem; position: relative; z-index: 1; }
+    .profile-photo { width: 200px; height: 200px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 6rem; flex-shrink: 0; box-shadow: var(--shadow-xl); position: relative; }
+    .profile-photo::after { content: ''; position: absolute; inset: -4px; border-radius: 34px; background: linear-gradient(135deg, var(--primary), var(--accent)); z-index: -1; opacity: 0.5; animation: pulse-glow 3s ease-in-out infinite; }
+    .profile-hero-text h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; }
+    .profile-hero-text .subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; }
+    .profile-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .profile-badge { padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 50px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.2); }
+
+    .stats-section { padding: 0 2rem; margin-top: -2rem; position: relative; z-index: 10; }
+    .stats-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .stat-card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; box-shadow: var(--shadow-lg); border: 2px solid transparent; transition: all 0.3s; }
+    .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .stat-number { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-label { font-size: 0.85rem; color: var(--gray); margin-top: 0.25rem; }
+
+    .content-section { padding: 5rem 2rem; }
+    .content-section:nth-child(even) { background: white; }
+    .content-section:nth-child(odd) { background: var(--light); }
+    .content-inner { max-width: 900px; margin: 0 auto; }
+    .section-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-title::before { content: ''; width: 4px; height: 1.5rem; background: linear-gradient(180deg, var(--primary), var(--accent)); border-radius: 4px; }
+
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 4px; background: linear-gradient(180deg, var(--primary), var(--accent), var(--secondary)); border-radius: 4px; }
+    .timeline-item { position: relative; padding-bottom: 2.5rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 5px; width: 16px; height: 16px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 4px var(--light); }
+    .timeline-date { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 0.25rem; }
+    .timeline-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .timeline-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.8; }
+    .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
+    .timeline-tag { font-size: 0.75rem; padding: 0.25rem 0.625rem; background: linear-gradient(135deg, var(--gray-lighter), #EFF6FF); border-radius: 50px; color: var(--gray); }
+
+    .qual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .qual-card { background: white; border-radius: var(--radius-md); padding: 1.25rem 1.5rem; border: 2px solid var(--gray-light); transition: all 0.3s; display: flex; align-items: center; gap: 1rem; }
+    .qual-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .qual-card.pending { border-style: dashed; opacity: 0.7; }
+    .qual-icon { font-size: 2rem; flex-shrink: 0; }
+    .qual-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.125rem; }
+    .qual-info p { font-size: 0.8rem; color: var(--gray); }
+    .qual-status { font-size: 0.7rem; padding: 0.125rem 0.5rem; background: var(--secondary); color: white; border-radius: 50px; margin-left: auto; }
+
+    .philosophy-box { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border-radius: var(--radius-lg); padding: 3rem; position: relative; overflow: hidden; }
+    .philosophy-box::before { content: '"'; position: absolute; top: -20px; left: 20px; font-size: 10rem; opacity: 0.1; font-family: Georgia, serif; line-height: 1; }
+    .philosophy-box h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; position: relative; }
+    .philosophy-box p { font-size: 1.05rem; line-height: 1.9; opacity: 0.95; position: relative; }
+
+    .profile-cta { padding: 5rem 2rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark), #1E40AF); color: white; text-align: center; position: relative; overflow: hidden; }
+    .profile-cta::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%); }
+    .profile-cta > * { position: relative; }
+    .profile-cta h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; }
+    .profile-cta p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.05rem; }
+    .profile-cta .btn-primary { background: white; color: var(--primary); }
+
+    .footer { background: linear-gradient(180deg, var(--dark), #0F172A); color: rgba(255,255,255,0.7); padding: 4rem 2rem 2rem; position: relative; }
+    .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary)); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; }
+    .footer-brand .footer-logo { display: flex; align-items: center; gap: 0.625rem; color: white; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
+    .footer-brand .logo-icon { width: 36px; height: 36px; font-size: 1.25rem; }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
+    .footer-links h4 { color: white; font-size: 0.9rem; margin-bottom: 1rem; position: relative; padding-bottom: 0.5rem; }
+    .footer-links h4::after { content: ''; position: absolute; bottom: 0; left: 0; width: 30px; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { font-size: 0.9rem; transition: all 0.3s; display: inline-block; }
+    .footer-links a:hover { color: var(--secondary); transform: translateX(5px); }
+    .footer-bottom { max-width: 1100px; margin: 2.5rem auto 0; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
+    .social-links { display: flex; gap: 0.875rem; }
+    .social-links a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s; }
+    .social-links a:hover { background: linear-gradient(135deg, var(--primary), var(--accent)); transform: translateY(-3px); }
+
+    @media (max-width: 1024px) { .footer-inner { grid-template-columns: 1fr 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+    @media (max-width: 768px) {
+      .header { padding: 0.875rem 1.5rem; }
+      .nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .profile-hero { padding: 6rem 1.5rem 3rem; }
+      .profile-hero-inner { flex-direction: column; text-align: center; gap: 2rem; }
+      .profile-photo { width: 150px; height: 150px; font-size: 4rem; border-radius: 24px; }
+      .profile-hero-text h1 { font-size: 2rem; }
+      .profile-hero-text .subtitle { font-size: 1rem; }
+      .profile-badges { justify-content: center; }
+      .profile-badge { font-size: 0.75rem; padding: 0.375rem 0.75rem; }
+      .stats-section { margin-top: -1.5rem; padding: 0 1rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      .stat-card { padding: 1.25rem 1rem; }
+      .stat-number { font-size: 2rem; }
+      .stat-label { font-size: 0.75rem; }
+      .content-section { padding: 3rem 1.5rem; }
+      .section-title { font-size: 1.5rem; }
+      .timeline { padding-left: 1.5rem; }
+      .timeline-item::before { left: -1.5rem; width: 12px; height: 12px; }
+      .timeline-title { font-size: 1rem; }
+      .timeline-desc { font-size: 0.9rem; }
+      .qual-grid { grid-template-columns: 1fr; }
+      .philosophy-box { padding: 2rem 1.5rem; }
+      .philosophy-box h3 { font-size: 1.25rem; }
+      .philosophy-box p { font-size: 0.95rem; }
+      .profile-cta { padding: 3rem 1.5rem; }
+      .profile-cta h2 { font-size: 1.5rem; }
+      .footer { padding: 3rem 1.5rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .footer-brand { grid-column: 1 / -1; text-align: center; }
+      .footer-brand .footer-logo { justify-content: center; }
+      .footer-links { text-align: center; }
+      .footer-links h4::after { left: 50%; transform: translateX(-50%); }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .header { padding: 0.75rem 1rem; }
+      .logo-icon { width: 38px; height: 38px; font-size: 1.25rem; }
+      .logo-text { font-size: 1.1rem; }
+      .logo-text span { display: none; }
+      .profile-hero { padding: 5.5rem 1rem 2.5rem; }
+      .profile-photo { width: 120px; height: 120px; font-size: 3rem; }
+      .profile-hero-text h1 { font-size: 1.75rem; }
+      .stats-grid { gap: 0.5rem; }
+      .stat-card { padding: 1rem 0.75rem; }
+      .stat-number { font-size: 1.75rem; }
+      .content-section { padding: 2.5rem 1rem; }
+      .section-title { font-size: 1.35rem; margin-bottom: 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+    @media (hover: none) { .stat-card:hover, .qual-card:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo"><div class="logo-icon">🐟</div><div class="logo-text">ししゃも<span>| 吉川昌宏</span></div></a>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">ホーム</a>
+      <a href="services.html" class="nav-link">サービス</a>
+      <a href="profile.html" class="nav-link active">プロフィール</a>
+      <a href="index.html#blog" class="nav-link">ブログ</a>
+      <a href="contact.html" class="nav-cta">お問い合わせ</a>
+    </nav>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">ホーム</a><a href="services.html">サービス</a><a href="profile.html">プロフィール</a><a href="index.html#blog">ブログ</a><a href="contact.html" class="nav-cta">お問い合わせ</a>
+  </nav>
+
+  <section class="profile-hero">
+    <div class="profile-hero-inner">
+      <div class="profile-photo">👨‍💻</div>
+      <div class="profile-hero-text">
+        <h1>吉川 昌宏</h1>
+        <p class="subtitle">中小企業の挑戦を後押しする「なんでもお助け」コンサルタント</p>
+        <div class="profile-badges">
+          <span class="profile-badge">🎯 中小企業診断士</span>
+          <span class="profile-badge">💻 ITストラテジスト</span>
+          <span class="profile-badge">🤖 E資格</span>
+          <span class="profile-badge">🗄️ データベーススペシャリスト</span>
+          <span class="profile-badge">📊 税理士（取得中）</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number">7</div><div class="stat-label">年のWeb開発経験</div></div>
+      <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">年の会計事務所経験</div></div>
+      <div class="stat-card"><div class="stat-number">5+</div><div class="stat-label">保有資格</div></div>
+      <div class="stat-card"><div class="stat-number">∞</div><div class="stat-label">挑戦への情熱</div></div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <h2 class="section-title">経歴</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2024年〜現在</div>
+          <div class="timeline-title">会計事務所勤務</div>
+          <div class="timeline-desc">税務・会計の実務経験を積みながら、税理士資格取得に向けて勉強中。中小企業の財務面から経営を支援する視点を習得。</div>
+          <div class="timeline-tags"><span class="timeline-tag">税務申告</span><span class="timeline-tag">記帳代行</span><span class="timeline-tag">財務分析</span></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2017年〜2024年</div>
+          <div class="timeline-title">SaaSスタートアップ プロダクトマネージャー</div>
+          <div class="timeline-desc">データ分析基盤プロダクトのPMとして、プロダクト戦略の立案から開発ディレクション、顧客への提案まで幅広く担当。経営陣との距離が近く、プロダクトの売り方やクライアントへの寄り添い方を常に考えながら、経営視点で意思決定する経験を積む。</div>
+          <div class="timeline-tags"><span class="timeline-tag">プロダクトマネジメント</span><span class="timeline-tag">データ分析基盤</span><span class="timeline-tag">顧客折衝</span><span class="timeline-tag">経営企画</span></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2017年〜</div>
+          <div class="timeline-title">Web開発エンジニア（兼務・副業含む）</div>
+          <div class="timeline-desc">フロントエンドからバックエンドまでフルスタックで開発。Webアプリケーション構築、API設計、データベース設計など幅広い技術領域を経験。</div>
+          <div class="timeline-tags"><span class="timeline-tag">React / Vue.js</span><span class="timeline-tag">Python / Node.js</span><span class="timeline-tag">AWS / GCP</span><span class="timeline-tag">データベース設計</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <h2 class="section-title">保有資格</h2>
+      <div class="qual-grid">
+        <div class="qual-card"><div class="qual-icon">🎯</div><div class="qual-info"><h4>中小企業診断士</h4><p>経営コンサルティングの国家資格</p></div></div>
+        <div class="qual-card"><div class="qual-icon">💻</div><div class="qual-info"><h4>ITストラテジスト</h4><p>IT戦略立案の高度情報処理技術者</p></div></div>
+        <div class="qual-card"><div class="qual-icon">🤖</div><div class="qual-info"><h4>E資格</h4><p>ディープラーニングエンジニア認定</p></div></div>
+        <div class="qual-card"><div class="qual-icon">🗄️</div><div class="qual-info"><h4>データベーススペシャリスト</h4><p>データベース設計の高度情報処理技術者</p></div></div>
+        <div class="qual-card pending"><div class="qual-icon">📊</div><div class="qual-info"><h4>税理士</h4><p>税務の専門家資格</p></div><span class="qual-status">取得中</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <h2 class="section-title">大切にしていること</h2>
+      <div class="philosophy-box">
+        <h3>中小企業の挑戦を後押しする</h3>
+        <p>ITも経営も財務も、すべては「お客様の課題を解決する」ための手段です。難しい専門用語ではなく、わかりやすい言葉で。一方的なアドバイスではなく、一緒に考える姿勢で。プロダクトマネージャーとしてクライアントに寄り添ってきた経験を活かし、御社のパートナーとして、挑戦を後押しします。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-cta">
+    <h2>一緒に御社の課題を解決しませんか？</h2>
+    <p>「こんなこと相談していいのかな？」も大歓迎です。<br>まずはお気軽にお話しください。</p>
+    <a href="contact.html" class="btn-primary">無料相談する →</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="footer-logo"><span class="logo-icon">🐟</span>ししゃも｜吉川昌宏</div><p>中小企業の挑戦を後押しする<br>IT × 経営 × 財務のプロフェッショナル</p></div>
+      <div class="footer-links"><h4>サービス</h4><ul><li><a href="services.html#dx">DX推進</a></li><li><a href="services.html#ai">生成AI導入</a></li><li><a href="services.html#data">データ分析</a></li><li><a href="services.html#accounting">記帳代行</a></li></ul></div>
+      <div class="footer-links"><h4>情報</h4><ul><li><a href="profile.html">プロフィール</a></li><li><a href="index.html#blog">ブログ（準備中）</a></li></ul></div>
+      <div class="footer-links"><h4>お問い合わせ</h4><ul><li><a href="contact.html">無料相談</a></li><li><a href="contact.html">お見積り依頼</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 吉川昌宏（ししゃも）All rights reserved.</p><div class="social-links"><a href="#">𝕏</a><a href="#">n</a></div></div>
+  </footer>
+  <script>function toggleMenu(){const n=document.getElementById('mobileNav'),b=document.querySelector('.mobile-menu-btn');n.classList.toggle('active');b.textContent=n.classList.contains('active')?'✕':'☰';}</script>
+</body>
+</html>

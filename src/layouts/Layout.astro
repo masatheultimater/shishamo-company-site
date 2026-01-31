@@ -1,0 +1,138 @@
+---
+/**
+ * Base Layout Component
+ * Implements BaseLayoutProps from shared/contracts/components.ts
+ *
+ * Refactored to use separated Header, MobileNav, Footer components
+ * and centralized site configuration from lib/siteConfig.ts
+ */
+import Header from '../components/layout/Header.astro';
+import MobileNav from '../components/layout/MobileNav.astro';
+import Footer from '../components/layout/Footer.astro';
+import MetaTags from '../components/seo/MetaTags.astro';
+import StructuredData from '../components/seo/StructuredData.astro';
+import { seoDefaults } from '../lib/siteConfig';
+
+// BaseLayoutProps interface from contracts/components.ts
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  canonicalUrl?: string;
+  noIndex?: boolean;
+  // Extended props
+  keywords?: string[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  // Layout customization
+  currentPage?: 'home' | 'services' | 'profile' | 'blog' | 'contact';
+  transparentHeader?: boolean;
+  showNewsletter?: boolean;
+  showOrganizationSchema?: boolean;
+  showPersonSchema?: boolean;
+}
+
+const {
+  title,
+  description = seoDefaults.defaultDescription,
+  ogImage,
+  ogType = seoDefaults.ogType,
+  canonicalUrl,
+  noIndex = false,
+  keywords,
+  publishedTime,
+  modifiedTime,
+  currentPage,
+  transparentHeader = false,
+  showNewsletter = false,
+  showOrganizationSchema = true,
+  showPersonSchema = false,
+} = Astro.props;
+
+// Construct full title with site name
+const fullTitle = title.includes(seoDefaults.siteName)
+  ? title
+  : `${title} | ${seoDefaults.siteName}`;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <!-- SEO Meta Tags -->
+  <MetaTags
+    title={title}
+    description={description}
+    ogImage={ogImage}
+    ogType={ogType}
+    canonicalUrl={canonicalUrl}
+    noIndex={noIndex}
+    keywords={keywords}
+    publishedTime={publishedTime}
+    modifiedTime={modifiedTime}
+  />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Title -->
+  <title>{fullTitle}</title>
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#x1F41F;</text></svg>"
+  >
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Structured Data -->
+  {showOrganizationSchema && <StructuredData type="Organization" />}
+  {showPersonSchema && <StructuredData type="Person" />}
+
+  <!-- Additional head content slot -->
+  <slot name="head" />
+</head>
+<body>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+
+  <!-- Header with navigation -->
+  <Header currentPage={currentPage} transparent={transparentHeader} />
+
+  <!-- Mobile navigation overlay -->
+  <MobileNav />
+
+  <!-- Main content -->
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <Footer showNewsletter={showNewsletter} />
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    z-index: 1000;
+    transition: top 0.3s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+</style>

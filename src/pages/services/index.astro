@@ -1,0 +1,407 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="サービス | ししゃも｜吉川昌宏"
+  description="DX推進・生成AI導入・データ活用・経営支援・経理サポート。IT × 経営 × 財務の3つの視点で、御社の課題解決をサポートします。"
+  currentPage="services"
+>
+  <section class="page-header">
+    <div class="page-header-blob"></div>
+    <h1>サービス</h1>
+    <p>IT × 経営 × 財務の3つの視点で、御社の課題解決をサポートします</p>
+  </section>
+
+  <nav class="service-nav">
+    <div class="service-nav-inner">
+      <a href="#dx" class="active">🚀 DX推進</a>
+      <a href="#ai">🤖 生成AI</a>
+      <a href="#data">📊 データ活用</a>
+      <a href="#management">🎯 経営支援</a>
+      <a href="#accounting">📝 経理</a>
+    </div>
+  </nav>
+
+  <!-- DX推進・IT戦略 -->
+  <section class="service-section" id="dx">
+    <div class="service-section-inner">
+      <div class="section-header-row">
+        <div class="section-icon">🚀</div>
+        <div class="section-header-text">
+          <h2>DX推進・IT戦略</h2>
+          <p>「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>DX推進コンサルティング</h3>
+          <p>現状分析から課題特定、ロードマップ策定、導入支援まで一貫してサポート。経営視点でのIT活用を提案します。</p>
+          <div class="service-price"><span class="amount">15〜30</span><span class="unit">万円/月</span></div>
+          <ul class="service-features">
+            <li>現状業務プロセスの可視化</li>
+            <li>課題特定とロードマップ策定</li>
+            <li>ベンダー選定・導入支援</li>
+            <li>定着化サポート</li>
+          </ul>
+          <a href="/services/dx-consulting/" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>IT戦略策定</h3>
+          <p>経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位付けをサポートします。</p>
+          <div class="service-price"><span class="amount">30〜50</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>IT資産の棚卸し</li>
+            <li>投資対効果の試算</li>
+            <li>3カ年IT計画の策定</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>Webサイト・アプリ構築</h3>
+          <p>7年のWeb開発経験を活かし、要件定義から実装まで対応。シンプルなサイトから業務システムまで。</p>
+          <div class="service-price"><span class="amount">50〜200</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>コーポレートサイト制作</li>
+            <li>業務用Webアプリ開発</li>
+            <li>既存システム改修</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 生成AI導入支援 -->
+  <section class="service-section" id="ai">
+    <div class="service-section-inner">
+      <div class="section-header-row">
+        <div class="section-icon">🤖</div>
+        <div class="section-header-text">
+          <h2>生成AI導入支援</h2>
+          <p>ChatGPT・Claudeなどの生成AIを業務に活かす方法を、設計から定着まで一貫して支援します。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>生成AI活用コンサルティング</h3>
+          <p>御社の業務に最適なAI活用シーンを特定し、プロンプト設計から社内展開までサポートします。</p>
+          <div class="service-price"><span class="amount">50〜150</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>活用シーン特定ワークショップ</li>
+            <li>業務別プロンプト設計</li>
+            <li>社内ガイドライン策定</li>
+            <li>活用研修の実施</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>AIツール開発</h3>
+          <p>ChatGPT APIやClaude APIを使った業務特化型ツールを開発。定型業務の自動化を実現します。</p>
+          <div class="service-price"><span class="amount">30〜100</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>議事録自動作成ツール</li>
+            <li>問い合わせ対応支援Bot</li>
+            <li>レポート自動生成</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- データ活用支援 -->
+  <section class="service-section" id="data">
+    <div class="service-section-inner">
+      <div class="section-header-row">
+        <div class="section-icon">📊</div>
+        <div class="section-header-text">
+          <h2>データ活用支援</h2>
+          <p>「データはあるけど活用できていない」を解決。分析からダッシュボード構築まで、データドリブンな経営をサポートします。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>経営データ分析</h3>
+          <p>売上・顧客・業務データを分析し、意思決定に役立つインサイトを抽出。レポートとしてお届けします。</p>
+          <div class="service-price"><span class="amount">20〜50</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>売上・収益性分析</li>
+            <li>顧客セグメント分析</li>
+            <li>業務効率分析</li>
+            <li>分析レポート作成</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>KPIダッシュボード構築</h3>
+          <p>重要指標をリアルタイムで確認できるダッシュボードを構築。データに基づく迅速な意思決定を支援します。</p>
+          <div class="service-price"><span class="amount">30〜80</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>KPI設計支援</li>
+            <li>データ連携設計</li>
+            <li>ダッシュボード構築</li>
+            <li>運用トレーニング</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 経営支援 -->
+  <section class="service-section" id="management">
+    <div class="service-section-inner">
+      <div class="section-header-row">
+        <div class="section-icon">🎯</div>
+        <div class="section-header-text">
+          <h2>経営支援</h2>
+          <p>中小企業診断士として、経営課題の整理から改善施策の実行までサポート。補助金活用もお任せください。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>経営診断・改善提案</h3>
+          <p>財務分析と現場ヒアリングで経営課題を可視化。優先度を付けた改善提案を行います。</p>
+          <div class="service-price"><span class="amount">20〜40</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>財務諸表分析</li>
+            <li>強み・弱みの整理</li>
+            <li>改善施策の優先順位付け</li>
+            <li>アクションプラン策定</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>補助金申請サポート</h3>
+          <p>IT導入補助金、ものづくり補助金等の申請をサポート。採択率を高める事業計画書作成を支援します。</p>
+          <div class="service-price"><span class="amount">10〜30</span><span class="unit">万円 + 成功報酬</span></div>
+          <ul class="service-features">
+            <li>補助金選定アドバイス</li>
+            <li>事業計画書作成支援</li>
+            <li>申請手続きサポート</li>
+            <li>採択後の報告支援</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 経理・記帳サポート -->
+  <section class="service-section" id="accounting">
+    <div class="service-section-inner">
+      <div class="section-header-row">
+        <div class="section-icon">📝</div>
+        <div class="section-header-text">
+          <h2>経理・記帳サポート</h2>
+          <p>経理の負担を軽減し、本業に集中できる環境を作ります。クラウド会計の導入支援もお任せください。</p>
+        </div>
+      </div>
+      <div class="service-cards">
+        <div class="service-card">
+          <h3>記帳代行</h3>
+          <p>月次の記帳業務を代行。正確な経理処理で経営数字の把握をサポートします。</p>
+          <div class="service-price"><span class="amount">3〜10</span><span class="unit">万円/月</span></div>
+          <ul class="service-features">
+            <li>仕訳入力代行</li>
+            <li>請求書・領収書整理</li>
+            <li>月次試算表作成</li>
+            <li>税理士との連携</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+        <div class="service-card">
+          <h3>クラウド会計導入</h3>
+          <p>freee・マネーフォワードなどのクラウド会計への移行をサポート。業務効率化と見える化を実現します。</p>
+          <div class="service-price"><span class="amount">10〜30</span><span class="unit">万円/PJ</span></div>
+          <ul class="service-features">
+            <li>ツール選定支援</li>
+            <li>初期設定・移行作業</li>
+            <li>操作トレーニング</li>
+            <li>運用定着サポート</li>
+          </ul>
+          <a href="#" class="service-link">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 診断CTA -->
+  <section class="diagnosis-section">
+    <h2>どれが合うかわからない？</h2>
+    <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
+    <a href="/contact/" class="btn-primary">無料相談する →</a>
+  </section>
+</Layout>
+
+<style>
+  /* Service Nav */
+  .service-nav {
+    position: sticky; top: 70px; z-index: 50;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 2rem; border-bottom: 1px solid var(--gray-light);
+  }
+  .service-nav-inner {
+    max-width: 800px; margin: 0 auto;
+    display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;
+  }
+  .service-nav a {
+    padding: 0.5rem 1.25rem; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 500; color: var(--gray);
+    transition: all 0.3s; border: 2px solid transparent; white-space: nowrap;
+  }
+  .service-nav a:hover { color: var(--primary); background: var(--gray-lighter); }
+  .service-nav a.active {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white; box-shadow: var(--shadow-md);
+  }
+
+  /* Service Sections */
+  .service-section { padding: 5rem 2rem; }
+  .service-section:nth-child(odd) { background: white; }
+  .service-section:nth-child(even) { background: var(--light); }
+  .service-section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-header-row {
+    display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .section-icon {
+    font-size: 3.5rem; animation: float 3s ease-in-out infinite; flex-shrink: 0;
+    padding: 1rem; background: linear-gradient(135deg, var(--gray-lighter), white);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  }
+  .section-header-text h2 {
+    font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .section-header-text p { color: var(--gray); font-size: 1rem; line-height: 1.7; }
+
+  /* Service Cards */
+  .service-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+  }
+  .service-card {
+    background: white; border-radius: var(--radius-lg); padding: 2rem;
+    border: 2px solid var(--gray-light); transition: all 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover {
+    transform: translateY(-8px); border-color: var(--primary);
+    box-shadow: var(--shadow-xl), var(--shadow-glow);
+  }
+  .service-card h3 {
+    font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .service-card h3::before {
+    content: ''; width: 8px; height: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%; flex-shrink: 0;
+  }
+  .service-card > p { font-size: 0.9rem; color: var(--gray); margin-bottom: 1.25rem; line-height: 1.7; }
+
+  .service-price {
+    display: inline-flex; align-items: baseline; gap: 0.25rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--gray-lighter), #EFF6FF);
+    border-radius: var(--radius-sm); margin-bottom: 1rem;
+  }
+  .service-price .amount {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .service-price .unit { font-size: 0.85rem; color: var(--gray); }
+
+  .service-features { margin-bottom: 1.25rem; }
+  .service-features li {
+    font-size: 0.85rem; color: var(--dark); padding: 0.375rem 0;
+    padding-left: 1.5rem; position: relative;
+  }
+  .service-features li::before {
+    content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: bold;
+  }
+
+  .service-link {
+    font-size: 0.9rem; font-weight: 600; color: var(--primary);
+    display: inline-flex; align-items: center; gap: 0.375rem; transition: gap 0.3s;
+  }
+  .service-card:hover .service-link { gap: 0.75rem; }
+
+  /* Diagnosis Section */
+  .diagnosis-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, #1E40AF 100%);
+    color: white; text-align: center; position: relative; overflow: hidden;
+  }
+  .diagnosis-section::before {
+    content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+  }
+  .diagnosis-section > * { position: relative; }
+  .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; }
+  .diagnosis-section p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; }
+  .diagnosis-section .btn-primary { background: white; color: var(--primary); }
+  .diagnosis-section .btn-primary:hover { box-shadow: var(--shadow-xl), 0 0 40px rgba(255,255,255,0.3); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .service-nav { top: 60px; padding: 0.75rem 1rem; }
+    .service-nav-inner { gap: 0.375rem; }
+    .service-nav a { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
+
+    .section-header-row { flex-direction: column; text-align: center; }
+    .section-icon { margin: 0 auto; font-size: 3rem; padding: 0.75rem; }
+    .section-header-text h2 { font-size: 1.5rem; }
+
+    .service-section { padding: 3rem 1.5rem; }
+    .service-cards { grid-template-columns: 1fr; gap: 1rem; }
+    .service-card { padding: 1.5rem; }
+
+    .diagnosis-section { padding: 3rem 1.5rem; }
+    .diagnosis-section h2 { font-size: 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .service-nav a { padding: 0.25rem 0.5rem; font-size: 0.7rem; }
+    .service-section { padding: 2.5rem 1rem; }
+  }
+
+  @media (hover: none) {
+    .service-card:hover { transform: none; }
+    .service-card:active { transform: scale(0.98); }
+  }
+</style>
+
+<script>
+  // Highlight active nav item based on scroll
+  const sections = document.querySelectorAll('.service-section');
+  const navLinks = document.querySelectorAll('.service-nav a');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id') || '';
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+</script>
