@@ -1,3 +1,4 @@
+
 ---
 name: shigyou-site-orchestrator
 description: 士業・専門家向けWebサイトをAstro + microCMS + Cloudflareで構築するための汎用エージェントオーケストレーター。複数のClaude Codeエージェントを統合管理し、高品質なサイトを効率的に構築する。プロジェクト初期化時にプロファイル設定を行うことで、任意の士業・専門家サイトに対応。

@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="DX推進コンサルティング | ししゃも｜吉川昌宏"
-  description="「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。"
+  title="IT戦略策定 | ししゃも｜吉川昌宏"
+  description="経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位付けをサポートします。"
   currentPage="services"
 >
   <!-- Breadcrumb -->
@@ -13,7 +13,7 @@ import Layout from '../../layouts/Layout.astro';
     <span>›</span>
     <a href="/services/">サービス</a>
     <span>›</span>
-    DX推進コンサルティング
+    IT戦略策定
   </nav>
 
   <!-- Service Hero -->
@@ -21,11 +21,11 @@ import Layout from '../../layouts/Layout.astro';
     <div class="service-hero-blob"></div>
     <div class="service-hero-inner">
       <div class="service-hero-icon">🚀</div>
-      <h1>DX推進コンサルティング</h1>
-      <p>「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。</p>
+      <h1>IT戦略策定</h1>
+      <p>経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位付けをサポートします。</p>
       <div class="service-hero-price">
-        <span class="amount">15〜30</span>
-        <span class="unit">万円/月</span>
+        <span class="amount">30〜50</span>
+        <span class="unit">万円/PJ</span>
       </div>
       <div class="service-hero-cta">
         <a href="/contact/" class="btn-primary">無料相談する →</a>
@@ -42,16 +42,16 @@ import Layout from '../../layouts/Layout.astro';
         <h2>😥 こんな課題ありませんか？</h2>
         <div class="problem-list">
           <div class="problem-item">
-            <p>「DX」という言葉は聞くけど、何から始めればいいかわからない</p>
+            <p>ITへの投資が場当たり的で、全体最適になっていない</p>
           </div>
           <div class="problem-item">
-            <p>紙やExcelでの管理が限界だけど、システム導入のコストが心配</p>
+            <p>経営計画はあるが、IT投資計画との連動ができていない</p>
           </div>
           <div class="problem-item">
-            <p>IT導入を検討したいが、社内にわかる人がいない</p>
+            <p>どのシステムを優先して更新すべきか判断がつかない</p>
           </div>
           <div class="problem-item">
-            <p>ベンダーの提案を評価できず、言いなりになってしまいそう</p>
+            <p>IT資産が増えすぎて、何がどこにあるか把握できていない</p>
           </div>
         </div>
       </section>
@@ -61,24 +61,24 @@ import Layout from '../../layouts/Layout.astro';
         <h2>✨ サービスの特徴</h2>
         <div class="feature-grid">
           <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>IT資産の棚卸し</h3>
+            <p>現在利用しているシステム・ツールを一覧化し、コスト・利用状況・課題を可視化。無駄や重複を発見します。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💹</div>
+            <h3>投資対効果の試算</h3>
+            <p>各IT施策の期待効果とコストを定量化。限られた予算で最大の効果を出すための判断材料を提供します。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🗓️</div>
+            <h3>3カ年IT計画の策定</h3>
+            <p>経営戦略と整合した中期IT計画を策定。投資の優先順位と実行スケジュールを明確にします。</p>
+          </div>
+          <div class="feature-card">
             <div class="feature-icon">🎯</div>
-            <h3>経営視点でのIT提案</h3>
-            <p>中小企業診断士として、経営課題を踏まえた上で最適なIT活用を提案。「技術先行」ではなく「課題解決」を重視します。</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🤝</div>
-            <h3>伴走型のサポート</h3>
-            <p>単発のアドバイスではなく、継続的に寄り添いながら変革を推進。社内に知見が蓄積するようサポートします。</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">💻</div>
-            <h3>技術がわかる</h3>
-            <p>7年のWeb開発経験があるからこそ、実装レベルまで踏み込んだ提案が可能。ベンダー選定や技術評価もお任せください。</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>データ活用も得意</h3>
-            <p>DXで生まれるデータを経営に活かす提案も。データ分析やダッシュボード構築まで一貫してサポートできます。</p>
+            <h3>経営視点での提案</h3>
+            <p>中小企業診断士として経営課題を理解した上で、「技術ありき」ではなく「課題解決」のためのIT戦略を提案します。</p>
           </div>
         </div>
       </section>
@@ -88,20 +88,20 @@ import Layout from '../../layouts/Layout.astro';
         <h2>📋 支援の流れ</h2>
         <div class="flow-list">
           <div class="flow-item" data-step="1">
-            <h3>現状把握・課題整理</h3>
-            <p>ヒアリングを通じて業務プロセスと課題を可視化。本当に解決すべき課題を特定します。</p>
+            <h3>現状把握・IT資産棚卸し</h3>
+            <p>既存システム、利用ツール、IT関連コストを洗い出し、現状を可視化します。</p>
           </div>
           <div class="flow-item" data-step="2">
-            <h3>施策立案・ロードマップ策定</h3>
-            <p>課題に対する解決策を複数提案。優先度と投資対効果を踏まえたロードマップを作成します。</p>
+            <h3>経営戦略・課題のヒアリング</h3>
+            <p>経営方針や事業計画を確認し、IT観点で解決すべき経営課題を特定します。</p>
           </div>
           <div class="flow-item" data-step="3">
-            <h3>導入支援・ベンダー調整</h3>
-            <p>システム選定、ベンダー交渉、導入プロジェクト管理をサポート。御社の立場で伴走します。</p>
+            <h3>IT施策の洗い出しと優先順位付け</h3>
+            <p>課題解決のためのIT施策を複数検討し、投資対効果に基づいて優先順位を付けます。</p>
           </div>
           <div class="flow-item" data-step="4">
-            <h3>定着化・改善サイクル</h3>
-            <p>導入後の定着化と効果測定、継続的な改善をサポート。自走できる体制構築を目指します。</p>
+            <h3>3カ年IT計画書の作成</h3>
+            <p>投資計画、実行スケジュール、期待効果を盛り込んだIT戦略計画書を作成します。</p>
           </div>
         </div>
       </section>
@@ -111,22 +111,22 @@ import Layout from '../../layouts/Layout.astro';
         <h2>💰 料金プラン</h2>
         <div class="pricing-cards">
           <div class="pricing-card">
-            <div class="pricing-plan">スポット相談</div>
-            <div class="pricing-amount">3</div>
-            <div class="pricing-unit">万円〜/回</div>
-            <p class="pricing-desc">まずは相談だけしたい方向け。課題整理や方向性のアドバイスを行います。</p>
+            <div class="pricing-plan">IT資産棚卸しのみ</div>
+            <div class="pricing-amount">15</div>
+            <div class="pricing-unit">万円〜/PJ</div>
+            <p class="pricing-desc">まずは現状把握から。IT資産一覧と課題の可視化を行います。</p>
           </div>
           <div class="pricing-card popular">
-            <div class="pricing-plan">月額顧問</div>
-            <div class="pricing-amount">15</div>
-            <div class="pricing-unit">万円〜/月</div>
-            <p class="pricing-desc">継続的な伴走支援。定期的なミーティングと随時相談で着実に変革を推進。</p>
-          </div>
-          <div class="pricing-card">
-            <div class="pricing-plan">プロジェクト型</div>
+            <div class="pricing-plan">IT戦略策定</div>
             <div class="pricing-amount">30</div>
             <div class="pricing-unit">万円〜/PJ</div>
-            <p class="pricing-desc">特定のプロジェクト（システム導入等）に集中して支援。期間・範囲を明確に。</p>
+            <p class="pricing-desc">棚卸しから3カ年計画策定まで一貫して支援。中小企業に最適。</p>
+          </div>
+          <div class="pricing-card">
+            <div class="pricing-plan">IT戦略 + 実行支援</div>
+            <div class="pricing-amount">50</div>
+            <div class="pricing-unit">万円〜/PJ</div>
+            <p class="pricing-desc">計画策定後の実行フェーズまで伴走。ベンダー選定支援も含みます。</p>
           </div>
         </div>
       </section>
@@ -135,22 +135,22 @@ import Layout from '../../layouts/Layout.astro';
       <section class="content-section">
         <h2>🔗 関連サービス</h2>
         <div class="related-grid">
-          <a href="/services/#ai" class="related-card">
-            <div class="related-card-icon">🤖</div>
-            <h3>生成AI導入支援</h3>
-            <p>ChatGPT・Claudeを業務に活かす方法を設計から導入まで支援。</p>
+          <a href="/services/dx-consulting/" class="related-card">
+            <div class="related-card-icon">🚀</div>
+            <h3>DX推進コンサルティング</h3>
+            <p>IT戦略に基づき、DX施策の実行を伴走支援します。</p>
             <span class="related-link">詳しく見る →</span>
           </a>
-          <a href="/services/data-analysis/" class="related-card">
-            <div class="related-card-icon">📊</div>
-            <h3>経営データ分析</h3>
-            <p>DXで生まれるデータを経営判断に活かすための分析・可視化。</p>
+          <a href="/services/web-development/" class="related-card">
+            <div class="related-card-icon">💻</div>
+            <h3>Webサイト・アプリ構築</h3>
+            <p>IT戦略で決まった施策の開発・実装を担当します。</p>
             <span class="related-link">詳しく見る →</span>
           </a>
           <a href="/services/#management" class="related-card">
             <div class="related-card-icon">💰</div>
             <h3>補助金申請サポート</h3>
-            <p>IT導入補助金等を活用してDX投資の負担を軽減。</p>
+            <p>IT投資に活用できる補助金の申請をサポートします。</p>
             <span class="related-link">詳しく見る →</span>
           </a>
         </div>
@@ -161,7 +161,7 @@ import Layout from '../../layouts/Layout.astro';
   <!-- CTA -->
   <section class="service-cta">
     <h2>まずは無料相談から</h2>
-    <p>御社の課題をお聞かせください。<br>最適なDX推進の進め方を一緒に考えましょう。</p>
+    <p>御社の経営課題とIT課題をお聞かせください。<br>最適なIT戦略の方向性を一緒に考えましょう。</p>
     <a href="/contact/" class="btn-primary">無料相談する →</a>
   </section>
 </Layout>
