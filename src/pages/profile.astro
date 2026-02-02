@@ -62,8 +62,57 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     </div>
   </section>
 
-  <!-- Career Timeline -->
+  <!-- About My Work -->
   <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">私の仕事</h2>
+      <div class="about-work">
+        <p class="about-lead">
+          「数字が見えない」「業務が回らない」——そんな悩みを抱える小規模事業者さんの力になりたい。<br>
+          そんな想いで、経営の伴走支援をしています。
+        </p>
+        <p class="about-desc">
+          データサイエンティストとして3年、会計事務所で1年。<br>
+          「データで見える化する力」と「会計の実務感覚」、両方の経験を活かして<br>
+          記帳・月次の整備から、業務フロー改善、ツール導入まで一気通貫でお手伝いします。
+        </p>
+
+        <h3 class="about-subtitle">大切にしている3つのこと</h3>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-number">01</div>
+            <h4>数字の土台づくり</h4>
+            <p>「今どうなってるの？」がわかる状態を一緒に作ります。記帳・月次を整え、経営判断に使える数字に。</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-number">02</div>
+            <h4>属人化の解消</h4>
+            <p>「あの人しかわからない」をなくします。業務をフロー・ルール・役割に落とし込んで、誰でも回せる形に。</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-number">03</div>
+            <h4>省力化と定着</h4>
+            <p>ツールは入れて終わりじゃない。「ちゃんと使える・続けられる」まで一緒に走ります。</p>
+          </div>
+        </div>
+
+        <div class="about-note">
+          <p>DX支援やIT戦略もお受けしますが、派手な提案はしません。<br>
+          「何のために？」「今の人員・予算でできる？」を一緒に考えて、<br>
+          <strong>本当に回る形</strong>に落とし込むことを大事にしています。</p>
+        </div>
+
+        <div class="about-stance">
+          <p>お気持ちやご事情はもちろん大切にします。でも、結論は正直にお伝えします。<br>
+          「なんとなく良さそう」ではなく、根拠のある選択肢と具体的な手順でサポートします。<br>
+          <strong>誠実に、対等に、長く効く改善を一緒に作っていく。それが私のスタイルです。</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Timeline -->
+  <section class="section section--alt">
     <div class="section-inner">
       <h2 class="section-title">経歴</h2>
       <div class="timeline">
@@ -128,16 +177,28 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     <div class="section-inner">
       <h2 class="section-title">{profileData.story.title}</h2>
       <p class="section-subtitle">{profileData.story.subtitle}</p>
+
       <div class="story-content">
-        <p class="story-quote grandfather-words">「{profileData.story.grandfatherWords}」</p>
+        <blockquote class="story-quote">「{profileData.story.grandfatherWords}」</blockquote>
         <p>祖父からいつも言われていた言葉です。</p>
-        <p>祖父は、小さな印刷会社を営んでいました。地域の商店や企業のチラシ、名刺、パンフレット。祖父は一つひとつ丁寧に仕事をし、お客様に喜ばれていました。</p>
-        <p>しかし、時代は変わりました。紙からデジタルへ。印刷物の需要は急速に減り、祖父の会社は廃業を余儀なくされました。</p>
-        <p>当時の私には、何もできませんでした。ITの知識も、経営の知識も、財務の知識もなく、ただ見ているしかできなかった。</p>
-        <p class="story-highlight">あの時の無力感が、今の私の原動力です。</p>
-        <p class="story-quote">「次は絶対に助ける」</p>
-        <p>同じように時代の変化に直面している中小企業の社長さんがいたら、今度こそ、一緒に乗り越える力になりたい。ITも、経営も、財務も。必要なことは何でも学び、何でもやる。</p>
-        <p><strong>それが、祖父への約束であり、私がこの仕事をする理由です。</strong></p>
+
+        <p>祖父は、小さな印刷会社を営んでいました。地域の商店や企業のチラシ、名刺、パンフレット。一つひとつ丁寧に仕事をし、お客様に喜ばれていました。「お客さんの商売がうまくいくように」——祖父はいつもそう言って、夜遅くまで働いていました。</p>
+
+        <p>しかし、時代は変わりました。紙からデジタルへ。印刷物の需要は急速に減り、祖父の会社は廃業を余儀なくされました。地域に根ざして何十年も続けてきた会社が、時代の波に飲み込まれていく。その光景を、私はただ見ていることしかできませんでした。</p>
+
+        <p>当時の私には、何もできませんでした。ITの知識も、経営の知識も、財務の知識もない。「何かできることはないか」と思っても、具体的に何をすればいいのかわからない。</p>
+
+        <p class="story-highlight">ただ見ているしかできなかった、あの悔しさ。それが、今の私の原動力です。</p>
+
+        <p>IT、経営、財務。必要なことは何でも学ぼうと決めました。Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。中小企業診断士、ITストラテジスト、データベーススペシャリスト...。「次は絶対に助けられる自分になる」——その一心で、ここまで来ました。</p>
+
+        <blockquote class="story-quote story-quote--resolve">「次は絶対に助ける」</blockquote>
+
+        <p>自分自身、そして自分が関わる大切な人たちを取り巻くこの環境を、少しでも良くしたい。人の役に立つ人間でありたい。その想いが、私を突き動かしています。</p>
+
+        <p>同じように時代の変化に直面している中小企業の社長さんがいたら、今度こそ、一緒に乗り越える力になりたい。ITも、経営も、財務も。必要なことは何でもやる。</p>
+
+        <p class="story-final"><strong>それが、祖父への約束であり、私がこの仕事をする理由です。</strong></p>
       </div>
     </div>
   </section>
@@ -335,6 +396,98 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     margin-bottom: 32px;
   }
 
+  /* About My Work */
+  .about-work {
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    border-radius: var(--radius-md, 12px);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+  }
+  .about-lead {
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--dark);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .about-desc {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--gray-dark, #334155);
+    margin-bottom: 32px;
+  }
+  .about-subtitle {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .about-subtitle::before {
+    content: '';
+    width: 3px;
+    height: 18px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .pillar-card {
+    background: var(--gray-light, #f1f5f9);
+    border-radius: var(--radius-sm, 8px);
+    padding: 24px 20px;
+    position: relative;
+  }
+  .pillar-number {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .pillar-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .pillar-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--gray-600, #475569);
+  }
+  .about-note {
+    background: var(--primary-lighter, #eff6ff);
+    border-radius: var(--radius-sm, 8px);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .about-note p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--gray-dark, #334155);
+  }
+  .about-stance {
+    padding-top: 8px;
+  }
+  .about-stance p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--gray-dark, #334155);
+  }
+  .about-stance strong {
+    color: var(--primary);
+  }
+
   /* Timeline */
   .timeline {
     position: relative;
@@ -467,21 +620,39 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .story-highlight {
     color: var(--dark) !important;
     font-weight: 600;
+    font-size: 16px;
   }
   .story-quote {
-    font-size: 20px !important;
+    font-family: var(--font-display);
+    font-size: 20px;
     font-weight: 700;
-    color: var(--primary) !important;
+    color: var(--primary);
     text-align: center;
     padding: 24px 0;
-    margin: 24px 0 !important;
+    margin: 24px 0;
     border-top: 1px solid var(--gray-lighter, #e2e8f0);
     border-bottom: 1px solid var(--gray-lighter, #e2e8f0);
   }
-  .grandfather-words {
-    border-top: none !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+  .story-quote:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .story-quote--resolve {
+    font-size: 22px;
+    color: var(--primary);
+    background: var(--primary-lighter, #eff6ff);
+    border: none;
+    border-radius: var(--radius-sm, 8px);
+    padding: 20px;
+  }
+  .story-final {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  .story-final strong {
+    color: var(--dark);
   }
 
   /* Philosophy */
@@ -654,7 +825,10 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
       padding: 28px 24px;
     }
     .story-quote {
-      font-size: 18px !important;
+      font-size: 18px;
+    }
+    .story-quote--resolve {
+      font-size: 20px;
     }
     .philosophy-grid {
       grid-template-columns: 1fr;
@@ -664,6 +838,13 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     }
     .motto-text {
       font-size: 16px;
+    }
+    .about-work {
+      padding: 28px 24px;
+    }
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
   }
 
@@ -774,6 +955,47 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   :global([data-theme="dark"]) .section-subtitle {
     color: var(--gray-500);
   }
+  :global([data-theme="dark"]) .about-work {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .about-lead {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .about-desc {
+    color: var(--gray-600);
+  }
+  :global([data-theme="dark"]) .about-subtitle {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .about-subtitle::before {
+    background: var(--primary);
+  }
+  :global([data-theme="dark"]) .pillar-card {
+    background: var(--gray-200);
+  }
+  :global([data-theme="dark"]) .pillar-number {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .pillar-card h4 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .pillar-card p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .about-note {
+    background: var(--primary-lighter);
+  }
+  :global([data-theme="dark"]) .about-note p {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .about-stance p {
+    color: var(--gray-600);
+  }
+  :global([data-theme="dark"]) .about-stance strong {
+    color: var(--primary);
+  }
   :global([data-theme="dark"]) .timeline::before {
     background: var(--gray-300);
   }
@@ -816,7 +1038,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   :global([data-theme="dark"]) .story-content {
     background: var(--gray-100);
-    border: 2px solid var(--gray-300);
+    border-color: var(--gray-300);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
   :global([data-theme="dark"]) .story-content p {
@@ -826,9 +1048,14 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     color: var(--dark) !important;
   }
   :global([data-theme="dark"]) .story-quote {
-    color: var(--primary) !important;
-    border-top-color: var(--gray-300);
-    border-bottom-color: var(--gray-300);
+    color: var(--primary);
+    border-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .story-quote--resolve {
+    background: var(--primary-lighter);
+  }
+  :global([data-theme="dark"]) .story-final strong {
+    color: var(--dark);
   }
   :global([data-theme="dark"]) .philosophy-card {
     background: var(--gray-100);
@@ -949,6 +1176,47 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     html:not([data-theme="light"]) .section-subtitle {
       color: var(--gray-500);
     }
+    html:not([data-theme="light"]) .about-work {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .about-lead {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .about-desc {
+      color: var(--gray-600);
+    }
+    html:not([data-theme="light"]) .about-subtitle {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .about-subtitle::before {
+      background: var(--primary);
+    }
+    html:not([data-theme="light"]) .pillar-card {
+      background: var(--gray-200);
+    }
+    html:not([data-theme="light"]) .pillar-number {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .pillar-card h4 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .pillar-card p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .about-note {
+      background: var(--primary-lighter);
+    }
+    html:not([data-theme="light"]) .about-note p {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .about-stance p {
+      color: var(--gray-600);
+    }
+    html:not([data-theme="light"]) .about-stance strong {
+      color: var(--primary);
+    }
     html:not([data-theme="light"]) .timeline::before {
       background: var(--gray-300);
     }
@@ -991,7 +1259,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     }
     html:not([data-theme="light"]) .story-content {
       background: var(--gray-100);
-      border: 2px solid var(--gray-300);
+      border-color: var(--gray-300);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     html:not([data-theme="light"]) .story-content p {
@@ -1001,9 +1269,14 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
       color: var(--dark) !important;
     }
     html:not([data-theme="light"]) .story-quote {
-      color: var(--primary) !important;
-      border-top-color: var(--gray-300);
-      border-bottom-color: var(--gray-300);
+      color: var(--primary);
+      border-color: var(--gray-300);
+    }
+    html:not([data-theme="light"]) .story-quote--resolve {
+      background: var(--primary-lighter);
+    }
+    html:not([data-theme="light"]) .story-final strong {
+      color: var(--dark);
     }
     html:not([data-theme="light"]) .philosophy-card {
       background: var(--gray-100);
