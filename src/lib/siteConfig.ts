@@ -2,9 +2,11 @@
  * Site Configuration
  * Based on shared/profile.yaml
  *
- * TODO: Replace with dynamic YAML loading when js-yaml is installed
- * Run: npm install js-yaml && npm install -D @types/js-yaml
+ * NOTE: YAML loading is now available via src/lib/profile.ts
+ * Use getBranding(), getQualifications(), getCareer() etc. for dynamic data
+ * This file provides static configuration for better performance
  */
+export { loadProfile, getQualifications, getCareer, getBranding, getDesignConfig, getSEOConfig } from './profile';
 
 export interface Qualification {
   name: string;
@@ -115,3 +117,28 @@ export const seoDefaults = {
   locale: 'ja_JP',
   ogType: 'website' as const,
 };
+
+/**
+ * Site metadata (URLs, social handles)
+ */
+export const siteMetadata = {
+  siteUrl: 'https://yoshikawa-masahiro.com',
+  twitterHandle: '@shishamo_tax',
+  geoRegion: 'JP-13',
+  geoPlacename: '東京都',
+} as const;
+
+/**
+ * External API endpoints
+ */
+export const externalAPIs = {
+  formspreeEndpoint: 'https://formspree.io/f/mojwzwea',
+} as const;
+
+/**
+ * Image paths
+ */
+export const images = {
+  profileImage: '/自画像_シンプル背景.png',
+  ogImage: '/自画像_シンプル背景.png',
+} as const;

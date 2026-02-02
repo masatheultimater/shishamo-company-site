@@ -14,6 +14,7 @@
  */
 
 import type { BaseLayoutProps } from '../../../shared/contracts/components';
+import { seoDefaults, siteMetadata, images } from '../../lib/siteConfig';
 
 interface Props extends BaseLayoutProps {
   keywords?: string[];
@@ -25,8 +26,8 @@ interface Props extends BaseLayoutProps {
 
 const {
   title,
-  description = 'IT × 経営 × 財務で、ビジネスを加速させる。中小企業向けDX推進・生成AI導入・データ活用・経営支援サービスを提供するししゃも｜吉川昌宏のサービスサイト。',
-  ogImage = '/自画像_シンプル背景.png',
+  description = seoDefaults.defaultDescription,
+  ogImage = images.ogImage,
   ogType = 'website',
   canonicalUrl,
   noIndex = false,
@@ -37,10 +38,10 @@ const {
   twitterCard = 'summary_large_image'
 } = Astro.props;
 
-// サイト基本情報
-const siteName = 'ししゃも｜吉川昌宏';
-const siteUrl = 'https://yoshikawa-masahiro.com';
-const twitterHandle = '@shishamo_tax';
+// サイト基本情報（siteConfigから取得）
+const siteName = seoDefaults.siteName;
+const siteUrl = siteMetadata.siteUrl;
+const twitterHandle = siteMetadata.twitterHandle;
 
 // URLの正規化
 const currentUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
@@ -103,5 +104,5 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 <meta name="msapplication-TileColor" content="#2563EB" />
 
 <!-- 地域SEO用 -->
-<meta name="geo.region" content="JP-13" />
-<meta name="geo.placename" content="東京都" />
+<meta name="geo.region" content={siteMetadata.geoRegion} />
+<meta name="geo.placename" content={siteMetadata.geoPlacename} />

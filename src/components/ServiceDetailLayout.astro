@@ -1,0 +1,128 @@
+---
+/**
+ * ServiceDetailLayout.astro
+ * サービス詳細ページ用の共通テンプレート
+ */
+import Layout from '../layouts/Layout.astro';
+import '../styles/service-detail.css';
+import type { ServiceDetailData } from '../../shared/contracts/components';
+
+interface Props {
+  data: ServiceDetailData;
+}
+
+const { data } = Astro.props;
+---
+
+<Layout
+  title={`${data.name} | ししゃも｜吉川昌宏`}
+  description={data.metaDescription}
+  currentPage="services"
+>
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <a href="/">ホーム</a>
+    <span aria-hidden="true">›</span>
+    <a href="/services/">サービス</a>
+    <span aria-hidden="true">›</span>
+    <span aria-current="page">{data.name}</span>
+  </nav>
+
+  <!-- Service Hero -->
+  <section class="service-hero">
+    <div class="service-hero-inner">
+      <div class="service-hero-icon">{data.icon}</div>
+      <h1>{data.name}</h1>
+      <p>{data.tagline}</p>
+      <div class="service-hero-price">
+        <span class="amount">{data.priceRange}</span>
+        <span class="unit">{data.priceUnit}</span>
+      </div>
+      <div class="service-hero-cta">
+        <a href="/contact/" class="btn-primary">無料相談する →</a>
+        <a href="/services/" class="btn-secondary">← サービス一覧</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Content -->
+  <div class="service-content">
+    <div class="service-content-inner">
+      <!-- Problems -->
+      <section class="content-section">
+        <h2>😥 こんな課題ありませんか？</h2>
+        <div class="problem-list">
+          {data.problems.map((problem) => (
+            <div class="problem-item">
+              <p>{problem}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="content-section">
+        <h2>✨ サービスの特徴</h2>
+        <div class="feature-grid">
+          {data.features.map((feature) => (
+            <div class="feature-card">
+              <div class="feature-icon">{feature.icon}</div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Flow -->
+      <section class="content-section">
+        <h2>📋 支援の流れ</h2>
+        <div class="flow-list">
+          {data.flow.map((step, index) => (
+            <div class="flow-item" data-step={index + 1}>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section class="content-section">
+        <h2>💰 料金プラン</h2>
+        <div class="pricing-cards">
+          {data.pricing.map((plan) => (
+            <div class={`pricing-card${plan.popular ? ' popular' : ''}`}>
+              <div class="pricing-plan">{plan.plan}</div>
+              <div class="pricing-amount">{plan.amount}</div>
+              <div class="pricing-unit">{plan.unit}</div>
+              <p class="pricing-desc">{plan.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Related Services -->
+      <section class="content-section">
+        <h2>🔗 関連サービス</h2>
+        <div class="related-grid">
+          {data.relatedServices.map((service) => (
+            <a href={service.href} class="related-card">
+              <div class="related-card-icon">{service.icon}</div>
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+              <span class="related-link">詳しく見る →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="service-cta">
+    <h2>{data.cta.title}</h2>
+    <p set:html={data.cta.description} />
+    <a href="/contact/" class="btn-primary">無料相談する →</a>
+  </section>
+</Layout>
