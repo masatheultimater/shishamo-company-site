@@ -1,8 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { externalAPIs } from '../../lib/siteConfig';
 
-// Formspreeエンドポイント - contact/index.astroと同じエンドポイントを使用
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojwzwea";
+const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 ---
 
 <Layout

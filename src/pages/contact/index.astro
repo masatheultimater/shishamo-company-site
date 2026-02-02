@@ -1,9 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { externalAPIs } from '../../lib/siteConfig';
 
-// Formspreeエンドポイント - 後で実際のエンドポイントに置き換えてください
-// https://formspree.io/ でアカウント作成後、フォームを作成してエンドポイントURLを取得
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/mojwzwea";
+const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 ---
 
 <Layout

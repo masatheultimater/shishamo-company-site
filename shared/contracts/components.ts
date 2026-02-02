@@ -210,6 +210,63 @@ export interface ServiceDetailPageProps extends PageProps {
   relatedServices?: ServiceItem[];
 }
 
+// ========================================
+// Service Detail Data (for template)
+// ========================================
+
+export interface ServiceFeature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface ServiceFlowStep {
+  title: string;
+  description: string;
+}
+
+export interface ServicePricingPlan {
+  plan: string;
+  amount: string;
+  unit: string;
+  description: string;
+  popular?: boolean;
+}
+
+export interface RelatedService {
+  href: string;
+  icon: string;
+  name: string;
+  description: string;
+}
+
+export interface ServiceDetailData {
+  // Meta & SEO
+  id: string;
+  title: string;
+  metaDescription: string;
+
+  // Hero Section
+  icon: string;
+  name: string;
+  tagline: string;
+  priceRange: string;
+  priceUnit: string;
+
+  // Content Sections
+  problems: string[];
+  features: ServiceFeature[];
+  flow: ServiceFlowStep[];
+  pricing: ServicePricingPlan[];
+  relatedServices: RelatedService[];
+
+  // CTA Section
+  cta: {
+    title: string;
+    description: string;
+  };
+}
+
 export interface BlogPostPageProps extends PageProps {
   post: BlogPost;
   relatedPosts?: BlogPost[];
