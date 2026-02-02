@@ -145,6 +145,34 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- WHY ME -->
+  <section class="why-me">
+    <div class="why-me-container">
+      <div class="section-header">
+        <div class="section-label section-label--light">Why Choose Me</div>
+        <h2 class="section-title section-title--light">選ばれる3つの理由</h2>
+        <p class="section-desc section-desc--light">専門性と実務経験の両方を活かし、実行可能な支援を提供します</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-number">01</div>
+          <h3>IT×経営×財務の複合スキル</h3>
+          <p>システム開発から経営診断、財務分析まで一貫して対応。部分最適ではなく、全体最適な提案ができます。</p>
+        </div>
+        <div class="why-card">
+          <div class="why-number">02</div>
+          <h3>伴走型の支援スタイル</h3>
+          <p>提案だけでなく、実装・運用まで一緒に取り組みます。「絵に描いた餅」で終わらせません。</p>
+        </div>
+        <div class="why-card">
+          <div class="why-number">03</div>
+          <h3>わかりやすいコミュニケーション</h3>
+          <p>専門用語を使わず、経営者目線でご説明します。「何を聞いていいかわからない」という方も安心してご相談ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BLOG COMING SOON -->
   <section class="blog-coming" id="blog">
     <div class="section-header">
@@ -332,6 +360,77 @@ import Layout from '../layouts/Layout.astro';
   .category-card:hover .category-link { gap: 0.75rem; }
   .services-all-link { text-align: center; margin-top: 3rem; }
 
+  /* ===== WHY ME ===== */
+  .why-me {
+    padding: 5rem 2rem;
+    background: #1a202c;
+    color: #e2e8f0;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-me::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #63b3ed, #4fd1c5, var(--accent));
+  }
+  .why-me-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label--light {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .section-title--light {
+    color: #e2e8f0;
+  }
+  .section-desc--light {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .why-card {
+    text-align: left;
+    padding: 1.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+  }
+  .why-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  .why-number {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #63b3ed;
+    margin-bottom: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+  .why-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #e2e8f0;
+  }
+  .why-card p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+  }
+
   /* ===== BLOG COMING SOON ===== */
   .blog-coming { padding: 5rem 2rem; background: linear-gradient(180deg, white 0%, var(--light) 100%); }
   .coming-soon-box {
@@ -365,6 +464,13 @@ import Layout from '../layouts/Layout.astro';
     .hero h1 { font-size: 2.5rem; }
     .hero-card-photo { width: 80px; height: 80px; font-size: 2.5rem; }
     .service-categories { gap: 1.5rem; }
+
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .why-grid > *:last-child {
+      grid-column: span 2;
+    }
   }
 
   @media (max-width: 768px) {
@@ -400,6 +506,17 @@ import Layout from '../layouts/Layout.astro';
     .category-icon { font-size: 2.5rem; }
     .category-card h3 { font-size: 1.2rem; }
 
+    .why-me { padding: 4rem 1.5rem; }
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .why-grid > *:last-child {
+      grid-column: auto;
+    }
+    .why-card { padding: 1.5rem; }
+    .why-card h3 { font-size: 1.1rem; }
+
     .coming-soon-box { padding: 2.5rem 1.5rem; margin: 0 1rem; }
     .coming-icon { font-size: 3rem; }
     .coming-soon-box h3 { font-size: 1.5rem; }
@@ -421,7 +538,7 @@ import Layout from '../layouts/Layout.astro';
     }
     .quick-card > * { text-align: left; }
 
-    .problems, .services-overview, .blog-coming { padding: 3rem 1rem; }
+    .problems, .services-overview, .blog-coming, .why-me { padding: 3rem 1rem; }
     .problem-card { gap: 0.75rem; }
     .problem-arrow { display: none; }
 
@@ -433,7 +550,8 @@ import Layout from '../layouts/Layout.astro';
 
   @media (hover: none) {
     .quick-card:hover, .problem-card:hover,
-    .category-card:hover, .hero-card:hover {
+    .category-card:hover, .hero-card:hover,
+    .why-card:hover {
       transform: none;
     }
     .quick-card:active { transform: scale(0.98); }
