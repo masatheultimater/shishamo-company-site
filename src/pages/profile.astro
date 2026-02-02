@@ -1,25 +1,48 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import yaml from 'js-yaml';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// YAMLファイルを読み込み
+const yamlPath = path.join(process.cwd(), 'src/data/profile.yaml');
+const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
+  name: string;
+  subtitle: string;
+  badges: { label: string }[];
+  stats: { number: string; label: string }[];
+  career: { period: string; title: string; description: string; tags: string[] }[];
+  qualifications: { icon: string; name: string; description: string }[];
+  story: {
+    title: string;
+    subtitle: string;
+    grandfatherWords: string;
+    content: string;
+  };
+  mottos: { text: string; meaning: string }[];
+  philosophy: { title: string; content: string }[];
+  cta: { title: string; description: string; buttonText: string; buttonLink: string };
+};
 ---
 
 <Layout
   title="プロフィール | ししゃも｜吉川昌宏"
-  description="吉川昌宏のプロフィール。中小企業診断士・ITストラテジスト。Web開発7年、会計事務所2年の経験を活かし、IT × 経営 × 財務で中小企業の挑戦を後押しします。"
+  description="吉川昌宏のプロフィール。中小企業診断士・ITストラテジスト。Web開発12年、会計事務所1年の経験を活かし、IT × 経営 × 財務で中小企業の挑戦を後押しします。"
   currentPage="profile"
 >
   <!-- Profile Hero -->
   <section class="profile-hero">
     <div class="profile-hero-inner">
-      <div class="profile-photo">👨‍💻</div>
+      <div class="profile-photo-wrapper">
+        <img src="/自画像_シンプル背景.png" alt="吉川昌宏">
+      </div>
       <div class="profile-hero-text">
-        <h1>吉川 昌宏</h1>
-        <p class="subtitle">中小企業の挑戦に寄り添う「伴走のペースメーカー」</p>
+        <h1>{profileData.name}</h1>
+        <p class="subtitle">{profileData.subtitle}</p>
         <div class="profile-badges">
-          <span class="profile-badge">🎯 中小企業診断士</span>
-          <span class="profile-badge">💻 ITストラテジスト</span>
-          <span class="profile-badge">🤖 E資格</span>
-          <span class="profile-badge">🗄️ データベーススペシャリスト</span>
-          <span class="profile-badge">📊 税理士（取得中）</span>
+          {profileData.badges.map((badge, index) => (
+            <span class={`profile-badge ${index < 2 ? 'highlight' : ''}`}>{badge.label}</span>
+          ))}
         </div>
       </div>
     </div>
@@ -28,318 +51,1021 @@ import Layout from '../layouts/Layout.astro';
   <!-- Stats -->
   <section class="stats-section">
     <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">7</div>
-        <div class="stat-label">年のWeb開発経験</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">2</div>
-        <div class="stat-label">年の会計事務所経験</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">保有資格</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">挑戦への情熱</div>
-      </div>
+      {profileData.stats.slice(0, 3).map((stat) => (
+        <div class="stat-card">
+          <div class="stat-number">
+            {stat.number}<span class="stat-unit">{stat.label.includes('年') ? '年' : stat.label.includes('+') ? '' : ''}</span>
+          </div>
+          <div class="stat-label">{stat.label.replace('年の', '')}</div>
+        </div>
+      ))}
     </div>
   </section>
 
   <!-- Career Timeline -->
-  <section class="content-section">
-    <div class="content-inner">
+  <section class="section">
+    <div class="section-inner">
       <h2 class="section-title">経歴</h2>
       <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">2024年〜現在</div>
-          <div class="timeline-title">会計事務所勤務</div>
-          <div class="timeline-desc">税務・会計の実務経験を積みながら、税理士資格取得に向けて勉強中。中小企業の財務面から経営を支援する視点を習得。</div>
-          <div class="timeline-tags">
-            <span class="timeline-tag">税務申告</span>
-            <span class="timeline-tag">記帳代行</span>
-            <span class="timeline-tag">財務分析</span>
+        {profileData.career.map((item) => (
+          <div class="timeline-item">
+            <div class="timeline-date">{item.period.replace('〜', ' - ')}</div>
+            <div class="timeline-title">{item.title}</div>
+            <div class="timeline-desc">{item.description}</div>
+            <div class="timeline-tags">
+              {item.tags.map((tag) => (
+                <span class="timeline-tag">{tag}</span>
+              ))}
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2017年〜2024年</div>
-          <div class="timeline-title">SaaSスタートアップ プロダクトマネージャー</div>
-          <div class="timeline-desc">データ分析基盤プロダクトのPMとして、プロダクト戦略の立案から開発ディレクション、顧客への提案まで幅広く担当。経営陣との距離が近く、プロダクトの売り方やクライアントへの寄り添い方を常に考えながら、経営視点で意思決定する経験を積む。</div>
-          <div class="timeline-tags">
-            <span class="timeline-tag">プロダクトマネジメント</span>
-            <span class="timeline-tag">データ分析基盤</span>
-            <span class="timeline-tag">顧客折衝</span>
-            <span class="timeline-tag">経営企画</span>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2017年〜</div>
-          <div class="timeline-title">Web開発エンジニア（兼務・副業含む）</div>
-          <div class="timeline-desc">フロントエンドからバックエンドまでフルスタックで開発。Webアプリケーション構築、API設計、データベース設計など幅広い技術領域を経験。</div>
-          <div class="timeline-tags">
-            <span class="timeline-tag">React / Vue.js</span>
-            <span class="timeline-tag">Python / Node.js</span>
-            <span class="timeline-tag">AWS / GCP</span>
-            <span class="timeline-tag">データベース設計</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- Qualifications -->
-  <section class="content-section">
-    <div class="content-inner">
+  <section class="section section--alt">
+    <div class="section-inner">
       <h2 class="section-title">保有資格</h2>
       <div class="qual-grid">
-        <div class="qual-card">
-          <div class="qual-icon">🎯</div>
-          <div class="qual-info">
-            <h4>中小企業診断士</h4>
-            <p>経営支援の国家資格</p>
+        {profileData.qualifications.map((qual) => (
+          <div class="qual-card">
+            <div class="qual-icon">
+              {qual.name === '中小企業診断士' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              )}
+              {qual.name === 'ITストラテジスト' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              )}
+              {qual.name === 'E資格' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="14" r="2"/></svg>
+              )}
+              {qual.name === 'データベーススペシャリスト' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+              )}
+              {qual.name === '応用情報技術者' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+              )}
+              {qual.name === '税理士科目合格（簿記論）' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              )}
+              {qual.name === 'TOEIC815' && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              )}
+            </div>
+            <div class="qual-info">
+              <h4>{qual.name}</h4>
+              <p>{qual.description}</p>
+            </div>
           </div>
-        </div>
-        <div class="qual-card">
-          <div class="qual-icon">💻</div>
-          <div class="qual-info">
-            <h4>ITストラテジスト</h4>
-            <p>IT戦略立案の高度情報処理技術者</p>
-          </div>
-        </div>
-        <div class="qual-card">
-          <div class="qual-icon">🤖</div>
-          <div class="qual-info">
-            <h4>E資格</h4>
-            <p>ディープラーニングエンジニア認定</p>
-          </div>
-        </div>
-        <div class="qual-card">
-          <div class="qual-icon">🗄️</div>
-          <div class="qual-info">
-            <h4>データベーススペシャリスト</h4>
-            <p>データベース設計の高度情報処理技術者</p>
-          </div>
-        </div>
-        <div class="qual-card pending">
-          <div class="qual-icon">📊</div>
-          <div class="qual-info">
-            <h4>税理士</h4>
-            <p>税務の専門家資格</p>
-          </div>
-          <span class="qual-status">取得中</span>
-        </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">{profileData.story.title}</h2>
+      <p class="section-subtitle">{profileData.story.subtitle}</p>
+      <div class="story-content">
+        <p class="story-quote grandfather-words">「{profileData.story.grandfatherWords}」</p>
+        <p>祖父からいつも言われていた言葉です。</p>
+        <p>祖父は、小さな印刷会社を営んでいました。地域の商店や企業のチラシ、名刺、パンフレット。祖父は一つひとつ丁寧に仕事をし、お客様に喜ばれていました。</p>
+        <p>しかし、時代は変わりました。紙からデジタルへ。印刷物の需要は急速に減り、祖父の会社は廃業を余儀なくされました。</p>
+        <p>当時の私には、何もできませんでした。ITの知識も、経営の知識も、財務の知識もなく、ただ見ているしかできなかった。</p>
+        <p class="story-highlight">あの時の無力感が、今の私の原動力です。</p>
+        <p class="story-quote">「次は絶対に助ける」</p>
+        <p>同じように時代の変化に直面している中小企業の社長さんがいたら、今度こそ、一緒に乗り越える力になりたい。ITも、経営も、財務も。必要なことは何でも学び、何でもやる。</p>
+        <p><strong>それが、祖父への約束であり、私がこの仕事をする理由です。</strong></p>
       </div>
     </div>
   </section>
 
   <!-- Philosophy -->
-  <section class="content-section">
-    <div class="content-inner">
+  <section class="section section--alt">
+    <div class="section-inner">
       <h2 class="section-title">大切にしていること</h2>
-      <div class="philosophy-box">
-        <h3>中小企業の挑戦を後押しする</h3>
-        <p>ITも経営も財務も、すべては「お客様の課題を解決する」ための手段です。難しい専門用語ではなく、わかりやすい言葉で。一方的なアドバイスではなく、一緒に考える姿勢で。プロダクトマネージャーとしてクライアントに寄り添ってきた経験を活かし、御社のパートナーとして、挑戦を後押しします。</p>
+      <div class="philosophy-grid">
+        {profileData.philosophy.map((item) => (
+          <div class="philosophy-card">
+            <h4>{item.title}</h4>
+            <p>{item.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mottos -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">座右の銘</h2>
+      <div class="mottos-list">
+        {profileData.mottos.map((motto) => (
+          <div class="motto-card">
+            <blockquote class="motto-text">{motto.text}</blockquote>
+            <p class="motto-meaning">{motto.meaning}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="profile-cta">
-    <h2>一緒に御社の課題を解決しませんか？</h2>
-    <p>「こんなこと相談していいのかな？」も大歓迎です。<br>まずはお気軽にお話しください。</p>
-    <a href="/contact/" class="btn-primary">無料相談する →</a>
+  <section class="section cta">
+    <div class="cta-inner">
+      <h2 class="cta-title">{profileData.cta.title}</h2>
+      <p class="cta-desc" set:html={profileData.cta.description.replace(/\n/g, '<br>')} />
+      <a href={profileData.cta.buttonLink} class="btn-primary">
+        {profileData.cta.buttonText}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
+    </div>
   </section>
 </Layout>
 
 <style>
   /* Profile Hero */
   .profile-hero {
-    padding: 8rem 2rem 4rem;
-    background: linear-gradient(135deg, var(--dark) 0%, var(--dark-lighter) 50%, #1E3A5F 100%);
-    color: white; position: relative; overflow: hidden;
+    padding: 120px 24px 80px;
+    background: var(--gray-light, #f1f5f9) url('/wp1.png') center center / cover no-repeat;
+    position: relative;
+    overflow: hidden;
   }
   .profile-hero::before {
-    content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
-    background: radial-gradient(ellipse, rgba(37,99,235,0.15) 0%, transparent 70%);
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(248, 250, 252, 0.7) 100%);
   }
   .profile-hero-inner {
-    max-width: 900px; margin: 0 auto;
-    display: flex; align-items: center; gap: 3rem; position: relative; z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    position: relative;
+    z-index: 1;
   }
-  .profile-photo {
-    width: 200px; height: 200px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 30px; display: flex; align-items: center; justify-content: center;
-    font-size: 6rem; flex-shrink: 0; box-shadow: var(--shadow-xl); position: relative;
+  .profile-photo-wrapper {
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--primary, #2563eb);
+    box-shadow: var(--shadow-lg);
   }
-  .profile-photo::after {
-    content: ''; position: absolute; inset: -4px; border-radius: 34px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    z-index: -1; opacity: 0.5; animation: pulse-glow 3s ease-in-out infinite;
+  .profile-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .profile-hero-text h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; }
-  .profile-hero-text .subtitle { font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem; }
-  .profile-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .profile-hero-text h1 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  .profile-hero-text .subtitle {
+    font-size: 15px;
+    color: var(--gray-700, #334155);
+    margin-bottom: 20px;
+    line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+  }
+  .profile-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
   .profile-badge {
-    padding: 0.5rem 1rem; background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px); border-radius: 50px; font-size: 0.85rem;
-    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    background: var(--gray-lighter, #e2e8f0);
+    color: var(--gray-dark, #334155);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .profile-badge.highlight {
+    background: var(--primary-lighter, #eff6ff);
+    color: var(--primary, #2563eb);
   }
 
-  /* Stats */
-  .stats-section { padding: 0 2rem; margin-top: -2rem; position: relative; z-index: 10; }
+  /* Stats Section */
+  .stats-section {
+    padding: 0 24px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 10;
+  }
   .stats-grid {
-    max-width: 900px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
   .stat-card {
-    background: white; border-radius: var(--radius-lg); padding: 1.5rem;
-    text-align: center; box-shadow: var(--shadow-lg); border: 2px solid transparent; transition: all 0.3s;
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    border-radius: var(--radius-md, 12px);
+    padding: 24px;
+    text-align: center;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
   }
-  .stat-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+  .stat-card:hover {
+    border-color: var(--primary);
+  }
   .stat-number {
-    font-family: var(--font-display); font-size: 2.5rem; font-weight: 700;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    font-family: var(--font-sans);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary);
   }
-  .stat-label { font-size: 0.85rem; color: var(--gray); margin-top: 0.25rem; }
+  .stat-unit {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: var(--gray-600, #475569);
+    margin-top: 4px;
+  }
 
-  /* Content Sections */
-  .content-section { padding: 5rem 2rem; }
-  .content-section:nth-child(even) { background: white; }
-  .content-section:nth-child(odd) { background: var(--light); }
-  .content-inner { max-width: 900px; margin: 0 auto; }
+  /* Section Common */
+  .section {
+    padding: 80px 24px;
+  }
+  .section--alt {
+    background: var(--gray-light, #f1f5f9);
+  }
+  .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
   .section-title {
-    font-family: var(--font-display); font-size: 1.75rem; font-weight: 700;
-    margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    -webkit-text-fill-color: #1e293b;
+    background: none;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .section-title::before {
-    content: ''; width: 4px; height: 1.5rem;
-    background: linear-gradient(180deg, var(--primary), var(--accent)); border-radius: 4px;
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  .section-subtitle {
+    font-size: 14px;
+    color: var(--gray-600, #475569);
+    margin-top: -24px;
+    margin-bottom: 32px;
   }
 
   /* Timeline */
-  .timeline { position: relative; padding-left: 2rem; }
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
   .timeline::before {
-    content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 4px;
-    background: linear-gradient(180deg, var(--primary), var(--accent), var(--secondary)); border-radius: 4px;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--gray-lighter, #cbd5e1);
+    border-radius: 2px;
   }
-  .timeline-item { position: relative; padding-bottom: 2.5rem; }
-  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 32px;
+  }
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
   .timeline-item::before {
-    content: ''; position: absolute; left: -2rem; top: 5px;
-    width: 16px; height: 16px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 4px var(--light);
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    border: 2px solid var(--light, #f8fafc);
   }
-  .timeline-date { font-size: 0.85rem; color: var(--primary); font-weight: 600; margin-bottom: 0.25rem; }
-  .timeline-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .timeline-desc { font-size: 0.95rem; color: var(--gray); line-height: 1.8; }
-  .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
+  .timeline-date {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.02em;
+  }
+  .timeline-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .timeline-desc {
+    font-size: 14px;
+    color: var(--gray-600, #475569);
+    line-height: 1.8;
+  }
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
   .timeline-tag {
-    font-size: 0.75rem; padding: 0.25rem 0.625rem;
-    background: linear-gradient(135deg, var(--gray-lighter), #EFF6FF);
-    border-radius: 50px; color: var(--gray);
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--gray-lighter, #e2e8f0);
+    border-radius: 100px;
+    color: var(--gray-700, #334155);
   }
 
   /* Qualifications */
   .qual-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
   .qual-card {
-    background: white; border-radius: var(--radius-md); padding: 1.25rem 1.5rem;
-    border: 2px solid var(--gray-light); transition: all 0.3s;
-    display: flex; align-items: center; gap: 1rem;
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    border-radius: var(--radius-sm, 6px);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
   }
-  .qual-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-  .qual-card.pending { border-style: dashed; opacity: 0.7; }
-  .qual-icon { font-size: 2rem; flex-shrink: 0; }
-  .qual-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.125rem; }
-  .qual-info p { font-size: 0.8rem; color: var(--gray); }
-  .qual-status {
-    font-size: 0.7rem; padding: 0.125rem 0.5rem;
-    background: var(--secondary); color: white; border-radius: 50px; margin-left: auto;
+  .qual-card:hover {
+    border-color: var(--primary);
+  }
+  .qual-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--primary-lighter, #eff6ff);
+    border-radius: var(--radius-sm, 6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .qual-icon svg {
+    width: 22px;
+    height: 22px;
+    color: var(--primary);
+  }
+  .qual-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+  .qual-info p {
+    font-size: 12px;
+    color: var(--gray-600, #475569);
+  }
+
+  /* Story */
+  .story-content {
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    border-radius: var(--radius-md, 12px);
+    padding: 40px;
+    box-shadow: var(--shadow-sm);
+  }
+  .story-content p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--gray-dark, #334155);
+    margin-bottom: 20px;
+  }
+  .story-content p:last-child {
+    margin-bottom: 0;
+  }
+  .story-highlight {
+    color: var(--dark) !important;
+    font-weight: 600;
+  }
+  .story-quote {
+    font-size: 20px !important;
+    font-weight: 700;
+    color: var(--primary) !important;
+    text-align: center;
+    padding: 24px 0;
+    margin: 24px 0 !important;
+    border-top: 1px solid var(--gray-lighter, #e2e8f0);
+    border-bottom: 1px solid var(--gray-lighter, #e2e8f0);
+  }
+  .grandfather-words {
+    border-top: none !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
   /* Philosophy */
-  .philosophy-box {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: white; border-radius: var(--radius-lg); padding: 3rem;
-    position: relative; overflow: hidden;
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
-  .philosophy-box::before {
-    content: '"'; position: absolute; top: -20px; left: 20px;
-    font-size: 10rem; opacity: 0.1; font-family: Georgia, serif; line-height: 1;
+  .philosophy-card {
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    border-radius: var(--radius-md, 12px);
+    padding: 24px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
   }
-  .philosophy-box h3 {
-    font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; position: relative;
+  .philosophy-card:hover {
+    border-color: var(--primary);
   }
-  .philosophy-box p { font-size: 1.05rem; line-height: 1.9; opacity: 0.95; position: relative; }
+  .philosophy-card h4 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .philosophy-card h4::before {
+    content: '';
+    width: 4px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  .philosophy-card p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray-600, #475569);
+  }
 
-  /* Profile CTA */
-  .profile-cta {
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark), #1E40AF);
-    color: white; text-align: center; position: relative; overflow: hidden;
+  /* Mottos */
+  .mottos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
-  .profile-cta::before {
-    content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
-    background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+  .motto-card {
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    border-radius: var(--radius-md, 12px);
+    padding: 32px;
+    border-left: 4px solid var(--primary);
+    box-shadow: var(--shadow-sm);
   }
-  .profile-cta > * { position: relative; }
-  .profile-cta h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; }
-  .profile-cta p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.05rem; }
-  .profile-cta .btn-primary { background: white; color: var(--primary); }
+  .motto-text {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    position: relative;
+    padding-left: 0;
+  }
+  .motto-text::before {
+    content: '"';
+    color: var(--primary);
+    font-size: 32px;
+    font-family: Georgia, serif;
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    opacity: 0.3;
+  }
+  .motto-meaning {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gray-600, #475569);
+    padding-left: 0;
+  }
+
+  /* CTA */
+  .cta {
+    background: var(--gray-light, #f1f5f9);
+  }
+  .cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px 32px;
+    background: var(--white, #ffffff);
+    border-radius: var(--radius-md, 12px);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    box-shadow: var(--shadow-sm);
+  }
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--dark);
+  }
+  .cta-desc {
+    font-size: 15px;
+    color: var(--gray-600, #475569);
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+  .cta-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--gray-600, #475569);
+  }
+  /* CTAボタンを落ち着いた色に */
+  .cta .btn-primary {
+    background: var(--primary, #2563eb);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+  .cta .btn-primary:hover {
+    background: var(--primary-dark, #1d4ed8);
+    box-shadow: var(--shadow-lg);
+  }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .profile-hero { padding: 6rem 1.5rem 3rem; }
-    .profile-hero-inner { flex-direction: column; text-align: center; gap: 2rem; }
-    .profile-photo { width: 150px; height: 150px; font-size: 4rem; border-radius: 24px; }
-    .profile-hero-text h1 { font-size: 2rem; }
-    .profile-hero-text .subtitle { font-size: 1rem; }
-    .profile-badges { justify-content: center; }
-    .profile-badge { font-size: 0.75rem; padding: 0.375rem 0.75rem; }
-
-    .stats-section { margin-top: -1.5rem; padding: 0 1rem; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-    .stat-card { padding: 1.25rem 1rem; }
-    .stat-number { font-size: 2rem; }
-    .stat-label { font-size: 0.75rem; }
-
-    .content-section { padding: 3rem 1.5rem; }
-    .section-title { font-size: 1.5rem; }
-
-    .timeline { padding-left: 1.5rem; }
-    .timeline-item::before { left: -1.5rem; width: 12px; height: 12px; }
-    .timeline-title { font-size: 1rem; }
-    .timeline-desc { font-size: 0.9rem; }
-
-    .qual-grid { grid-template-columns: 1fr; }
-
-    .philosophy-box { padding: 2rem 1.5rem; }
-    .philosophy-box h3 { font-size: 1.25rem; }
-    .philosophy-box p { font-size: 0.95rem; }
-
-    .profile-cta { padding: 3rem 1.5rem; }
-    .profile-cta h2 { font-size: 1.5rem; }
+    .profile-hero {
+      padding: 96px 24px 60px;
+    }
+    .profile-hero-inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 24px;
+    }
+    .profile-photo-wrapper {
+      width: 160px;
+      height: 160px;
+    }
+    .profile-hero-text h1 {
+      font-size: 26px;
+    }
+    .profile-badges {
+      justify-content: center;
+    }
+    .stats-section {
+      margin-top: -30px;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .stat-card {
+      padding: 20px 16px;
+    }
+    .stat-number {
+      font-size: 28px;
+    }
+    .section {
+      padding: 60px 24px;
+    }
+    .section-title {
+      font-size: 20px;
+    }
+    .qual-grid {
+      grid-template-columns: 1fr;
+    }
+    .story-content {
+      padding: 28px 24px;
+    }
+    .story-quote {
+      font-size: 18px !important;
+    }
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+    .motto-card {
+      padding: 24px;
+    }
+    .motto-text {
+      font-size: 16px;
+    }
   }
 
   @media (max-width: 480px) {
-    .profile-hero { padding: 5.5rem 1rem 2.5rem; }
-    .profile-photo { width: 120px; height: 120px; font-size: 3rem; }
-    .profile-hero-text h1 { font-size: 1.75rem; }
-
-    .stats-grid { gap: 0.5rem; }
-    .stat-card { padding: 1rem 0.75rem; }
-    .stat-number { font-size: 1.75rem; }
-
-    .content-section { padding: 2.5rem 1rem; }
-    .section-title { font-size: 1.35rem; margin-bottom: 1.5rem; }
+    .profile-hero {
+      padding: 88px 16px 48px;
+    }
+    .profile-photo-wrapper {
+      width: 140px;
+      height: 140px;
+    }
+    .profile-hero-text h1 {
+      font-size: 24px;
+    }
+    .profile-badge {
+      font-size: 11px;
+      padding: 5px 10px;
+    }
+    .stats-grid {
+      gap: 8px;
+    }
+    .stat-card {
+      padding: 16px 12px;
+    }
+    .stat-number {
+      font-size: 24px;
+    }
+    .stat-label {
+      font-size: 11px;
+    }
+    .section {
+      padding: 48px 16px;
+    }
+    .timeline {
+      padding-left: 24px;
+    }
+    .timeline-item::before {
+      left: -24px;
+      width: 10px;
+      height: 10px;
+    }
+    .cta-title {
+      font-size: 22px;
+    }
   }
 
   @media (hover: none) {
-    .stat-card:hover, .qual-card:hover { transform: none; }
+    .stat-card:hover,
+    .qual-card:hover,
+    .philosophy-card:hover {
+      border-color: var(--gray-lighter, #e2e8f0);
+    }
+  }
+
+  /* ===== DARK MODE ===== */
+  :global([data-theme="dark"]) .profile-hero {
+    background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
+  }
+  :global([data-theme="dark"]) .profile-hero::before {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+  }
+  :global([data-theme="dark"]) .profile-photo-wrapper {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .profile-hero-text h1 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .profile-hero-text .subtitle {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .profile-badge {
+    background: var(--gray-300);
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .profile-badge.highlight {
+    background: var(--primary-lighter);
+    color: var(--primary);
+    font-weight: 600;
+  }
+  :global([data-theme="dark"]) .stat-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .stat-card:hover {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .stat-number {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .stat-label {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .section {
+    background: var(--gray-50);
+  }
+  :global([data-theme="dark"]) .section--alt {
+    background: var(--gray-100);
+  }
+  :global([data-theme="dark"]) .section-title {
+    color: #f1f5f9;
+    -webkit-text-fill-color: #f1f5f9;
+    background: none;
+  }
+  :global([data-theme="dark"]) .section-title::before {
+    background: var(--primary);
+  }
+  :global([data-theme="dark"]) .section-subtitle {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .timeline::before {
+    background: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .timeline-item::before {
+    background: var(--primary);
+    border-color: var(--gray-50);
+  }
+  :global([data-theme="dark"]) .timeline-date {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .timeline-title {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .timeline-desc {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .timeline-tag {
+    background: var(--gray-300);
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .qual-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .qual-card:hover {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .qual-icon {
+    background: var(--primary-lighter);
+  }
+  :global([data-theme="dark"]) .qual-icon svg {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .qual-info h4 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .qual-info p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .story-content {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .story-content p {
+    color: var(--gray-600);
+  }
+  :global([data-theme="dark"]) .story-highlight {
+    color: var(--dark) !important;
+  }
+  :global([data-theme="dark"]) .story-quote {
+    color: var(--primary) !important;
+    border-top-color: var(--gray-300);
+    border-bottom-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .philosophy-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .philosophy-card:hover {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .philosophy-card h4 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .philosophy-card h4::before {
+    background: var(--primary);
+  }
+  :global([data-theme="dark"]) .philosophy-card p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .motto-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .motto-text {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .motto-text::before {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .motto-meaning {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .cta {
+    background: var(--gray-100);
+  }
+  :global([data-theme="dark"]) .cta-inner {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .cta-title {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .cta-desc {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .cta-note {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .cta .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  :global([data-theme="dark"]) .cta .btn-primary:hover {
+    background: var(--primary-dark, #3b82f6);
+  }
+  :global([data-theme="dark"]) .profile-hero-text h1 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  :global([data-theme="dark"]) .profile-hero-text .subtitle {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .profile-hero {
+      background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
+    }
+    html:not([data-theme="light"]) .profile-hero::before {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+    }
+    html:not([data-theme="light"]) .profile-photo-wrapper {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .profile-hero-text h1 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .profile-hero-text .subtitle {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .profile-badge {
+      background: var(--gray-300);
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .profile-badge.highlight {
+      background: var(--primary-lighter);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    html:not([data-theme="light"]) .stat-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .stat-card:hover {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .stat-number {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .stat-label {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .section {
+      background: var(--gray-50);
+    }
+    html:not([data-theme="light"]) .section--alt {
+      background: var(--gray-100);
+    }
+    html:not([data-theme="light"]) .section-title {
+      color: #f1f5f9;
+      -webkit-text-fill-color: #f1f5f9;
+      background: none;
+    }
+    html:not([data-theme="light"]) .section-title::before {
+      background: var(--primary);
+    }
+    html:not([data-theme="light"]) .section-subtitle {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .timeline::before {
+      background: var(--gray-300);
+    }
+    html:not([data-theme="light"]) .timeline-item::before {
+      background: var(--primary);
+      border-color: var(--gray-50);
+    }
+    html:not([data-theme="light"]) .timeline-date {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .timeline-title {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .timeline-desc {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .timeline-tag {
+      background: var(--gray-300);
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .qual-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .qual-card:hover {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .qual-icon {
+      background: var(--primary-lighter);
+    }
+    html:not([data-theme="light"]) .qual-icon svg {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .qual-info h4 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .qual-info p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .story-content {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .story-content p {
+      color: var(--gray-600);
+    }
+    html:not([data-theme="light"]) .story-highlight {
+      color: var(--dark) !important;
+    }
+    html:not([data-theme="light"]) .story-quote {
+      color: var(--primary) !important;
+      border-top-color: var(--gray-300);
+      border-bottom-color: var(--gray-300);
+    }
+    html:not([data-theme="light"]) .philosophy-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .philosophy-card:hover {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .philosophy-card h4 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .philosophy-card h4::before {
+      background: var(--primary);
+    }
+    html:not([data-theme="light"]) .philosophy-card p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .motto-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      border-left: 4px solid var(--primary);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .motto-text {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .motto-text::before {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .motto-meaning {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .cta {
+      background: var(--gray-100);
+    }
+    html:not([data-theme="light"]) .cta-inner {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .cta-title {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .cta-desc {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .cta-note {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .cta .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    html:not([data-theme="light"]) .cta .btn-primary:hover {
+      background: var(--primary-dark, #3b82f6);
+    }
+    html:not([data-theme="light"]) .profile-hero-text h1 {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    html:not([data-theme="light"]) .profile-hero-text .subtitle {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
   }
 </style>

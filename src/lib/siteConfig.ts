@@ -77,8 +77,7 @@ export const navigationItems: NavigationItem[] = [
  * Social links
  */
 export const socialLinks: SocialLink[] = [
-  { name: 'X (Twitter)', icon: 'X', url: '#' },
-  { name: 'note', icon: 'n', url: '#' },
+  { name: 'X (Twitter)', icon: 'X', url: 'https://x.com/shishamoex09' },
 ];
 
 /**
