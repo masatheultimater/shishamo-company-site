@@ -190,18 +190,15 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   /* Profile Hero */
   .profile-hero {
     padding: 120px 24px 80px;
-    background: var(--gray-light, #f1f5f9);
+    background: var(--gray-light, #f1f5f9) url('/wp1.png') center center / cover no-repeat;
     position: relative;
     overflow: hidden;
   }
   .profile-hero::before {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -30%;
-    width: 80%;
-    height: 200%;
-    background: radial-gradient(ellipse, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+    inset: 0;
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(248, 250, 252, 0.7) 100%);
   }
   .profile-hero-inner {
     max-width: 900px;
@@ -232,12 +229,14 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--dark);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   }
   .profile-hero-text .subtitle {
     font-size: 15px;
-    color: var(--gray, #64748b);
+    color: var(--gray-700, #334155);
     margin-bottom: 20px;
     line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
   }
   .profile-badges {
     display: flex;
@@ -272,12 +271,13 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .stat-card {
-    background: var(--light, #f8fafc);
-    border: 1px solid var(--gray-lighter, #e2e8f0);
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
     border-radius: var(--radius-md, 12px);
     padding: 24px;
     text-align: center;
     transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
   }
   .stat-card:hover {
     border-color: var(--primary);
@@ -294,7 +294,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .stat-label {
     font-size: 13px;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
     margin-top: 4px;
   }
 
@@ -313,7 +313,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-family: var(--font-display);
     font-size: 22px;
     font-weight: 700;
-    color: var(--dark);
+    color: #1e293b;
+    -webkit-text-fill-color: #1e293b;
+    background: none;
     margin-bottom: 32px;
     display: flex;
     align-items: center;
@@ -328,7 +330,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .section-subtitle {
     font-size: 14px;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
     margin-top: -24px;
     margin-bottom: 32px;
   }
@@ -382,7 +384,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .timeline-desc {
     font-size: 14px;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
     line-height: 1.8;
   }
   .timeline-tags {
@@ -396,7 +398,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     padding: 4px 10px;
     background: var(--gray-lighter, #e2e8f0);
     border-radius: 100px;
-    color: var(--gray);
+    color: var(--gray-700, #334155);
   }
 
   /* Qualifications */
@@ -406,14 +408,15 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 12px;
   }
   .qual-card {
-    background: var(--light, #f8fafc);
-    border: 1px solid var(--gray-lighter, #e2e8f0);
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
     border-radius: var(--radius-sm, 6px);
     padding: 16px 20px;
     display: flex;
     align-items: center;
     gap: 16px;
     transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
   }
   .qual-card:hover {
     border-color: var(--primary);
@@ -441,15 +444,16 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .qual-info p {
     font-size: 12px;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
   }
 
   /* Story */
   .story-content {
-    background: var(--light, #f8fafc);
-    border: 1px solid var(--gray-lighter, #e2e8f0);
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
     border-radius: var(--radius-md, 12px);
     padding: 40px;
+    box-shadow: var(--shadow-sm);
   }
   .story-content p {
     font-size: 15px;
@@ -487,11 +491,12 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .philosophy-card {
-    background: var(--light, #f8fafc);
-    border: 1px solid var(--gray-lighter, #e2e8f0);
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
     border-radius: var(--radius-md, 12px);
     padding: 24px;
     transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
   }
   .philosophy-card:hover {
     border-color: var(--primary);
@@ -516,7 +521,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .philosophy-card p {
     font-size: 14px;
     line-height: 1.8;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
   }
 
   /* Mottos */
@@ -526,11 +531,12 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 20px;
   }
   .motto-card {
-    background: var(--light, #f8fafc);
-    border: 1px solid var(--gray-lighter, #e2e8f0);
+    background: var(--white, #ffffff);
+    border: 2px solid var(--gray-light, #cbd5e1);
     border-radius: var(--radius-md, 12px);
     padding: 32px;
     border-left: 4px solid var(--primary);
+    box-shadow: var(--shadow-sm);
   }
   .motto-text {
     font-family: var(--font-display);
@@ -555,7 +561,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .motto-meaning {
     font-size: 14px;
     line-height: 1.8;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
     padding-left: 0;
   }
 
@@ -568,9 +574,10 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     margin: 0 auto;
     text-align: center;
     padding: 40px 32px;
-    background: var(--light, #f8fafc);
-    border-radius: var(--radius-sm, 6px);
-    border: 1px solid var(--gray-lighter, #e2e8f0);
+    background: var(--white, #ffffff);
+    border-radius: var(--radius-md, 12px);
+    border: 2px solid var(--gray-light, #cbd5e1);
+    box-shadow: var(--shadow-sm);
   }
   .cta-title {
     font-family: var(--font-display);
@@ -581,14 +588,24 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .cta-desc {
     font-size: 15px;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
     margin-bottom: 24px;
     line-height: 1.8;
   }
   .cta-note {
     margin-top: 12px;
     font-size: 12px;
-    color: var(--gray);
+    color: var(--gray-600, #475569);
+  }
+  /* CTAボタンを落ち着いた色に */
+  .cta .btn-primary {
+    background: var(--primary, #2563eb);
+    color: white;
+    box-shadow: var(--shadow-md);
+  }
+  .cta .btn-primary:hover {
+    background: var(--primary-dark, #1d4ed8);
+    box-shadow: var(--shadow-lg);
   }
 
   /* Responsive */
@@ -698,6 +715,357 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     .qual-card:hover,
     .philosophy-card:hover {
       border-color: var(--gray-lighter, #e2e8f0);
+    }
+  }
+
+  /* ===== DARK MODE ===== */
+  :global([data-theme="dark"]) .profile-hero {
+    background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
+  }
+  :global([data-theme="dark"]) .profile-hero::before {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+  }
+  :global([data-theme="dark"]) .profile-photo-wrapper {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .profile-hero-text h1 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .profile-hero-text .subtitle {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .profile-badge {
+    background: var(--gray-300);
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .profile-badge.highlight {
+    background: var(--primary-lighter);
+    color: var(--primary);
+    font-weight: 600;
+  }
+  :global([data-theme="dark"]) .stat-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .stat-card:hover {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .stat-number {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .stat-label {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .section {
+    background: var(--gray-50);
+  }
+  :global([data-theme="dark"]) .section--alt {
+    background: var(--gray-100);
+  }
+  :global([data-theme="dark"]) .section-title {
+    color: #f1f5f9;
+    -webkit-text-fill-color: #f1f5f9;
+    background: none;
+  }
+  :global([data-theme="dark"]) .section-title::before {
+    background: var(--primary);
+  }
+  :global([data-theme="dark"]) .section-subtitle {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .timeline::before {
+    background: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .timeline-item::before {
+    background: var(--primary);
+    border-color: var(--gray-50);
+  }
+  :global([data-theme="dark"]) .timeline-date {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .timeline-title {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .timeline-desc {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .timeline-tag {
+    background: var(--gray-300);
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .qual-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .qual-card:hover {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .qual-icon {
+    background: var(--primary-lighter);
+  }
+  :global([data-theme="dark"]) .qual-icon svg {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .qual-info h4 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .qual-info p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .story-content {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .story-content p {
+    color: var(--gray-600);
+  }
+  :global([data-theme="dark"]) .story-highlight {
+    color: var(--dark) !important;
+  }
+  :global([data-theme="dark"]) .story-quote {
+    color: var(--primary) !important;
+    border-top-color: var(--gray-300);
+    border-bottom-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .philosophy-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .philosophy-card:hover {
+    border-color: var(--primary);
+  }
+  :global([data-theme="dark"]) .philosophy-card h4 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .philosophy-card h4::before {
+    background: var(--primary);
+  }
+  :global([data-theme="dark"]) .philosophy-card p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .motto-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .motto-text {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .motto-text::before {
+    color: var(--primary);
+  }
+  :global([data-theme="dark"]) .motto-meaning {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .cta {
+    background: var(--gray-100);
+  }
+  :global([data-theme="dark"]) .cta-inner {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .cta-title {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .cta-desc {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .cta-note {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .cta .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+  :global([data-theme="dark"]) .cta .btn-primary:hover {
+    background: var(--primary-dark, #3b82f6);
+  }
+  :global([data-theme="dark"]) .profile-hero-text h1 {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  :global([data-theme="dark"]) .profile-hero-text .subtitle {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .profile-hero {
+      background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
+    }
+    html:not([data-theme="light"]) .profile-hero::before {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+    }
+    html:not([data-theme="light"]) .profile-photo-wrapper {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .profile-hero-text h1 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .profile-hero-text .subtitle {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .profile-badge {
+      background: var(--gray-300);
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .profile-badge.highlight {
+      background: var(--primary-lighter);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    html:not([data-theme="light"]) .stat-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .stat-card:hover {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .stat-number {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .stat-label {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .section {
+      background: var(--gray-50);
+    }
+    html:not([data-theme="light"]) .section--alt {
+      background: var(--gray-100);
+    }
+    html:not([data-theme="light"]) .section-title {
+      color: #f1f5f9;
+      -webkit-text-fill-color: #f1f5f9;
+      background: none;
+    }
+    html:not([data-theme="light"]) .section-title::before {
+      background: var(--primary);
+    }
+    html:not([data-theme="light"]) .section-subtitle {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .timeline::before {
+      background: var(--gray-300);
+    }
+    html:not([data-theme="light"]) .timeline-item::before {
+      background: var(--primary);
+      border-color: var(--gray-50);
+    }
+    html:not([data-theme="light"]) .timeline-date {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .timeline-title {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .timeline-desc {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .timeline-tag {
+      background: var(--gray-300);
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .qual-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .qual-card:hover {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .qual-icon {
+      background: var(--primary-lighter);
+    }
+    html:not([data-theme="light"]) .qual-icon svg {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .qual-info h4 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .qual-info p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .story-content {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .story-content p {
+      color: var(--gray-600);
+    }
+    html:not([data-theme="light"]) .story-highlight {
+      color: var(--dark) !important;
+    }
+    html:not([data-theme="light"]) .story-quote {
+      color: var(--primary) !important;
+      border-top-color: var(--gray-300);
+      border-bottom-color: var(--gray-300);
+    }
+    html:not([data-theme="light"]) .philosophy-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .philosophy-card:hover {
+      border-color: var(--primary);
+    }
+    html:not([data-theme="light"]) .philosophy-card h4 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .philosophy-card h4::before {
+      background: var(--primary);
+    }
+    html:not([data-theme="light"]) .philosophy-card p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .motto-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      border-left: 4px solid var(--primary);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .motto-text {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .motto-text::before {
+      color: var(--primary);
+    }
+    html:not([data-theme="light"]) .motto-meaning {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .cta {
+      background: var(--gray-100);
+    }
+    html:not([data-theme="light"]) .cta-inner {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .cta-title {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .cta-desc {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .cta-note {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .cta .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    html:not([data-theme="light"]) .cta .btn-primary:hover {
+      background: var(--primary-dark, #3b82f6);
+    }
+    html:not([data-theme="light"]) .profile-hero-text h1 {
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    html:not([data-theme="light"]) .profile-hero-text .subtitle {
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     }
   }
 </style>

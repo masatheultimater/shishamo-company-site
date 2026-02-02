@@ -2,52 +2,75 @@
  * ========================================
  * Design Tokens CSS Variables
  * ========================================
- * Generated from: shared/design-tokens.json
+ * Based on: wireframe/v2/index.html
  *
- * IMPORTANT: Do not edit manually.
- * Changes should be made in design-tokens.json
+ * Includes light mode, dark mode (system preference),
+ * and manual dark mode toggle support.
  */
 
 :root {
-  /* ===== Colors ===== */
-  --color-primary: #2563EB;
-  --color-primary-dark: #1D4ED8;
-  --color-secondary: #F59E0B;
-  --color-accent: #10B981;
-  --color-dark: #1E293B;
-  --color-dark-lighter: #334155;
-  --color-light: #F8FAFC;
-  --color-gray: #64748B;
-  --color-gray-light: #E2E8F0;
-  --color-gray-lighter: #F1F5F9;
+  /* ===== Colors - Light Mode ===== */
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --primary-lighter: #eff6ff;
+  --accent: #ea580c;
+  --accent-light: #fff7ed;
+  --teal: #0d9488;
+  --teal-light: #f0fdfa;
+  --secondary: #f59e0b;
+  --secondary-light: #fef3c7;
+  --dark: #1e293b;
+  --dark-lighter: #334155;
+  --gray-700: #334155;
+  --gray-600: #475569;
+  --gray-500: #64748b;
+  --gray-400: #94a3b8;
+  --gray-300: #cbd5e1;
+  --gray-200: #e2e8f0;
+  --gray-100: #f1f5f9;
+  --gray-50: #f8fafc;
+  --white: #ffffff;
 
-  /* ===== Typography - Font Family ===== */
-  --font-display: 'Space Grotesk', 'Noto Sans JP', sans-serif;
-  --font-body: 'Noto Sans JP', sans-serif;
+  /* ===== Short aliases ===== */
+  --light: var(--gray-50);
+  --gray: var(--gray-500);
+  --gray-light: var(--gray-200);
+  --gray-lighter: var(--gray-100);
+  --gray-dark: var(--gray-700);
 
-  /* ===== Typography - Font Size ===== */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
+  /* ===== Overlays ===== */
+  --overlay-hero: rgba(248, 250, 252, 0.85);
+  --overlay-hero-gradient: linear-gradient(135deg, rgba(248, 250, 252, 0.85) 0%, rgba(248, 250, 252, 0.6) 100%);
 
-  /* ===== Typography - Font Weight ===== */
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-  --font-weight-black: 900;
+  /* ===== Typography ===== */
+  --font-sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Noto Sans JP', sans-serif;
 
-  /* ===== Typography - Line Height ===== */
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.7;
-  --line-height-relaxed: 1.8;
+  /* ===== Shadows ===== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.08);
 
-  /* ===== Spacing ===== */
+  /* ===== Border Radius ===== */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* ===== Legacy Variables (for backward compatibility) ===== */
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-dark: var(--dark);
+  --color-light: var(--gray-50);
+  --color-gray: var(--gray-500);
+  --color-gray-light: var(--gray-200);
+  --color-gray-lighter: var(--gray-100);
+  --font-body: var(--font-sans);
+
+  /* ===== Spacing (preserved from original) ===== */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -58,26 +81,29 @@
   --space-4xl: 5rem;
   --space-5xl: 8rem;
 
-  /* ===== Border Radius ===== */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
+  /* ===== Font Sizes (preserved from original) ===== */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
 
-  /* ===== Shadows ===== */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
-  --shadow-glow: 0 0 40px rgba(37,99,235,0.15);
+  /* ===== Font Weight (preserved from original) ===== */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 
-  /* ===== Breakpoints (for reference, use in media queries) ===== */
-  /* --breakpoint-sm: 480px; */
-  /* --breakpoint-md: 768px; */
-  /* --breakpoint-lg: 1024px; */
-  /* --breakpoint-xl: 1280px; */
+  /* ===== Line Height (preserved from original) ===== */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.75;
+  --line-height-relaxed: 1.8;
 
-  /* ===== Gradients ===== */
+  /* ===== Gradients (preserved from original) ===== */
   --gradient-primary: linear-gradient(135deg, #2563EB, #1D4ED8);
   --gradient-primary-accent: linear-gradient(135deg, #2563EB, #10B981);
   --gradient-hero-bg: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%);
@@ -85,27 +111,125 @@
   --gradient-cta-bg: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
   --gradient-rainbow-bar: linear-gradient(90deg, #2563EB, #10B981, #F59E0B);
 
-  /* ===== Animation Durations ===== */
+  /* ===== Animation Durations (preserved from original) ===== */
   --animation-swim-duration: 3s;
   --animation-morph-duration: 8s;
   --animation-float-duration: 3s;
   --animation-pulse-glow-duration: 3s;
 
-  /* ===== Legacy Variables (for backward compatibility) ===== */
-  /* These map old variable names to new token-based names */
-  --primary: var(--color-primary);
-  --primary-dark: var(--color-primary-dark);
-  --secondary: var(--color-secondary);
-  --accent: var(--color-accent);
-  --dark: var(--color-dark);
-  --dark-lighter: var(--color-dark-lighter);
-  --light: var(--color-light);
-  --gray: var(--color-gray);
-  --gray-light: var(--color-gray-light);
-  --gray-lighter: var(--color-gray-lighter);
+  /* ===== Additional Legacy Shadows ===== */
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  --shadow-glow: 0 0 40px rgba(37,99,235,0.15);
+
+  /* ===== Additional Legacy Radius ===== */
+  --radius-full: 9999px;
 }
 
-/* ===== Animations (from design-tokens.json) ===== */
+/* ===== Dark Mode - System Preference ===== */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --primary: #60a5fa;
+    --primary-dark: #93c5fd;
+    --primary-light: #3b82f6;
+    --primary-lighter: #1e3a5f;
+    --accent: #fb923c;
+    --accent-light: #2d2418;
+    --teal: #5eead4;
+    --teal-light: #1a2f2e;
+    --secondary: #fbbf24;
+    --secondary-light: #422006;
+    --dark: #f1f5f9;
+    --dark-lighter: #e2e8f0;
+    --gray-700: #e2e8f0;
+    --gray-600: #cbd5e1;
+    --gray-500: #94a3b8;
+    --gray-400: #64748b;
+    --gray-300: #475569;
+    --gray-200: #334155;
+    --gray-100: #1e293b;
+    --gray-50: #0f172a;
+    --white: #020617;
+
+    /* Short aliases for dark mode */
+    --light: var(--gray-50);
+    --gray: var(--gray-500);
+    --gray-light: var(--gray-200);
+    --gray-lighter: var(--gray-100);
+    --gray-dark: var(--gray-700);
+
+    /* Overlays for dark mode */
+    --overlay-hero: rgba(15, 23, 42, 0.85);
+    --overlay-hero-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
+
+    /* Update legacy variables for dark mode */
+    --color-primary: var(--primary);
+    --color-primary-dark: var(--primary-dark);
+    --color-accent: var(--accent);
+    --color-secondary: var(--secondary);
+    --color-dark: var(--dark);
+    --color-light: var(--gray-50);
+    --color-gray: var(--gray-500);
+    --color-gray-light: var(--gray-200);
+    --color-gray-lighter: var(--gray-100);
+  }
+}
+
+/* ===== Dark Mode - Manual Selection ===== */
+html[data-theme="dark"] {
+  --primary: #60a5fa;
+  --primary-dark: #93c5fd;
+  --primary-light: #3b82f6;
+  --primary-lighter: #1e3a5f;
+  --accent: #fb923c;
+  --accent-light: #2d2418;
+  --teal: #5eead4;
+  --teal-light: #1a2f2e;
+  --secondary: #fbbf24;
+  --secondary-light: #422006;
+  --dark: #f1f5f9;
+  --dark-lighter: #e2e8f0;
+  --gray-700: #e2e8f0;
+  --gray-600: #cbd5e1;
+  --gray-500: #94a3b8;
+  --gray-400: #64748b;
+  --gray-300: #475569;
+  --gray-200: #334155;
+  --gray-100: #1e293b;
+  --gray-50: #0f172a;
+  --white: #020617;
+
+  /* Short aliases for dark mode */
+  --light: var(--gray-50);
+  --gray: var(--gray-500);
+  --gray-light: var(--gray-200);
+  --gray-lighter: var(--gray-100);
+  --gray-dark: var(--gray-700);
+
+  /* Overlays for dark mode */
+  --overlay-hero: rgba(15, 23, 42, 0.85);
+  --overlay-hero-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
+
+  /* Update legacy variables for dark mode */
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-dark: var(--dark);
+  --color-light: var(--gray-50);
+  --color-gray: var(--gray-500);
+  --color-gray-light: var(--gray-200);
+  --color-gray-lighter: var(--gray-100);
+}
+
+/* ===== Animations ===== */
 @keyframes swim {
   0%, 100% { transform: translateX(0) rotate(0deg); }
   25% { transform: translateX(3px) rotate(3deg); }

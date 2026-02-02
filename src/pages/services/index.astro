@@ -13,13 +13,13 @@ import Layout from '../../layouts/Layout.astro';
     <p>IT × 経営 × 財務の3つの視点で、御社の課題解決をサポートします</p>
   </section>
 
-  <nav class="service-nav">
-    <div class="service-nav-inner">
-      <a href="#dx" class="active">🚀 DX推進</a>
-      <a href="#ai">🤖 生成AI</a>
-      <a href="#data">📊 データ活用</a>
-      <a href="#management">🎯 経営支援</a>
-      <a href="#accounting">📝 経理</a>
+  <nav class="service-nav" aria-label="サービスカテゴリナビゲーション">
+    <div class="service-nav-inner" role="tablist">
+      <a href="#dx" class="active" role="tab" aria-selected="true"><span aria-hidden="true">🚀</span> DX推進</a>
+      <a href="#ai" role="tab" aria-selected="false"><span aria-hidden="true">🤖</span> 生成AI</a>
+      <a href="#data" role="tab" aria-selected="false"><span aria-hidden="true">📊</span> データ活用</a>
+      <a href="#management" role="tab" aria-selected="false"><span aria-hidden="true">🎯</span> 経営支援</a>
+      <a href="#accounting" role="tab" aria-selected="false"><span aria-hidden="true">📝</span> 経理</a>
     </div>
   </nav>
 
@@ -59,7 +59,7 @@ import Layout from '../../layouts/Layout.astro';
         </div>
         <div class="service-card">
           <h3>Webサイト・アプリ構築</h3>
-          <p>7年のWeb開発経験を活かし、要件定義から実装まで対応。シンプルなサイトから業務システムまで。</p>
+          <p>12年のWeb開発経験を活かし、要件定義から実装まで対応。シンプルなサイトから業務システムまで。</p>
           <div class="service-price"><span class="amount">50〜200</span><span class="unit">万円/PJ</span></div>
           <ul class="service-features">
             <li>コーポレートサイト制作</li>
@@ -231,7 +231,10 @@ import Layout from '../../layouts/Layout.astro';
   <section class="diagnosis-section">
     <h2>どれが合うかわからない？</h2>
     <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
-    <a href="/contact/" class="btn-primary">無料相談する →</a>
+    <a href="/contact/" class="btn-primary">
+      無料相談する
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </section>
 </Layout>
 
@@ -241,6 +244,14 @@ import Layout from '../../layouts/Layout.astro';
     position: sticky; top: 70px; z-index: 50;
     background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     padding: 1rem 2rem; border-bottom: 1px solid var(--gray-light);
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .service-nav {
+      background: rgba(15, 23, 42, 0.95);
+    }
+  }
+  :global([data-theme="dark"]) .service-nav {
+    background: rgba(15, 23, 42, 0.95);
   }
   .service-nav-inner {
     max-width: 800px; margin: 0 auto;
@@ -253,13 +264,13 @@ import Layout from '../../layouts/Layout.astro';
   }
   .service-nav a:hover { color: var(--primary); background: var(--gray-lighter); }
   .service-nav a.active {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--primary);
     color: white; box-shadow: var(--shadow-md);
   }
 
   /* Service Sections */
   .service-section { padding: 5rem 2rem; }
-  .service-section:nth-child(odd) { background: white; }
+  .service-section:nth-child(odd) { background: var(--white); }
   .service-section:nth-child(even) { background: var(--light); }
   .service-section-inner { max-width: 1100px; margin: 0 auto; }
 
@@ -273,8 +284,7 @@ import Layout from '../../layouts/Layout.astro';
   }
   .section-header-text h2 {
     font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, var(--dark), var(--primary));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    color: var(--dark);
   }
   .section-header-text p { color: var(--gray); font-size: 1rem; line-height: 1.7; }
 
@@ -283,13 +293,14 @@ import Layout from '../../layouts/Layout.astro';
     display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
   }
   .service-card {
-    background: white; border-radius: var(--radius-lg); padding: 2rem;
+    background: var(--white); border-radius: var(--radius-lg); padding: 2rem;
     border: 2px solid var(--gray-light); transition: all 0.4s;
     position: relative; overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
   .service-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--primary);
     transform: scaleX(0); transition: transform 0.4s;
   }
   .service-card:hover::before { transform: scaleX(1); }
@@ -303,7 +314,7 @@ import Layout from '../../layouts/Layout.astro';
   }
   .service-card h3::before {
     content: ''; width: 8px; height: 8px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--primary);
     border-radius: 50%; flex-shrink: 0;
   }
   .service-card > p { font-size: 0.9rem; color: var(--gray); margin-bottom: 1.25rem; line-height: 1.7; }
@@ -311,13 +322,12 @@ import Layout from '../../layouts/Layout.astro';
   .service-price {
     display: inline-flex; align-items: baseline; gap: 0.25rem;
     padding: 0.75rem 1.25rem;
-    background: linear-gradient(135deg, var(--gray-lighter), #EFF6FF);
+    background: var(--gray-lighter);
     border-radius: var(--radius-sm); margin-bottom: 1rem;
   }
   .service-price .amount {
     font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    color: #3b82f6;
   }
   .service-price .unit { font-size: 0.85rem; color: var(--gray); }
 
@@ -339,18 +349,22 @@ import Layout from '../../layouts/Layout.astro';
   /* Diagnosis Section */
   .diagnosis-section {
     padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, #1E40AF 100%);
+    background: #1e3a5f;
     color: white; text-align: center; position: relative; overflow: hidden;
   }
   .diagnosis-section::before {
     content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
-    background: radial-gradient(ellipse, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(255,255,255,0.05) 0%, transparent 70%);
+  }
+  .diagnosis-section::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #63b3ed, #4fd1c5);
   }
   .diagnosis-section > * { position: relative; }
-  .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; }
-  .diagnosis-section p { opacity: 0.9; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; }
-  .diagnosis-section .btn-primary { background: white; color: var(--primary); }
-  .diagnosis-section .btn-primary:hover { box-shadow: var(--shadow-xl), 0 0 40px rgba(255,255,255,0.3); }
+  .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; color: #e2e8f0; }
+  .diagnosis-section p { opacity: 0.85; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; color: #cbd5e1; }
+  .diagnosis-section .btn-primary { background: #f1f5f9; color: #1e3a5f; }
+  .diagnosis-section .btn-primary:hover { background: #ffffff; box-shadow: var(--shadow-lg); }
 
   /* Responsive */
   @media (max-width: 768px) {
@@ -378,6 +392,157 @@ import Layout from '../../layouts/Layout.astro';
   @media (hover: none) {
     .service-card:hover { transform: none; }
     .service-card:active { transform: scale(0.98); }
+  }
+
+  /* ===== DARK MODE ===== */
+  :global([data-theme="dark"]) .service-nav {
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .service-nav a {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .service-nav a:hover {
+    color: var(--primary);
+    background: var(--gray-200);
+  }
+  :global([data-theme="dark"]) .service-nav a.active {
+    background: var(--primary);
+    color: #12161e;
+  }
+  :global([data-theme="dark"]) .service-section:nth-child(odd) {
+    background: var(--gray-50);
+  }
+  :global([data-theme="dark"]) .service-section:nth-child(even) {
+    background: var(--gray-100);
+  }
+  :global([data-theme="dark"]) .section-icon {
+    background: var(--gray-200);
+  }
+  :global([data-theme="dark"]) .section-header-text h2 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .section-header-text p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .service-card {
+    background: var(--gray-100);
+    border: 2px solid var(--gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  :global([data-theme="dark"]) .service-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  :global([data-theme="dark"]) .service-card h3 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .service-card > p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .service-price {
+    background: var(--gray-200);
+  }
+  :global([data-theme="dark"]) .service-price .amount {
+    color: #60a5fa;
+  }
+  :global([data-theme="dark"]) .service-price .unit {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .service-features li {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .service-features li::before {
+    color: var(--accent);
+  }
+  :global([data-theme="dark"]) .diagnosis-section {
+    background: var(--gray-200);
+  }
+  :global([data-theme="dark"]) .diagnosis-section h2 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .diagnosis-section p {
+    color: var(--gray-500);
+  }
+  :global([data-theme="dark"]) .diagnosis-section .btn-primary {
+    background: var(--primary);
+    color: #12161e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .service-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom-color: var(--gray-300);
+    }
+    html:not([data-theme="light"]) .service-nav a {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .service-nav a:hover {
+      color: var(--primary);
+      background: var(--gray-200);
+    }
+    html:not([data-theme="light"]) .service-nav a.active {
+      background: var(--primary);
+      color: #12161e;
+    }
+    html:not([data-theme="light"]) .service-section:nth-child(odd) {
+      background: var(--gray-50);
+    }
+    html:not([data-theme="light"]) .service-section:nth-child(even) {
+      background: var(--gray-100);
+    }
+    html:not([data-theme="light"]) .section-icon {
+      background: var(--gray-200);
+    }
+    html:not([data-theme="light"]) .section-header-text h2 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .section-header-text p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .service-card {
+      background: var(--gray-100);
+      border: 2px solid var(--gray-300);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    html:not([data-theme="light"]) .service-card:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    html:not([data-theme="light"]) .service-card h3 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .service-card > p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .service-price {
+      background: var(--gray-200);
+    }
+    html:not([data-theme="light"]) .service-price .amount {
+      color: #60a5fa;
+    }
+    html:not([data-theme="light"]) .service-price .unit {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .service-features li {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .service-features li::before {
+      color: var(--accent);
+    }
+    html:not([data-theme="light"]) .diagnosis-section {
+      background: var(--gray-200);
+    }
+    html:not([data-theme="light"]) .diagnosis-section h2 {
+      color: var(--dark);
+    }
+    html:not([data-theme="light"]) .diagnosis-section p {
+      color: var(--gray-500);
+    }
+    html:not([data-theme="light"]) .diagnosis-section .btn-primary {
+      background: var(--primary);
+      color: #12161e;
+    }
   }
 </style>
 

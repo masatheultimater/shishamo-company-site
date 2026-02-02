@@ -22,7 +22,23 @@ const { showNewsletter = false } = Astro.props;
   <div class="footer__inner">
     <div class="footer__brand">
       <div class="footer__logo">
-        <span class="footer__logo-icon" aria-hidden="true">&#x1F41F;</span>
+        <span class="footer__logo-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 302" fill="currentColor">
+            <g>
+              <polygon points="191.00,77.00 313.00,77.00 235.00,10.00"/>
+              <circle cx="393.50" cy="87.81" r="24.81"/>
+              <path fill-rule="evenodd" d="M 107.00 89.00 L 10.00 148.00 L 107.00 209.00 Z M 90.34 137.61 A 13.84 13.84 0 1 0 62.66 137.61 A 13.84 13.84 0 1 0 90.34 137.61 Z"/>
+              <circle cx="142.34" cy="112.39" r="24.83"/>
+              <polygon points="200.00,88.00 316.00,203.00 316.00,88.00"/>
+              <polygon points="328.00,89.00 328.00,209.00 425.00,149.00"/>
+              <polygon points="525.00,89.00 428.00,149.00 526.00,209.00"/>
+              <polygon points="187.00,91.00 187.00,211.00 308.00,211.00"/>
+              <circle cx="153.18" cy="186.42" r="24.96"/>
+              <circle cx="393.84" cy="210.18" r="24.87"/>
+              <polygon points="190.00,222.00 267.00,292.00 267.00,222.00"/>
+            </g>
+          </svg>
+        </span>
         {siteBranding.ownerNickname}｜{siteBranding.ownerName}
       </div>
       <p>{siteBranding.tagline}<br>{siteBranding.concept}</p>
@@ -76,20 +92,20 @@ const { showNewsletter = false } = Astro.props;
   <div class="footer__bottom">
     <p>&copy; {siteBranding.year} {siteBranding.ownerName}（{siteBranding.ownerNickname}）All rights reserved.</p>
     <div class="footer__social">
-      {socialLinks.map((link) => (
-        <a href={link.url} title={link.name} aria-label={link.name}>
-          {link.icon}
-        </a>
-      ))}
+      <a href="https://x.com/shishamoex09" title="X (Twitter)" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--gradient-footer-bg);
+    background: #1a202c;
     color: rgba(255, 255, 255, 0.7);
-    padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+    padding: 64px 24px 32px;
     position: relative;
   }
 
@@ -99,107 +115,104 @@ const { showNewsletter = false } = Astro.props;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--gradient-rainbow-bar);
+    height: 3px;
+    background: linear-gradient(90deg, #63b3ed, #4fd1c5);
   }
 
   .footer__inner {
-    max-width: 1100px;
+    max-width: 1140px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 2.5rem;
+    gap: 48px;
   }
 
   /* Brand Section */
   .footer__brand .footer__logo {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    color: white;
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--space-md);
+    gap: 12px;
+    color: #e2e8f0;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 16px;
   }
 
   .footer__logo-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    font-size: 1.25rem;
+    width: 48px;
+    height: 30px;
+    background: #63b3ed;
+    border-radius: var(--radius-sm);
+    padding: 5px 6px;
+    color: #1a202c;
+  }
+
+  .footer__logo-icon svg {
+    width: 100%;
+    height: 100%;
   }
 
   .footer__brand p {
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-normal);
+    font-size: 14px;
+    line-height: 1.8;
   }
 
   /* Links Sections */
   .footer__links h4 {
-    color: white;
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--space-md);
-    position: relative;
-    padding-bottom: var(--space-sm);
-  }
-
-  .footer__links h4::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 30px;
-    height: 2px;
-    background: var(--gradient-primary-accent);
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .footer__links li {
-    margin-bottom: var(--space-sm);
+    margin-bottom: 12px;
   }
 
   .footer__links a {
-    font-size: var(--font-size-sm);
-    transition: all 0.3s;
-    display: inline-block;
+    font-size: 14px;
+    transition: all 0.2s;
   }
 
   .footer__links a:hover {
-    color: var(--color-secondary);
-    transform: translateX(5px);
+    color: #e2e8f0;
+    padding-left: 4px;
   }
 
   /* Newsletter (optional) */
   .footer__newsletter {
-    max-width: 1100px;
-    margin: var(--space-2xl) auto;
+    max-width: 1140px;
+    margin: 48px auto;
     text-align: center;
-    padding: var(--space-xl);
+    padding: 32px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: var(--radius-md);
   }
 
   .footer__newsletter h4 {
-    color: white;
-    margin-bottom: var(--space-sm);
+    color: #e2e8f0;
+    margin-bottom: 8px;
   }
 
   .footer__newsletter p {
-    margin-bottom: var(--space-md);
-    font-size: var(--font-size-sm);
+    margin-bottom: 16px;
+    font-size: 14px;
   }
 
   .newsletter-form {
     display: flex;
-    gap: var(--space-sm);
+    gap: 8px;
     justify-content: center;
     flex-wrap: wrap;
   }
 
   .newsletter-form input {
-    padding: 0.75rem 1rem;
+    padding: 12px 16px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-sm);
     background: rgba(255, 255, 255, 0.1);
@@ -212,101 +225,157 @@ const { showNewsletter = false } = Astro.props;
   }
 
   .newsletter-form button {
-    padding: 0.75rem 1.5rem;
-    background: var(--color-primary);
+    padding: 12px 24px;
+    background: var(--primary);
     color: white;
     border: none;
     border-radius: var(--radius-sm);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
 
   .newsletter-form button:hover {
-    background: var(--color-primary-dark);
+    background: var(--primary-light);
   }
 
   /* Bottom Section */
   .footer__bottom {
-    max-width: 1100px;
-    margin: 2.5rem auto 0;
-    padding-top: var(--space-xl);
+    max-width: 1140px;
+    margin: 48px auto 0;
+    padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: var(--font-size-sm);
+    font-size: 13px;
   }
 
   .footer__social {
     display: flex;
-    gap: 0.875rem;
+    gap: 12px;
   }
 
   .footer__social a {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 1rem;
-    transition: all 0.3s;
+    color: #e2e8f0;
+    font-size: 14px;
+    transition: all 0.25s;
   }
 
   .footer__social a:hover {
-    background: var(--gradient-primary-accent);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+    background: #63b3ed;
+    color: #1a202c;
+    transform: translateY(-2px);
+  }
+
+  /* Dark mode support */
+  :global([data-theme="dark"]) .footer {
+    background: var(--gray-200);
+    color: var(--gray-600);
+  }
+  :global([data-theme="dark"]) .footer::before {
+    background: linear-gradient(90deg, var(--primary), var(--teal));
+  }
+  :global([data-theme="dark"]) .footer__brand .footer__logo {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .footer__logo-icon {
+    background: var(--primary);
+    color: var(--white);
+  }
+  :global([data-theme="dark"]) .footer__links h4 {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .footer__links a:hover {
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .footer__bottom {
+    border-top-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .footer__social a {
+    background: var(--gray-300);
+    color: var(--dark);
+  }
+  :global([data-theme="dark"]) .footer__social a:hover {
+    background: var(--primary);
+    color: var(--white);
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-theme="light"])) .footer {
+      background: var(--gray-200);
+      color: var(--gray-600);
+    }
+    :global(html:not([data-theme="light"])) .footer::before {
+      background: linear-gradient(90deg, var(--primary), var(--teal));
+    }
+    :global(html:not([data-theme="light"])) .footer__brand .footer__logo {
+      color: var(--dark);
+    }
+    :global(html:not([data-theme="light"])) .footer__logo-icon {
+      background: var(--primary);
+      color: var(--white);
+    }
+    :global(html:not([data-theme="light"])) .footer__links h4 {
+      color: var(--dark);
+    }
+    :global(html:not([data-theme="light"])) .footer__links a:hover {
+      color: var(--dark);
+    }
+    :global(html:not([data-theme="light"])) .footer__bottom {
+      border-top-color: var(--gray-300);
+    }
+    :global(html:not([data-theme="light"])) .footer__social a {
+      background: var(--gray-300);
+      color: var(--dark);
+    }
+    :global(html:not([data-theme="light"])) .footer__social a:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
   }
 
   /* Responsive: iPad */
   @media (max-width: 1024px) {
     .footer__inner {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: var(--space-xl);
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
     }
 
     .footer__brand {
-      grid-column: 1 / -1;
+      grid-column: span 2;
     }
   }
 
   /* Responsive: Tablet */
   @media (max-width: 768px) {
     .footer {
-      padding: var(--space-2xl) 1.5rem 1.5rem;
+      padding: 48px 24px 24px;
     }
 
     .footer__inner {
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      text-align: center;
     }
 
     .footer__brand {
-      grid-column: 1 / -1;
-      text-align: center;
+      grid-column: auto;
     }
 
     .footer__brand .footer__logo {
       justify-content: center;
     }
 
-    .footer__links h4::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .footer__links {
-      text-align: center;
-    }
-
     .footer__bottom {
       flex-direction: column;
-      gap: var(--space-md);
-      text-align: center;
+      gap: 16px;
     }
   }
 
@@ -314,12 +383,7 @@ const { showNewsletter = false } = Astro.props;
   @media (max-width: 480px) {
     .footer__inner {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .footer__links h4::after {
-      left: 50%;
-      transform: translateX(-50%);
+      gap: 24px;
     }
 
     .newsletter-form input {
