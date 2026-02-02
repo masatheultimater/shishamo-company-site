@@ -4,14 +4,42 @@
  * サービス詳細ページ用の共通テンプレート
  */
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from './seo/Breadcrumb.astro';
+import StructuredData from './seo/StructuredData.astro';
 import '../styles/service-detail.css';
-import type { ServiceDetailData } from '../../shared/contracts/components';
+import type { ServiceDetailData } from '@shared/contracts/components';
 
 interface Props {
   data: ServiceDetailData;
 }
 
 const { data } = Astro.props;
+
+const siteUrl = 'https://yoshikawa-masahiro.com';
+
+// パンくずリストデータ
+const breadcrumbItems = [
+  { name: 'サービス', href: '/services/' },
+  { name: data.name, href: `/services/${data.id}/` }
+];
+
+// Service構造化データ
+const serviceSchemaData = {
+  '@id': `${siteUrl}/services/${data.id}/#service`,
+  name: data.name,
+  description: data.metaDescription,
+  url: `${siteUrl}/services/${data.id}/`,
+  serviceType: data.name,
+  offers: {
+    '@type': 'Offer',
+    priceSpecification: {
+      '@type': 'PriceSpecification',
+      price: data.priceRange,
+      priceCurrency: 'JPY',
+      unitText: data.priceUnit
+    }
+  }
+};
 ---
 
 <Layout
@@ -19,14 +47,12 @@ const { data } = Astro.props;
   description={data.metaDescription}
   currentPage="services"
 >
-  <!-- Breadcrumb -->
-  <nav class="breadcrumb" aria-label="パンくずリスト">
-    <a href="/">ホーム</a>
-    <span aria-hidden="true">›</span>
-    <a href="/services/">サービス</a>
-    <span aria-hidden="true">›</span>
-    <span aria-current="page">{data.name}</span>
-  </nav>
+  <!-- Service Structured Data -->
+  <StructuredData type="Service" data={serviceSchemaData} slot="head" />
+  <!-- Breadcrumb with structured data -->
+  <div class="breadcrumb-wrapper">
+    <Breadcrumb items={breadcrumbItems} separator="›" />
+  </div>
 
   <!-- Service Hero -->
   <section class="service-hero">

@@ -1,0 +1,235 @@
+---
+/**
+ * CTASection.astro
+ * Call To Action セクションの共通コンポーネント
+ *
+ * 使用例:
+ * <CTASection
+ *   title="まずは無料相談から"
+ *   description="お気軽にご相談ください"
+ *   buttonText="無料相談する"
+ *   buttonHref="/contact/"
+ * />
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  buttonText?: string;
+  buttonHref?: string;
+  note?: string;
+  variant?: 'default' | 'gradient' | 'card';
+}
+
+const {
+  title,
+  description,
+  buttonText = '無料相談する',
+  buttonHref = '/contact/',
+  note,
+  variant = 'default'
+} = Astro.props;
+---
+
+{variant === 'card' ? (
+  <section class="cta cta--card">
+    <div class="cta-inner">
+      <h2 class="cta-title">{title}</h2>
+      <p class="cta-desc" set:html={description} />
+      <a href={buttonHref} class="btn-primary">
+        {buttonText}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      {note && <p class="cta-note">{note}</p>}
+    </div>
+  </section>
+) : variant === 'gradient' ? (
+  <section class="cta cta--gradient">
+    <div class="cta-content">
+      <h2 class="cta-title">{title}</h2>
+      <p class="cta-desc" set:html={description} />
+      <a href={buttonHref} class="btn-primary btn-primary--inverted">
+        {buttonText}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      {note && <p class="cta-note">{note}</p>}
+    </div>
+  </section>
+) : (
+  <section class="cta">
+    <h2 class="cta-title">{title}</h2>
+    <p class="cta-desc" set:html={description} />
+    <a href={buttonHref} class="btn-primary">
+      {buttonText}
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+    {note && <p class="cta-note">{note}</p>}
+  </section>
+)}
+
+<style>
+  /* ===== CTA Base ===== */
+  .cta {
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--dark);
+  }
+
+  .cta-desc {
+    font-size: 15px;
+    color: var(--gray-600);
+    margin-bottom: 24px;
+    line-height: 1.8;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-note {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  /* ===== CTA Card Variant ===== */
+  .cta--card {
+    background: var(--gray-100);
+  }
+
+  .cta--card .cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 32px;
+    background: var(--gray-50);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gray-200);
+  }
+
+  /* ===== CTA Gradient Variant ===== */
+  .cta--gradient {
+    background: var(--gradient-cta-bg);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta--gradient::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  }
+
+  .cta--gradient .cta-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta--gradient .cta-title {
+    color: white;
+  }
+
+  .cta--gradient .cta-desc {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .cta--gradient .cta-note {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* ===== Buttons ===== */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: var(--btn-text-on-primary);
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary svg {
+    transition: transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-light);
+  }
+
+  .btn-primary:hover svg {
+    transform: translateX(4px);
+  }
+
+  .btn-primary--inverted {
+    background: white;
+    color: var(--primary);
+  }
+
+  .btn-primary--inverted:hover {
+    background: var(--gray-100);
+  }
+
+  /* Dark Mode */
+  :global([data-theme="dark"]) .btn-primary {
+    color: var(--btn-text-on-primary-dark);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-theme="light"])) .btn-primary {
+      color: var(--btn-text-on-primary-dark);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cta {
+      padding: 60px 24px;
+    }
+
+    .cta-title {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cta {
+      padding: 48px 16px;
+    }
+
+    .cta--card .cta-inner {
+      padding: 32px 24px;
+    }
+
+    .cta-title {
+      font-size: 20px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

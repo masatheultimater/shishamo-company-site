@@ -7,24 +7,28 @@
  * <StructuredData type="Organization" />
  * <StructuredData type="Person" />
  * <StructuredData type="Article" data={articleData} />
+ * <StructuredData type="Service" data={serviceData} />
  */
 
 import type {
   OrganizationSchema,
   PersonSchema,
   ArticleSchema,
-  BreadcrumbSchema
-} from '../../../shared/contracts/api';
+  BreadcrumbSchema,
+  ServiceSchema
+} from '@shared/contracts/api';
 
 import organizationData from '../../data/schema/organization.json';
 import personData from '../../data/schema/person.json';
 
 interface Props {
-  type: 'Organization' | 'Person' | 'LocalBusiness' | 'Article' | 'BreadcrumbList';
+  type: 'Organization' | 'Person' | 'LocalBusiness' | 'Article' | 'BreadcrumbList' | 'Service';
   data?: Record<string, unknown>;
 }
 
 const { type, data } = Astro.props;
+
+const siteUrl = 'https://yoshikawa-masahiro.com';
 
 // 構造化データを取得
 function getStructuredData(type: string, customData?: Record<string, unknown>) {
@@ -46,16 +50,16 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
         '@type': 'Article',
         author: {
           '@type': 'Person',
-          '@id': 'https://yoshikawa-masahiro.com/#person',
+          '@id': `${siteUrl}/#person`,
           name: '吉川昌宏'
         },
         publisher: {
           '@type': 'Organization',
-          '@id': 'https://yoshikawa-masahiro.com/#organization',
+          '@id': `${siteUrl}/#organization`,
           name: '吉川昌宏事務所',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://yoshikawa-masahiro.com/shishamo-logo.svg'
+            url: `${siteUrl}/shishamo-logo.svg`
           }
         },
         ...customData
@@ -69,6 +73,23 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
       return {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
+        ...customData
+      };
+
+    case 'Service':
+      if (!customData) {
+        console.warn('Service type requires data prop');
+        return null;
+      }
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        provider: {
+          '@type': 'ProfessionalService',
+          '@id': `${siteUrl}/#organization`,
+          name: '吉川昌宏事務所'
+        },
+        areaServed: 'JP',
         ...customData
       };
 

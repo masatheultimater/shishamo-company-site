@@ -202,6 +202,33 @@ export interface BreadcrumbItemSchema {
   item?: string;
 }
 
+export interface ServiceSchema {
+  '@context': 'https://schema.org';
+  '@type': 'Service';
+  '@id'?: string;
+  name: string;
+  description?: string;
+  url?: string;
+  provider?: {
+    '@type': 'Organization' | 'Person';
+    '@id'?: string;
+    name: string;
+  };
+  serviceType?: string;
+  areaServed?: string;
+  offers?: {
+    '@type': 'Offer';
+    price?: string;
+    priceCurrency?: string;
+    priceSpecification?: {
+      '@type': 'PriceSpecification';
+      price?: string;
+      priceCurrency?: string;
+      unitText?: string;
+    };
+  };
+}
+
 // ========================================
 // 環境変数の型
 // ========================================

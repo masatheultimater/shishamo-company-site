@@ -26,25 +26,39 @@
 ```
 src/
 ├── components/
-│   ├── layout/       # Header, Footer, Navigation
-│   ├── sections/     # HeroSection, CTASection, etc.
-│   ├── features/     # ContactForm, ServiceCard, etc.
-│   ├── ui/           # Button, Badge, Card, etc.
-│   └── seo/          # StructuredData, MetaTags
+│   ├── layout/       # Header, Footer, MobileNav
+│   ├── seo/          # StructuredData, MetaTags, Breadcrumb
+│   └── ui/           # SectionHeader, CTASection, Card (共通UI)
+├── data/
+│   ├── profile.yaml  # プロフィールコンテンツ
+│   ├── services.ts   # サービス詳細データ
+│   └── schema/       # JSON-LD構造化データ
 ├── layouts/
-│   └── BaseLayout.astro
+│   └── Layout.astro  # BaseLayout (メインレイアウト)
+├── lib/
+│   ├── siteConfig.ts # サイト設定（SEO、ナビゲーション等）
+│   └── utils.ts      # ユーティリティ関数
 ├── pages/
 │   ├── index.astro
 │   ├── services/
 │   ├── profile.astro
-│   ├── blog/
 │   └── contact/
-├── styles/
-│   └── global.css
-├── types/
-│   └── index.ts
-└── lib/
-    └── microcms.ts
+└── styles/
+    ├── tokens.css    # デザイントークン（カラー、フォント等）
+    ├── global.css    # グローバルスタイル
+    ├── home.css      # トップページ専用スタイル
+    └── service-detail.css # サービス詳細ページスタイル
+
+shared/               # 全エージェント共有コンテキスト
+├── profile.yaml      # プロジェクト設定
+├── project.rules     # このファイル
+├── design-tokens.json
+└── contracts/
+    ├── components.ts # コンポーネント型定義
+    └── api.ts        # API/CMS型定義、構造化データ型
+
+scripts/              # 自動化スクリプト
+└── generate-tokens.ts # design-tokens.json → CSS変換
 ```
 
 ## 品質基準
