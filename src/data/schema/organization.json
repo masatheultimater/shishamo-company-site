@@ -23,7 +23,7 @@
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "DX推進コンサルティング",
+          "name": "DX推進サポート",
           "description": "業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援。"
         }
       },
