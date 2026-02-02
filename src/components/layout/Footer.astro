@@ -103,8 +103,8 @@ const { showNewsletter = false } = Astro.props;
 
 <style>
   .footer {
-    background: #1a202c;
-    color: rgba(255, 255, 255, 0.7);
+    background: var(--footer-bg);
+    color: var(--footer-text);
     padding: 64px 24px 32px;
     position: relative;
   }
@@ -116,11 +116,11 @@ const { showNewsletter = false } = Astro.props;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #63b3ed, #4fd1c5);
+    background: linear-gradient(90deg, var(--footer-accent), var(--footer-accent-secondary));
   }
 
   .footer__inner {
-    max-width: 1140px;
+    max-width: var(--container-lg);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
@@ -132,7 +132,7 @@ const { showNewsletter = false } = Astro.props;
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #e2e8f0;
+    color: var(--footer-heading);
     font-weight: 700;
     font-size: 16px;
     margin-bottom: 16px;
@@ -144,10 +144,10 @@ const { showNewsletter = false } = Astro.props;
     justify-content: center;
     width: 48px;
     height: 30px;
-    background: #63b3ed;
+    background: var(--footer-accent);
     border-radius: var(--radius-sm);
     padding: 5px 6px;
-    color: #1a202c;
+    color: var(--footer-bg);
   }
 
   .footer__logo-icon svg {
@@ -162,7 +162,7 @@ const { showNewsletter = false } = Astro.props;
 
   /* Links Sections */
   .footer__links h4 {
-    color: #e2e8f0;
+    color: var(--footer-heading);
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -180,13 +180,13 @@ const { showNewsletter = false } = Astro.props;
   }
 
   .footer__links a:hover {
-    color: #e2e8f0;
+    color: var(--footer-heading);
     padding-left: 4px;
   }
 
   /* Newsletter (optional) */
   .footer__newsletter {
-    max-width: 1140px;
+    max-width: var(--container-lg);
     margin: 48px auto;
     text-align: center;
     padding: 32px;
@@ -195,7 +195,7 @@ const { showNewsletter = false } = Astro.props;
   }
 
   .footer__newsletter h4 {
-    color: #e2e8f0;
+    color: var(--footer-heading);
     margin-bottom: 8px;
   }
 
@@ -241,7 +241,7 @@ const { showNewsletter = false } = Astro.props;
 
   /* Bottom Section */
   .footer__bottom {
-    max-width: 1140px;
+    max-width: var(--container-lg);
     margin: 48px auto 0;
     padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -264,14 +264,14 @@ const { showNewsletter = false } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #e2e8f0;
+    color: var(--footer-heading);
     font-size: 14px;
     transition: all 0.25s;
   }
 
   .footer__social a:hover {
-    background: #63b3ed;
-    color: #1a202c;
+    background: var(--footer-accent);
+    color: var(--footer-bg);
     transform: translateY(-2px);
   }
 

@@ -115,7 +115,7 @@ const { currentPage, transparent = false } = Astro.props;
   }
 
   .header-inner {
-    max-width: 1140px;
+    max-width: var(--container-lg);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -144,7 +144,7 @@ const { currentPage, transparent = false } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #f5f7fa;
+    color: var(--btn-text-on-primary);
     padding: 6px 8px;
   }
 
@@ -154,12 +154,12 @@ const { currentPage, transparent = false } = Astro.props;
   }
 
   :global([data-theme="dark"]) .logo-mark {
-    color: #12161e;
+    color: var(--btn-text-on-primary-dark);
   }
 
   @media (prefers-color-scheme: dark) {
     :global(html:not([data-theme="light"])) .logo-mark {
-      color: #12161e;
+      color: var(--btn-text-on-primary-dark);
     }
   }
 
@@ -230,7 +230,7 @@ const { currentPage, transparent = false } = Astro.props;
 
   .nav-cta {
     background: var(--primary);
-    color: #f5f7fa;
+    color: var(--btn-text-on-primary);
     padding: 10px 20px;
     border-radius: var(--radius-md);
     font-size: 14px;
@@ -243,12 +243,12 @@ const { currentPage, transparent = false } = Astro.props;
   }
 
   :global([data-theme="dark"]) .nav-cta {
-    color: #12161e;
+    color: var(--btn-text-on-primary-dark);
   }
 
   @media (prefers-color-scheme: dark) {
     :global(html:not([data-theme="light"])) .nav-cta {
-      color: #12161e;
+      color: var(--btn-text-on-primary-dark);
     }
   }
 

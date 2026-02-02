@@ -272,7 +272,7 @@ import Layout from '../../layouts/Layout.astro';
   .service-section { padding: 5rem 2rem; }
   .service-section:nth-child(odd) { background: var(--white); }
   .service-section:nth-child(even) { background: var(--light); }
-  .service-section-inner { max-width: 1100px; margin: 0 auto; }
+  .service-section-inner { max-width: var(--container-lg); margin: 0 auto; }
 
   .section-header-row {
     display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 3rem;
@@ -327,7 +327,7 @@ import Layout from '../../layouts/Layout.astro';
   }
   .service-price .amount {
     font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
-    color: #3b82f6;
+    color: var(--primary-light);
   }
   .service-price .unit { font-size: 0.85rem; color: var(--gray); }
 
@@ -348,8 +348,8 @@ import Layout from '../../layouts/Layout.astro';
 
   /* Diagnosis Section */
   .diagnosis-section {
-    padding: 5rem 2rem;
-    background: #1e3a5f;
+    padding: var(--section-padding-y) var(--section-padding-x);
+    background: var(--cta-dark-bg);
     color: white; text-align: center; position: relative; overflow: hidden;
   }
   .diagnosis-section::before {
@@ -358,13 +358,13 @@ import Layout from '../../layouts/Layout.astro';
   }
   .diagnosis-section::after {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, #63b3ed, #4fd1c5);
+    background: linear-gradient(90deg, var(--footer-accent), var(--footer-accent-secondary));
   }
   .diagnosis-section > * { position: relative; }
-  .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; color: #e2e8f0; }
-  .diagnosis-section p { opacity: 0.85; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; color: #cbd5e1; }
-  .diagnosis-section .btn-primary { background: #f1f5f9; color: #1e3a5f; }
-  .diagnosis-section .btn-primary:hover { background: #ffffff; box-shadow: var(--shadow-lg); }
+  .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; color: var(--cta-dark-heading); }
+  .diagnosis-section p { opacity: 0.85; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; color: var(--cta-dark-text); }
+  .diagnosis-section .btn-primary { background: var(--gray-100); color: var(--cta-dark-bg); }
+  .diagnosis-section .btn-primary:hover { background: var(--white); box-shadow: var(--shadow-lg); }
 
   /* Responsive */
   @media (max-width: 768px) {
@@ -408,7 +408,7 @@ import Layout from '../../layouts/Layout.astro';
   }
   :global([data-theme="dark"]) .service-nav a.active {
     background: var(--primary);
-    color: #12161e;
+    color: var(--btn-text-on-primary-dark);
   }
   :global([data-theme="dark"]) .service-section:nth-child(odd) {
     background: var(--gray-50);
@@ -444,7 +444,7 @@ import Layout from '../../layouts/Layout.astro';
     background: var(--gray-200);
   }
   :global([data-theme="dark"]) .service-price .amount {
-    color: #60a5fa;
+    color: var(--primary);
   }
   :global([data-theme="dark"]) .service-price .unit {
     color: var(--gray-500);
@@ -466,7 +466,7 @@ import Layout from '../../layouts/Layout.astro';
   }
   :global([data-theme="dark"]) .diagnosis-section .btn-primary {
     background: var(--primary);
-    color: #12161e;
+    color: var(--btn-text-on-primary-dark);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -483,7 +483,7 @@ import Layout from '../../layouts/Layout.astro';
     }
     html:not([data-theme="light"]) .service-nav a.active {
       background: var(--primary);
-      color: #12161e;
+      color: var(--btn-text-on-primary-dark);
     }
     html:not([data-theme="light"]) .service-section:nth-child(odd) {
       background: var(--gray-50);
@@ -519,7 +519,7 @@ import Layout from '../../layouts/Layout.astro';
       background: var(--gray-200);
     }
     html:not([data-theme="light"]) .service-price .amount {
-      color: #60a5fa;
+      color: var(--primary);
     }
     html:not([data-theme="light"]) .service-price .unit {
       color: var(--gray-500);
@@ -541,7 +541,7 @@ import Layout from '../../layouts/Layout.astro';
     }
     html:not([data-theme="light"]) .diagnosis-section .btn-primary {
       background: var(--primary);
-      color: #12161e;
+      color: var(--btn-text-on-primary-dark);
     }
   }
 </style>

@@ -47,7 +47,7 @@
   animation: morph 8s ease-in-out infinite;
 }
 .service-hero-inner {
-  max-width: 900px;
+  max-width: var(--container-sm);
   margin: 0 auto;
   position: relative;
 }
@@ -85,7 +85,7 @@
   font-family: var(--font-display);
   font-size: 2.5rem;
   font-weight: 700;
-  color: #3b82f6;
+  color: var(--primary-light);
 }
 .service-hero-price .unit {
   font-size: 1rem;
@@ -99,11 +99,11 @@
 
 /* Service Content */
 .service-content {
-  padding: 5rem 2rem;
+  padding: var(--section-padding-y) var(--section-padding-x);
   background: var(--white);
 }
 .service-content-inner {
-  max-width: 900px;
+  max-width: var(--container-sm);
   margin: 0 auto;
 }
 .content-section {
@@ -305,7 +305,7 @@
   font-family: var(--font-display);
   font-size: 2.5rem;
   font-weight: 700;
-  color: #3b82f6;
+  color: var(--primary-light);
 }
 .pricing-unit {
   font-size: 0.95rem;
@@ -362,8 +362,8 @@
 
 /* Service CTA */
 .service-cta {
-  padding: 5rem 2rem;
-  background: #1e3a5f;
+  padding: var(--section-padding-y) var(--section-padding-x);
+  background: var(--cta-dark-bg);
   text-align: center;
   color: white;
   position: relative;
@@ -385,20 +385,20 @@
   font-family: var(--font-display);
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #e2e8f0;
+  color: var(--cta-dark-heading);
 }
 .service-cta p {
   opacity: 0.85;
   margin-bottom: 2rem;
   font-size: 1.1rem;
-  color: #cbd5e1;
+  color: var(--cta-dark-text);
 }
 .service-cta .btn-primary {
-  background: #f1f5f9;
-  color: #1e3a5f;
+  background: var(--gray-100);
+  color: var(--cta-dark-bg);
 }
 .service-cta .btn-primary:hover {
-  background: #ffffff;
+  background: var(--white);
 }
 
 /* ===== DARK MODE ===== */
@@ -415,7 +415,7 @@
   background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
 }
 [data-theme="dark"] .service-hero::before {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(15, 23, 42, 0.93) 100%);
 }
 [data-theme="dark"] .service-hero-blob {
   background: var(--primary);
@@ -432,7 +432,7 @@
   border-color: var(--gray-300);
 }
 [data-theme="dark"] .service-hero-price .amount {
-  color: #60a5fa;
+  color: var(--primary);
 }
 [data-theme="dark"] .service-hero-price .unit {
   color: var(--gray-500);
@@ -506,7 +506,7 @@
   color: var(--dark);
 }
 [data-theme="dark"] .pricing-amount {
-  color: #60a5fa;
+  color: var(--primary);
 }
 [data-theme="dark"] .pricing-unit {
   color: var(--gray-500);
@@ -538,7 +538,7 @@
 }
 [data-theme="dark"] .service-cta .btn-primary {
   background: var(--primary);
-  color: #12161e;
+  color: var(--btn-text-on-primary-dark);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -555,7 +555,7 @@
     background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
   }
   html:not([data-theme="light"]) .service-hero::before {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(15, 23, 42, 0.93) 100%);
   }
   html:not([data-theme="light"]) .service-hero-blob {
     background: var(--primary);
@@ -572,7 +572,7 @@
     border-color: var(--gray-300);
   }
   html:not([data-theme="light"]) .service-hero-price .amount {
-    color: #60a5fa;
+    color: var(--primary);
   }
   html:not([data-theme="light"]) .service-hero-price .unit {
     color: var(--gray-500);
@@ -646,7 +646,7 @@
     color: var(--dark);
   }
   html:not([data-theme="light"]) .pricing-amount {
-    color: #60a5fa;
+    color: var(--primary);
   }
   html:not([data-theme="light"]) .pricing-unit {
     color: var(--gray-500);
@@ -678,7 +678,7 @@
   }
   html:not([data-theme="light"]) .service-cta .btn-primary {
     background: var(--primary);
-    color: #12161e;
+    color: var(--btn-text-on-primary-dark);
   }
 }
 
