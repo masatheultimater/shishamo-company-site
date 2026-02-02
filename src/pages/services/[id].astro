@@ -1,0 +1,19 @@
+---
+import ServiceDetailLayout from '../../components/ServiceDetailLayout.astro';
+import { getServiceData, getAllServiceIds } from '../../data/services';
+
+export function getStaticPaths() {
+  return getAllServiceIds().map((id) => ({
+    params: { id },
+  }));
+}
+
+const { id } = Astro.params;
+const data = getServiceData(id);
+
+if (!data) {
+  return Astro.redirect('/404');
+}
+---
+
+<ServiceDetailLayout data={data} />

@@ -1,0 +1,16 @@
+# ========================================
+# robots.txt - ししゃも｜吉川昌宏
+# ========================================
+
+User-agent: *
+Allow: /
+
+# サイトマップ
+Sitemap: https://yoshikawa-masahiro.com/sitemap-index.xml
+
+# クローラー制限（必要に応じて調整）
+# Disallow: /admin/
+# Disallow: /api/
+
+# クローリング速度制限（オプション）
+Crawl-delay: 1
