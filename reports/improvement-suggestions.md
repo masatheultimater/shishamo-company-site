@@ -304,7 +304,7 @@ function toggleMenu() {
     "name": "Japan"
   },
   "serviceType": [
-    "DX推進コンサルティング",
+    "DX推進サポート",
     "生成AI導入支援",
     "経営データ分析",
     "記帳代行"

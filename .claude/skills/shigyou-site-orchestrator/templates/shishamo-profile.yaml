@@ -32,7 +32,7 @@ qualifications:
 # === サービスメニュー ===
 services:
   - id: dx-consulting
-    name: DX推進コンサルティング
+    name: DX推進サポート
     icon: 🚀
     description: 業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援。
     price_min: 150000
@@ -197,7 +197,7 @@ career:
 seo:
   keywords:
     - 中小企業診断士 DX
-    - ITストラテジスト コンサル
+    - ITストラテジスト 伴走
     - 生成AI 導入支援 中小企業
     - データ分析 経営
     - 税理士 IT

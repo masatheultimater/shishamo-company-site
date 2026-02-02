@@ -112,7 +112,7 @@ export const footerContactLinks: FooterLink[] = [
  */
 export const seoDefaults = {
   siteName: `${siteBranding.ownerNickname}｜${siteBranding.ownerName}`,
-  defaultDescription: `中小企業向けコンサルタント「${siteBranding.ownerNickname}｜${siteBranding.ownerName}」。${siteBranding.concept}。DX推進・生成AI導入・データ活用・経営支援をサポートします。`,
+  defaultDescription: `中小企業の伴走パートナー「${siteBranding.ownerNickname}｜${siteBranding.ownerName}」。${siteBranding.concept}。DX推進・生成AI導入・データ活用・経営支援をサポートします。`,
   locale: 'ja_JP',
   ogType: 'website' as const,
 };
