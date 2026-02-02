@@ -259,7 +259,7 @@ import Layout from '../layouts/Layout.astro';
 <style>
   /* ===== LAYOUT ===== */
   .container {
-    max-width: 1140px;
+    max-width: var(--container-lg);
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -293,7 +293,7 @@ import Layout from '../layouts/Layout.astro';
     }
   }
   .hero-inner {
-    max-width: 1140px;
+    max-width: var(--container-lg);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 400px;
@@ -342,7 +342,7 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     gap: 8px;
     background: var(--primary);
-    color: #f5f7fa;
+    color: var(--btn-text-on-primary);
     padding: 12px 24px;
     border-radius: var(--radius-sm);
     font-weight: 600;
@@ -361,11 +361,11 @@ import Layout from '../layouts/Layout.astro';
     transform: translateX(4px);
   }
   :global([data-theme="dark"]) .btn-primary {
-    color: #12161e;
+    color: var(--btn-text-on-primary-dark);
   }
   @media (prefers-color-scheme: dark) {
     :global(html:not([data-theme="light"])) .btn-primary {
-      color: #12161e;
+      color: var(--btn-text-on-primary-dark);
     }
   }
   .btn-secondary {

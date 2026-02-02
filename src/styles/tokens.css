@@ -103,13 +103,39 @@
   --line-height-normal: 1.75;
   --line-height-relaxed: 1.8;
 
+  /* ===== Container Widths ===== */
+  --container-lg: 1140px;
+  --container-md: 1000px;
+  --container-sm: 900px;
+
+  /* ===== Section Spacing ===== */
+  --section-padding-y: 5rem;
+  --section-padding-x: 2rem;
+  --section-margin-bottom: 3.5rem;
+
+  /* ===== Footer Colors ===== */
+  --footer-bg: #1a202c;
+  --footer-text: rgba(255, 255, 255, 0.7);
+  --footer-heading: #e2e8f0;
+  --footer-accent: #63b3ed;
+  --footer-accent-secondary: #4fd1c5;
+
+  /* ===== Button Colors ===== */
+  --btn-text-on-primary: #f5f7fa;
+  --btn-text-on-primary-dark: #12161e;
+
+  /* ===== CTA Section Colors ===== */
+  --cta-dark-bg: #1e3a5f;
+  --cta-dark-heading: #e2e8f0;
+  --cta-dark-text: #cbd5e1;
+
   /* ===== Gradients (preserved from original) ===== */
   --gradient-primary: linear-gradient(135deg, #2563EB, #1D4ED8);
-  --gradient-primary-accent: linear-gradient(135deg, #2563EB, #10B981);
+  --gradient-primary-accent: linear-gradient(135deg, var(--primary), var(--teal));
   --gradient-hero-bg: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%);
   --gradient-footer-bg: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
   --gradient-cta-bg: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
-  --gradient-rainbow-bar: linear-gradient(90deg, #2563EB, #10B981, #F59E0B);
+  --gradient-rainbow-bar: linear-gradient(90deg, var(--primary), var(--teal), var(--secondary));
 
   /* ===== Animation Durations (preserved from original) ===== */
   --animation-swim-duration: 3s;
