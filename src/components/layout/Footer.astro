@@ -307,40 +307,6 @@ const { showNewsletter = false } = Astro.props;
     background: var(--primary);
     color: var(--white);
   }
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-theme="light"])) .footer {
-      background: var(--gray-200);
-      color: var(--gray-600);
-    }
-    :global(html:not([data-theme="light"])) .footer::before {
-      background: linear-gradient(90deg, var(--primary), var(--teal));
-    }
-    :global(html:not([data-theme="light"])) .footer__brand .footer__logo {
-      color: var(--dark);
-    }
-    :global(html:not([data-theme="light"])) .footer__logo-icon {
-      background: var(--primary);
-      color: var(--white);
-    }
-    :global(html:not([data-theme="light"])) .footer__links h4 {
-      color: var(--dark);
-    }
-    :global(html:not([data-theme="light"])) .footer__links a:hover {
-      color: var(--dark);
-    }
-    :global(html:not([data-theme="light"])) .footer__bottom {
-      border-top-color: var(--gray-300);
-    }
-    :global(html:not([data-theme="light"])) .footer__social a {
-      background: var(--gray-300);
-      color: var(--dark);
-    }
-    :global(html:not([data-theme="light"])) .footer__social a:hover {
-      background: var(--primary);
-      color: var(--white);
-    }
-  }
-
   /* Responsive: iPad */
   @media (max-width: 1024px) {
     .footer__inner {

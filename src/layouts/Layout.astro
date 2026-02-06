@@ -97,9 +97,12 @@ const fullTitle = title.includes(seoDefaults.siteName)
   <!-- Theme Initialization (prevents flash of unstyled content) -->
   <script is:inline>
     (function() {
-      const stored = localStorage.getItem('theme-preference');
-      if (stored && stored !== 'system') {
+      var stored = localStorage.getItem('theme-preference');
+      if (stored === 'light' || stored === 'dark') {
         document.documentElement.setAttribute('data-theme', stored);
+      } else {
+        var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
       }
     })();
   </script>

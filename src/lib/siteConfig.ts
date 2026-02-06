@@ -1,12 +1,7 @@
 /**
  * Site Configuration
- * Based on shared/profile.yaml
- *
- * NOTE: YAML loading is now available via src/lib/profile.ts
- * Use getBranding(), getQualifications(), getCareer() etc. for dynamic data
- * This file provides static configuration for better performance
+ * Static configuration for site-wide constants
  */
-export { loadProfile, getQualifications, getCareer, getBranding, getDesignConfig, getSEOConfig } from './profile';
 
 export interface Qualification {
   name: string;
@@ -123,7 +118,7 @@ export const seoDefaults = {
  */
 export const siteMetadata = {
   siteUrl: 'https://yoshikawa-masahiro.com',
-  twitterHandle: '@shishamo_tax',
+  twitterHandle: '@shishamoex09',
   geoRegion: 'JP-13',
   geoPlacename: '東京都',
 } as const;

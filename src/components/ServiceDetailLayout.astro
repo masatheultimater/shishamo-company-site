@@ -15,7 +15,8 @@ interface Props {
 
 const { data } = Astro.props;
 
-const siteUrl = 'https://yoshikawa-masahiro.com';
+import { siteMetadata } from '../lib/siteConfig';
+const siteUrl = siteMetadata.siteUrl;
 
 // パンくずリストデータ
 const breadcrumbItems = [

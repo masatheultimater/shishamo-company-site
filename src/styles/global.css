@@ -86,9 +86,17 @@ ul {
   left: 100%;
 }
 
+.btn-primary svg {
+  transition: transform 0.2s;
+}
+
 .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-xl), 0 0 30px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover svg {
+  transform: translateX(4px);
 }
 
 .btn-secondary {
@@ -229,29 +237,6 @@ ul {
 :global([data-theme="dark"]) .page-header p,
 [data-theme="dark"] .page-header p {
   color: var(--gray-500);
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .page-header {
-    background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
-  }
-  html:not([data-theme="light"]) .page-header::before {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
-  }
-  html:not([data-theme="light"]) .page-header-blob {
-    background: var(--primary);
-    opacity: 0.1;
-  }
-  html:not([data-theme="light"]) .page-header h1 {
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: var(--dark);
-    background-clip: unset;
-    color: var(--dark);
-  }
-  html:not([data-theme="light"]) .page-header p {
-    color: var(--gray-500);
-  }
 }
 
 /* ===== CTA SECTION ===== */

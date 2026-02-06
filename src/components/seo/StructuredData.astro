@@ -28,7 +28,8 @@ interface Props {
 
 const { type, data } = Astro.props;
 
-const siteUrl = 'https://yoshikawa-masahiro.com';
+import { siteMetadata } from '../../lib/siteConfig';
+const siteUrl = siteMetadata.siteUrl;
 
 // 構造化データを取得
 function getStructuredData(type: string, customData?: Record<string, unknown>) {
@@ -42,7 +43,6 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
 
     case 'Article':
       if (!customData) {
-        console.warn('Article type requires data prop');
         return null;
       }
       return {
@@ -67,7 +67,6 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
 
     case 'BreadcrumbList':
       if (!customData) {
-        console.warn('BreadcrumbList type requires data prop');
         return null;
       }
       return {
@@ -78,7 +77,6 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
 
     case 'Service':
       if (!customData) {
-        console.warn('Service type requires data prop');
         return null;
       }
       return {

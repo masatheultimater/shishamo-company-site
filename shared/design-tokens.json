@@ -49,8 +49,8 @@
   },
   "typography": {
     "font-family": {
-      "display": "'Space Grotesk', 'Noto Sans JP', sans-serif",
-      "body": "'Noto Sans JP', sans-serif"
+      "sans": "'Inter', 'Noto Sans JP', sans-serif",
+      "display": "'Noto Sans JP', sans-serif"
     },
     "font-size": {
       "xs": "0.75rem",
@@ -87,9 +87,10 @@
     "5xl": "8rem"
   },
   "radius": {
-    "sm": "8px",
+    "sm": "6px",
     "md": "12px",
-    "lg": "20px",
+    "lg": "16px",
+    "xl": "24px",
     "full": "9999px"
   },
   "shadows": {

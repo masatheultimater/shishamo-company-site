@@ -137,11 +137,9 @@
   --gradient-cta-bg: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
   --gradient-rainbow-bar: linear-gradient(90deg, var(--primary), var(--teal), var(--secondary));
 
-  /* ===== Animation Durations (preserved from original) ===== */
-  --animation-swim-duration: 3s;
+  /* ===== Animation Durations ===== */
   --animation-morph-duration: 8s;
   --animation-float-duration: 3s;
-  --animation-pulse-glow-duration: 3s;
 
   /* ===== Additional Legacy Shadows ===== */
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
@@ -151,99 +149,70 @@
   --radius-full: 9999px;
 }
 
-/* ===== Dark Mode - System Preference ===== */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --primary: #60a5fa;
-    --primary-dark: #93c5fd;
-    --primary-light: #3b82f6;
-    --primary-lighter: #1e3a5f;
-    --accent: #fb923c;
-    --accent-light: #2d2418;
-    --teal: #5eead4;
-    --teal-light: #1a2f2e;
-    --secondary: #fbbf24;
-    --secondary-light: #422006;
-    --dark: #f1f5f9;
-    --dark-lighter: #e2e8f0;
-    --gray-700: #e2e8f0;
-    --gray-600: #cbd5e1;
-    --gray-500: #94a3b8;
-    --gray-400: #64748b;
-    --gray-300: #475569;
-    --gray-200: #334155;
-    --gray-100: #1e293b;
-    --gray-50: #0f172a;
-    --white: #020617;
-
-    /* Short aliases for dark mode */
-    --light: var(--gray-50);
-    --gray: var(--gray-500);
-    --gray-light: var(--gray-200);
-    --gray-lighter: var(--gray-100);
-    --gray-dark: var(--gray-700);
-
-    /* Overlays for dark mode */
-    --overlay-hero: rgba(15, 23, 42, 0.85);
-    --overlay-hero-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
-
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
-
-    /* Update legacy variables for dark mode */
-    --color-primary: var(--primary);
-    --color-primary-dark: var(--primary-dark);
-    --color-accent: var(--accent);
-    --color-secondary: var(--secondary);
-    --color-dark: var(--dark);
-    --color-light: var(--gray-50);
-    --color-gray: var(--gray-500);
-    --color-gray-light: var(--gray-200);
-    --color-gray-lighter: var(--gray-100);
-  }
+/* ===== Dark Mode Values (Single Source of Truth) ===== */
+:root {
+  --dark-primary: #60a5fa;
+  --dark-primary-dark: #93c5fd;
+  --dark-primary-light: #3b82f6;
+  --dark-primary-lighter: #1e3a5f;
+  --dark-accent: #fb923c;
+  --dark-accent-light: #2d2418;
+  --dark-teal: #5eead4;
+  --dark-teal-light: #1a2f2e;
+  --dark-secondary: #fbbf24;
+  --dark-secondary-light: #422006;
+  --dark-text: #f1f5f9;
+  --dark-text-lighter: #e2e8f0;
+  --dark-gray-700: #e2e8f0;
+  --dark-gray-600: #cbd5e1;
+  --dark-gray-500: #94a3b8;
+  --dark-gray-400: #64748b;
+  --dark-gray-300: #475569;
+  --dark-gray-200: #334155;
+  --dark-gray-100: #1e293b;
+  --dark-gray-50: #0f172a;
+  --dark-white: #020617;
+  --dark-overlay-hero: rgba(15, 23, 42, 0.85);
+  --dark-overlay-hero-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+  --dark-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --dark-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --dark-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
 }
 
-/* ===== Dark Mode - Manual Selection ===== */
-html[data-theme="dark"] {
-  --primary: #60a5fa;
-  --primary-dark: #93c5fd;
-  --primary-light: #3b82f6;
-  --primary-lighter: #1e3a5f;
-  --accent: #fb923c;
-  --accent-light: #2d2418;
-  --teal: #5eead4;
-  --teal-light: #1a2f2e;
-  --secondary: #fbbf24;
-  --secondary-light: #422006;
-  --dark: #f1f5f9;
-  --dark-lighter: #e2e8f0;
-  --gray-700: #e2e8f0;
-  --gray-600: #cbd5e1;
-  --gray-500: #94a3b8;
-  --gray-400: #64748b;
-  --gray-300: #475569;
-  --gray-200: #334155;
-  --gray-100: #1e293b;
-  --gray-50: #0f172a;
-  --white: #020617;
-
-  /* Short aliases for dark mode */
+/* ===== Dark Mode Application ===== */
+/* data-theme is always set by the inline head script */
+[data-theme="dark"] {
+  --primary: var(--dark-primary);
+  --primary-dark: var(--dark-primary-dark);
+  --primary-light: var(--dark-primary-light);
+  --primary-lighter: var(--dark-primary-lighter);
+  --accent: var(--dark-accent);
+  --accent-light: var(--dark-accent-light);
+  --teal: var(--dark-teal);
+  --teal-light: var(--dark-teal-light);
+  --secondary: var(--dark-secondary);
+  --secondary-light: var(--dark-secondary-light);
+  --dark: var(--dark-text);
+  --dark-lighter: var(--dark-text-lighter);
+  --gray-700: var(--dark-gray-700);
+  --gray-600: var(--dark-gray-600);
+  --gray-500: var(--dark-gray-500);
+  --gray-400: var(--dark-gray-400);
+  --gray-300: var(--dark-gray-300);
+  --gray-200: var(--dark-gray-200);
+  --gray-100: var(--dark-gray-100);
+  --gray-50: var(--dark-gray-50);
+  --white: var(--dark-white);
   --light: var(--gray-50);
   --gray: var(--gray-500);
   --gray-light: var(--gray-200);
   --gray-lighter: var(--gray-100);
   --gray-dark: var(--gray-700);
-
-  /* Overlays for dark mode */
-  --overlay-hero: rgba(15, 23, 42, 0.85);
-  --overlay-hero-gradient: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.6);
-
-  /* Update legacy variables for dark mode */
+  --overlay-hero: var(--dark-overlay-hero);
+  --overlay-hero-gradient: var(--dark-overlay-hero-gradient);
+  --shadow-sm: var(--dark-shadow-sm);
+  --shadow-md: var(--dark-shadow-md);
+  --shadow-lg: var(--dark-shadow-lg);
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-accent: var(--accent);
@@ -256,12 +225,6 @@ html[data-theme="dark"] {
 }
 
 /* ===== Animations ===== */
-@keyframes swim {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  25% { transform: translateX(3px) rotate(3deg); }
-  75% { transform: translateX(-3px) rotate(-3deg); }
-}
-
 @keyframes morph {
   0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
   50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
@@ -270,9 +233,4 @@ html[data-theme="dark"] {
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(37,99,235,0.3); }
-  50% { box-shadow: 0 0 40px rgba(37,99,235,0.5); }
 }

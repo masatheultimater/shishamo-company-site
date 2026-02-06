@@ -157,12 +157,6 @@ const { currentPage, transparent = false } = Astro.props;
     color: var(--btn-text-on-primary-dark);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-theme="light"])) .logo-mark {
-      color: var(--btn-text-on-primary-dark);
-    }
-  }
-
   .logo-text {
     font-family: var(--font-display);
     font-weight: 700;
@@ -201,13 +195,6 @@ const { currentPage, transparent = false } = Astro.props;
     color: var(--dark);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-theme="light"])) .header-x-link:hover {
-      background: var(--gray-300);
-      color: var(--dark);
-    }
-  }
-
   /* Navigation */
   .nav {
     display: flex;
@@ -244,12 +231,6 @@ const { currentPage, transparent = false } = Astro.props;
 
   :global([data-theme="dark"]) .nav-cta {
     color: var(--btn-text-on-primary-dark);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-theme="light"])) .nav-cta {
-      color: var(--btn-text-on-primary-dark);
-    }
   }
 
   /* Theme Toggle */
@@ -306,20 +287,6 @@ const { currentPage, transparent = false } = Astro.props;
   :global([data-theme="dark"]) .theme-icon--dark {
     opacity: 1;
     transform: scale(1);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :global(html:not([data-theme])) .theme-icon--light,
-    :global([data-theme="dark"]) .theme-icon--light {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-
-    :global(html:not([data-theme])) .theme-icon--dark,
-    :global([data-theme="dark"]) .theme-icon--dark {
-      opacity: 1;
-      transform: scale(1);
-    }
   }
 
   .theme-toggle--mobile {
@@ -407,87 +374,5 @@ const { currentPage, transparent = false } = Astro.props;
 </style>
 
 <script>
-  // Theme toggle functionality
-  (function() {
-    const THEME_KEY = 'theme-preference';
-
-    function getThemePreference(): string {
-      const stored = localStorage.getItem(THEME_KEY);
-      if (stored) {
-        return stored;
-      }
-      return 'system';
-    }
-
-    function getEffectiveTheme(preference: string): string {
-      if (preference === 'system') {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-      return preference;
-    }
-
-    function applyTheme(preference: string): void {
-      const html = document.documentElement;
-
-      if (preference === 'system') {
-        html.removeAttribute('data-theme');
-      } else {
-        html.setAttribute('data-theme', preference);
-      }
-
-      updateToggleIcons(getEffectiveTheme(preference));
-    }
-
-    function updateToggleIcons(effectiveTheme: string): void {
-      document.querySelectorAll('.theme-toggle').forEach(toggle => {
-        const lightIcon = toggle.querySelector('.theme-icon--light') as HTMLElement;
-        const darkIcon = toggle.querySelector('.theme-icon--dark') as HTMLElement;
-
-        if (lightIcon && darkIcon) {
-          if (effectiveTheme === 'dark') {
-            lightIcon.style.opacity = '0';
-            lightIcon.style.transform = 'scale(0.8)';
-            darkIcon.style.opacity = '1';
-            darkIcon.style.transform = 'scale(1)';
-          } else {
-            lightIcon.style.opacity = '1';
-            lightIcon.style.transform = 'scale(1)';
-            darkIcon.style.opacity = '0';
-            darkIcon.style.transform = 'scale(0.8)';
-          }
-        }
-      });
-    }
-
-    function toggleTheme(): void {
-      const current = getThemePreference();
-      const effectiveCurrent = getEffectiveTheme(current);
-
-      const newTheme = effectiveCurrent === 'dark' ? 'light' : 'dark';
-
-      localStorage.setItem(THEME_KEY, newTheme);
-      applyTheme(newTheme);
-    }
-
-    function init(): void {
-      const preference = getThemePreference();
-      applyTheme(preference);
-
-      document.querySelectorAll('.theme-toggle').forEach(toggle => {
-        toggle.addEventListener('click', toggleTheme);
-      });
-
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (getThemePreference() === 'system') {
-          updateToggleIcons(e.matches ? 'dark' : 'light');
-        }
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-  })();
+  import '../../scripts/theme';
 </script>

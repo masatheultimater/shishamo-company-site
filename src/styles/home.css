@@ -35,11 +35,6 @@
 [data-theme="dark"] .hero--bg-full::before {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 100%);
 }
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .hero--bg-full::before {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.88) 100%);
-  }
-}
 
 .hero-inner {
   max-width: var(--container-lg);
@@ -85,41 +80,6 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-}
-
-/* ===== BUTTONS (Home page variant) ===== */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--primary);
-  color: var(--btn-text-on-primary);
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.2s;
-  border: none;
-  cursor: pointer;
-}
-.btn-primary svg {
-  transition: transform 0.2s;
-}
-.btn-primary:hover {
-  background: var(--primary-light);
-}
-.btn-primary:hover svg {
-  transform: translateX(4px);
-}
-
-/* Button Dark Mode */
-[data-theme="dark"] .btn-primary {
-  color: var(--btn-text-on-primary-dark);
-}
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .btn-primary {
-    color: var(--btn-text-on-primary-dark);
-  }
 }
 
 .btn-secondary {
@@ -296,15 +256,6 @@
 }
 [data-theme="dark"] .stat-tooltip::after {
   border-top-color: var(--gray-100);
-}
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .stat-tooltip {
-    background: var(--gray-100);
-    color: var(--dark);
-  }
-  html:not([data-theme="light"]) .stat-tooltip::after {
-    border-top-color: var(--gray-100);
-  }
 }
 
 /* ===== SECTION COMMON ===== */
@@ -599,27 +550,6 @@
 [data-theme="dark"] .why-me .section-desc {
   color: var(--gray-600);
 }
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .why-me {
-    background: var(--gray-200) url('/wp2.png') center center / cover no-repeat;
-    color: var(--dark);
-  }
-  html:not([data-theme="light"]) .why-me::before {
-    background: linear-gradient(90deg, var(--primary), var(--teal));
-  }
-  html:not([data-theme="light"]) .why-me::after {
-    background: linear-gradient(135deg, rgba(51, 65, 85, 0.92) 0%, rgba(51, 65, 85, 0.85) 100%);
-  }
-  html:not([data-theme="light"]) .why-me .section-label {
-    color: var(--gray-500);
-  }
-  html:not([data-theme="light"]) .why-me .section-title {
-    color: var(--dark);
-  }
-  html:not([data-theme="light"]) .why-me .section-desc {
-    color: var(--gray-600);
-  }
-}
 
 .why-me-container {
   position: relative;
@@ -686,21 +616,6 @@
 [data-theme="dark"] .why-card p {
   color: var(--gray-600);
 }
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .why-card {
-    background: var(--gray-100);
-    border-color: var(--gray-300);
-  }
-  html:not([data-theme="light"]) .why-number {
-    color: var(--primary);
-  }
-  html:not([data-theme="light"]) .why-card h3 {
-    color: var(--dark);
-  }
-  html:not([data-theme="light"]) .why-card p {
-    color: var(--gray-600);
-  }
-}
 
 /* ===== BLOG ===== */
 .blog {
@@ -762,11 +677,6 @@
 [data-theme="dark"] .external-link:hover {
   color: #12161e;
 }
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .external-link:hover {
-    color: #12161e;
-  }
-}
 
 /* ===== CTA (Home) ===== */
 .cta {
@@ -821,29 +731,6 @@
 }
 [data-theme="dark"] .cta .btn-primary:hover {
   background: var(--primary-light);
-}
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) .cta {
-    background: var(--gray-100);
-  }
-  html:not([data-theme="light"]) .cta-inner {
-    background: var(--gray-50);
-    border-color: var(--gray-300);
-  }
-  html:not([data-theme="light"]) .cta-title {
-    color: var(--dark);
-  }
-  html:not([data-theme="light"]) .cta-desc {
-    color: var(--gray-500);
-  }
-  html:not([data-theme="light"]) .cta .btn-primary {
-    background: var(--primary);
-    color: white;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-  }
-  html:not([data-theme="light"]) .cta .btn-primary:hover {
-    background: var(--primary-light);
-  }
 }
 
 /* ===== RESPONSIVE: Desktop (1024px) ===== */
@@ -945,10 +832,6 @@
   .hero-cta {
     flex-direction: column;
     width: 100%;
-  }
-  .btn-primary, .btn-secondary {
-    width: 100%;
-    justify-content: center;
   }
   .profile-card {
     padding: 24px 20px;
