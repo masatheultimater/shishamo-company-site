@@ -82,30 +82,6 @@
   flex-wrap: wrap;
 }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--dark);
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 14px;
-  border: 1px solid var(--gray-300);
-  transition: all 0.2s;
-  cursor: pointer;
-}
-.btn-secondary svg {
-  transition: transform 0.2s;
-}
-.btn-secondary:hover {
-  border-color: var(--dark);
-}
-.btn-secondary:hover svg {
-  transform: translateX(4px);
-}
-
 /* ===== PROFILE CARD ===== */
 .profile-card {
   background: var(--gray-50);
@@ -678,61 +654,6 @@
   color: #12161e;
 }
 
-/* ===== CTA (Home) ===== */
-.cta {
-  background: var(--gray-100);
-}
-.cta-inner {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 40px 32px;
-  background: var(--gray-50);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--gray-200);
-}
-.cta-title {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--dark);
-}
-.cta-desc {
-  font-size: 15px;
-  color: var(--gray-600);
-  margin-bottom: 24px;
-  line-height: 1.8;
-}
-.cta-note {
-  margin-top: 12px;
-  font-size: 12px;
-  color: var(--gray-500);
-}
-
-/* CTA Dark Mode */
-[data-theme="dark"] .cta {
-  background: var(--gray-100);
-}
-[data-theme="dark"] .cta-inner {
-  background: var(--gray-50);
-  border-color: var(--gray-300);
-}
-[data-theme="dark"] .cta-title {
-  color: var(--dark);
-}
-[data-theme="dark"] .cta-desc {
-  color: var(--gray-500);
-}
-[data-theme="dark"] .cta .btn-primary {
-  background: var(--primary);
-  color: white;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-}
-[data-theme="dark"] .cta .btn-primary:hover {
-  background: var(--primary-light);
-}
-
 /* ===== RESPONSIVE: Desktop (1024px) ===== */
 @media (max-width: 1024px) {
   .hero-inner {
@@ -853,9 +774,6 @@
   }
   .service-card {
     padding: 24px 20px;
-  }
-  .cta-title {
-    font-size: 22px;
   }
   .external-links {
     flex-direction: column;
