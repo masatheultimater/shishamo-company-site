@@ -8,8 +8,8 @@
   --sd-breadcrumb-bg: var(--gray-lighter);
   --sd-hero-bg: var(--gray-50);
   --sd-content-bg: var(--white);
-  --sd-card-bg: var(--white);
-  --sd-card-border: var(--gray-light);
+  --sd-card-bg: var(--card-bg);
+  --sd-card-border: var(--card-border);
   --sd-card-hover-shadow: var(--shadow-lg);
   --sd-related-bg: var(--gray-lighter);
 }
@@ -18,8 +18,6 @@
   --sd-breadcrumb-bg: var(--gray-100);
   --sd-hero-bg: var(--gray-100);
   --sd-content-bg: var(--gray-50);
-  --sd-card-bg: var(--gray-100);
-  --sd-card-border: var(--gray-300);
   --sd-card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   --sd-related-bg: var(--gray-100);
 }

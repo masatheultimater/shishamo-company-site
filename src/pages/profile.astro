@@ -332,13 +332,13 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .stat-card {
-    background: var(--white);
-    border: 2px solid var(--gray-light);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: var(--radius-md);
     padding: 24px;
     text-align: center;
     transition: all 0.2s;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--card-shadow);
   }
   .stat-card:hover {
     border-color: var(--primary);
@@ -398,11 +398,11 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
 
   /* About My Work */
   .about-work {
-    background: var(--white);
-    border: 2px solid var(--gray-light);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: var(--radius-md);
     padding: 40px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--card-shadow);
   }
   .about-lead {
     font-size: 17px;
@@ -561,15 +561,15 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 12px;
   }
   .qual-card {
-    background: var(--white);
-    border: 2px solid var(--gray-light);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: var(--radius-sm);
     padding: 16px 20px;
     display: flex;
     align-items: center;
     gap: 16px;
     transition: all 0.2s;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--card-shadow);
   }
   .qual-card:hover {
     border-color: var(--primary);
@@ -602,11 +602,11 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
 
   /* Story */
   .story-content {
-    background: var(--white);
-    border: 2px solid var(--gray-light);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: var(--radius-md);
     padding: 40px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--card-shadow);
   }
   .story-content p {
     font-size: 15px;
@@ -662,12 +662,12 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .philosophy-card {
-    background: var(--white);
-    border: 2px solid var(--gray-light);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: var(--radius-md);
     padding: 24px;
     transition: all 0.2s;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--card-shadow);
   }
   .philosophy-card:hover {
     border-color: var(--primary);
@@ -702,12 +702,12 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 20px;
   }
   .motto-card {
-    background: var(--white);
-    border: 2px solid var(--gray-light);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: var(--radius-md);
     padding: 32px;
     border-left: 4px solid var(--primary);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--card-shadow);
   }
   .motto-text {
     font-family: var(--font-display);
@@ -878,17 +878,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     color: var(--primary);
     font-weight: 600;
   }
-  :global([data-theme="dark"]) .stat-card {
-    background: var(--gray-100);
-    border: 2px solid var(--gray-300);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  :global([data-theme="dark"]) .stat-card:hover {
-    border-color: var(--primary);
-  }
-  :global([data-theme="dark"]) .stat-number {
-    color: var(--primary);
-  }
   :global([data-theme="dark"]) .stat-label {
     color: var(--gray-500);
   }
@@ -908,11 +897,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   :global([data-theme="dark"]) .section-subtitle {
     color: var(--gray-500);
-  }
-  :global([data-theme="dark"]) .about-work {
-    background: var(--gray-100);
-    border: 2px solid var(--gray-300);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
   :global([data-theme="dark"]) .about-lead {
     color: var(--dark);
@@ -970,14 +954,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     background: var(--gray-300);
     color: var(--dark);
   }
-  :global([data-theme="dark"]) .qual-card {
-    background: var(--gray-100);
-    border: 2px solid var(--gray-300);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  :global([data-theme="dark"]) .qual-card:hover {
-    border-color: var(--primary);
-  }
   :global([data-theme="dark"]) .qual-icon {
     background: var(--primary-lighter);
   }
@@ -989,11 +965,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   :global([data-theme="dark"]) .qual-info p {
     color: var(--gray-500);
-  }
-  :global([data-theme="dark"]) .story-content {
-    background: var(--gray-100);
-    border-color: var(--gray-300);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
   :global([data-theme="dark"]) .story-content p {
     color: var(--gray-600);
@@ -1011,14 +982,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   :global([data-theme="dark"]) .story-final strong {
     color: var(--dark);
   }
-  :global([data-theme="dark"]) .philosophy-card {
-    background: var(--gray-100);
-    border: 2px solid var(--gray-300);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-  :global([data-theme="dark"]) .philosophy-card:hover {
-    border-color: var(--primary);
-  }
   :global([data-theme="dark"]) .philosophy-card h4 {
     color: var(--dark);
   }
@@ -1027,12 +990,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   :global([data-theme="dark"]) .philosophy-card p {
     color: var(--gray-500);
-  }
-  :global([data-theme="dark"]) .motto-card {
-    background: var(--gray-100);
-    border: 2px solid var(--gray-300);
-    border-left: 4px solid var(--primary);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
   :global([data-theme="dark"]) .motto-text {
     color: var(--dark);

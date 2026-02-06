@@ -131,6 +131,11 @@
   --btn-text-on-primary: #f5f7fa;
   --btn-text-on-primary-dark: #12161e;
 
+  /* ===== Card Pattern ===== */
+  --card-bg: var(--white);
+  --card-border: var(--gray-light);
+  --card-shadow: var(--shadow-sm);
+
   /* ===== CTA Section Colors ===== */
   --cta-dark-bg: #1e3a5f;
   --cta-dark-heading: #e2e8f0;
@@ -229,6 +234,9 @@
   --gradient-primary: linear-gradient(135deg, #60a5fa, #3b82f6);
   --gradient-hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a5f 100%);
   --gradient-cta-bg: linear-gradient(135deg, #334155 0%, #1e293b 50%, #0f172a 100%);
+  --card-bg: var(--gray-100);
+  --card-border: var(--gray-300);
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== Animations ===== */
