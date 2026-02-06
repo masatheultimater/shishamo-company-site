@@ -108,13 +108,13 @@ const structuredData = {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    color: var(--color-gray, #64748B);
+    color: var(--gray);
     text-decoration: none;
     transition: color 0.2s ease;
   }
 
   .breadcrumb__link:hover {
-    color: var(--color-primary, #2563EB);
+    color: var(--primary);
     text-decoration: underline;
   }
 
@@ -125,12 +125,12 @@ const structuredData = {
   }
 
   .breadcrumb__separator {
-    color: var(--color-gray-light, #CBD5E1);
+    color: var(--gray-light);
     user-select: none;
   }
 
   .breadcrumb__current {
-    color: var(--color-dark, #1E293B);
+    color: var(--dark);
     font-weight: 500;
   }
 
@@ -156,7 +156,7 @@ const structuredData = {
     /* 省略記号を表示 */
     .breadcrumb__item:nth-last-child(3)::before {
       content: '...';
-      color: var(--color-gray-light, #CBD5E1);
+      color: var(--gray-light);
       margin-right: 0.375rem;
     }
   }

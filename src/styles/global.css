@@ -21,8 +21,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-light);
-  color: var(--color-dark);
+  background: var(--light);
+  color: var(--dark);
   line-height: var(--line-height-normal);
   overflow-x: hidden;
 }
@@ -38,7 +38,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -156,7 +156,7 @@ ul {
 .section-label {
   font-family: var(--font-display);
   font-size: var(--font-size-sm);
-  color: var(--color-primary);
+  color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin-bottom: 0.625rem;
@@ -178,14 +178,14 @@ ul {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: 0.875rem;
-  background: linear-gradient(135deg, var(--color-dark), var(--color-dark-lighter));
+  background: linear-gradient(135deg, var(--dark), var(--dark-lighter));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .section-desc {
-  color: var(--color-gray);
+  color: var(--gray);
   max-width: 550px;
   margin: 0 auto;
   font-size: var(--font-size-lg);
@@ -225,7 +225,7 @@ ul {
   font-size: 2.5rem;
   font-weight: var(--font-weight-black);
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -233,7 +233,7 @@ ul {
 }
 
 .page-header p {
-  color: var(--color-gray);
+  color: var(--gray);
   font-size: var(--font-size-lg);
   position: relative;
 }
