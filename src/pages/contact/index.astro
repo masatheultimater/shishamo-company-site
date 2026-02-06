@@ -194,7 +194,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   .sidebar-card li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); }
 
   .response-card {
-    background: #10b981;
+    background: var(--success);
     color: white; border: none; position: relative; overflow: hidden;
   }
   .response-card::before {
@@ -219,6 +219,28 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
   }
   .faq-a { font-size: 0.95rem; color: var(--gray); line-height: 1.8; padding-left: calc(28px + 0.75rem); }
+
+  /* ===== DARK MODE ===== */
+  :global([data-theme="dark"]) .contact-section { background: var(--gray-50); }
+  :global([data-theme="dark"]) .contact-form-card {
+    background: var(--gray-100);
+    box-shadow: var(--shadow-lg);
+  }
+  :global([data-theme="dark"]) .contact-form-card > p { color: var(--gray-500); }
+  :global([data-theme="dark"]) .sidebar-card {
+    background: var(--gray-100);
+    border-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .sidebar-card p,
+  :global([data-theme="dark"]) .sidebar-card li { color: var(--gray-500); }
+  :global([data-theme="dark"]) .response-card {
+    background: var(--success-dark);
+    color: #ffffff;
+  }
+  :global([data-theme="dark"]) .response-card h3 { color: #ffffff; }
+  :global([data-theme="dark"]) .faq-section { background: var(--gray-100); }
+  :global([data-theme="dark"]) .faq-item { background: var(--gray-50); }
+  :global([data-theme="dark"]) .faq-a { color: var(--gray-500); }
 
   /* Responsive */
   @media (max-width: 768px) {
