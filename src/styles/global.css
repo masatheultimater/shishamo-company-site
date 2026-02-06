@@ -21,8 +21,8 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-light);
-  color: var(--color-dark);
+  background: var(--light);
+  color: var(--dark);
   line-height: var(--line-height-normal);
   overflow-x: hidden;
 }
@@ -38,7 +38,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -156,7 +156,7 @@ ul {
 .section-label {
   font-family: var(--font-display);
   font-size: var(--font-size-sm);
-  color: var(--color-primary);
+  color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   margin-bottom: 0.625rem;
@@ -178,14 +178,14 @@ ul {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: 0.875rem;
-  background: linear-gradient(135deg, var(--color-dark), var(--color-dark-lighter));
+  background: linear-gradient(135deg, var(--dark), var(--dark-lighter));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .section-desc {
-  color: var(--color-gray);
+  color: var(--gray);
   max-width: 550px;
   margin: 0 auto;
   font-size: var(--font-size-lg);
@@ -225,7 +225,7 @@ ul {
   font-size: 2.5rem;
   font-weight: var(--font-weight-black);
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -233,7 +233,7 @@ ul {
 }
 
 .page-header p {
-  color: var(--color-gray);
+  color: var(--gray);
   font-size: var(--font-size-lg);
   position: relative;
 }
@@ -315,6 +315,73 @@ ul {
   color: var(--gray-500);
 }
 
+/* ===== CTA SECTION — Dark Background Variant ===== */
+.cta--dark {
+  padding: var(--section-padding-y) var(--section-padding-x);
+  background: var(--cta-dark-bg);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta--dark::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 80%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+}
+.cta--dark > * {
+  position: relative;
+}
+.cta--dark h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--cta-dark-heading);
+}
+.cta--dark p {
+  opacity: 0.85;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--cta-dark-text);
+}
+.cta--dark .btn-primary {
+  background: var(--gray-100);
+  color: var(--cta-dark-bg);
+}
+.cta--dark .btn-primary:hover {
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+}
+
+/* CTA Dark Variant — Dark Mode */
+[data-theme="dark"] .cta--dark {
+  background: var(--gray-200);
+  color: var(--dark);
+}
+[data-theme="dark"] .cta--dark::before {
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+}
+[data-theme="dark"] .cta--dark h2 {
+  color: var(--dark);
+}
+[data-theme="dark"] .cta--dark p {
+  color: var(--gray-500);
+}
+[data-theme="dark"] .cta--dark .btn-primary {
+  background: var(--primary);
+  color: var(--btn-text-on-primary-dark);
+}
+[data-theme="dark"] .cta--dark .btn-primary:hover {
+  background: var(--primary-dark);
+  color: var(--btn-text-on-primary-dark);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
 /* ===== RESPONSIVE: Tablet (768px) ===== */
 @media (max-width: 768px) {
   .page-header {
@@ -343,6 +410,14 @@ ul {
 
   .cta-title {
     font-size: 1.75rem;
+  }
+
+  .cta--dark {
+    padding: 3rem 1.5rem;
+  }
+
+  .cta--dark h2 {
+    font-size: 1.5rem;
   }
 }
 

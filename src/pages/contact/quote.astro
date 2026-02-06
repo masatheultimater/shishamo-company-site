@@ -234,12 +234,12 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--color-secondary, #ea580c), var(--color-accent, #0d9488));
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
   }
   .page-header-label {
     font-size: 11px;
     font-weight: 600;
-    color: var(--color-gray, #64748b);
+    color: var(--gray);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 10px;
@@ -252,7 +252,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   }
   .page-header p {
     font-size: 15px;
-    color: var(--color-gray, #64748b);
+    color: var(--gray);
     max-width: 520px;
     margin: 0 auto;
     line-height: 1.7;
@@ -261,7 +261,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   /* Contact Section */
   .contact-section {
     padding: 60px 24px 80px;
-    background: var(--color-light, #f8fafc);
+    background: var(--light);
   }
   .contact-inner {
     max-width: 1000px;
@@ -274,10 +274,10 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   /* Form Card */
   .contact-form-card {
     background: var(--white);
-    border: 1px solid var(--color-gray-light, #e2e8f0);
-    border-radius: var(--radius-lg, 16px);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-lg);
     padding: 32px;
-    box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.06));
+    box-shadow: var(--shadow-md);
   }
   .contact-form-card h2 {
     font-family: var(--font-display);
@@ -286,7 +286,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     margin-bottom: 8px;
   }
   .contact-form-card > p {
-    color: var(--color-gray, #64748b);
+    color: var(--gray);
     font-size: 14px;
     margin-bottom: 28px;
   }
@@ -327,10 +327,10 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--color-secondary, #ea580c);
+    background: var(--secondary);
     color: white;
     padding: 14px 28px;
-    border-radius: var(--radius-sm, 6px);
+    border-radius: var(--radius-sm);
     font-weight: 600;
     font-size: 15px;
     transition: all 0.2s;
@@ -339,7 +339,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     width: 100%;
   }
   .btn-primary:hover {
-    background: #c2410c;
+    background: var(--secondary-dark);
   }
   .btn-primary svg {
     transition: transform 0.2s;
@@ -356,13 +356,13 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   }
   .sidebar-card {
     background: var(--white);
-    border: 1px solid var(--color-gray-light, #e2e8f0);
-    border-radius: var(--radius-md, 12px);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 20px;
     transition: all 0.2s;
   }
   .sidebar-card:hover {
-    border-color: var(--color-secondary, #ea580c);
+    border-color: var(--secondary);
   }
   .sidebar-card h3 {
     font-size: 15px;
@@ -374,13 +374,13 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   }
   .sidebar-card p {
     font-size: 13px;
-    color: var(--color-gray, #64748b);
+    color: var(--gray);
     line-height: 1.7;
   }
 
   /* Response Card */
   .response-card {
-    background: linear-gradient(135deg, var(--color-secondary, #ea580c), #c2410c);
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
     color: white;
     border: none;
     position: relative;
@@ -438,9 +438,9 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     gap: 12px;
   }
   .faq-item {
-    background: var(--color-light, #f8fafc);
-    border: 1px solid var(--color-gray-light, #e2e8f0);
-    border-radius: var(--radius-md, 12px);
+    background: var(--light);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 20px 24px;
   }
   .faq-q {
@@ -454,7 +454,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   .faq-q-badge {
     width: 24px;
     height: 24px;
-    background: var(--color-secondary, #ea580c);
+    background: var(--secondary);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -466,16 +466,52 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   }
   .faq-a {
     font-size: 14px;
-    color: var(--color-gray, #64748b);
+    color: var(--gray);
     line-height: 1.8;
     padding-left: 36px;
   }
   .faq-a a {
-    color: var(--color-secondary, #ea580c);
+    color: var(--secondary);
     text-decoration: underline;
   }
   .faq-a a:hover {
     text-decoration: none;
+  }
+
+  /* ===== DARK MODE ===== */
+  :global([data-theme="dark"]) .page-header::before {
+    background: linear-gradient(90deg, var(--secondary), var(--accent));
+  }
+  :global([data-theme="dark"]) .contact-section { background: var(--gray-50); }
+  :global([data-theme="dark"]) .contact-form-card {
+    background: var(--gray-100);
+    border-color: var(--gray-300);
+    box-shadow: var(--shadow-lg);
+  }
+  :global([data-theme="dark"]) .contact-form-card > p { color: var(--gray-500); }
+  :global([data-theme="dark"]) .sidebar-card {
+    background: var(--gray-100);
+    border-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .sidebar-card:hover { border-color: var(--secondary); }
+  :global([data-theme="dark"]) .sidebar-card p { color: var(--gray-500); }
+  :global([data-theme="dark"]) .response-card {
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  }
+  :global([data-theme="dark"]) .response-card h3,
+  :global([data-theme="dark"]) .response-card p { color: #ffffff; }
+  :global([data-theme="dark"]) .faq-section { background: var(--gray-100); }
+  :global([data-theme="dark"]) .faq-item {
+    background: var(--gray-50);
+    border-color: var(--gray-300);
+  }
+  :global([data-theme="dark"]) .faq-a { color: var(--gray-500); }
+  :global([data-theme="dark"]) .btn-primary {
+    background: var(--secondary);
+    color: #ffffff;
+  }
+  :global([data-theme="dark"]) .btn-primary:hover {
+    background: var(--secondary-dark);
   }
 
   /* Responsive */

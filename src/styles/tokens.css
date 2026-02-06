@@ -19,6 +19,7 @@
   --teal: #0d9488;
   --teal-light: #f0fdfa;
   --secondary: #f59e0b;
+  --secondary-dark: #c2410c;
   --secondary-light: #fef3c7;
   --dark: #1e293b;
   --dark-lighter: #334155;
@@ -69,16 +70,7 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
 
-  /* ===== Legacy Variables (for backward compatibility) ===== */
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-accent: var(--accent);
-  --color-secondary: var(--secondary);
-  --color-dark: var(--dark);
-  --color-light: var(--gray-50);
-  --color-gray: var(--gray-500);
-  --color-gray-light: var(--gray-200);
-  --color-gray-lighter: var(--gray-100);
+  /* ===== Font Alias ===== */
   --font-body: var(--font-sans);
 
   /* ===== Spacing (preserved from original) ===== */
@@ -124,6 +116,10 @@
   --section-padding-x: 2rem;
   --section-margin-bottom: 3.5rem;
 
+  /* ===== Semantic Colors ===== */
+  --success: #10b981;
+  --success-dark: #34d399;
+
   /* ===== Footer Colors ===== */
   --footer-bg: #1a202c;
   --footer-text: rgba(255, 255, 255, 0.7);
@@ -134,6 +130,11 @@
   /* ===== Button Colors ===== */
   --btn-text-on-primary: #f5f7fa;
   --btn-text-on-primary-dark: #12161e;
+
+  /* ===== Card Pattern ===== */
+  --card-bg: var(--white);
+  --card-border: var(--gray-light);
+  --card-shadow: var(--shadow-sm);
 
   /* ===== CTA Section Colors ===== */
   --cta-dark-bg: #1e3a5f;
@@ -233,15 +234,9 @@
   --gradient-primary: linear-gradient(135deg, #60a5fa, #3b82f6);
   --gradient-hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a5f 100%);
   --gradient-cta-bg: linear-gradient(135deg, #334155 0%, #1e293b 50%, #0f172a 100%);
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-accent: var(--accent);
-  --color-secondary: var(--secondary);
-  --color-dark: var(--dark);
-  --color-light: var(--gray-50);
-  --color-gray: var(--gray-500);
-  --color-gray-light: var(--gray-200);
-  --color-gray-lighter: var(--gray-100);
+  --card-bg: var(--gray-100);
+  --card-border: var(--gray-300);
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== Animations ===== */

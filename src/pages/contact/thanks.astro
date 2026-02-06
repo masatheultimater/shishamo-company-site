@@ -48,7 +48,7 @@ import Layout from '../../layouts/Layout.astro';
     min-height: calc(100vh - 200px);
     padding: 8rem 2rem 4rem;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--light) 0%, #EFF6FF 50%, #DBEAFE 100%);
+    background: var(--gradient-hero-bg);
     position: relative; overflow: hidden;
   }
   .thanks-section::before {
@@ -97,6 +97,26 @@ import Layout from '../../layouts/Layout.astro';
   .info-item p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
 
   .thanks-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ===== DARK MODE ===== */
+  :global([data-theme="dark"]) .thanks-section::before {
+    background: radial-gradient(ellipse, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+  }
+  :global([data-theme="dark"]) .thanks-card {
+    background: var(--gray-100);
+    box-shadow: var(--shadow-lg);
+  }
+  :global([data-theme="dark"]) .thanks-card h1 {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: var(--dark);
+    background-clip: unset;
+  }
+  :global([data-theme="dark"]) .thanks-message { color: var(--gray-500); }
+  :global([data-theme="dark"]) .thanks-message strong { color: var(--accent); }
+  :global([data-theme="dark"]) .thanks-info { background: var(--gray-50); }
+  :global([data-theme="dark"]) .info-item h3 { color: var(--dark); }
+  :global([data-theme="dark"]) .info-item p { color: var(--gray-500); }
 
   @media (max-width: 768px) {
     .thanks-section { padding: 6rem 1.5rem 3rem; }
