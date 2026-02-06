@@ -446,7 +446,7 @@
 }
 [data-theme="dark"] .service-cta .btn-primary:hover {
   background: var(--primary-dark);
-  color: #fff;
+  color: var(--btn-text-on-primary-dark);
 }
 
 /* ===== RESPONSIVE ===== */
