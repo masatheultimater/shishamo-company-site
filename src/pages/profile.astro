@@ -251,7 +251,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   /* Profile Hero */
   .profile-hero {
     padding: 120px 24px 80px;
-    background: var(--gray-light, #f1f5f9) url('/wp1.png') center center / cover no-repeat;
+    background: var(--gray-light) url('/wp1.png') center center / cover no-repeat;
     position: relative;
     overflow: hidden;
   }
@@ -273,10 +273,10 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .profile-photo-wrapper {
     width: 200px;
     height: 200px;
-    border-radius: var(--radius-lg, 16px);
+    border-radius: var(--radius-lg);
     overflow: hidden;
     flex-shrink: 0;
-    border: 3px solid var(--primary, #2563eb);
+    border: 3px solid var(--primary);
     box-shadow: var(--shadow-lg);
   }
   .profile-photo-wrapper img {
@@ -294,7 +294,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .profile-hero-text .subtitle {
     font-size: 15px;
-    color: var(--gray-700, #334155);
+    color: var(--gray-700);
     margin-bottom: 20px;
     line-height: 1.7;
     text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
@@ -306,15 +306,15 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .profile-badge {
     padding: 6px 14px;
-    background: var(--gray-lighter, #e2e8f0);
-    color: var(--gray-dark, #334155);
+    background: var(--gray-lighter);
+    color: var(--gray-dark);
     border-radius: 100px;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: 500;
   }
   .profile-badge.highlight {
-    background: var(--primary-lighter, #eff6ff);
-    color: var(--primary, #2563eb);
+    background: var(--primary-lighter);
+    color: var(--primary);
   }
 
   /* Stats Section */
@@ -332,9 +332,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .stat-card {
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gray-light, #cbd5e1);
-    border-radius: var(--radius-md, 12px);
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 24px;
     text-align: center;
     transition: all 0.2s;
@@ -345,17 +345,17 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .stat-number {
     font-family: var(--font-sans);
-    font-size: 36px;
+    font-size: var(--font-size-4xl);
     font-weight: 700;
     color: var(--primary);
   }
   .stat-unit {
-    font-size: 16px;
+    font-size: var(--font-size-base);
     font-weight: 500;
   }
   .stat-label {
     font-size: 13px;
-    color: var(--gray-600, #475569);
+    color: var(--gray-600);
     margin-top: 4px;
   }
 
@@ -364,7 +364,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     padding: 80px 24px;
   }
   .section--alt {
-    background: var(--gray-light, #f1f5f9);
+    background: var(--gray-light);
   }
   .section-inner {
     max-width: 900px;
@@ -374,8 +374,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-family: var(--font-display);
     font-size: 22px;
     font-weight: 700;
-    color: #1e293b;
-    -webkit-text-fill-color: #1e293b;
+    color: var(--dark);
+    -webkit-text-fill-color: var(--dark);
     background: none;
     margin-bottom: 32px;
     display: flex;
@@ -390,17 +390,17 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     border-radius: 2px;
   }
   .section-subtitle {
-    font-size: 14px;
-    color: var(--gray-600, #475569);
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
     margin-top: -24px;
     margin-bottom: 32px;
   }
 
   /* About My Work */
   .about-work {
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gray-light, #cbd5e1);
-    border-radius: var(--radius-md, 12px);
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 40px;
     box-shadow: var(--shadow-sm);
   }
@@ -414,12 +414,12 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .about-desc {
     font-size: 15px;
     line-height: 2;
-    color: var(--gray-dark, #334155);
+    color: var(--gray-dark);
     margin-bottom: 32px;
   }
   .about-subtitle {
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 700;
     color: var(--dark);
     margin-bottom: 20px;
@@ -441,14 +441,14 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     margin-bottom: 32px;
   }
   .pillar-card {
-    background: var(--gray-light, #f1f5f9);
-    border-radius: var(--radius-sm, 8px);
+    background: var(--gray-light);
+    border-radius: var(--radius-sm);
     padding: 24px 20px;
     position: relative;
   }
   .pillar-number {
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 8px;
@@ -463,18 +463,18 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .pillar-card p {
     font-size: 13px;
     line-height: 1.7;
-    color: var(--gray-600, #475569);
+    color: var(--gray-600);
   }
   .about-note {
-    background: var(--primary-lighter, #eff6ff);
-    border-radius: var(--radius-sm, 8px);
+    background: var(--primary-lighter);
+    border-radius: var(--radius-sm);
     padding: 20px 24px;
     margin-bottom: 24px;
   }
   .about-note p {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     line-height: 1.9;
-    color: var(--gray-dark, #334155);
+    color: var(--gray-dark);
   }
   .about-stance {
     padding-top: 8px;
@@ -482,7 +482,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .about-stance p {
     font-size: 15px;
     line-height: 2;
-    color: var(--gray-dark, #334155);
+    color: var(--gray-dark);
   }
   .about-stance strong {
     color: var(--primary);
@@ -500,7 +500,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     top: 8px;
     bottom: 8px;
     width: 2px;
-    background: var(--gray-lighter, #cbd5e1);
+    background: var(--gray-lighter);
     border-radius: 2px;
   }
   .timeline-item {
@@ -520,24 +520,24 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     background: var(--primary);
     border-radius: 50%;
     transform: translateX(-50%);
-    border: 2px solid var(--light, #f8fafc);
+    border: 2px solid var(--light);
   }
   .timeline-date {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--primary);
     font-weight: 600;
     margin-bottom: 4px;
     letter-spacing: 0.02em;
   }
   .timeline-title {
-    font-size: 16px;
+    font-size: var(--font-size-base);
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--dark);
   }
   .timeline-desc {
-    font-size: 14px;
-    color: var(--gray-600, #475569);
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
     line-height: 1.8;
   }
   .timeline-tags {
@@ -549,9 +549,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .timeline-tag {
     font-size: 11px;
     padding: 4px 10px;
-    background: var(--gray-lighter, #e2e8f0);
+    background: var(--gray-lighter);
     border-radius: 100px;
-    color: var(--gray-700, #334155);
+    color: var(--gray-700);
   }
 
   /* Qualifications */
@@ -561,9 +561,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 12px;
   }
   .qual-card {
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gray-light, #cbd5e1);
-    border-radius: var(--radius-sm, 6px);
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-sm);
     padding: 16px 20px;
     display: flex;
     align-items: center;
@@ -577,8 +577,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .qual-icon {
     width: 44px;
     height: 44px;
-    background: var(--primary-lighter, #eff6ff);
-    border-radius: var(--radius-sm, 6px);
+    background: var(--primary-lighter);
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -590,28 +590,28 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     color: var(--primary);
   }
   .qual-info h4 {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--dark);
     margin-bottom: 2px;
   }
   .qual-info p {
-    font-size: 12px;
-    color: var(--gray-600, #475569);
+    font-size: var(--font-size-xs);
+    color: var(--gray-600);
   }
 
   /* Story */
   .story-content {
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gray-light, #cbd5e1);
-    border-radius: var(--radius-md, 12px);
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 40px;
     box-shadow: var(--shadow-sm);
   }
   .story-content p {
     font-size: 15px;
     line-height: 2;
-    color: var(--gray-dark, #334155);
+    color: var(--gray-dark);
     margin-bottom: 20px;
   }
   .story-content p:last-child {
@@ -620,7 +620,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .story-highlight {
     color: var(--dark) !important;
     font-weight: 600;
-    font-size: 16px;
+    font-size: var(--font-size-base);
   }
   .story-quote {
     font-family: var(--font-display);
@@ -630,8 +630,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     text-align: center;
     padding: 24px 0;
     margin: 24px 0;
-    border-top: 1px solid var(--gray-lighter, #e2e8f0);
-    border-bottom: 1px solid var(--gray-lighter, #e2e8f0);
+    border-top: 1px solid var(--gray-lighter);
+    border-bottom: 1px solid var(--gray-lighter);
   }
   .story-quote:first-child {
     border-top: none;
@@ -641,14 +641,14 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .story-quote--resolve {
     font-size: 22px;
     color: var(--primary);
-    background: var(--primary-lighter, #eff6ff);
+    background: var(--primary-lighter);
     border: none;
-    border-radius: var(--radius-sm, 8px);
+    border-radius: var(--radius-sm);
     padding: 20px;
   }
   .story-final {
     text-align: center;
-    font-size: 16px;
+    font-size: var(--font-size-base);
     margin-top: 8px;
   }
   .story-final strong {
@@ -662,9 +662,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .philosophy-card {
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gray-light, #cbd5e1);
-    border-radius: var(--radius-md, 12px);
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 24px;
     transition: all 0.2s;
     box-shadow: var(--shadow-sm);
@@ -674,7 +674,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .philosophy-card h4 {
     font-family: var(--font-display);
-    font-size: 16px;
+    font-size: var(--font-size-base);
     font-weight: 700;
     color: var(--dark);
     margin-bottom: 12px;
@@ -690,9 +690,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     border-radius: 2px;
   }
   .philosophy-card p {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     line-height: 1.8;
-    color: var(--gray-600, #475569);
+    color: var(--gray-600);
   }
 
   /* Mottos */
@@ -702,16 +702,16 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 20px;
   }
   .motto-card {
-    background: var(--white, #ffffff);
-    border: 2px solid var(--gray-light, #cbd5e1);
-    border-radius: var(--radius-md, 12px);
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: var(--radius-md);
     padding: 32px;
     border-left: 4px solid var(--primary);
     box-shadow: var(--shadow-sm);
   }
   .motto-text {
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--dark);
     line-height: 1.7;
@@ -730,9 +730,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     opacity: 0.3;
   }
   .motto-meaning {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
     line-height: 1.8;
-    color: var(--gray-600, #475569);
+    color: var(--gray-600);
     padding-left: 0;
   }
 
@@ -782,7 +782,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
       padding: 28px 24px;
     }
     .story-quote {
-      font-size: 18px;
+      font-size: var(--font-size-lg);
     }
     .story-quote--resolve {
       font-size: 20px;
@@ -794,7 +794,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
       padding: 24px;
     }
     .motto-text {
-      font-size: 16px;
+      font-size: var(--font-size-base);
     }
     .about-work {
       padding: 28px 24px;
@@ -849,7 +849,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     .stat-card:hover,
     .qual-card:hover,
     .philosophy-card:hover {
-      border-color: var(--gray-lighter, #e2e8f0);
+      border-color: var(--gray-lighter);
     }
   }
 
@@ -899,8 +899,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     background: var(--gray-100);
   }
   :global([data-theme="dark"]) .section-title {
-    color: #f1f5f9;
-    -webkit-text-fill-color: #f1f5f9;
+    color: var(--dark);
+    -webkit-text-fill-color: var(--dark);
     background: none;
   }
   :global([data-theme="dark"]) .section-title::before {
