@@ -2,7 +2,7 @@
  * サービス詳細データ
  * 各サービスページで使用するデータを一元管理
  */
-import type { ServiceDetailData } from '../../shared/contracts/components';
+import type { ServiceDetailData } from '@shared/contracts/components';
 
 export const serviceData: Record<string, ServiceDetailData> = {
   'dx-consulting': {

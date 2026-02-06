@@ -167,7 +167,7 @@ integrations:
     
   x_twitter:
     enabled: true
-    handle: "@shishamo_tax"  # 仮
+    handle: "@shishamoex09"
     
   wiki:
     enabled: true
@@ -179,19 +179,23 @@ integrations:
 # === キャリア情報（プロフィール用）===
 career:
   experience_years:
-    it: 7
-    accounting: 2
+    it: 12
+    accounting: 1
     
   toeic: 815
   
   timeline:
-    - period: 2017-2024
-      title: Web開発エンジニア
-      description: フロントエンド・バックエンド両方を担当。大規模Webアプリケーションの設計・開発。
-      
-    - period: 2024-現在
-      title: 会計事務所
-      description: 記帳代行、決算業務、クライアント対応。税理士資格取得に向けて研鑽中。
+    - period: 2013年〜
+      title: Web開発エンジニア（兼務・副業含む）
+      description: フロントエンドからバックエンドまでフルスタックで開発。Webアプリケーション構築、API設計、データベース設計。
+
+    - period: 2020年〜2025年
+      title: SaaSスタートアップ PM / データサイエンティスト
+      description: データ分析基盤プロダクトのPMとして、経営KPIを踏まえたプロダクト戦略の立案から開発ディレクション、顧客への提案まで担当。
+
+    - period: 2025年〜現在
+      title: 会計事務所勤務
+      description: 税務・会計の実務経験を積みながら、税理士資格取得に向けて勉強中。中小企業の財務面から経営を支援。
 
 # === SEO設定 ===
 seo:

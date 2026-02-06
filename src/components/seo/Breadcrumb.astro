@@ -11,8 +11,8 @@
  * ]} />
  */
 
-import type { BreadcrumbProps, BreadcrumbItem } from '../../../shared/contracts/components';
-import type { BreadcrumbItemSchema } from '../../../shared/contracts/api';
+import type { BreadcrumbProps, BreadcrumbItem } from '@shared/contracts/components';
+import type { BreadcrumbItemSchema } from '@shared/contracts/api';
 
 interface Props extends BreadcrumbProps {
   showHome?: boolean;
@@ -25,7 +25,8 @@ const {
   separator = '/'
 } = Astro.props;
 
-const siteUrl = 'https://yoshikawa-masahiro.com';
+import { siteMetadata } from '../../lib/siteConfig';
+const siteUrl = siteMetadata.siteUrl;
 
 // ホームを先頭に追加
 const breadcrumbItems: BreadcrumbItem[] = showHome && items[0]?.href !== '/'

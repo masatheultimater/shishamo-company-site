@@ -19,24 +19,6 @@
   --sd-cta-btn-color: var(--cta-dark-bg);
 }
 
-/* Dark mode theme variables */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --sd-breadcrumb-bg: var(--gray-100);
-    --sd-hero-bg: var(--gray-100);
-    --sd-content-bg: var(--gray-50);
-    --sd-card-bg: var(--gray-100);
-    --sd-card-border: var(--gray-300);
-    --sd-card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    --sd-related-bg: var(--gray-100);
-    --sd-cta-bg: var(--gray-200);
-    --sd-cta-heading: var(--dark);
-    --sd-cta-text: var(--gray-500);
-    --sd-cta-btn-bg: var(--primary);
-    --sd-cta-btn-color: var(--btn-text-on-primary-dark);
-  }
-}
-
 [data-theme="dark"] {
   --sd-breadcrumb-bg: var(--gray-100);
   --sd-hero-bg: var(--gray-100);
