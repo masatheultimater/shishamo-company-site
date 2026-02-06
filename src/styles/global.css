@@ -147,6 +147,34 @@ ul {
   transform: translateX(4px);
 }
 
+/* ===== DISCOUNT BADGE ===== */
+.discount-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .discount-badge {
+  background: #ea580c;
+}
+
+/* ===== PRICING ORIGINAL (Strikethrough) ===== */
+.pricing-original {
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  color: var(--gray-400);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  margin-bottom: 0.25rem;
+}
+
 /* ===== SECTION COMMON ===== */
 .section-header {
   text-align: center;

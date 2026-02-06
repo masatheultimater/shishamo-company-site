@@ -61,10 +61,20 @@ const serviceSchemaData = {
       <div class="service-hero-icon">{data.icon}</div>
       <h1>{data.name}</h1>
       <p>{data.tagline}</p>
-      <div class="service-hero-price">
+      <div class={`service-hero-price${data.originalPriceRange ? ' service-hero-price--discounted' : ''}`}>
+        {data.originalPriceRange && <span class="original">{data.originalPriceRange}</span>}
         <span class="amount">{data.priceRange}</span>
         <span class="unit">{data.priceUnit}</span>
       </div>
+      {data.discountReason && (
+        <div class="service-hero-notice">
+          <span aria-hidden="true">📋</span>
+          <p>
+            {data.discountReason}
+            <br /><small>正式登録後は通常価格に改定予定です。</small>
+          </p>
+        </div>
+      )}
       <div class="service-hero-cta">
         <a href="/contact/" class="btn-primary">無料相談する →</a>
         <a href="/services/" class="btn-secondary">← サービス一覧</a>
@@ -119,8 +129,10 @@ const serviceSchemaData = {
         <h2>💰 料金プラン</h2>
         <div class="pricing-cards">
           {data.pricing.map((plan) => (
-            <div class={`pricing-card${plan.popular ? ' popular' : ''}`}>
+            <div class={`pricing-card${plan.popular ? ' popular' : ''}${plan.originalAmount ? ' discounted' : ''}`}>
+              {plan.discountLabel && <span class="discount-badge">{plan.discountLabel}</span>}
               <div class="pricing-plan">{plan.plan}</div>
+              {plan.originalAmount && <div class="pricing-original">{plan.originalAmount}<span>万円</span></div>}
               <div class="pricing-amount">{plan.amount}</div>
               <div class="pricing-unit">{plan.unit}</div>
               <p class="pricing-desc">{plan.description}</p>

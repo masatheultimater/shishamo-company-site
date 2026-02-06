@@ -69,6 +69,8 @@ export interface ServicePricingPlan {
   unit: string;
   description: string;
   popular?: boolean;
+  originalAmount?: string;
+  discountLabel?: string;
 }
 
 export interface RelatedService {
@@ -90,6 +92,8 @@ export interface ServiceDetailData {
   tagline: string;
   priceRange: string;
   priceUnit: string;
+  originalPriceRange?: string;
+  discountReason?: string;
 
   // Content Sections
   problems: string[];

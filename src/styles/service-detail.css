@@ -110,6 +110,42 @@
   flex-wrap: wrap;
 }
 
+/* ===== HERO DISCOUNT VARIANTS ===== */
+.service-hero-price--discounted {
+  border-color: var(--accent);
+}
+.service-hero-price .original {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--gray-400);
+  text-decoration: line-through;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  margin-right: 0.5rem;
+}
+
+.service-hero-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: var(--accent-light);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 650px;
+}
+.service-hero-notice p {
+  font-size: var(--font-size-sm);
+  color: var(--dark);
+  line-height: 1.6;
+  margin: 0;
+}
+.service-hero-notice small {
+  color: var(--gray);
+  font-size: var(--font-size-xs);
+}
+
 /* ===== SERVICE CONTENT ===== */
 .service-content {
   padding: var(--section-padding-y) var(--section-padding-x);
@@ -342,6 +378,25 @@
   line-height: 1.7;
 }
 
+/* Discounted pricing card */
+.pricing-card.discounted {
+  border-color: var(--accent);
+  position: relative;
+}
+.pricing-card .discount-badge {
+  position: absolute;
+  top: -12px;
+  right: 12px;
+}
+.pricing-card.popular.discounted .discount-badge {
+  right: 12px;
+}
+.pricing-card.discounted:not(.popular) .discount-badge {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 /* ===== RELATED GRID ===== */
 .related-grid {
   display: grid;
@@ -446,6 +501,14 @@
   }
   .pricing-amount {
     font-size: 2rem;
+  }
+  .service-hero-price .original {
+    font-size: 1rem;
+  }
+  .service-hero-notice {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
   }
 }
 
