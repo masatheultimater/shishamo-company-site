@@ -12,11 +12,6 @@
   --sd-card-border: var(--gray-light);
   --sd-card-hover-shadow: var(--shadow-lg);
   --sd-related-bg: var(--gray-lighter);
-  --sd-cta-bg: var(--cta-dark-bg);
-  --sd-cta-heading: var(--cta-dark-heading);
-  --sd-cta-text: var(--cta-dark-text);
-  --sd-cta-btn-bg: var(--gray-100);
-  --sd-cta-btn-color: var(--cta-dark-bg);
 }
 
 [data-theme="dark"] {
@@ -27,11 +22,6 @@
   --sd-card-border: var(--gray-300);
   --sd-card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   --sd-related-bg: var(--gray-100);
-  --sd-cta-bg: var(--gray-200);
-  --sd-cta-heading: var(--dark);
-  --sd-cta-text: var(--gray-500);
-  --sd-cta-btn-bg: var(--primary);
-  --sd-cta-btn-color: var(--btn-text-on-primary-dark);
 }
 
 /* ===== BREADCRUMB WRAPPER ===== */
@@ -396,59 +386,6 @@
   gap: 0.25rem;
 }
 
-/* ===== SERVICE CTA ===== */
-.service-cta {
-  padding: var(--section-padding-y) var(--section-padding-x);
-  background: var(--sd-cta-bg);
-  text-align: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-.service-cta::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -30%;
-  width: 80%;
-  height: 200%;
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
-}
-.service-cta > * {
-  position: relative;
-}
-.service-cta h2 {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--sd-cta-heading);
-}
-.service-cta p {
-  opacity: 0.85;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  color: var(--sd-cta-text);
-}
-.service-cta .btn-primary {
-  background: var(--sd-cta-btn-bg);
-  color: var(--sd-cta-btn-color);
-}
-.service-cta .btn-primary:hover {
-  background: var(--white);
-}
-
-/* Service CTA Dark Mode */
-[data-theme="dark"] .service-cta {
-  color: var(--dark);
-}
-[data-theme="dark"] .service-cta::before {
-  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
-}
-[data-theme="dark"] .service-cta .btn-primary:hover {
-  background: var(--primary-dark);
-  color: var(--btn-text-on-primary-dark);
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .breadcrumb-wrapper {
@@ -511,12 +448,6 @@
   }
   .pricing-amount {
     font-size: 2rem;
-  }
-  .service-cta {
-    padding: 3rem 1.5rem;
-  }
-  .service-cta h2 {
-    font-size: 1.5rem;
   }
 }
 

@@ -228,7 +228,7 @@ import Layout from '../../layouts/Layout.astro';
   </section>
 
   <!-- 診断CTA -->
-  <section class="diagnosis-section">
+  <section class="cta--dark diagnosis-section">
     <h2>どれが合うかわからない？</h2>
     <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
     <a href="/contact/" class="btn-primary">
@@ -341,25 +341,11 @@ import Layout from '../../layouts/Layout.astro';
   }
   .service-card:hover .service-link { gap: 0.75rem; }
 
-  /* Diagnosis Section */
-  .diagnosis-section {
-    padding: var(--section-padding-y) var(--section-padding-x);
-    background: var(--cta-dark-bg);
-    color: white; text-align: center; position: relative; overflow: hidden;
-  }
-  .diagnosis-section::before {
-    content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%;
-    background: radial-gradient(ellipse, rgba(255,255,255,0.05) 0%, transparent 70%);
-  }
+  /* Diagnosis Section — gradient bar (unique to this page) */
   .diagnosis-section::after {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--footer-accent), var(--footer-accent-secondary));
   }
-  .diagnosis-section > * { position: relative; }
-  .diagnosis-section h2 { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; color: var(--cta-dark-heading); }
-  .diagnosis-section p { opacity: 0.85; margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.8; color: var(--cta-dark-text); }
-  .diagnosis-section .btn-primary { background: var(--gray-100); color: var(--cta-dark-bg); }
-  .diagnosis-section .btn-primary:hover { background: var(--white); box-shadow: var(--shadow-lg); }
 
   /* Responsive */
   @media (max-width: 768px) {
@@ -375,8 +361,6 @@ import Layout from '../../layouts/Layout.astro';
     .service-cards { grid-template-columns: 1fr; gap: 1rem; }
     .service-card { padding: 1.5rem; }
 
-    .diagnosis-section { padding: 3rem 1.5rem; }
-    .diagnosis-section h2 { font-size: 1.5rem; }
   }
 
   @media (max-width: 480px) {
@@ -449,26 +433,6 @@ import Layout from '../../layouts/Layout.astro';
   }
   :global([data-theme="dark"]) .service-features li::before {
     color: var(--accent);
-  }
-  :global([data-theme="dark"]) .diagnosis-section {
-    background: var(--gray-200);
-  }
-  :global([data-theme="dark"]) .diagnosis-section h2 {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .diagnosis-section p {
-    color: var(--gray-500);
-  }
-  :global([data-theme="dark"]) .diagnosis-section .btn-primary {
-    background: var(--primary);
-    color: var(--btn-text-on-primary-dark);
-  }
-  :global([data-theme="dark"]) .diagnosis-section .btn-primary:hover {
-    background: var(--primary-dark);
-    box-shadow: var(--shadow-lg), var(--shadow-glow);
-  }
-  :global([data-theme="dark"]) .diagnosis-section::before {
-    background: radial-gradient(ellipse, rgba(0,0,0,0.15) 0%, transparent 70%);
   }
   :global([data-theme="dark"]) .service-card:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), var(--shadow-glow);
