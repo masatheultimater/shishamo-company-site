@@ -213,6 +213,11 @@
   --shadow-sm: var(--dark-shadow-sm);
   --shadow-md: var(--dark-shadow-md);
   --shadow-lg: var(--dark-shadow-lg);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 40px rgba(96,165,250,0.2);
+  --gradient-primary: linear-gradient(135deg, #60a5fa, #3b82f6);
+  --gradient-hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a5f 100%);
+  --gradient-cta-bg: linear-gradient(135deg, #334155 0%, #1e293b 50%, #0f172a 100%);
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-accent: var(--accent);

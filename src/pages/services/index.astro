@@ -274,7 +274,7 @@ import Layout from '../../layouts/Layout.astro';
   }
   .section-icon {
     font-size: 3.5rem; animation: float 3s ease-in-out infinite; flex-shrink: 0;
-    padding: 1rem; background: linear-gradient(135deg, var(--gray-lighter), white);
+    padding: 1rem; background: linear-gradient(135deg, var(--gray-lighter), var(--white));
     border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
   }
   .section-header-text h2 {
@@ -462,6 +462,16 @@ import Layout from '../../layouts/Layout.astro';
   :global([data-theme="dark"]) .diagnosis-section .btn-primary {
     background: var(--primary);
     color: var(--btn-text-on-primary-dark);
+  }
+  :global([data-theme="dark"]) .diagnosis-section .btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+  }
+  :global([data-theme="dark"]) .diagnosis-section::before {
+    background: radial-gradient(ellipse, rgba(0,0,0,0.15) 0%, transparent 70%);
+  }
+  :global([data-theme="dark"]) .service-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), var(--shadow-glow);
   }
 
 </style>

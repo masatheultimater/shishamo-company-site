@@ -279,7 +279,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  box-shadow: 0 0 0 4px var(--light);
+  box-shadow: 0 0 0 4px var(--sd-content-bg);
 }
 .flow-item h3 {
   font-size: 1.1rem;
@@ -435,6 +435,18 @@
 }
 .service-cta .btn-primary:hover {
   background: var(--white);
+}
+
+/* Service CTA Dark Mode */
+[data-theme="dark"] .service-cta {
+  color: var(--dark);
+}
+[data-theme="dark"] .service-cta::before {
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+}
+[data-theme="dark"] .service-cta .btn-primary:hover {
+  background: var(--primary-dark);
+  color: #fff;
 }
 
 /* ===== RESPONSIVE ===== */
