@@ -10,13 +10,10 @@
  * <StructuredData type="Service" data={serviceData} />
  */
 
-import type {
-  OrganizationSchema,
-  PersonSchema,
-  ArticleSchema,
-  BreadcrumbSchema,
-  ServiceSchema
-} from '@shared/contracts/api';
+// Structured data types are available in @shared/contracts/api
+// (OrganizationSchema, PersonSchema, ArticleSchema, BreadcrumbSchema, ServiceSchema)
+// but not used here because this component uses a string-based type discriminator
+// with Record<string, unknown> for maximum flexibility with JSON-LD data.
 
 import organizationData from '../../data/schema/organization.json';
 import personData from '../../data/schema/person.json';
