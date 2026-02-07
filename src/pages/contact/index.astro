@@ -1,7 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import FAQSection from '../../components/ui/FAQSection.astro';
 import { externalAPIs } from '../../lib/siteConfig';
 import '../../styles/forms.css';
+
+const contactFAQ = [
+  { question: '相談は本当に無料ですか？', answer: 'はい、初回30分のオンライン相談は完全無料です。ご契約前に費用が発生することはありません。' },
+  { question: 'どんな規模の会社でも対応できますか？', answer: '個人事業主から従業員100名程度の中小企業まで対応しています。大企業向けの複雑な案件は、信頼できる専門家をご紹介することも可能です。' },
+  { question: 'リモートでの対応は可能ですか？', answer: 'もちろんです。Zoom、Google Meet、Microsoft Teamsなどに対応しています。全国どこからでもご相談いただけます。' },
+  { question: 'まだ何を相談すればいいかわかりません', answer: 'それでも大丈夫です！「なんとなく困っている」「もっと良くなりそうな気がする」という段階でもお気軽にご相談ください。一緒に課題を整理するところから始められます。' },
+];
 
 const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 ---
@@ -119,44 +127,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   </section>
 
   <!-- FAQ -->
-  <section class="faq-section">
-    <div class="faq-inner">
-      <h2 class="faq-title">よくあるご質問</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            相談は本当に無料ですか？
-          </div>
-          <p class="faq-a">はい、初回30分のオンライン相談は完全無料です。ご契約前に費用が発生することはありません。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            どんな規模の会社でも対応できますか？
-          </div>
-          <p class="faq-a">個人事業主から従業員100名程度の中小企業まで対応しています。大企業向けの複雑な案件は、信頼できる専門家をご紹介することも可能です。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            リモートでの対応は可能ですか？
-          </div>
-          <p class="faq-a">もちろんです。Zoom、Google Meet、Microsoft Teamsなどに対応しています。全国どこからでもご相談いただけます。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            まだ何を相談すればいいかわかりません
-          </div>
-          <p class="faq-a">それでも大丈夫です！「なんとなく困っている」「もっと良くなりそうな気がする」という段階でもお気軽にご相談ください。一緒に課題を整理するところから始められます。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <FAQSection title="よくあるご質問" items={contactFAQ} />
 </Layout>
 
 <style>
@@ -205,21 +176,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   .response-time { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin: 0.5rem 0; }
   .response-card p { opacity: 0.95; }
 
-  /* FAQ Section */
-  .faq-section { padding: 4rem 2rem 5rem; background: var(--white); }
-  .faq-inner { max-width: 800px; margin: 0 auto; }
-  .faq-title { font-family: var(--font-display); font-size: 1.5rem; text-align: center; margin-bottom: 2rem; }
-  .faq-list { display: flex; flex-direction: column; gap: 1rem; }
-  .faq-item { background: var(--light); border-radius: var(--radius-md); padding: 1.5rem; }
-  .faq-q { font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem; }
-  .faq-q-badge {
-    width: 28px; height: 28px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
-  }
-  .faq-a { font-size: 0.95rem; color: var(--gray); line-height: 1.8; padding-left: calc(28px + 0.75rem); }
-
   /* ===== DARK MODE ===== */
   :global([data-theme="dark"]) .contact-section { background: var(--gray-50); }
   :global([data-theme="dark"]) .contact-form-card {
@@ -238,10 +194,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     color: #ffffff;
   }
   :global([data-theme="dark"]) .response-card h3 { color: #ffffff; }
-  :global([data-theme="dark"]) .faq-section { background: var(--gray-100); }
-  :global([data-theme="dark"]) .faq-item { background: var(--gray-50); }
-  :global([data-theme="dark"]) .faq-a { color: var(--gray-500); }
-
   /* Responsive */
   @media (max-width: 768px) {
     .contact-section { padding: 3rem 1.5rem; }
@@ -250,13 +202,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     .sidebar-card { flex: 1; min-width: 200px; }
     .contact-form-card { padding: 2rem 1.5rem; }
     .contact-form-card h2 { font-size: 1.35rem; }
-
-    .faq-section { padding: 3rem 1.5rem; }
-    .faq-title { font-size: 1.35rem; }
-    .faq-item { padding: 1.25rem; }
-    .faq-q { font-size: 0.95rem; }
-    .faq-a { font-size: 0.9rem; padding-left: calc(24px + 0.5rem); }
-    .faq-q-badge { width: 24px; height: 24px; font-size: 0.7rem; }
   }
 
   @media (max-width: 480px) {
@@ -264,6 +209,5 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     .contact-sidebar { flex-direction: column; }
     .sidebar-card { min-width: auto; }
     .contact-form-card { padding: 1.5rem 1rem; }
-    .faq-section { padding: 2.5rem 1rem; }
   }
 </style>
