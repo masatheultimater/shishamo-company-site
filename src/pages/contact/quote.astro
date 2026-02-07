@@ -345,7 +345,7 @@ const quoteFAQ = [
 
   /* Response Card */
   .response-card {
-    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    background: var(--secondary-dark);
     color: white;
     border: none;
     position: relative;
@@ -391,15 +391,15 @@ const quoteFAQ = [
     border-color: var(--gray-300);
     box-shadow: var(--shadow-lg);
   }
-  :global([data-theme="dark"]) .contact-form-card > p { color: var(--gray-500); }
+  :global([data-theme="dark"]) .contact-form-card > p { color: var(--gray-600); }
   :global([data-theme="dark"]) .sidebar-card {
     background: var(--gray-100);
     border-color: var(--gray-300);
   }
   :global([data-theme="dark"]) .sidebar-card:hover { border-color: var(--secondary); }
-  :global([data-theme="dark"]) .sidebar-card p { color: var(--gray-500); }
+  :global([data-theme="dark"]) .sidebar-card p { color: var(--gray-600); }
   :global([data-theme="dark"]) .response-card {
-    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    background: var(--secondary-dark);
   }
   :global([data-theme="dark"]) .response-card h3,
   :global([data-theme="dark"]) .response-card p { color: #ffffff; }

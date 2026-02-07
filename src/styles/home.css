@@ -516,7 +516,7 @@
   background: var(--overlay-dark-gradient);
 }
 [data-theme="dark"] .why-me .section-label {
-  color: var(--gray-500);
+  color: var(--gray-600);
 }
 [data-theme="dark"] .why-me .section-title {
   color: var(--dark);
