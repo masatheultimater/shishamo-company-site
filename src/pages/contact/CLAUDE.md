@@ -7,5 +7,6 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #357 | 12:41 PM | 🔵 | Service detail page CSS architecture | ~513 |
+| #352 | 12:35 PM | 🔄 | SVG Components Extracted into Reusable Astro Components | ~361 |
+| #338 | 12:24 PM | 🔴 | Fixed four type safety and CSS ownership violations | ~198 |
 </claude-mem-context>
