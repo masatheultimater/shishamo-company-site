@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { externalAPIs } from '../../lib/siteConfig';
+import ArrowIcon from '../../components/ui/ArrowIcon.astro';
 import '../../styles/forms.css';
 
 const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
@@ -127,9 +128,9 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
             </div>
           </div>
 
-          <button type="submit" class="btn-primary">
+          <button type="submit" class="btn-primary quote-submit-btn">
             お見積もりを依頼する
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <ArrowIcon size={14} />
           </button>
         </form>
       </div>
@@ -322,7 +323,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     color: var(--gray);
   }
 
-  .btn-primary {
+  .quote-submit-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -338,13 +339,13 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     cursor: pointer;
     width: 100%;
   }
-  .btn-primary:hover {
+  .quote-submit-btn:hover {
     background: var(--secondary-dark);
   }
-  .btn-primary svg {
+  .quote-submit-btn svg {
     transition: transform 0.2s;
   }
-  .btn-primary:hover svg {
+  .quote-submit-btn:hover svg {
     transform: translateX(4px);
   }
 
@@ -506,11 +507,11 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     border-color: var(--gray-300);
   }
   :global([data-theme="dark"]) .faq-a { color: var(--gray-500); }
-  :global([data-theme="dark"]) .btn-primary {
+  :global([data-theme="dark"]) .quote-submit-btn {
     background: var(--secondary);
     color: #ffffff;
   }
-  :global([data-theme="dark"]) .btn-primary:hover {
+  :global([data-theme="dark"]) .quote-submit-btn:hover {
     background: var(--secondary-dark);
   }
 

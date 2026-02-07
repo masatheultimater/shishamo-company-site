@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { images } from '../lib/siteConfig';
+import ArrowIcon from '../components/ui/ArrowIcon.astro';
 import '../styles/home.css';
 ---
 
@@ -23,7 +24,7 @@ import '../styles/home.css';
           中小企業の「なんとかしたい」に寄り添い、伴走支援いたします。
         </p>
         <div class="hero-cta">
-          <a href="/contact/" class="btn-primary">無料相談を予約する <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/contact/" class="btn-primary">無料相談を予約する <ArrowIcon size={14} /></a>
           <a href="/services/" class="btn-secondary">サービス一覧を見る</a>
         </div>
       </div>
@@ -114,32 +115,32 @@ import '../styles/home.css';
       <div class="problem-grid">
         <a href="/services/#dx" class="problem-card">
           <span class="problem-text">DXって何から始めればいいかわからない</span>
-          <svg class="problem-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <ArrowIcon class="problem-arrow" />
         </a>
         <a href="/services/#ai" class="problem-card">
           <span class="problem-text">ChatGPTを業務に活用したい</span>
-          <svg class="problem-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <ArrowIcon class="problem-arrow" />
         </a>
         <a href="/services/#data" class="problem-card">
           <span class="problem-text">データはあるけど活用できていない</span>
-          <svg class="problem-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <ArrowIcon class="problem-arrow" />
         </a>
         <a href="/services/#accounting" class="problem-card">
           <span class="problem-text">経理業務の負担を減らしたい</span>
-          <svg class="problem-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <ArrowIcon class="problem-arrow" />
         </a>
         <a href="/services/#management" class="problem-card">
           <span class="problem-text">経営を客観的に分析してほしい</span>
-          <svg class="problem-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <ArrowIcon class="problem-arrow" />
         </a>
         <a href="/services/#subsidy" class="problem-card">
           <span class="problem-text">補助金を使いたいが申請が難しい</span>
-          <svg class="problem-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <ArrowIcon class="problem-arrow" />
         </a>
       </div>
       <div class="problem-cta">
         <p>どれに当てはまるかわからなくても大丈夫です。まずはお気軽にご相談ください。</p>
-        <a href="/contact/" class="btn-primary">無料相談を予約する <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="/contact/" class="btn-primary">無料相談を予約する <ArrowIcon size={14} /></a>
       </div>
     </div>
   </section>
@@ -163,7 +164,7 @@ import '../styles/home.css';
             <li>生成AI導入支援</li>
             <li>Webサイト・アプリ開発</li>
           </ul>
-          <a href="/services/#dx" class="service-link">詳しく見る <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/services/#dx" class="service-link">詳しく見る <ArrowIcon size={14} /></a>
         </div>
         <div class="service-card">
           <div class="service-number">02</div>
@@ -174,7 +175,7 @@ import '../styles/home.css';
             <li>KPIダッシュボード構築</li>
             <li>業務プロセスの可視化</li>
           </ul>
-          <a href="/services/#data" class="service-link">詳しく見る <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/services/#data" class="service-link">詳しく見る <ArrowIcon size={14} /></a>
         </div>
         <div class="service-card">
           <div class="service-number">03</div>
@@ -185,11 +186,11 @@ import '../styles/home.css';
             <li>補助金申請サポート</li>
             <li>記帳代行・経理支援</li>
           </ul>
-          <a href="/services/#management" class="service-link">詳しく見る <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="/services/#management" class="service-link">詳しく見る <ArrowIcon size={14} /></a>
         </div>
       </div>
       <div class="services-all">
-        <a href="/services/" class="btn-secondary">すべてのサービスを見る <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="/services/" class="btn-secondary">すべてのサービスを見る <ArrowIcon size={14} /></a>
       </div>
     </div>
   </section>
@@ -252,7 +253,7 @@ import '../styles/home.css';
         「こんなこと相談していいのかな？」という内容でも大歓迎です。<br>
         初回30分の無料相談で、御社の課題を一緒に整理しましょう。
       </p>
-      <a href="/contact/" class="btn-primary">無料相談を予約する <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="/contact/" class="btn-primary">無料相談を予約する <ArrowIcon size={14} /></a>
       <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
     </div>
   </section>
