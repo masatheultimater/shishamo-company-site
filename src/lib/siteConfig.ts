@@ -129,6 +129,7 @@ export const siteMetadata = {
  */
 export const externalAPIs = {
   formspreeEndpoint: 'https://formspree.io/f/mojwzwea',
+  contactEmail: 'info@shishamo-company.com',
 } as const;
 
 /**

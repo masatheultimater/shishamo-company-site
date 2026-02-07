@@ -5,17 +5,12 @@
  */
 import {
   siteBranding,
-  socialLinks,
   footerServiceLinks,
   footerInfoLinks,
   footerContactLinks,
 } from '../../lib/siteConfig';
 
-interface Props {
-  showNewsletter?: boolean;
-}
-
-const { showNewsletter = false } = Astro.props;
+interface Props {}
 ---
 
 <footer class="footer">
@@ -77,17 +72,6 @@ const { showNewsletter = false } = Astro.props;
       </ul>
     </div>
   </div>
-
-  {showNewsletter && (
-    <div class="footer__newsletter">
-      <h4>ニュースレター</h4>
-      <p>最新情報をお届けします</p>
-      <form class="newsletter-form">
-        <input type="email" placeholder="メールアドレス" required />
-        <button type="submit">登録</button>
-      </form>
-    </div>
-  )}
 
   <div class="footer__bottom">
     <p>&copy; {siteBranding.year} {siteBranding.ownerName}（{siteBranding.ownerNickname}）All rights reserved.</p>
@@ -182,61 +166,6 @@ const { showNewsletter = false } = Astro.props;
   .footer__links a:hover {
     color: var(--footer-heading);
     padding-left: 4px;
-  }
-
-  /* Newsletter (optional) */
-  .footer__newsletter {
-    max-width: var(--container-lg);
-    margin: 48px auto;
-    text-align: center;
-    padding: 32px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-md);
-  }
-
-  .footer__newsletter h4 {
-    color: var(--footer-heading);
-    margin-bottom: 8px;
-  }
-
-  .footer__newsletter p {
-    margin-bottom: 16px;
-    font-size: 14px;
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .newsletter-form input {
-    padding: 12px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    min-width: 250px;
-  }
-
-  .newsletter-form input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .newsletter-form button {
-    padding: 12px 24px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .newsletter-form button:hover {
-    background: var(--primary-light);
   }
 
   /* Bottom Section */

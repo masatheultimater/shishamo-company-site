@@ -28,7 +28,6 @@ interface Props {
   // Layout customization
   currentPage?: 'home' | 'services' | 'profile' | 'blog' | 'contact';
   transparentHeader?: boolean;
-  showNewsletter?: boolean;
   showOrganizationSchema?: boolean;
   showPersonSchema?: boolean;
 }
@@ -45,7 +44,6 @@ const {
   modifiedTime,
   currentPage,
   transparentHeader = false,
-  showNewsletter = false,
   showOrganizationSchema = true,
   showPersonSchema = false,
 } = Astro.props;
@@ -126,7 +124,7 @@ const fullTitle = title.includes(seoDefaults.siteName)
   </main>
 
   <!-- Footer -->
-  <Footer showNewsletter={showNewsletter} />
+  <Footer />
 </body>
 </html>
 
