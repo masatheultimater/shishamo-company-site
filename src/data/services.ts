@@ -46,8 +46,8 @@ export const serviceData: Record<string, ServiceDetailData> = {
     title: 'DX推進サポート',
     metaDescription: '「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。',
     icon: '🚀',
-    priceRange: '13.5〜27',
-    originalPriceRange: '15〜30',
+    priceRange: '20〜40',
+    originalPriceRange: '25〜50',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
     priceUnit: '万円/月',
     problems: [
@@ -69,9 +69,9 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { title: '定着化・改善サイクル', description: '導入後の定着化と効果測定、継続的な改善をサポート。自走できる体制構築を目指します。' },
     ],
     pricing: [
-      { plan: 'スポット相談', amount: '2.7', originalAmount: '3', unit: '万円〜/回', description: 'まずは相談だけしたい方向け。課題整理や方向性のアドバイスを行います。', discountLabel: '登録準備価格' },
-      { plan: '月額顧問', amount: '13.5', originalAmount: '15', unit: '万円〜/月', description: '継続的な伴走支援。定期的なミーティングと随時相談で着実に変革を推進。', popular: true, discountLabel: '登録準備価格' },
-      { plan: 'プロジェクト型', amount: '27', originalAmount: '30', unit: '万円〜/PJ', description: '特定のプロジェクト（システム導入等）に集中して支援。期間・範囲を明確に。', discountLabel: '登録準備価格' },
+      { plan: 'スポット相談', amount: '4', originalAmount: '5', unit: '万円〜/回', description: 'まずは相談だけしたい方向け。課題整理や方向性のアドバイスを行います。', discountLabel: '登録準備価格' },
+      { plan: '月額顧問', amount: '20', originalAmount: '25', unit: '万円〜/月', description: '継続的な伴走支援。定期的なミーティングと随時相談で着実に変革を推進。', popular: true, discountLabel: '登録準備価格' },
+      { plan: 'プロジェクト型', amount: '40', originalAmount: '50', unit: '万円〜/PJ', description: '特定のプロジェクト（システム導入等）に集中して支援。期間・範囲を明確に。', discountLabel: '登録準備価格' },
     ],
     relatedServices: [
       { href: '/services/ai-consulting/', icon: '🤖', name: '生成AI導入支援', description: 'ChatGPT・Claudeを業務に活かす方法を設計から導入まで支援。' },
@@ -88,7 +88,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
     title: '生成AI導入支援',
     metaDescription: 'ChatGPT・Claude等の生成AIを業務に活かす方法を、設計から導入、定着まで一貫してサポートします。',
     icon: '🤖',
-    priceRange: '10〜30',
+    priceRange: '15〜30',
     priceUnit: '万円/月',
     problems: [
       '生成AIの話題は聞くけど、自社でどう使えばいいかわからない',
@@ -109,9 +109,9 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { title: '本格導入・定着化', description: '研修実施と運用ルール整備で、組織への定着を図ります。' },
     ],
     pricing: [
-      { plan: 'スポット相談', amount: '3', unit: '万円〜/回', description: 'AI活用の方向性を相談したい方向け。' },
-      { plan: '導入支援パック', amount: '20', unit: '万円〜', description: '計画策定から研修まで一気通貫でサポート。', popular: true },
-      { plan: '継続サポート', amount: '10', unit: '万円〜/月', description: '導入後の運用改善と最新情報の提供。' },
+      { plan: 'スポット相談', amount: '5', unit: '万円〜/回', description: 'AI活用の方向性を相談したい方向け。' },
+      { plan: '導入支援パック', amount: '30', unit: '万円〜', description: '計画策定から研修まで一気通貫でサポート。', popular: true },
+      { plan: '継続サポート', amount: '15', unit: '万円〜/月', description: '導入後の運用改善と最新情報の提供。' },
     ],
     relatedServices: [
       { href: '/services/ai-tools/', icon: '🛠️', name: 'AIツール開発', description: '御社専用のAIツールを開発・カスタマイズ。' },
@@ -128,8 +128,8 @@ export const serviceData: Record<string, ServiceDetailData> = {
     title: 'IT戦略立案',
     metaDescription: '経営戦略とIT投資を連動させ、中長期的な視点でのIT戦略を策定します。',
     icon: '🎯',
-    priceRange: '13.5〜45',
-    originalPriceRange: '15〜50',
+    priceRange: '20〜40',
+    originalPriceRange: '25〜50',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
     priceUnit: '万円',
     problems: [
@@ -151,8 +151,8 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { title: '実行支援', description: '戦略実行のモニタリングと適宜見直しを行います。' },
     ],
     pricing: [
-      { plan: 'IT戦略策定', amount: '45', originalAmount: '50', unit: '万円〜', description: '経営戦略に基づいたIT戦略とロードマップを策定。', popular: true, discountLabel: '登録準備価格' },
-      { plan: '年間顧問', amount: '13.5', originalAmount: '15', unit: '万円〜/月', description: '戦略の実行支援と定期的な見直しをサポート。', discountLabel: '登録準備価格' },
+      { plan: 'IT戦略策定', amount: '40', originalAmount: '50', unit: '万円〜', description: '経営戦略に基づいたIT戦略とロードマップを策定。', popular: true, discountLabel: '登録準備価格' },
+      { plan: '年間顧問', amount: '20', originalAmount: '25', unit: '万円〜/月', description: '戦略の実行支援と定期的な見直しをサポート。', discountLabel: '登録準備価格' },
     ],
     relatedServices: [
       { href: '/services/dx-consulting/', icon: '🚀', name: 'DX推進サポート', description: 'IT戦略に基づくDX施策の実行を支援。' },
@@ -331,8 +331,8 @@ export const serviceData: Record<string, ServiceDetailData> = {
     title: '経営支援',
     metaDescription: '中小企業診断士として、経営課題の整理から改善施策の実行まで伴走支援します。',
     icon: '📈',
-    priceRange: '8〜24',
-    originalPriceRange: '10〜30',
+    priceRange: '8〜20',
+    originalPriceRange: '10〜25',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
     priceUnit: '万円/月',
     problems: [
@@ -354,9 +354,9 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { title: '実行支援', description: '施策の実行を伴走しながらサポートします。' },
     ],
     pricing: [
-      { plan: 'スポット相談', amount: '2.4', originalAmount: '3', unit: '万円〜/回', description: '特定のテーマについての相談。', discountLabel: '登録準備価格' },
+      { plan: 'スポット相談', amount: '4', originalAmount: '5', unit: '万円〜/回', description: '特定のテーマについての相談。', discountLabel: '登録準備価格' },
       { plan: '月次顧問', amount: '8', originalAmount: '10', unit: '万円〜/月', description: '定期的なミーティングと随時相談。', popular: true, discountLabel: '登録準備価格' },
-      { plan: 'プロジェクト型', amount: '24', originalAmount: '30', unit: '万円〜/PJ', description: '特定の課題に集中して取り組む。', discountLabel: '登録準備価格' },
+      { plan: 'プロジェクト型', amount: '20', originalAmount: '25', unit: '万円〜/PJ', description: '特定の課題に集中して取り組む。', discountLabel: '登録準備価格' },
     ],
     relatedServices: [
       { href: '/services/dx-consulting/', icon: '🚀', name: 'DX推進サポート', description: 'IT活用による経営改善を推進。' },
@@ -434,7 +434,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       { plan: 'ライト', amount: '2', unit: '万円〜/月', description: '仕訳数50件/月まで。小規模事業者向け。' },
-      { plan: 'スタンダード', amount: '3.5', unit: '万円〜/月', description: '仕訳数100件/月まで。', popular: true },
+      { plan: 'スタンダード', amount: '3', unit: '万円〜/月', description: '仕訳数100件/月まで。', popular: true },
       { plan: 'プロ', amount: '5', unit: '万円〜/月', description: '仕訳数200件/月まで。成長企業向け。' },
     ],
     relatedServices: [
