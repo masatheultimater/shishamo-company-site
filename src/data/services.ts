@@ -4,14 +4,48 @@
  */
 import type { ServiceDetailData } from '@shared/contracts/components';
 
+/** Default CTA title shared across all services */
+const DEFAULT_CTA_TITLE = 'まずは無料相談から';
+
+/**
+ * Input type for service data definition.
+ * - `name` defaults to `title`
+ * - `tagline` defaults to `metaDescription`
+ * - `cta.title` defaults to 'まずは無料相談から'
+ */
+type ServiceInput = Omit<ServiceDetailData, 'name' | 'tagline' | 'cta'> & {
+  name?: string;
+  tagline?: string;
+  cta: {
+    title?: string;
+    description: string;
+  };
+};
+
+/**
+ * Factory that applies defaults to produce a full ServiceDetailData.
+ * - name falls back to title
+ * - tagline falls back to metaDescription
+ * - cta.title falls back to DEFAULT_CTA_TITLE
+ */
+function createServiceData(input: ServiceInput): ServiceDetailData {
+  return {
+    ...input,
+    name: input.name ?? input.title,
+    tagline: input.tagline ?? input.metaDescription,
+    cta: {
+      title: input.cta.title ?? DEFAULT_CTA_TITLE,
+      description: input.cta.description,
+    },
+  };
+}
+
 export const serviceData: Record<string, ServiceDetailData> = {
-  'dx-consulting': {
+  'dx-consulting': createServiceData({
     id: 'dx-consulting',
     title: 'DX推進サポート',
     metaDescription: '「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。',
     icon: '🚀',
-    name: 'DX推進サポート',
-    tagline: '「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。',
     priceRange: '13.5〜27',
     originalPriceRange: '15〜30',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
@@ -45,18 +79,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/subsidy-support/', icon: '💰', name: '補助金申請サポート', description: 'IT導入補助金等を活用してDX投資の負担を軽減。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '御社の課題をお聞かせください。<br>最適なDX推進の進め方を一緒に考えましょう。',
     },
-  },
+  }),
 
-  'ai-consulting': {
+  'ai-consulting': createServiceData({
     id: 'ai-consulting',
     title: '生成AI導入支援',
     metaDescription: 'ChatGPT・Claude等の生成AIを業務に活かす方法を、設計から導入、定着まで一貫してサポートします。',
     icon: '🤖',
-    name: '生成AI導入支援',
-    tagline: 'ChatGPT・Claude等の生成AIを業務に活かす方法を、設計から導入、定着まで一貫してサポートします。',
     priceRange: '10〜30',
     priceUnit: '万円/月',
     problems: [
@@ -88,18 +119,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/data-analysis/', icon: '📊', name: '経営データ分析', description: 'AIと組み合わせたデータ活用で意思決定を高度化。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '生成AIの活用方法について、お気軽にご相談ください。<br>御社に合った導入プランをご提案します。',
     },
-  },
+  }),
 
-  'it-strategy': {
+  'it-strategy': createServiceData({
     id: 'it-strategy',
     title: 'IT戦略立案',
     metaDescription: '経営戦略とIT投資を連動させ、中長期的な視点でのIT戦略を策定します。',
     icon: '🎯',
-    name: 'IT戦略立案',
-    tagline: '経営戦略とIT投資を連動させ、中長期的な視点でのIT戦略を策定します。',
     priceRange: '13.5〜45',
     originalPriceRange: '15〜50',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
@@ -132,18 +160,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/data-analysis/', icon: '📊', name: '経営データ分析', description: 'データに基づく戦略立案を支援。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '御社のIT戦略について、お気軽にご相談ください。<br>経営目標達成に向けた最適なプランをご提案します。',
     },
-  },
+  }),
 
-  'ai-tools': {
+  'ai-tools': createServiceData({
     id: 'ai-tools',
     title: 'AIツール開発',
     metaDescription: '御社の業務に特化したAIツールを開発・カスタマイズ。ChatGPTやClaudeを活用した業務効率化ツールを構築します。',
     icon: '🛠️',
-    name: 'AIツール開発',
-    tagline: '御社の業務に特化したAIツールを開発・カスタマイズ。ChatGPTやClaudeを活用した業務効率化ツールを構築します。',
     priceRange: '30〜100',
     priceUnit: '万円/PJ',
     problems: [
@@ -175,18 +200,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/dx-consulting/', icon: '🚀', name: 'DX推進サポート', description: 'AIを活用したDX全体の推進。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '御社専用のAIツール開発について、お気軽にご相談ください。<br>要件をヒアリングの上、最適な提案をいたします。',
     },
-  },
+  }),
 
-  'web-development': {
+  'web-development': createServiceData({
     id: 'web-development',
     title: 'Web開発・システム構築',
     metaDescription: 'コーポレートサイトから業務システムまで、御社のニーズに合わせたWeb開発・システム構築を行います。',
     icon: '🌐',
-    name: 'Web開発・システム構築',
-    tagline: 'コーポレートサイトから業務システムまで、御社のニーズに合わせたWeb開発・システム構築を行います。',
     priceRange: '30〜200',
     priceUnit: '万円/PJ',
     problems: [
@@ -218,18 +240,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/kpi-dashboard/', icon: '📊', name: 'KPIダッシュボード構築', description: '経営指標を可視化するダッシュボード。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: 'Webサイト・システム開発について、お気軽にご相談ください。<br>御社の要件に合った最適な提案をいたします。',
     },
-  },
+  }),
 
-  'data-analysis': {
+  'data-analysis': createServiceData({
     id: 'data-analysis',
     title: '経営データ分析',
     metaDescription: '売上・顧客・業務データを分析し、経営判断に活かせるインサイトを提供します。',
     icon: '📊',
-    name: '経営データ分析',
-    tagline: '売上・顧客・業務データを分析し、経営判断に活かせるインサイトを提供します。',
     priceRange: '8〜40',
     originalPriceRange: '10〜50',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
@@ -263,18 +282,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/management-consulting/', icon: '📈', name: '経営支援', description: 'データに基づく経営改善の支援。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: 'データ活用について、お気軽にご相談ください。<br>御社のデータから価値を引き出すお手伝いをします。',
     },
-  },
+  }),
 
-  'kpi-dashboard': {
+  'kpi-dashboard': createServiceData({
     id: 'kpi-dashboard',
     title: 'KPIダッシュボード構築',
     metaDescription: '経営指標をリアルタイムで可視化するダッシュボードを構築し、データドリブンな意思決定を支援します。',
     icon: '📊',
-    name: 'KPIダッシュボード構築',
-    tagline: '経営指標をリアルタイムで可視化するダッシュボードを構築し、データドリブンな意思決定を支援します。',
     priceRange: '30〜80',
     priceUnit: '万円/PJ',
     problems: [
@@ -306,18 +322,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/dx-consulting/', icon: '🚀', name: 'DX推進サポート', description: 'データ活用を軸としたDX推進。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: 'KPIダッシュボードについて、お気軽にご相談ください。<br>御社の経営判断を支えるダッシュボードを構築します。',
     },
-  },
+  }),
 
-  'management-consulting': {
+  'management-consulting': createServiceData({
     id: 'management-consulting',
     title: '経営支援',
     metaDescription: '中小企業診断士として、経営課題の整理から改善施策の実行まで伴走支援します。',
     icon: '📈',
-    name: '経営支援',
-    tagline: '中小企業診断士として、経営課題の整理から改善施策の実行まで伴走支援します。',
     priceRange: '8〜24',
     originalPriceRange: '10〜30',
     discountReason: '中小企業診断士の登録準備中につき特別価格でご提供',
@@ -351,18 +364,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/subsidy-support/', icon: '💰', name: '補助金申請サポート', description: '経営改善に活用できる補助金を申請。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '経営のお悩みをお聞かせください。<br>一緒に課題を整理し、改善の道筋を考えましょう。',
     },
-  },
+  }),
 
-  'subsidy-support': {
+  'subsidy-support': createServiceData({
     id: 'subsidy-support',
     title: '補助金申請サポート',
     metaDescription: 'IT導入補助金、ものづくり補助金など、御社の事業に活用できる補助金の申請を支援します。',
     icon: '💰',
-    name: '補助金申請サポート',
-    tagline: 'IT導入補助金、ものづくり補助金など、御社の事業に活用できる補助金の申請を支援します。',
     priceRange: '成功報酬',
     priceUnit: '10〜15%',
     problems: [
@@ -393,18 +403,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/web-development/', icon: '🌐', name: 'Web開発・システム構築', description: '補助金を活用したシステム導入。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '補助金活用について、お気軽にご相談ください。<br>御社の事業に合った補助金をご提案します。',
     },
-  },
+  }),
 
-  'bookkeeping': {
+  'bookkeeping': createServiceData({
     id: 'bookkeeping',
     title: '記帳代行',
     metaDescription: '日々の経理業務を代行し、経営者が本業に集中できる環境を作ります。',
     icon: '📒',
-    name: '記帳代行',
-    tagline: '日々の経理業務を代行し、経営者が本業に集中できる環境を作ります。',
     priceRange: '2〜5',
     priceUnit: '万円/月',
     problems: [
@@ -436,18 +443,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/management-consulting/', icon: '📈', name: '経営支援', description: '財務面からの経営改善支援。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: '経理業務の負担軽減について、お気軽にご相談ください。<br>御社に合ったプランをご提案します。',
     },
-  },
+  }),
 
-  'cloud-accounting': {
+  'cloud-accounting': createServiceData({
     id: 'cloud-accounting',
     title: 'クラウド会計導入',
     metaDescription: 'freee、マネーフォワードなどのクラウド会計ソフトの導入・移行を支援します。',
     icon: '☁️',
-    name: 'クラウド会計導入',
-    tagline: 'freee、マネーフォワードなどのクラウド会計ソフトの導入・移行を支援します。',
     priceRange: '10〜30',
     priceUnit: '万円/PJ',
     problems: [
@@ -479,10 +483,9 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/dx-consulting/', icon: '🚀', name: 'DX推進サポート', description: '経理DXを含む全社DXの推進。' },
     ],
     cta: {
-      title: 'まずは無料相談から',
       description: 'クラウド会計の導入について、お気軽にご相談ください。<br>御社に最適なソフトと導入プランをご提案します。',
     },
-  },
+  }),
 };
 
 /**
