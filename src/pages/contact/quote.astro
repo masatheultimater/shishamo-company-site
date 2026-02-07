@@ -1,9 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import FAQSection from '../../components/ui/FAQSection.astro';
 import { externalAPIs } from '../../lib/siteConfig';
+import ArrowIcon from '../../components/ui/ArrowIcon.astro';
 import '../../styles/forms.css';
 
 const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
+
+const quoteFAQ = [
+  { question: '見積もりは本当に無料ですか？', answer: 'はい、お見積もりは完全無料です。ご契約に至らなかった場合でも費用は一切かかりません。' },
+  { question: '見積もりにはどのくらい時間がかかりますか？', answer: '通常3営業日以内にご連絡いたします。内容によってはヒアリングをお願いする場合があります。' },
+  { question: '予算が決まっていなくても依頼できますか？', answer: 'もちろんです。ご予算が未定の場合は、複数のプランをご提案いたします。ご予算に応じて調整も可能です。' },
+  { question: '料金体系を教えてください', answer: 'サービスによって異なります。月額制、プロジェクト単位、時間単位など、ご要望に応じて柔軟に対応いたします。詳細は<a href="/services/">サービスページ</a>をご覧ください。' },
+  { question: 'まずは相談だけしたいのですが', answer: '具体的なプロジェクトがまだ決まっていない場合は、<a href="/contact/">無料相談</a>からお申し込みください。課題の整理からお手伝いします。' },
+];
 ---
 
 <Layout
@@ -127,9 +137,9 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
             </div>
           </div>
 
-          <button type="submit" class="btn-primary">
+          <button type="submit" class="btn-primary quote-submit-btn">
             お見積もりを依頼する
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <ArrowIcon size={14} />
           </button>
         </form>
       </div>
@@ -172,52 +182,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   </section>
 
   <!-- FAQ SECTION -->
-  <section class="faq-section">
-    <div class="faq-inner">
-      <h2 class="faq-title">お見積もりについてよくあるご質問</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            見積もりは本当に無料ですか？
-          </div>
-          <p class="faq-a">はい、お見積もりは完全無料です。ご契約に至らなかった場合でも費用は一切かかりません。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            見積もりにはどのくらい時間がかかりますか？
-          </div>
-          <p class="faq-a">通常3営業日以内にご連絡いたします。内容によってはヒアリングをお願いする場合があります。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            予算が決まっていなくても依頼できますか？
-          </div>
-          <p class="faq-a">もちろんです。ご予算が未定の場合は、複数のプランをご提案いたします。ご予算に応じて調整も可能です。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            料金体系を教えてください
-          </div>
-          <p class="faq-a">サービスによって異なります。月額制、プロジェクト単位、時間単位など、ご要望に応じて柔軟に対応いたします。詳細は<a href="/services/">サービスページ</a>をご覧ください。</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">
-            <span class="faq-q-badge">Q</span>
-            まずは相談だけしたいのですが
-          </div>
-          <p class="faq-a">具体的なプロジェクトがまだ決まっていない場合は、<a href="/contact/">無料相談</a>からお申し込みください。課題の整理からお手伝いします。</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <FAQSection title="お見積もりについてよくあるご質問" items={quoteFAQ} variant="detailed" />
 </Layout>
 
 <style>
@@ -322,7 +287,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     color: var(--gray);
   }
 
-  .btn-primary {
+  .quote-submit-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -338,13 +303,13 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     cursor: pointer;
     width: 100%;
   }
-  .btn-primary:hover {
+  .quote-submit-btn:hover {
     background: var(--secondary-dark);
   }
-  .btn-primary svg {
+  .quote-submit-btn svg {
     transition: transform 0.2s;
   }
-  .btn-primary:hover svg {
+  .quote-submit-btn:hover svg {
     transform: translateX(4px);
   }
 
@@ -416,68 +381,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     border-color: transparent;
   }
 
-  /* FAQ Section */
-  .faq-section {
-    padding: 60px 24px 80px;
-    background: var(--white);
-  }
-  .faq-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .faq-title {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 32px;
-  }
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .faq-item {
-    background: var(--light);
-    border: 1px solid var(--gray-light);
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
-  }
-  .faq-q {
-    font-weight: 600;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 15px;
-  }
-  .faq-q-badge {
-    width: 24px;
-    height: 24px;
-    background: var(--secondary);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .faq-a {
-    font-size: 14px;
-    color: var(--gray);
-    line-height: 1.8;
-    padding-left: 36px;
-  }
-  .faq-a a {
-    color: var(--secondary);
-    text-decoration: underline;
-  }
-  .faq-a a:hover {
-    text-decoration: none;
-  }
-
   /* ===== DARK MODE ===== */
   :global([data-theme="dark"]) .page-header::before {
     background: linear-gradient(90deg, var(--secondary), var(--accent));
@@ -500,17 +403,11 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   }
   :global([data-theme="dark"]) .response-card h3,
   :global([data-theme="dark"]) .response-card p { color: #ffffff; }
-  :global([data-theme="dark"]) .faq-section { background: var(--gray-100); }
-  :global([data-theme="dark"]) .faq-item {
-    background: var(--gray-50);
-    border-color: var(--gray-300);
-  }
-  :global([data-theme="dark"]) .faq-a { color: var(--gray-500); }
-  :global([data-theme="dark"]) .btn-primary {
+  :global([data-theme="dark"]) .quote-submit-btn {
     background: var(--secondary);
     color: #ffffff;
   }
-  :global([data-theme="dark"]) .btn-primary:hover {
+  :global([data-theme="dark"]) .quote-submit-btn:hover {
     background: var(--secondary-dark);
   }
 
@@ -550,15 +447,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     .sidebar-card {
       min-width: auto;
     }
-    .faq-section {
-      padding: 48px 24px 60px;
-    }
-    .faq-title {
-      font-size: 20px;
-    }
-    .faq-item {
-      padding: 16px 20px;
-    }
   }
 
   @media (max-width: 480px) {
@@ -576,19 +464,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     }
     .contact-form-card h2 {
       font-size: 18px;
-    }
-    .faq-section {
-      padding: 40px 16px 48px;
-    }
-    .faq-item {
-      padding: 16px;
-    }
-    .faq-q {
-      font-size: 14px;
-    }
-    .faq-a {
-      font-size: 13px;
-      padding-left: 32px;
     }
   }
 </style>

@@ -5,17 +5,13 @@
  */
 import {
   siteBranding,
-  socialLinks,
   footerServiceLinks,
   footerInfoLinks,
   footerContactLinks,
 } from '../../lib/siteConfig';
+import Logo from '../ui/Logo.astro';
 
-interface Props {
-  showNewsletter?: boolean;
-}
-
-const { showNewsletter = false } = Astro.props;
+interface Props {}
 ---
 
 <footer class="footer">
@@ -23,21 +19,7 @@ const { showNewsletter = false } = Astro.props;
     <div class="footer__brand">
       <div class="footer__logo">
         <span class="footer__logo-icon" aria-hidden="true">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 302" fill="currentColor">
-            <g>
-              <polygon points="191.00,77.00 313.00,77.00 235.00,10.00"/>
-              <circle cx="393.50" cy="87.81" r="24.81"/>
-              <path fill-rule="evenodd" d="M 107.00 89.00 L 10.00 148.00 L 107.00 209.00 Z M 90.34 137.61 A 13.84 13.84 0 1 0 62.66 137.61 A 13.84 13.84 0 1 0 90.34 137.61 Z"/>
-              <circle cx="142.34" cy="112.39" r="24.83"/>
-              <polygon points="200.00,88.00 316.00,203.00 316.00,88.00"/>
-              <polygon points="328.00,89.00 328.00,209.00 425.00,149.00"/>
-              <polygon points="525.00,89.00 428.00,149.00 526.00,209.00"/>
-              <polygon points="187.00,91.00 187.00,211.00 308.00,211.00"/>
-              <circle cx="153.18" cy="186.42" r="24.96"/>
-              <circle cx="393.84" cy="210.18" r="24.87"/>
-              <polygon points="190.00,222.00 267.00,292.00 267.00,222.00"/>
-            </g>
-          </svg>
+          <Logo />
         </span>
         {siteBranding.ownerNickname}｜{siteBranding.ownerName}
       </div>
@@ -77,17 +59,6 @@ const { showNewsletter = false } = Astro.props;
       </ul>
     </div>
   </div>
-
-  {showNewsletter && (
-    <div class="footer__newsletter">
-      <h4>ニュースレター</h4>
-      <p>最新情報をお届けします</p>
-      <form class="newsletter-form">
-        <input type="email" placeholder="メールアドレス" required />
-        <button type="submit">登録</button>
-      </form>
-    </div>
-  )}
 
   <div class="footer__bottom">
     <p>&copy; {siteBranding.year} {siteBranding.ownerName}（{siteBranding.ownerNickname}）All rights reserved.</p>
@@ -182,61 +153,6 @@ const { showNewsletter = false } = Astro.props;
   .footer__links a:hover {
     color: var(--footer-heading);
     padding-left: 4px;
-  }
-
-  /* Newsletter (optional) */
-  .footer__newsletter {
-    max-width: var(--container-lg);
-    margin: 48px auto;
-    text-align: center;
-    padding: 32px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-md);
-  }
-
-  .footer__newsletter h4 {
-    color: var(--footer-heading);
-    margin-bottom: 8px;
-  }
-
-  .footer__newsletter p {
-    margin-bottom: 16px;
-    font-size: 14px;
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .newsletter-form input {
-    padding: 12px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    min-width: 250px;
-  }
-
-  .newsletter-form input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  .newsletter-form button {
-    padding: 12px 24px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .newsletter-form button:hover {
-    background: var(--primary-light);
   }
 
   /* Bottom Section */

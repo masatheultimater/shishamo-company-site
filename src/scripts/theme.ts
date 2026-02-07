@@ -31,8 +31,8 @@ function applyTheme(preference: ThemePreference): void {
 
 function updateToggleIcons(effectiveTheme: EffectiveTheme): void {
   document.querySelectorAll('.theme-toggle').forEach(toggle => {
-    const lightIcon = toggle.querySelector('.theme-icon--light') as HTMLElement | null;
-    const darkIcon = toggle.querySelector('.theme-icon--dark') as HTMLElement | null;
+    const lightIcon = toggle.querySelector<HTMLElement>('.theme-icon--light');
+    const darkIcon = toggle.querySelector<HTMLElement>('.theme-icon--dark');
 
     if (lightIcon && darkIcon) {
       if (effectiveTheme === 'dark') {

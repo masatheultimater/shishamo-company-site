@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { externalAPIs } from '../lib/siteConfig';
+
+const contactEmail = externalAPIs.contactEmail;
 ---
 
 <Layout
@@ -109,7 +112,7 @@ import Layout from '../layouts/Layout.astro';
           利用者は、第6条から第8条に定める請求を行う場合には、本人確認書類とともに、以下のアドレスまでご連絡ください。なお、個人情報の開示については、1回の請求ごとに金800円の手数料をいただきます。
         </p>
         <p class="policy-contact">
-          Mail: <a href="mailto:info@shishamo-company.com">info@shishamo-company.com</a>
+          Mail: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
         </p>
       </section>
 
@@ -147,7 +150,7 @@ import Layout from '../layouts/Layout.astro';
           個人情報の取扱いに関するお問い合せは以下までご連絡ください。
         </p>
         <p class="policy-contact">
-          Mail: <a href="mailto:info@shishamo-company.com">info@shishamo-company.com</a>
+          Mail: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
         </p>
       </section>
 

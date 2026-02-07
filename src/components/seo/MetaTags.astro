@@ -47,8 +47,8 @@ const twitterHandle = siteMetadata.twitterHandle;
 const currentUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
 const fullOgImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
 
-// タイトルの構築
-const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+// Title is pre-constructed by Layout.astro (includes site name suffix)
+const fullTitle = title;
 ---
 
 <!-- 基本メタタグ -->

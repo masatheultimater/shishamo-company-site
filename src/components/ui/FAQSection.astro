@@ -1,0 +1,154 @@
+---
+/**
+ * Reusable FAQ section component.
+ * Used by contact/index.astro and contact/quote.astro.
+ *
+ * variant="detailed" adds borders and uses secondary badge color
+ * (used for quote page with its more formal style).
+ */
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  items: FAQItem[];
+  variant?: 'default' | 'detailed';
+}
+
+const { title, items, variant = 'default' } = Astro.props;
+const sectionClass = variant === 'detailed' ? 'faq-section faq-section--detailed' : 'faq-section';
+---
+
+<section class={sectionClass}>
+  <div class="faq-inner">
+    <h2 class="faq-title">{title}</h2>
+    <div class="faq-list">
+      {items.map(item => (
+        <div class="faq-item">
+          <div class="faq-q">
+            <span class="faq-q-badge">Q</span>
+            {item.question}
+          </div>
+          <p class="faq-a" set:html={item.answer} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base FAQ styles */
+  .faq-section {
+    padding: 4rem 2rem 5rem;
+    background: var(--white);
+  }
+  .faq-inner { max-width: 800px; margin: 0 auto; }
+  .faq-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .faq-list { display: flex; flex-direction: column; gap: 1rem; }
+  .faq-item {
+    background: var(--light);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+  }
+  .faq-q {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .faq-q-badge {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .faq-a {
+    font-size: 0.95rem;
+    color: var(--gray);
+    line-height: 1.8;
+    padding-left: calc(28px + 0.75rem);
+  }
+
+  /* Detailed variant (quote page) */
+  .faq-section--detailed { padding: 60px 24px 80px; }
+  .faq-section--detailed .faq-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+  .faq-section--detailed .faq-list { gap: 12px; }
+  .faq-section--detailed .faq-item {
+    border: 1px solid var(--gray-light);
+    padding: 20px 24px;
+  }
+  .faq-section--detailed .faq-q {
+    font-weight: 600;
+    margin-bottom: 10px;
+    gap: 12px;
+    font-size: 15px;
+  }
+  .faq-section--detailed .faq-q-badge {
+    width: 24px;
+    height: 24px;
+    background: var(--secondary);
+    font-size: 12px;
+  }
+  .faq-section--detailed .faq-a {
+    font-size: 14px;
+    padding-left: 36px;
+  }
+  .faq-section--detailed .faq-a :global(a) {
+    color: var(--secondary);
+    text-decoration: underline;
+  }
+  .faq-section--detailed .faq-a :global(a:hover) {
+    text-decoration: none;
+  }
+
+  /* Dark mode */
+  :global([data-theme="dark"]) .faq-section { background: var(--gray-100); }
+  :global([data-theme="dark"]) .faq-item { background: var(--gray-50); }
+  :global([data-theme="dark"]) .faq-a { color: var(--gray-500); }
+  :global([data-theme="dark"]) .faq-section--detailed .faq-item {
+    border-color: var(--gray-300);
+  }
+
+  /* Responsive: Tablet */
+  @media (max-width: 768px) {
+    .faq-section { padding: 3rem 1.5rem; }
+    .faq-title { font-size: 1.35rem; }
+    .faq-item { padding: 1.25rem; }
+    .faq-q { font-size: 0.95rem; }
+    .faq-a { font-size: 0.9rem; padding-left: calc(24px + 0.5rem); }
+    .faq-q-badge { width: 24px; height: 24px; font-size: 0.7rem; }
+
+    .faq-section--detailed { padding: 48px 24px 60px; }
+    .faq-section--detailed .faq-title { font-size: 20px; }
+    .faq-section--detailed .faq-item { padding: 16px 20px; }
+  }
+
+  /* Responsive: Mobile */
+  @media (max-width: 480px) {
+    .faq-section { padding: 2.5rem 1rem; }
+
+    .faq-section--detailed { padding: 40px 16px 48px; }
+    .faq-section--detailed .faq-item { padding: 16px; }
+    .faq-section--detailed .faq-q { font-size: 14px; }
+    .faq-section--detailed .faq-a { font-size: 13px; padding-left: 32px; }
+  }
+</style>

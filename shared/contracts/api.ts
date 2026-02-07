@@ -60,7 +60,7 @@ export interface BlogPostResponse extends MicroCMSBase {
 // サービス詳細 (services) - オプション
 // ========================================
 
-export interface ServiceFeature {
+export interface MicroCMSServiceFeature {
   fieldId: 'feature';
   title: string;
   description: string;
@@ -75,7 +75,7 @@ export interface ServiceResponse extends MicroCMSBase {
   priceMin?: number;
   priceMax?: number;
   priceUnit?: string;
-  features?: ServiceFeature[];
+  features?: MicroCMSServiceFeature[];
   tags?: string[];
 }
 
