@@ -119,6 +119,8 @@
   /* ===== Semantic Colors ===== */
   --success: #10b981;
   --success-dark: #34d399;
+  --error: #ef4444;
+  --error-dark: #f87171;
 
   /* ===== Footer Colors ===== */
   --footer-bg: #1a202c;
