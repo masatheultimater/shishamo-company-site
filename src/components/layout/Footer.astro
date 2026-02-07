@@ -62,13 +62,6 @@ interface Props {}
 
   <div class="footer__bottom">
     <p>&copy; {siteBranding.year} {siteBranding.ownerName}（{siteBranding.ownerNickname}）All rights reserved.</p>
-    <div class="footer__social">
-      <a href="https://x.com/shishamoex09" title="X (Twitter)" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      </a>
-    </div>
   </div>
 </footer>
 
@@ -167,29 +160,6 @@ interface Props {}
     font-size: 13px;
   }
 
-  .footer__social {
-    display: flex;
-    gap: 12px;
-  }
-
-  .footer__social a {
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--footer-heading);
-    font-size: 14px;
-    transition: all 0.25s;
-  }
-
-  .footer__social a:hover {
-    background: var(--footer-accent);
-    color: var(--footer-bg);
-    transform: translateY(-2px);
-  }
 
   /* Dark mode support */
   :global([data-theme="dark"]) .footer {
@@ -214,14 +184,6 @@ interface Props {}
   }
   :global([data-theme="dark"]) .footer__bottom {
     border-top-color: var(--gray-300);
-  }
-  :global([data-theme="dark"]) .footer__social a {
-    background: var(--gray-300);
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .footer__social a:hover {
-    background: var(--primary);
-    color: #ffffff;
   }
   /* Responsive: iPad */
   @media (max-width: 1024px) {
