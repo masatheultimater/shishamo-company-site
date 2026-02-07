@@ -251,9 +251,7 @@
   margin-bottom: 10px;
 }
 .section-title--compact {
-  font-family: var(--font-display);
   font-size: 26px;
-  font-weight: 700;
   color: var(--dark);
   margin-bottom: 12px;
 }
@@ -533,15 +531,6 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 24px;
-}
-.section-label--light {
-  color: var(--overlay-white-text);
-}
-.section-title--light {
-  color: var(--footer-heading);
-}
-.section-desc--light {
-  color: var(--overlay-white-text-bright);
 }
 .why-grid {
   display: grid;
