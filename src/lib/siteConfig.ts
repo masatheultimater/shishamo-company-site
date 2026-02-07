@@ -92,6 +92,7 @@ export const footerServiceLinks: FooterLink[] = [
  */
 export const footerInfoLinks: FooterLink[] = [
   { name: 'プロフィール', href: '/profile/' },
+  { name: 'プライバシーポリシー', href: '/privacy-policy/' },
   { name: 'ブログ（準備中）', href: '/#blog' },
 ];
 
