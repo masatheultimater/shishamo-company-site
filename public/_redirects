@@ -3,7 +3,8 @@
 # ========================================
 
 # www から apex ドメインへリダイレクト
-https://www.shishamo-company.com/* https://shishamo-company.com/:splat 301
+# NOTE: Cloudflare Pages _redirects は相対URLのみ対応。
+# www→apex リダイレクトは Cloudflare Dashboard > DNS/Rules で設定すること。
 
 # 旧URLからの転送（将来的に使用）
 # /blog/* /news/:splat 301
@@ -19,4 +20,5 @@ https://www.shishamo-company.com/* https://shishamo-company.com/:splat 301
 /inquiry /contact/ 301
 
 # 404ページ
-/* /404.html 404
+# NOTE: Cloudflare Pages は 404 ステータスコード非対応（200/301/302/303/307/308のみ）。
+# /404.html は自動的に使用される。
