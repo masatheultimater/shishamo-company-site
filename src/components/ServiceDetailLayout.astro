@@ -162,16 +162,27 @@ const serviceSchemaData = {
   <section class="cta--dark">
     <h2>{data.cta.title}</h2>
     <p set:html={data.cta.description} />
-    <a href="/contact/" class="btn-primary">無料相談する →</a>
+    <a href="/contact/" class="btn-primary" data-track-cta="service-detail">無料相談する →</a>
   </section>
 
-  <!-- GTM: Track service page view -->
+  <!-- GTM: Track service page view and CTA clicks -->
   <script is:inline define:vars={{ serviceId: data.id, serviceName: data.name }}>
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'service_view',
       service_id: serviceId,
       service_name: serviceName
+    });
+
+    document.querySelectorAll('[data-track-cta]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        window.dataLayer.push({
+          event: 'cta_click',
+          cta_location: el.getAttribute('data-track-cta') || 'unknown',
+          cta_text: (el.textContent || '').trim(),
+          destination_url: el.href
+        });
+      });
     });
   </script>
 </Layout>
