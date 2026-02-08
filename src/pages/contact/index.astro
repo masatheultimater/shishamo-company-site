@@ -94,6 +94,12 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
           <button type="submit" class="btn-primary">送信する →</button>
         </form>
+        <script is:inline>
+          document.getElementById('contactForm').addEventListener('submit', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'form_submit', form_type: 'contact' });
+          });
+        </script>
       </div>
 
       <div class="contact-sidebar">

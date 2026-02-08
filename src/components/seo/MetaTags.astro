@@ -106,3 +106,8 @@ const fullTitle = title;
 <!-- 地域SEO用 -->
 <meta name="geo.region" content={siteMetadata.geoRegion} />
 <meta name="geo.placename" content={siteMetadata.geoPlacename} />
+
+<!-- Google Search Console verification -->
+{import.meta.env.PUBLIC_GSC_VERIFICATION && (
+  <meta name="google-site-verification" content={import.meta.env.PUBLIC_GSC_VERIFICATION} />
+)}

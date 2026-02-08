@@ -142,6 +142,12 @@ const quoteFAQ = [
             <ArrowIcon size={14} />
           </button>
         </form>
+        <script is:inline>
+          document.getElementById('quoteForm').addEventListener('submit', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'form_submit', form_type: 'quote' });
+          });
+        </script>
       </div>
 
       <div class="contact-sidebar">

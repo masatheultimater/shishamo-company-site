@@ -239,4 +239,6 @@ export interface EnvVars {
   TURNSTILE_SITE_KEY?: string;
   TURNSTILE_SECRET_KEY?: string;
   FORMSPREE_ENDPOINT?: string;
+  PUBLIC_GTM_ID?: string;
+  PUBLIC_GSC_VERIFICATION?: string;
 }

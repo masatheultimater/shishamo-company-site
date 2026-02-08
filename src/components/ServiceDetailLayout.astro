@@ -164,4 +164,14 @@ const serviceSchemaData = {
     <p set:html={data.cta.description} />
     <a href="/contact/" class="btn-primary">無料相談する →</a>
   </section>
+
+  <!-- GTM: Track service page view -->
+  <script is:inline define:vars={{ serviceId: data.id, serviceName: data.name }}>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'service_view',
+      service_id: serviceId,
+      service_name: serviceName
+    });
+  </script>
 </Layout>
