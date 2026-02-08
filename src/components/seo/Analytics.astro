@@ -1,0 +1,41 @@
+---
+/**
+ * Analytics.astro
+ * Google Tag Manager integration with Consent Mode v2.
+ *
+ * - Only renders in production builds when PUBLIC_GTM_ID is set
+ * - Initializes consent mode with all categories denied (opt-in model)
+ * - CookieConsent component handles consent updates via gtag('consent', 'update', ...)
+ * - GA4 configuration is managed inside GTM console
+ */
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
+const isProd = import.meta.env.PROD;
+---
+
+{isProd && gtmId && (
+  <>
+    {/* Consent Mode v2 defaults + GTM dataLayer — must run before GTM loads */}
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+    </script>
+
+    {/* Google Tag Manager */}
+    <script is:inline define:vars={{ gtmId }}>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',gtmId);
+    </script>
+  </>
+)}

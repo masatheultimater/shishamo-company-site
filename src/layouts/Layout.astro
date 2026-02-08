@@ -10,8 +10,12 @@ import Header from '../components/layout/Header.astro';
 import MobileNav from '../components/layout/MobileNav.astro';
 import Footer from '../components/layout/Footer.astro';
 import MetaTags from '../components/seo/MetaTags.astro';
+import Analytics from '../components/seo/Analytics.astro';
 import StructuredData from '../components/seo/StructuredData.astro';
+import CookieConsent from '../components/ui/CookieConsent.astro';
 import { seoDefaults } from '../lib/siteConfig';
+
+const gtmId = import.meta.env.PUBLIC_GTM_ID;
 
 // BaseLayoutProps interface from contracts/components.ts
 interface Props {
@@ -88,6 +92,9 @@ const fullTitle = title.includes(seoDefaults.siteName)
   >
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+  <!-- Google Tag Manager -->
+  <Analytics />
+
   <!-- Structured Data -->
   {showOrganizationSchema && <StructuredData type="Organization" />}
   {showPersonSchema && <StructuredData type="Person" />}
@@ -109,6 +116,11 @@ const fullTitle = title.includes(seoDefaults.siteName)
   <slot name="head" />
 </head>
 <body>
+  {/* GTM noscript fallback */}
+  {import.meta.env.PROD && gtmId && (
+    <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  )}
+
   <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
@@ -125,6 +137,9 @@ const fullTitle = title.includes(seoDefaults.siteName)
 
   <!-- Footer -->
   <Footer />
+
+  <!-- Cookie Consent Banner -->
+  <CookieConsent />
 </body>
 </html>
 
