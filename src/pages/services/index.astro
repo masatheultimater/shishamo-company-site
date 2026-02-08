@@ -45,7 +45,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>ベンダー選定・導入支援</li>
             <li>定着化サポート</li>
           </ul>
-          <a href="/services/dx-consulting/" class="service-link">詳しく見る →</a>
+          <a href="/services/dx-consulting/" class="service-link" data-track-service="dx-consulting" data-service-name="DX推進サポート">詳しく見る →</a>
         </div>
         <div class="service-card service-card--discounted">
           <h3>IT戦略策定</h3>
@@ -56,7 +56,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>投資対効果の試算</li>
             <li>3カ年IT計画の策定</li>
           </ul>
-          <a href="/services/it-strategy/" class="service-link">詳しく見る →</a>
+          <a href="/services/it-strategy/" class="service-link" data-track-service="it-strategy" data-service-name="IT戦略策定">詳しく見る →</a>
         </div>
         <div class="service-card">
           <h3>Webサイト・アプリ構築</h3>
@@ -67,7 +67,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>業務用Webアプリ開発</li>
             <li>既存システム改修</li>
           </ul>
-          <a href="/services/web-development/" class="service-link">詳しく見る →</a>
+          <a href="/services/web-development/" class="service-link" data-track-service="web-development" data-service-name="Webサイト・アプリ構築">詳しく見る →</a>
         </div>
       </div>
     </div>
@@ -94,7 +94,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>社内ガイドライン策定</li>
             <li>活用研修の実施</li>
           </ul>
-          <a href="/services/ai-consulting/" class="service-link">詳しく見る →</a>
+          <a href="/services/ai-consulting/" class="service-link" data-track-service="ai-consulting" data-service-name="生成AI活用サポート">詳しく見る →</a>
         </div>
         <div class="service-card">
           <h3>AIツール開発</h3>
@@ -105,7 +105,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>問い合わせ対応支援Bot</li>
             <li>レポート自動生成</li>
           </ul>
-          <a href="/services/ai-tools/" class="service-link">詳しく見る →</a>
+          <a href="/services/ai-tools/" class="service-link" data-track-service="ai-tools" data-service-name="AIツール開発">詳しく見る →</a>
         </div>
       </div>
     </div>
@@ -132,7 +132,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>業務効率分析</li>
             <li>分析レポート作成</li>
           </ul>
-          <a href="/services/data-analysis/" class="service-link">詳しく見る →</a>
+          <a href="/services/data-analysis/" class="service-link" data-track-service="data-analysis" data-service-name="経営データ分析">詳しく見る →</a>
         </div>
         <div class="service-card">
           <h3>KPIダッシュボード構築</h3>
@@ -144,7 +144,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>ダッシュボード構築</li>
             <li>運用トレーニング</li>
           </ul>
-          <a href="/services/kpi-dashboard/" class="service-link">詳しく見る →</a>
+          <a href="/services/kpi-dashboard/" class="service-link" data-track-service="kpi-dashboard" data-service-name="KPIダッシュボード構築">詳しく見る →</a>
         </div>
       </div>
     </div>
@@ -171,7 +171,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>改善施策の優先順位付け</li>
             <li>アクションプラン策定</li>
           </ul>
-          <a href="/services/management-consulting/" class="service-link">詳しく見る →</a>
+          <a href="/services/management-consulting/" class="service-link" data-track-service="management-consulting" data-service-name="経営診断・改善提案">詳しく見る →</a>
         </div>
         <div class="service-card">
           <h3>補助金申請サポート</h3>
@@ -183,7 +183,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>申請手続きサポート</li>
             <li>採択後の報告支援</li>
           </ul>
-          <a href="/services/subsidy-support/" class="service-link">詳しく見る →</a>
+          <a href="/services/subsidy-support/" class="service-link" data-track-service="subsidy-support" data-service-name="補助金申請サポート">詳しく見る →</a>
         </div>
       </div>
     </div>
@@ -210,7 +210,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>月次試算表作成</li>
             <li>税理士との連携</li>
           </ul>
-          <a href="/services/bookkeeping/" class="service-link">詳しく見る →</a>
+          <a href="/services/bookkeeping/" class="service-link" data-track-service="bookkeeping" data-service-name="記帳代行">詳しく見る →</a>
         </div>
         <div class="service-card">
           <h3>クラウド会計導入</h3>
@@ -222,7 +222,7 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
             <li>操作トレーニング</li>
             <li>運用定着サポート</li>
           </ul>
-          <a href="/services/cloud-accounting/" class="service-link">詳しく見る →</a>
+          <a href="/services/cloud-accounting/" class="service-link" data-track-service="cloud-accounting" data-service-name="クラウド会計導入">詳しく見る →</a>
         </div>
       </div>
     </div>
@@ -232,11 +232,36 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
   <section class="cta--dark diagnosis-section">
     <h2>どれが合うかわからない？</h2>
     <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
-    <a href="/contact/" class="btn-primary">
+    <a href="/contact/" class="btn-primary" data-track-cta="diagnosis">
       無料相談する
       <ArrowIcon size={14} />
     </a>
   </section>
+
+  <!-- GTM: Track service card clicks and CTA -->
+  <script>
+    import { trackServiceClick, trackCTAClick } from '../../lib/analytics';
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-track-service]').forEach(el => {
+      el.addEventListener('click', () => {
+        trackServiceClick({
+          service_id: el.dataset.trackService || '',
+          service_name: el.dataset.serviceName || '',
+          click_location: 'service_index',
+        });
+      });
+    });
+
+    document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
+      el.addEventListener('click', () => {
+        trackCTAClick({
+          cta_location: el.dataset.trackCta || 'unknown',
+          cta_text: el.textContent?.trim() || '',
+          destination_url: el.href,
+        });
+      });
+    });
+  </script>
 </Layout>
 
 <style>

@@ -142,10 +142,10 @@ const quoteFAQ = [
             <ArrowIcon size={14} />
           </button>
         </form>
-        <script is:inline>
-          document.getElementById('quoteForm').addEventListener('submit', function () {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'form_submit', form_type: 'quote' });
+        <script>
+          import { trackFormSubmit } from '../../lib/analytics';
+          document.getElementById('quoteForm')?.addEventListener('submit', () => {
+            trackFormSubmit({ form_type: 'quote' });
           });
         </script>
       </div>

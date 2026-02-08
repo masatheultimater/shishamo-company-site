@@ -24,8 +24,8 @@ import '../styles/home.css';
           中小企業の「なんとかしたい」に寄り添い、伴走支援いたします。
         </p>
         <div class="hero-cta">
-          <a href="/contact/" class="btn-primary">無料相談を予約する <ArrowIcon size={14} /></a>
-          <a href="/services/" class="btn-secondary">サービス一覧を見る</a>
+          <a href="/contact/" class="btn-primary" data-track-cta="hero">無料相談を予約する <ArrowIcon size={14} /></a>
+          <a href="/services/" class="btn-secondary" data-track-cta="hero">サービス一覧を見る</a>
         </div>
       </div>
       <div class="profile-card">
@@ -140,7 +140,7 @@ import '../styles/home.css';
       </div>
       <div class="problem-cta">
         <p>どれに当てはまるかわからなくても大丈夫です。まずはお気軽にご相談ください。</p>
-        <a href="/contact/" class="btn-primary">無料相談を予約する <ArrowIcon size={14} /></a>
+        <a href="/contact/" class="btn-primary" data-track-cta="problems">無料相談を予約する <ArrowIcon size={14} /></a>
       </div>
     </div>
   </section>
@@ -190,7 +190,7 @@ import '../styles/home.css';
         </div>
       </div>
       <div class="services-all">
-        <a href="/services/" class="btn-secondary">すべてのサービスを見る <ArrowIcon size={14} /></a>
+        <a href="/services/" class="btn-secondary" data-track-cta="services">すべてのサービスを見る <ArrowIcon size={14} /></a>
       </div>
     </div>
   </section>
@@ -253,8 +253,22 @@ import '../styles/home.css';
         「こんなこと相談していいのかな？」という内容でも大歓迎です。<br>
         初回30分の無料相談で、御社の課題を一緒に整理しましょう。
       </p>
-      <a href="/contact/" class="btn-primary">無料相談を予約する <ArrowIcon size={14} /></a>
+      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料相談を予約する <ArrowIcon size={14} /></a>
       <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
     </div>
   </section>
+
+  <!-- GTM: Track CTA clicks -->
+  <script>
+    import { trackCTAClick } from '../lib/analytics';
+    document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
+      el.addEventListener('click', () => {
+        trackCTAClick({
+          cta_location: el.dataset.trackCta || 'unknown',
+          cta_text: el.textContent?.trim() || '',
+          destination_url: el.href,
+        });
+      });
+    });
+  </script>
 </Layout>
