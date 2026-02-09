@@ -165,27 +165,4 @@ const serviceSchemaData = {
     <a href="/contact/" class="btn-primary" data-track-cta="service-detail">無料相談する →</a>
   </section>
 
-  <!-- GTM: Track CTA clicks -->
-  <script is:inline>
-    document.querySelectorAll('[data-track-cta]').forEach(function(el) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        var url = el.href;
-        var navigated = false;
-        function navigate() {
-          if (!navigated) { navigated = true; window.location.href = url; }
-        }
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: 'cta_click',
-          cta_location: el.getAttribute('data-track-cta') || 'unknown',
-          cta_text: (el.textContent || '').trim(),
-          destination_url: url,
-          eventCallback: navigate,
-          eventTimeout: 1000
-        });
-        setTimeout(navigate, 1200);
-      });
-    });
-  </script>
 </Layout>

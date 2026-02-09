@@ -130,3 +130,91 @@ export function trackProblemClick(problemText: string, targetUrl: string): void 
 export function trackCookieConsent(action: 'accept' | 'dismiss'): void {
   pushEvent('cookie_consent', { consent_action: action });
 }
+
+/**
+ * Track form abandonment when user starts filling but doesn't submit.
+ * Fires once on visibilitychange=hidden if form was interacted with.
+ */
+export function initFormAbandonmentTracking(formId: string, formType: 'contact' | 'quote'): void {
+  if (typeof window === 'undefined') return;
+
+  const form = document.getElementById(formId) as HTMLFormElement | null;
+  if (!form) return;
+
+  let started = false;
+  let lastField = '';
+  let submitted = false;
+  let tracked = false;
+
+  form.addEventListener('focusin', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.matches('input, select, textarea')) {
+      started = true;
+      lastField = (target as HTMLInputElement).name || target.id || '';
+    }
+  });
+
+  form.addEventListener('submit', () => { submitted = true; });
+
+  const trackAbandonment = () => {
+    if (!started || submitted || tracked) return;
+    tracked = true;
+
+    let filled = 0;
+    form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+      'input:not([type="hidden"]):not([type="checkbox"]), select, textarea'
+    ).forEach(el => { if (el.value.trim()) filled++; });
+
+    pushEvent('form_abandonment', {
+      form_type: formType,
+      last_field: lastField,
+      fields_filled: filled,
+    });
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') trackAbandonment();
+  });
+}
+
+/**
+ * Track engaged sessions (user stays on page for threshold duration).
+ * Pauses timer when tab is hidden, resumes when visible.
+ */
+export function initEngagementTracking(thresholdMs: number = 60000): void {
+  if (typeof window === 'undefined') return;
+
+  let accumulated = 0;
+  let segmentStart = Date.now();
+  let fired = false;
+  let timerId: ReturnType<typeof setTimeout> | null = null;
+
+  const fire = () => {
+    if (fired) return;
+    fired = true;
+    if (timerId) clearTimeout(timerId);
+    pushEvent('engaged_session', {
+      engagement_time: Math.round(thresholdMs / 1000),
+      page_path: window.location.pathname,
+    });
+  };
+
+  const schedule = () => {
+    if (fired) return;
+    const remaining = thresholdMs - accumulated;
+    if (remaining <= 0) { fire(); return; }
+    segmentStart = Date.now();
+    timerId = setTimeout(fire, remaining);
+  };
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      accumulated += Date.now() - segmentStart;
+      if (timerId) { clearTimeout(timerId); timerId = null; }
+    } else {
+      schedule();
+    }
+  });
+
+  schedule();
+}

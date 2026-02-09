@@ -258,20 +258,9 @@ import '../styles/home.css';
     </div>
   </section>
 
-  <!-- GTM: Track CTA clicks and problem card clicks -->
+  <!-- GTM: Track problem card clicks (CTA tracking handled globally by Layout) -->
   <script>
-    import { trackCTAClick, trackProblemClick } from '../lib/analytics';
-
-    document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        trackCTAClick({
-          cta_location: el.dataset.trackCta || 'unknown',
-          cta_text: el.textContent?.trim() || '',
-          destination_url: el.href,
-        }, el.href);
-      });
-    });
+    import { trackProblemClick } from '../lib/analytics';
 
     document.querySelectorAll<HTMLAnchorElement>('.problem-card').forEach(el => {
       el.addEventListener('click', (e) => {

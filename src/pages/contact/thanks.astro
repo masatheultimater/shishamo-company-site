@@ -42,13 +42,10 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
   <!-- GTM: Track conversion on page load -->
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    var convType = (document.referrer || '').indexOf('/quote') !== -1 ? 'quote' : 'contact';
-    window.dataLayer.push({
-      event: 'generate_lead',
-      conversion_type: convType
-    });
+  <script>
+    import { trackConversion } from '../../lib/analytics';
+    const convType = (document.referrer || '').includes('/quote') ? 'quote' : 'contact';
+    trackConversion({ conversion_type: convType as 'contact' | 'quote' });
   </script>
 </Layout>
 
