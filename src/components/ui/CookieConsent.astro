@@ -76,15 +76,22 @@
   if (!banner) return;
   banner.hidden = false;
 
+  function trackConsent(action) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'cookie_consent', consent_action: action });
+  }
+
   document.getElementById('cookie-accept').addEventListener('click', function () {
     saveConsent(true);
     updateGtagConsent(true);
+    trackConsent('accept');
     banner.hidden = true;
   });
 
   document.getElementById('cookie-reject').addEventListener('click', function () {
     saveConsent(false);
     updateGtagConsent(false);
+    trackConsent('dismiss');
     banner.hidden = true;
   });
 })();

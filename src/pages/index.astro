@@ -258,9 +258,10 @@ import '../styles/home.css';
     </div>
   </section>
 
-  <!-- GTM: Track CTA clicks -->
+  <!-- GTM: Track CTA clicks and problem card clicks -->
   <script>
-    import { trackCTAClick } from '../lib/analytics';
+    import { trackCTAClick, trackProblemClick } from '../lib/analytics';
+
     document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
@@ -269,6 +270,14 @@ import '../styles/home.css';
           cta_text: el.textContent?.trim() || '',
           destination_url: el.href,
         }, el.href);
+      });
+    });
+
+    document.querySelectorAll<HTMLAnchorElement>('.problem-card').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const text = el.querySelector('.problem-text')?.textContent?.trim() || '';
+        trackProblemClick(text, el.href);
       });
     });
   </script>

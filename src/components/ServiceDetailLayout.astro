@@ -165,15 +165,8 @@ const serviceSchemaData = {
     <a href="/contact/" class="btn-primary" data-track-cta="service-detail">無料相談する →</a>
   </section>
 
-  <!-- GTM: Track service page view and CTA clicks -->
-  <script is:inline define:vars={{ serviceId: data.id, serviceName: data.name }}>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'service_view',
-      service_id: serviceId,
-      service_name: serviceName
-    });
-
+  <!-- GTM: Track CTA clicks -->
+  <script is:inline>
     document.querySelectorAll('[data-track-cta]').forEach(function(el) {
       el.addEventListener('click', function(e) {
         e.preventDefault();
@@ -182,6 +175,7 @@ const serviceSchemaData = {
         function navigate() {
           if (!navigated) { navigated = true; window.location.href = url; }
         }
+        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: 'cta_click',
           cta_location: el.getAttribute('data-track-cta') || 'unknown',

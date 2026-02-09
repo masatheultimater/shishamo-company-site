@@ -19,17 +19,6 @@ export interface FormSubmitParams {
   form_type: 'contact' | 'quote';
 }
 
-export interface ServiceViewParams {
-  service_id: string;
-  service_name: string;
-}
-
-export interface ServiceClickParams {
-  service_id: string;
-  service_name: string;
-  click_location: 'service_index' | 'service_detail' | 'homepage';
-}
-
 export interface CTAClickParams {
   cta_location: string;
   cta_text: string;
@@ -83,18 +72,6 @@ export function trackFormSubmit(params: FormSubmitParams): void {
   pushEvent('form_submit', { ...params });
 }
 
-export function trackServiceView(params: ServiceViewParams): void {
-  pushEvent('service_view', { ...params });
-}
-
-export function trackServiceClick(params: ServiceClickParams, navigateTo?: string): void {
-  if (navigateTo) {
-    pushEventAndNavigate('service_click', { ...params }, navigateTo);
-  } else {
-    pushEvent('service_click', { ...params });
-  }
-}
-
 export function trackCTAClick(params: CTAClickParams, navigateTo?: string): void {
   if (navigateTo) {
     pushEventAndNavigate('cta_click', { ...params }, navigateTo);
@@ -105,4 +82,51 @@ export function trackCTAClick(params: CTAClickParams, navigateTo?: string): void
 
 export function trackConversion(params: ConversionParams): void {
   pushEvent('generate_lead', { ...params });
+}
+
+/**
+ * Track scroll depth milestones (25%, 50%, 75%).
+ * Each milestone fires only once per page load.
+ */
+export function initScrollTracking(): void {
+  if (typeof window === 'undefined') return;
+
+  const milestones = [25, 50, 75];
+  const fired = new Set<number>();
+
+  const check = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+    const pct = Math.round((scrollTop / docHeight) * 100);
+
+    for (const m of milestones) {
+      if (pct >= m && !fired.has(m)) {
+        fired.add(m);
+        pushEvent('scroll_milestone', {
+          scroll_depth: m,
+          page_path: window.location.pathname,
+        });
+      }
+    }
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(() => { check(); ticking = false; });
+    }
+  }, { passive: true });
+}
+
+export function trackProblemClick(problemText: string, targetUrl: string): void {
+  pushEventAndNavigate('problem_card_click', {
+    problem_text: problemText,
+    problem_target: targetUrl,
+  }, targetUrl);
+}
+
+export function trackCookieConsent(action: 'accept' | 'dismiss'): void {
+  pushEvent('cookie_consent', { consent_action: action });
 }
