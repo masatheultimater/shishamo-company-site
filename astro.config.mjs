@@ -27,6 +27,16 @@ export default defineConfig({
           item.changefreq = 'monthly';
           item.priority = 0.8;
         }
+        // ブログ一覧
+        else if (item.url.endsWith('/blog/')) {
+          item.changefreq = 'weekly';
+          item.priority = 0.9;
+        }
+        // ブログ記事
+        else if (item.url.includes('/blog/')) {
+          item.changefreq = 'monthly';
+          item.priority = 0.7;
+        }
         // その他のページ
         else {
           item.changefreq = 'monthly';

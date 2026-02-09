@@ -10,6 +10,8 @@ pages_build_output_dir = "dist"
 [vars]
 ENVIRONMENT = "production"
 PUBLIC_GTM_ID = "GTM-PFVZJRX9"
+MICROCMS_SERVICE_DOMAIN = ""
+MICROCMS_API_KEY = ""
 
 # 将来のFunctions用設定（お問い合わせフォームなど）
 # [env.production.vars]

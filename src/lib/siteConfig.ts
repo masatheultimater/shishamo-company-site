@@ -35,7 +35,7 @@ export const navigationItems: NavigationItem[] = [
   { slug: 'home', title: 'ホーム', href: '/' },
   { slug: 'services', title: 'サービス', href: '/services/' },
   { slug: 'profile', title: 'プロフィール', href: '/profile/' },
-  { slug: 'blog', title: 'ブログ', href: '/#blog' },
+  { slug: 'blog', title: 'ブログ', href: '/blog/' },
 ];
 
 /**
@@ -54,7 +54,7 @@ export const footerServiceLinks: FooterLink[] = [
 export const footerInfoLinks: FooterLink[] = [
   { name: 'プロフィール', href: '/profile/' },
   { name: 'プライバシーポリシー', href: '/privacy-policy/' },
-  { name: 'ブログ（準備中）', href: '/#blog' },
+  { name: 'ブログ', href: '/blog/' },
 ];
 
 /**

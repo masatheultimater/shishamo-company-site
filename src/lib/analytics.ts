@@ -127,6 +127,16 @@ export function trackProblemClick(problemText: string, targetUrl: string): void 
   }, targetUrl);
 }
 
+export interface BlogReadParams {
+  blog_slug: string;
+  blog_title: string;
+  blog_category: string;
+}
+
+export function trackBlogRead(params: BlogReadParams): void {
+  pushEvent('blog_read', { ...params, page_path: window.location.pathname });
+}
+
 export function trackCookieConsent(action: 'accept' | 'dismiss'): void {
   pushEvent('cookie_consent', { consent_action: action });
 }

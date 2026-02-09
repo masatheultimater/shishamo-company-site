@@ -1,0 +1,21 @@
+---
+import BlogDetailLayout from '../../components/BlogDetailLayout.astro';
+import { getAllBlogPosts, getBlogDetail } from '../../lib/microcms';
+
+export async function getStaticPaths() {
+  const posts = await getAllBlogPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug || post.id },
+    props: { postId: post.id },
+  }));
+}
+
+const { postId } = Astro.props;
+const post = await getBlogDetail(postId, { depth: 2 });
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<BlogDetailLayout post={post} />

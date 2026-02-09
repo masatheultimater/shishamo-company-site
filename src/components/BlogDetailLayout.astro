@@ -1,0 +1,176 @@
+---
+/**
+ * BlogDetailLayout.astro
+ * Blog detail page template, follows ServiceDetailLayout pattern
+ */
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from './seo/Breadcrumb.astro';
+import StructuredData from './seo/StructuredData.astro';
+import '../styles/blog.css';
+import type { BlogPostResponse } from '@shared/contracts/api';
+import {
+  categoryLabels,
+  categoryIcons,
+  getPrimaryCategory,
+  formatDate,
+  transformBlogPost,
+} from '../lib/microcms';
+import { siteMetadata } from '../lib/siteConfig';
+
+interface Props {
+  post: BlogPostResponse;
+}
+
+const { post } = Astro.props;
+const siteUrl = siteMetadata.siteUrl;
+const blog = transformBlogPost(post);
+const category = getPrimaryCategory(blog.category);
+
+// Breadcrumb
+const breadcrumbItems = [
+  { name: 'ブログ', href: '/blog/' },
+  { name: blog.title, href: `/blog/${blog.slug || blog.id}/` },
+];
+
+// BlogPosting structured data
+const articleData = {
+  headline: blog.title,
+  description: post.metaDescription || blog.excerpt || '',
+  image: blog.thumbnail?.url || `${siteUrl}/自画像_シンプル背景.png`,
+  datePublished: blog.publishedAt,
+  dateModified: blog.updatedAt || blog.publishedAt,
+  mainEntityOfPage: `${siteUrl}/blog/${blog.slug || blog.id}/`,
+  articleSection: categoryLabels[category],
+};
+
+// Meta
+const metaDescription = post.metaDescription || blog.excerpt || `${blog.title} - ししゃも｜吉川昌宏のブログ`;
+const ogImage = post.ogImage?.url || blog.thumbnail?.url;
+---
+
+<Layout
+  title={`${blog.title} | ブログ | ししゃも｜吉川昌宏`}
+  description={metaDescription}
+  ogType="article"
+  ogImage={ogImage}
+  publishedTime={blog.publishedAt}
+  modifiedTime={blog.updatedAt}
+  currentPage="blog"
+>
+  <!-- BlogPosting Structured Data -->
+  <StructuredData type="BlogPosting" data={articleData} slot="head" />
+
+  <!-- Breadcrumb -->
+  <div class="blog-breadcrumb-wrapper">
+    <Breadcrumb items={breadcrumbItems} separator="›" />
+  </div>
+
+  <!-- Article Header -->
+  <header class="blog-header">
+    <div class="blog-header__meta">
+      <span class="blog-header__category">
+        <span aria-hidden="true">{categoryIcons[category]}</span>
+        {categoryLabels[category]}
+      </span>
+      <span class="blog-header__date">
+        <time datetime={blog.publishedAt}>{formatDate(blog.publishedAt)}</time>
+        {blog.updatedAt && blog.updatedAt !== blog.publishedAt && (
+          <span>（更新: {formatDate(blog.updatedAt)}）</span>
+        )}
+      </span>
+    </div>
+    <h1>{blog.title}</h1>
+    {blog.tags && blog.tags.length > 0 && (
+      <div class="blog-header__tags">
+        {blog.tags.map((tag) => (
+          <span class="blog-header__tag">#{tag}</span>
+        ))}
+      </div>
+    )}
+  </header>
+
+  <!-- Thumbnail -->
+  {blog.thumbnail && (
+    <div class="blog-thumbnail">
+      <img
+        src={`${blog.thumbnail.url}?w=960&h=540&fit=crop`}
+        alt={blog.title}
+        width="960"
+        height="540"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  )}
+
+  <!-- Article Content (Rich Editor HTML) -->
+  <article class="blog-content" set:html={post.content} />
+
+  <!-- Related Blogs -->
+  {post.relatedBlogs && post.relatedBlogs.length > 0 && (
+    <section class="blog-related">
+      <h2>関連記事</h2>
+      <div class="blog-related__grid">
+        {post.relatedBlogs.map((related) => {
+          const relCat = getPrimaryCategory(related.category);
+          return (
+            <a href={`/blog/${related.slug}/`} class="blog-card">
+              {related.thumbnail ? (
+                <div class="blog-card__thumbnail">
+                  <img
+                    src={`${related.thumbnail.url}?w=640&h=360&fit=crop`}
+                    alt={related.title}
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ) : (
+                <div class="blog-card__thumbnail">
+                  <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;">
+                    {categoryIcons[relCat]}
+                  </div>
+                </div>
+              )}
+              <div class="blog-card__body">
+                <div class="blog-card__meta">
+                  <span class="blog-card__category">{categoryLabels[relCat]}</span>
+                  <time datetime={related.publishedAt}>{formatDate(related.publishedAt)}</time>
+                </div>
+                <h3 class="blog-card__title">{related.title}</h3>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  <!-- Blog Read Tracking -->
+  <div
+    id="blog-tracking-data"
+    data-slug={blog.slug || blog.id}
+    data-title={blog.title}
+    data-category={categoryLabels[category]}
+    hidden
+  />
+  <script>
+    import { trackBlogRead } from '../lib/analytics';
+    const el = document.getElementById('blog-tracking-data');
+    if (el) {
+      trackBlogRead({
+        blog_slug: el.dataset.slug || '',
+        blog_title: el.dataset.title || '',
+        blog_category: el.dataset.category || '',
+      });
+    }
+  </script>
+
+  <!-- CTA -->
+  <section class="cta--dark">
+    <h2>ブログの内容についてのご質問、<br />お気軽にご相談ください</h2>
+    <p>DX推進・AI導入・データ活用・経営支援について、<br />初回無料でご相談いただけます。</p>
+    <a href="/contact/" class="btn-primary" data-track-cta="blog-detail">無料相談する →</a>
+  </section>
+</Layout>

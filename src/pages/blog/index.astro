@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../../lib/microcms';
+import type { BlogCategory } from '@shared/contracts/api';
+import '../../styles/blog.css';
+
+const allPosts = await getAllBlogPosts();
+const posts = allPosts.map(transformBlogPost);
+
+// Build category counts for nav
+const categoryCounts: Record<string, number> = {};
+for (const post of posts) {
+  const cat = getPrimaryCategory(post.category);
+  categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+}
+
+const categories = Object.keys(categoryLabels) as BlogCategory[];
+---
+
+<Layout
+  title="ブログ | ししゃも｜吉川昌宏"
+  description="DX推進・生成AI・データ活用・経営支援に関するナレッジ・事例・お知らせを発信しています。"
+  currentPage="blog"
+>
+  <section class="page-header">
+    <div class="page-header-blob"></div>
+    <h1>ブログ</h1>
+    <p>DX・AI・経営に関するナレッジを発信しています</p>
+  </section>
+
+  <nav class="blog-nav" aria-label="ブログカテゴリナビゲーション">
+    <div class="blog-nav-inner" role="tablist">
+      <a href="#all" class="active" role="tab" aria-selected="true">
+        すべて<span class="sr-only">の記事</span>
+      </a>
+      {categories.map((cat) => (
+        <a
+          href={`#${cat}`}
+          role="tab"
+          aria-selected="false"
+          data-category={cat}
+        >
+          <span aria-hidden="true">{categoryIcons[cat]}</span>
+          {categoryLabels[cat]}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <div class="blog-grid" id="blog-grid">
+    {posts.length === 0 ? (
+      <div class="blog-empty">
+        <p>まだ記事がありません</p>
+        <p>近日中に公開予定です。お楽しみに！</p>
+      </div>
+    ) : (
+      posts.map((post) => {
+        const cat = getPrimaryCategory(post.category);
+        return (
+          <a href={`/blog/${post.slug || post.id}/`} class="blog-card" data-category={cat}>
+            {post.thumbnail ? (
+              <div class="blog-card__thumbnail">
+                <img
+                  src={`${post.thumbnail.url}?w=640&h=360&fit=crop`}
+                  alt={post.title}
+                  width="640"
+                  height="360"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : (
+              <div class="blog-card__thumbnail">
+                <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;">
+                  {categoryIcons[cat]}
+                </div>
+              </div>
+            )}
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span class="blog-card__category">{categoryLabels[cat]}</span>
+                <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+              </div>
+              <h2 class="blog-card__title">{post.title}</h2>
+              {post.excerpt && <p class="blog-card__excerpt">{post.excerpt}</p>}
+              {post.tags && post.tags.length > 0 && (
+                <div class="blog-card__tags">
+                  {post.tags.slice(0, 3).map((tag) => (
+                    <span class="blog-card__tag">#{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </a>
+        );
+      })
+    )}
+  </div>
+</Layout>
+
+<script>
+  // Client-side category filtering
+  const nav = document.querySelector('.blog-nav-inner');
+  const cards = document.querySelectorAll<HTMLElement>('.blog-card');
+  const emptyState = document.querySelector('.blog-empty');
+
+  if (nav && cards.length > 0) {
+    nav.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('a');
+      if (!target) return;
+      e.preventDefault();
+
+      // Update active tab
+      nav.querySelectorAll('a').forEach((a) => {
+        a.classList.remove('active');
+        a.setAttribute('aria-selected', 'false');
+      });
+      target.classList.add('active');
+      target.setAttribute('aria-selected', 'true');
+
+      const category = target.getAttribute('href')?.replace('#', '');
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Update URL hash without scroll
+      history.replaceState(null, '', `#${category}`);
+    });
+
+    // Handle initial hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash && hash !== 'all') {
+      const tab = nav.querySelector(`a[href="#${hash}"]`) as HTMLElement;
+      if (tab) tab.click();
+    }
+  }
+</script>

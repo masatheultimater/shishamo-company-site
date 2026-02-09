@@ -19,7 +19,7 @@ import organizationData from '../../data/schema/organization.json';
 import personData from '../../data/schema/person.json';
 
 interface Props {
-  type: 'Organization' | 'Person' | 'LocalBusiness' | 'Article' | 'BreadcrumbList' | 'Service';
+  type: 'Organization' | 'Person' | 'LocalBusiness' | 'Article' | 'BlogPosting' | 'BreadcrumbList' | 'Service';
   data?: Record<string, unknown>;
 }
 
@@ -39,12 +39,13 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
       return customData ? { ...personData, ...customData } : personData;
 
     case 'Article':
+    case 'BlogPosting':
       if (!customData) {
         return null;
       }
       return {
         '@context': 'https://schema.org',
-        '@type': 'Article',
+        '@type': type,
         author: {
           '@type': 'Person',
           '@id': `${siteUrl}/#person`,
