@@ -1,15 +1,32 @@
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": ["ProfessionalService", "LocalBusiness"],
+  "@id": "https://yoshikawa-masahiro.com/#organization",
   "name": "吉川昌宏事務所",
   "alternateName": "ししゃも｜吉川昌宏",
   "description": "IT × 経営 × 財務で、ビジネスを加速させる。中小企業向けDX推進・生成AI導入・データ活用・経営支援サービスを提供。",
   "url": "https://yoshikawa-masahiro.com",
   "logo": "https://yoshikawa-masahiro.com/shishamo-logo.svg",
   "email": "contact@yoshikawa-masahiro.com",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "東京都",
+    "addressCountry": "JP"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "url": "https://yoshikawa-masahiro.com/contact/",
+    "availableLanguage": {
+      "@type": "Language",
+      "name": "Japanese",
+      "alternateName": "ja"
+    }
+  },
   "areaServed": {
-    "@type": "AdministrativeArea",
-    "name": "東京都"
+    "@type": "Country",
+    "name": "JP"
   },
   "founder": {
     "@type": "Person",
