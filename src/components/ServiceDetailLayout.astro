@@ -175,13 +175,22 @@ const serviceSchemaData = {
     });
 
     document.querySelectorAll('[data-track-cta]').forEach(function(el) {
-      el.addEventListener('click', function() {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var url = el.href;
+        var navigated = false;
+        function navigate() {
+          if (!navigated) { navigated = true; window.location.href = url; }
+        }
         window.dataLayer.push({
           event: 'cta_click',
           cta_location: el.getAttribute('data-track-cta') || 'unknown',
           cta_text: (el.textContent || '').trim(),
-          destination_url: el.href
+          destination_url: url,
+          eventCallback: navigate,
+          eventTimeout: 1000
         });
+        setTimeout(navigate, 1200);
       });
     });
   </script>

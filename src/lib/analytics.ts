@@ -40,12 +40,41 @@ export interface ConversionParams {
   conversion_type: 'contact' | 'quote';
 }
 
-// --- Core Push Function ---
+// --- Core Push Functions ---
 
 function pushEvent(event: string, params: Record<string, unknown>): void {
   if (typeof window !== 'undefined' && Array.isArray(window.dataLayer)) {
     window.dataLayer.push({ event, ...params });
   }
+}
+
+/**
+ * Push event and navigate after GTM processes it.
+ * Uses GTM's eventCallback to wait for tag processing before navigation.
+ * Falls back to timeout if GTM is slow or unavailable.
+ */
+function pushEventAndNavigate(event: string, params: Record<string, unknown>, url: string): void {
+  if (typeof window === 'undefined') return;
+
+  let navigated = false;
+  const navigate = () => {
+    if (!navigated) {
+      navigated = true;
+      window.location.href = url;
+    }
+  };
+
+  if (Array.isArray(window.dataLayer)) {
+    window.dataLayer.push({
+      event,
+      ...params,
+      eventCallback: navigate,
+      eventTimeout: 1000,
+    });
+  }
+
+  // Safety fallback in case eventCallback/eventTimeout don't fire
+  setTimeout(navigate, 1200);
 }
 
 // --- Event Tracking Functions ---
@@ -58,12 +87,20 @@ export function trackServiceView(params: ServiceViewParams): void {
   pushEvent('service_view', { ...params });
 }
 
-export function trackServiceClick(params: ServiceClickParams): void {
-  pushEvent('service_click', { ...params });
+export function trackServiceClick(params: ServiceClickParams, navigateTo?: string): void {
+  if (navigateTo) {
+    pushEventAndNavigate('service_click', { ...params }, navigateTo);
+  } else {
+    pushEvent('service_click', { ...params });
+  }
 }
 
-export function trackCTAClick(params: CTAClickParams): void {
-  pushEvent('cta_click', { ...params });
+export function trackCTAClick(params: CTAClickParams, navigateTo?: string): void {
+  if (navigateTo) {
+    pushEventAndNavigate('cta_click', { ...params }, navigateTo);
+  } else {
+    pushEvent('cta_click', { ...params });
+  }
 }
 
 export function trackConversion(params: ConversionParams): void {
