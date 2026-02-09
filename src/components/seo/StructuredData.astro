@@ -84,15 +84,7 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
           '@id': `${siteUrl}/#organization`,
           name: '吉川昌宏事務所'
         },
-        areaServed: {
-          '@type': 'Country',
-          name: 'JP'
-        },
-        availableLanguage: {
-          '@type': 'Language',
-          name: 'Japanese',
-          alternateName: 'ja'
-        },
+        areaServed: 'JP',
         ...customData
       };
 

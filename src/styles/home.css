@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 .hero--bg-full {
-  background: var(--gray-50) url('/wp1.webp') center center / cover no-repeat;
+  background: var(--gray-50) url('/wp1.png') center center / cover no-repeat;
 }
 .hero--bg-full::before {
   content: '';
@@ -317,7 +317,7 @@
 }
 .quick-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg), var(--shadow-primary-glow-md);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(37,99,235,0.2);
 }
 .quick-card > * {
   position: relative;
@@ -471,7 +471,7 @@
 
 /* ===== WHY ME ===== */
 .why-me {
-  background: var(--footer-bg) url('/wp2.webp') center center / cover no-repeat;
+  background: var(--footer-bg) url('/wp2.png') center center / cover no-repeat;
   color: var(--footer-heading);
   position: relative;
   overflow: hidden;
@@ -506,7 +506,7 @@
 
 /* Why Me Dark Mode */
 [data-theme="dark"] .why-me {
-  background: var(--gray-200) url('/wp2.webp') center center / cover no-repeat;
+  background: var(--gray-200) url('/wp2.png') center center / cover no-repeat;
   color: var(--dark);
 }
 [data-theme="dark"] .why-me::before {

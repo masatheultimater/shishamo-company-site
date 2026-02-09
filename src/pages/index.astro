@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import profileImage from '../assets/images/profile.png';
+import { images } from '../lib/siteConfig';
 import ArrowIcon from '../components/ui/ArrowIcon.astro';
 import '../styles/home.css';
 ---
@@ -31,7 +30,7 @@ import '../styles/home.css';
       </div>
       <div class="profile-card">
         <div class="profile-photo">
-          <Image src={profileImage} alt="吉川昌宏" width={200} height={200} />
+          <img src={images.profileImage} alt="吉川昌宏" />
         </div>
         <div class="profile-nickname">ししゃも</div>
         <div class="profile-name">吉川 昌宏</div>
