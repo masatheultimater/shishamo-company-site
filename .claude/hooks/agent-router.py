@@ -14,7 +14,7 @@ RESEARCHER_TRIGGERS = [
     "調べて", "リサーチ", "research", "investigate",
     "ドキュメント", "library", "docs", "ライブラリ",
     "pdf", "動画", "video", "audio", "音声",
-    "最新", "latest", "ベストプラクティス", "best practice"
+    "最新", "latest", "ベストプラクティス", "best practice","調査"
 ]
 
 CONSENSUS_TRIGGERS = [
