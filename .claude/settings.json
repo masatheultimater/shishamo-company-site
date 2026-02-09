@@ -9,7 +9,9 @@
       "Bash(python3:*)",
       "Bash(node:*)",
       "Bash(npm:*)",
-      "Bash(npx:*)"
+      "Bash(npx:*)",
+      "Read",
+      "Write"
     ],
     "deny": []
   },
