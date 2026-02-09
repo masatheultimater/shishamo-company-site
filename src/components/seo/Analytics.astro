@@ -4,7 +4,7 @@
  * Google Tag Manager integration with Consent Mode v2.
  *
  * - Only renders in production builds when PUBLIC_GTM_ID is set
- * - Initializes consent mode with all categories denied (opt-in model)
+ * - Region-specific consent: EEA = all denied (GDPR), others = analytics granted
  * - CookieConsent component handles consent updates via gtag('consent', 'update', ...)
  * - GA4 configuration is managed inside GTM console
  */
@@ -24,12 +24,22 @@ if (isProd && !gtmId) {
       function gtag(){dataLayer.push(arguments);}
       window.gtag = gtag;
 
+      // EEA: all categories denied by default (GDPR opt-in required)
       gtag('consent', 'default', {
         'analytics_storage': 'denied',
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied',
-        'wait_for_update': 500
+        'wait_for_update': 500,
+        'region': ['AT','BE','BG','CY','CZ','DE','DK','EE','ES','FI','FR','GR','HR','HU','IE','IS','IT','LI','LT','LU','LV','MT','NL','NO','PL','PT','RO','SE','SI','SK','GB']
+      });
+
+      // All other regions (including Japan): analytics granted, ads denied
+      gtag('consent', 'default', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
       });
     </script>
 
