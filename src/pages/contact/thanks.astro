@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { externalAPIs } from '../../lib/siteConfig';
 ---
 
 <Layout
@@ -22,7 +23,7 @@ import Layout from '../../layouts/Layout.astro';
             <span class="info-icon">📧</span>
             <div>
               <h3>返信メールについて</h3>
-              <p>masatheultimater@gmail.com からご連絡いたします。迷惑メールフォルダもご確認ください。</p>
+              <p>{externalAPIs.replyEmail} からご連絡いたします。迷惑メールフォルダもご確認ください。</p>
             </div>
           </div>
           <div class="info-item">
