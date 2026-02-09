@@ -110,17 +110,18 @@ export interface ServiceDetailData {
 }
 
 // ========================================
-// PLANNED: 将来実装予定の型定義
-// microCMS連携・ブログ機能実装時に使用
+// ブログ機能の型定義
+// microCMS blogs APIレスポンスをコンポーネント用に変換した型
 // ========================================
 
 export interface BlogPost {
   id: string;
   title: string;
   slug: string;
+  category: string[];          // microCMSセレクトフィールド（単一選択でも配列）
+  tags?: string[];             // microCMS複数セレクトフィールド
   excerpt?: string;
   content?: string;
-  category?: string;
   thumbnail?: ImageAsset;
   publishedAt: string;
   updatedAt?: string;

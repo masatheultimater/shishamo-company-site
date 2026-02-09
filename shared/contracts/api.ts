@@ -45,15 +45,31 @@ export type BlogCategory =
   | 'tech'         // テクノロジー
   | 'news';        // お知らせ
 
+export type BlogTag =
+  | 'chatgpt'          // ChatGPT
+  | 'claude'           // Claude
+  | 'automation'       // 業務自動化
+  | 'cloud-accounting' // クラウド会計
+  | 'freee'            // freee
+  | 'subsidy'          // 補助金・助成金
+  | 'kpi'              // KPI管理
+  | 'web'              // Web制作
+  | 'startup'          // スタートアップ
+  | 'tax'              // 税務
+  | 'bookkeeping'      // 記帳代行
+  | 'productivity';    // 生産性向上
+
 export interface BlogPostResponse extends MicroCMSBase {
   title: string;
   slug: string;
-  category: BlogCategory;
-  content: string;           // リッチエディタ（HTML）
-  excerpt?: string;          // 抜粋（プレーンテキスト）
+  category: string[];          // microCMSセレクトフィールド → string[]（単一選択でも配列）
+  tags?: string[];             // microCMS複数セレクトフィールド → string[]
+  excerpt?: string;            // 抜粋（プレーンテキスト、120〜160文字）
   thumbnail?: MicroCMSImage;
-  tags?: string[];
-  relatedPosts?: BlogPostResponse[];
+  content: string;             // リッチエディタ（HTML）
+  metaDescription?: string;    // SEO上書き用（excerpt優先）
+  ogImage?: MicroCMSImage;     // SNS上書き用（thumbnail優先）
+  relatedBlogs?: BlogPostResponse[];  // 自己参照、最大3件推奨
 }
 
 // ========================================
