@@ -140,6 +140,12 @@ const fullTitle = title.includes(seoDefaults.siteName)
 
   <!-- Cookie Consent Banner -->
   <CookieConsent />
+
+  <!-- GTM: Scroll milestone tracking (all pages) -->
+  <script>
+    import { initScrollTracking } from '../lib/analytics';
+    initScrollTracking();
+  </script>
 </body>
 </html>
 
