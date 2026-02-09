@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 .hero--bg-full {
-  background: var(--gray-50) url('/wp1.png') center center / cover no-repeat;
+  background: var(--gray-50) url('/wp1.webp') center center / cover no-repeat;
 }
 .hero--bg-full::before {
   content: '';
@@ -471,7 +471,7 @@
 
 /* ===== WHY ME ===== */
 .why-me {
-  background: var(--footer-bg) url('/wp2.png') center center / cover no-repeat;
+  background: var(--footer-bg) url('/wp2.webp') center center / cover no-repeat;
   color: var(--footer-heading);
   position: relative;
   overflow: hidden;
@@ -506,7 +506,7 @@
 
 /* Why Me Dark Mode */
 [data-theme="dark"] .why-me {
-  background: var(--gray-200) url('/wp2.png') center center / cover no-repeat;
+  background: var(--gray-200) url('/wp2.webp') center center / cover no-repeat;
   color: var(--dark);
 }
 [data-theme="dark"] .why-me::before {
