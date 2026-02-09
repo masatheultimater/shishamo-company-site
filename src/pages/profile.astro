@@ -37,7 +37,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   <section class="profile-hero">
     <div class="profile-hero-inner">
       <div class="profile-photo-wrapper">
-        <Image src={profileImage} alt="吉川昌宏" width={400} height={400} />
+        <Image src={profileImage} alt="吉川昌宏" width={400} height={400} loading="eager" />
       </div>
       <div class="profile-hero-text">
         <h1>{profileData.name}</h1>
