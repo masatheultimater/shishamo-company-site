@@ -3,6 +3,38 @@
  * Static configuration for site-wide constants
  */
 
+export interface Qualification {
+  name: string;
+  icon: string;
+  description: string;
+  status?: string;
+}
+
+export interface Service {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  priceMin?: number;
+  priceMax?: number;
+  priceUnit?: string;
+  priceType?: 'fixed' | 'success_fee';
+  priceRate?: string;
+  tags: string[];
+}
+
+export interface TimelineItem {
+  period: string;
+  title: string;
+  description: string;
+}
+
+export interface SocialLink {
+  name: string;
+  icon: string;
+  url: string;
+}
+
 export interface FooterLink {
   name: string;
   href: string;
@@ -36,6 +68,13 @@ export const navigationItems: NavigationItem[] = [
   { slug: 'services', title: 'サービス', href: '/services/' },
   { slug: 'profile', title: 'プロフィール', href: '/profile/' },
   { slug: 'blog', title: 'ブログ', href: '/#blog' },
+];
+
+/**
+ * Social links
+ */
+export const socialLinks: SocialLink[] = [
+  { name: 'X (Twitter)', icon: 'X', url: 'https://x.com/shishamoex09' },
 ];
 
 /**
@@ -91,7 +130,6 @@ export const siteMetadata = {
 export const externalAPIs = {
   formspreeEndpoint: 'https://formspree.io/f/mojwzwea',
   contactEmail: 'info@shishamo-company.com',
-  replyEmail: 'masatheultimater@gmail.com',
 } as const;
 
 /**

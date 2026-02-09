@@ -12,3 +12,5 @@ Sitemap: https://yoshikawa-masahiro.com/sitemap-index.xml
 # Disallow: /admin/
 # Disallow: /api/
 
+# クローリング速度制限（オプション）
+Crawl-delay: 1

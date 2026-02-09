@@ -158,9 +158,6 @@
   /* ===== Additional Legacy Shadows ===== */
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
   --shadow-glow: 0 0 40px rgba(37,99,235,0.15);
-  --shadow-primary-glow-sm: 0 0 20px rgba(37, 99, 235, 0.3);
-  --shadow-primary-glow-md: 0 0 30px rgba(37, 99, 235, 0.3);
-  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.1);
 
   /* ===== Additional Legacy Radius ===== */
   --radius-full: 9999px;
@@ -236,9 +233,6 @@
   --shadow-lg: var(--dark-shadow-lg);
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
   --shadow-glow: 0 0 40px rgba(96,165,250,0.2);
-  --shadow-primary-glow-sm: 0 0 20px rgba(96, 165, 250, 0.3);
-  --shadow-primary-glow-md: 0 0 30px rgba(96, 165, 250, 0.3);
-  --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.15);
   --gradient-primary: linear-gradient(135deg, #60a5fa, #3b82f6);
   --gradient-hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a5f 100%);
   --gradient-cta-bg: linear-gradient(135deg, #334155 0%, #1e293b 50%, #0f172a 100%);

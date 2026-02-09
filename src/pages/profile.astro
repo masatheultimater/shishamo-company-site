@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import profileImage from '../assets/images/profile.png';
 import ArrowIcon from '../components/ui/ArrowIcon.astro';
 import yaml from 'js-yaml';
 import fs from 'node:fs';
@@ -37,7 +35,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   <section class="profile-hero">
     <div class="profile-hero-inner">
       <div class="profile-photo-wrapper">
-        <Image src={profileImage} alt="吉川昌宏" width={400} height={400} />
+        <img src="/自画像_シンプル背景.png" alt="吉川昌宏">
       </div>
       <div class="profile-hero-text">
         <h1>{profileData.name}</h1>
@@ -255,7 +253,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   /* Profile Hero */
   .profile-hero {
     padding: 120px 24px 80px;
-    background: var(--gray-light) url('/wp1.webp') center center / cover no-repeat;
+    background: var(--gray-light) url('/wp1.png') center center / cover no-repeat;
     position: relative;
     overflow: hidden;
   }
@@ -857,7 +855,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
 
   /* ===== DARK MODE ===== */
   :global([data-theme="dark"]) .profile-hero {
-    background: var(--gray-100) url('/wp1.webp') center center / cover no-repeat;
+    background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
   }
   :global([data-theme="dark"]) .profile-hero::before {
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
