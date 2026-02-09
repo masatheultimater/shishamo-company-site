@@ -1,8 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
-const referrer = Astro.request.headers.get('referer') || '';
-const conversionType = referrer.includes('/quote') ? 'quote' : 'contact';
 ---
 
 <Layout
@@ -45,12 +42,10 @@ const conversionType = referrer.includes('/quote') ? 'quote' : 'contact';
     </div>
   </section>
   <!-- GTM: Track conversion on page load -->
-  <script is:inline define:vars={{ conversionType }}>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'generate_lead',
-      conversion_type: conversionType
-    });
+  <script>
+    import { trackConversion } from '../../lib/analytics';
+    const convType = (document.referrer || '').includes('/quote') ? 'quote' : 'contact';
+    trackConversion({ conversion_type: convType as 'contact' | 'quote' });
   </script>
 </Layout>
 

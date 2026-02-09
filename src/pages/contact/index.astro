@@ -95,10 +95,11 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
           <button type="submit" class="btn-primary">送信する →</button>
         </form>
         <script>
-          import { trackFormSubmit } from '../../lib/analytics';
+          import { trackFormSubmit, initFormAbandonmentTracking } from '../../lib/analytics';
           document.getElementById('contactForm')?.addEventListener('submit', () => {
             trackFormSubmit({ form_type: 'contact' });
           });
+          initFormAbandonmentTracking('contactForm', 'contact');
         </script>
       </div>
 

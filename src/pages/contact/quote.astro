@@ -143,10 +143,11 @@ const quoteFAQ = [
           </button>
         </form>
         <script>
-          import { trackFormSubmit } from '../../lib/analytics';
+          import { trackFormSubmit, initFormAbandonmentTracking } from '../../lib/analytics';
           document.getElementById('quoteForm')?.addEventListener('submit', () => {
             trackFormSubmit({ form_type: 'quote' });
           });
+          initFormAbandonmentTracking('quoteForm', 'quote');
         </script>
       </div>
 

@@ -247,19 +247,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     </div>
   </section>
 
-  <!-- GTM: Track CTA clicks -->
-  <script>
-    import { trackCTAClick } from '../lib/analytics';
-    document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
-      el.addEventListener('click', () => {
-        trackCTAClick({
-          cta_location: el.dataset.trackCta || 'unknown',
-          cta_text: el.textContent?.trim() || '',
-          destination_url: el.href,
-        });
-      });
-    });
-  </script>
 </Layout>
 
 <style>
