@@ -243,22 +243,24 @@ import ArrowIcon from '../../components/ui/ArrowIcon.astro';
     import { trackServiceClick, trackCTAClick } from '../../lib/analytics';
 
     document.querySelectorAll<HTMLAnchorElement>('[data-track-service]').forEach(el => {
-      el.addEventListener('click', () => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
         trackServiceClick({
           service_id: el.dataset.trackService || '',
           service_name: el.dataset.serviceName || '',
           click_location: 'service_index',
-        });
+        }, el.href);
       });
     });
 
     document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
-      el.addEventListener('click', () => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
         trackCTAClick({
           cta_location: el.dataset.trackCta || 'unknown',
           cta_text: el.textContent?.trim() || '',
           destination_url: el.href,
-        });
+        }, el.href);
       });
     });
   </script>
