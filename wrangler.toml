@@ -6,16 +6,15 @@ name = "shishamo-site"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
 
-# 環境変数（本番環境）
-[vars]
-ENVIRONMENT = "production"
-PUBLIC_GTM_ID = "GTM-PFVZJRX9"
-MICROCMS_SERVICE_DOMAIN = "shishamo-company"
-MICROCMS_API_KEY = "9cRqwiySQNVfp2tk9HxKwDZEEumpA140TXCE"
-
-# 将来のFunctions用設定（お問い合わせフォームなど）
-# [env.production.vars]
-# RESEND_API_KEY = ""
+# 環境変数はCloudflare Pagesダッシュボードで管理
+# Settings > Environment Variables に以下を設定:
+#   ENVIRONMENT = "production"
+#   PUBLIC_GTM_ID = "GTM-PFVZJRX9"
+#   MICROCMS_SERVICE_DOMAIN = (microCMS管理画面から)
+#   MICROCMS_API_KEY = (microCMS管理画面から)
+#
+# 注意: [vars] セクションが存在するとダッシュボードの値が無視されるため、
+# このファイルには [vars] を定義しない
 
 # ルーティング設定
 # [[routes]]
