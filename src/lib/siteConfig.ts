@@ -3,38 +3,6 @@
  * Static configuration for site-wide constants
  */
 
-export interface Qualification {
-  name: string;
-  icon: string;
-  description: string;
-  status?: string;
-}
-
-export interface Service {
-  id: string;
-  name: string;
-  icon: string;
-  description: string;
-  priceMin?: number;
-  priceMax?: number;
-  priceUnit?: string;
-  priceType?: 'fixed' | 'success_fee';
-  priceRate?: string;
-  tags: string[];
-}
-
-export interface TimelineItem {
-  period: string;
-  title: string;
-  description: string;
-}
-
-export interface SocialLink {
-  name: string;
-  icon: string;
-  url: string;
-}
-
 export interface FooterLink {
   name: string;
   href: string;
@@ -68,13 +36,6 @@ export const navigationItems: NavigationItem[] = [
   { slug: 'services', title: 'サービス', href: '/services/' },
   { slug: 'profile', title: 'プロフィール', href: '/profile/' },
   { slug: 'blog', title: 'ブログ', href: '/#blog' },
-];
-
-/**
- * Social links
- */
-export const socialLinks: SocialLink[] = [
-  { name: 'X (Twitter)', icon: 'X', url: 'https://x.com/shishamoex09' },
 ];
 
 /**
@@ -136,6 +97,5 @@ export const externalAPIs = {
  * Image paths
  */
 export const images = {
-  profileImage: '/自画像_シンプル背景.png',
   ogImage: '/自画像_シンプル背景.png',
 } as const;

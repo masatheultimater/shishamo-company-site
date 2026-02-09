@@ -15,12 +15,29 @@ interface Props {
   title: string;
   items: FAQItem[];
   variant?: 'default' | 'detailed';
+  generateSchema?: boolean;
 }
 
-const { title, items, variant = 'default' } = Astro.props;
+const { title, items, variant = 'default', generateSchema = false } = Astro.props;
 const sectionClass = variant === 'detailed' ? 'faq-section faq-section--detailed' : 'faq-section';
+
+const faqSchema = generateSchema ? JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": items.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer.replace(/<[^>]*>/g, '')
+    }
+  }))
+}) : null;
 ---
 
+{faqSchema && (
+  <script type="application/ld+json" set:html={faqSchema} />
+)}
 <section class={sectionClass}>
   <div class="faq-inner">
     <h2 class="faq-title">{title}</h2>

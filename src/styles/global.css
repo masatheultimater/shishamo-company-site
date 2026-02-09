@@ -222,7 +222,7 @@ ul {
 /* ===== PAGE HEADER ===== */
 .page-header {
   padding: var(--space-5xl) var(--space-xl) var(--space-2xl);
-  background: var(--gray-50) url('/wp1.png') center center / cover no-repeat;
+  background: var(--gray-50) url('/wp1.webp') center center / cover no-repeat;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -268,7 +268,7 @@ ul {
 
 /* Page Header Dark Mode */
 [data-theme="dark"] .page-header {
-  background: var(--gray-100) url('/wp1.png') center center / cover no-repeat;
+  background: var(--gray-100) url('/wp1.webp') center center / cover no-repeat;
 }
 [data-theme="dark"] .page-header::before {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
