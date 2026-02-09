@@ -317,7 +317,7 @@
 }
 .quick-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(37,99,235,0.2);
+  box-shadow: var(--shadow-lg), var(--shadow-primary-glow-md);
 }
 .quick-card > * {
   position: relative;

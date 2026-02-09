@@ -105,7 +105,7 @@ ul {
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-xl), 0 0 30px rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-xl), var(--shadow-primary-glow-md);
 }
 
 .btn-primary:hover svg {
