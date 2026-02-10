@@ -35,6 +35,7 @@ export const categoryLabels: Record<BlogCategory, string> = {
   accounting: '経理・税務',
   tech: 'テクノロジー',
   news: 'お知らせ',
+  about: 'About',
 };
 
 export const categoryIcons: Record<BlogCategory, string> = {
@@ -45,7 +46,13 @@ export const categoryIcons: Record<BlogCategory, string> = {
   accounting: '📝',
   tech: '💻',
   news: '📢',
+  about: '👤',
 };
+
+/** Reverse map: microCMS display name → slug */
+const displayNameToSlug: Record<string, BlogCategory> = Object.fromEntries(
+  Object.entries(categoryLabels).map(([slug, label]) => [label, slug as BlogCategory])
+);
 
 // ========================================
 // API functions
@@ -134,7 +141,9 @@ export function transformBlogPost(response: BlogPostResponse): BlogPost {
 
 /** Get primary category from array (microCMS select returns string[]) */
 export function getPrimaryCategory(categories: string[]): BlogCategory {
-  return (categories[0] || 'news') as BlogCategory;
+  const raw = categories[0] || 'news';
+  // Normalize: accept both slugs ("dx") and display names ("DX推進")
+  return displayNameToSlug[raw] || (raw as BlogCategory);
 }
 
 /** Format date for display (YYYY.MM.DD) */
