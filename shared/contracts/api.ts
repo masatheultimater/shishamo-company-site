@@ -43,7 +43,8 @@ export type BlogCategory =
   | 'management'   // 経営
   | 'accounting'   // 経理・税務
   | 'tech'         // テクノロジー
-  | 'news';        // お知らせ
+  | 'news'         // お知らせ
+  | 'about';       // About
 
 export type BlogTag =
   | 'chatgpt'          // ChatGPT

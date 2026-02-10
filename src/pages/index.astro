@@ -3,7 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.png';
 import ArrowIcon from '../components/ui/ArrowIcon.astro';
+import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
 import '../styles/home.css';
+
+const allPosts = await getAllBlogPosts();
+const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
 ---
 
 <Layout
@@ -231,18 +235,49 @@ import '../styles/home.css';
         <div class="section-label section-label--compact">Blog</div>
         <h2 class="section-title section-title--compact">ブログ・お役立ち情報</h2>
       </div>
-      <div class="blog-placeholder">
-        <p class="blog-status">Coming Soon</p>
-        <h3>ブログ準備中</h3>
-        <p>DX推進・AI活用・経営改善のノウハウを発信予定です。</p>
-        <div class="external-links">
-          <a href="https://x.com/shishamoex09" target="_blank" rel="noopener noreferrer" class="external-link" aria-label="X @shishamoex09（外部サイト、新しいタブで開きます）">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            @shishamoex09
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-          </a>
+      {latestPosts.length > 0 ? (
+        <>
+          <div class="blog-cards">
+            {latestPosts.map((post) => {
+              const cat = getPrimaryCategory(post.category);
+              return (
+                <a href={`/blog/${post.slug || post.id}/`} class="blog-card-home">
+                  {post.thumbnail ? (
+                    <div class="blog-card-home__thumbnail">
+                      <img
+                        src={`${post.thumbnail.url}?w=640&h=360&fit=crop`}
+                        alt={post.title}
+                        width="640"
+                        height="360"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ) : (
+                    <div class="blog-card-home__thumbnail blog-card-home__thumbnail--empty">
+                      <span>{categoryIcons[cat]}</span>
+                    </div>
+                  )}
+                  <div class="blog-card-home__body">
+                    <span class="blog-card-home__category">{categoryIcons[cat]} {categoryLabels[cat]}</span>
+                    <h3 class="blog-card-home__title">{post.title}</h3>
+                    <time class="blog-card-home__date" datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+          <div class="blog-more">
+            <a href="/blog/" class="btn-secondary" data-track-cta="blog">ブログをもっと見る <ArrowIcon size={14} /></a>
+          </div>
+        </>
+      ) : (
+        <div class="blog-placeholder">
+          <p class="blog-status">Coming Soon</p>
+          <h3>ブログ準備中</h3>
+          <p>DX推進・AI活用・経営改善のノウハウを発信予定です。</p>
         </div>
-      </div>
+      )}
     </div>
   </section>
 
