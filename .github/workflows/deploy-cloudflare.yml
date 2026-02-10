@@ -21,6 +21,9 @@ on:
     branches:
       - main
       - master
+  repository_dispatch:
+    types: [microcms-webhook]
+  workflow_dispatch:  # 手動リビルド用
 
 jobs:
   # ========================================
