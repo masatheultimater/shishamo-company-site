@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "upload-articles": "node scripts/upload-blog-articles.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
@@ -17,6 +18,7 @@
     "microcms-js-sdk": "^3.3.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0.9"
+    "@types/js-yaml": "^4.0.9",
+    "marked": "^17.0.1"
   }
 }
