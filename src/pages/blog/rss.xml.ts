@@ -6,7 +6,7 @@ export async function GET(context: APIContext) {
   const posts = await getAllBlogPosts();
 
   return rss({
-    title: 'ブログ | ししゃも｜吉川昌宏',
+    title: 'ブログ | ししゃもカンパニー',
     description: 'DX推進・生成AI・データ活用・経営支援に関するナレッジ・事例・お知らせ',
     site: context.site!.toString(),
     items: posts.map((post) => ({
