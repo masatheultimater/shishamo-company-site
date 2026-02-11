@@ -252,27 +252,11 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             const cat = getPrimaryCategory(post.category);
             return (
               <a href={`/blog/${post.slug || post.id}/`} class="blog-card-home">
-                {post.thumbnail ? (
-                  <div class="blog-card-home__thumbnail">
-                    <img
-                      src={`${post.thumbnail.url}?w=640&h=360&fit=crop`}
-                      alt={post.title}
-                      width="640"
-                      height="360"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                ) : (
-                  <div class="blog-card-home__thumbnail blog-card-home__thumbnail--empty">
-                    <span>{categoryIcons[cat]}</span>
-                  </div>
-                )}
-                <div class="blog-card-home__body">
+                <div class="blog-card-home__meta">
                   <span class="blog-card-home__category">{categoryIcons[cat]} {categoryLabels[cat]}</span>
-                  <h3 class="blog-card-home__title">{post.title}</h3>
                   <time class="blog-card-home__date" datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
                 </div>
+                <h3 class="blog-card-home__title">{post.title}</h3>
               </a>
             );
           })}
