@@ -122,6 +122,26 @@
   margin-bottom: 4px;
   letter-spacing: 0.05em;
 }
+.profile-x-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  color: inherit;
+  text-decoration: none;
+}
+.profile-x-link:hover {
+  color: var(--primary);
+}
+.profile-x-link svg {
+  flex-shrink: 0;
+}
+.profile-x-handle {
+  font-size: 0.8em;
+  color: var(--gray-500);
+}
+[data-theme="dark"] .profile-x-handle {
+  color: var(--gray-500);
+}
 .profile-name {
   font-family: var(--font-display);
   font-size: var(--font-size-lg);
