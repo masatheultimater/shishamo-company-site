@@ -4,7 +4,7 @@
 
 # === プロジェクト基本情報 ===
 project_name: shishamo-site
-domain: yoshikawa-masahiro.com  # または shishamo.dev 等
+domain: shishamo-company.com  # または shishamo.dev 等
 client_name: 吉川昌宏事務所
 owner_name: 吉川昌宏
 owner_nickname: ししゃも
@@ -210,7 +210,7 @@ seo:
   
 # === 連絡先（構造化データ用）===
 contact:
-  email: contact@yoshikawa-masahiro.com  # 仮
+  email: contact@shishamo-company.com  # 仮
   # 以下は事務所開設後に設定
   # phone: 
   # address:

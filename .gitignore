@@ -17,3 +17,7 @@ Thumbs.db
 .idea/
 
 .claude/
+
+# Prevent CLAUDE.md from becoming routable Astro pages
+src/pages/**/CLAUDE.md
+public/CLAUDE.md

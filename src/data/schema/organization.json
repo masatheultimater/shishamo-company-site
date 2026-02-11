@@ -4,9 +4,9 @@
   "name": "吉川昌宏事務所",
   "alternateName": "ししゃも｜吉川昌宏",
   "description": "IT × 経営 × 財務で、ビジネスを加速させる。中小企業向けDX推進・生成AI導入・データ活用・経営支援サービスを提供。",
-  "url": "https://yoshikawa-masahiro.com",
-  "logo": "https://yoshikawa-masahiro.com/shishamo-logo.svg",
-  "email": "contact@yoshikawa-masahiro.com",
+  "url": "https://shishamo-company.com",
+  "logo": "https://shishamo-company.com/shishamo-logo.svg",
+  "email": "contact@shishamo-company.com",
   "priceRange": "$",
   "address": {
     "@type": "PostalAddress",
@@ -16,7 +16,7 @@
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer service",
-    "url": "https://yoshikawa-masahiro.com/contact/",
+    "url": "https://shishamo-company.com/contact/",
     "availableLanguage": "Japanese"
   },
   "areaServed": {
@@ -25,7 +25,7 @@
   },
   "founder": {
     "@type": "Person",
-    "@id": "https://yoshikawa-masahiro.com/#person"
+    "@id": "https://shishamo-company.com/#person"
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
