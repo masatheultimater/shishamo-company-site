@@ -12,7 +12,6 @@ import Footer from '../components/layout/Footer.astro';
 import MetaTags from '../components/seo/MetaTags.astro';
 import Analytics from '../components/seo/Analytics.astro';
 import StructuredData from '../components/seo/StructuredData.astro';
-import CookieConsent from '../components/ui/CookieConsent.astro';
 import { seoDefaults } from '../lib/siteConfig';
 
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
@@ -144,8 +143,6 @@ const fullTitle = title.includes(seoDefaults.siteName)
   <!-- Footer -->
   <Footer />
 
-  <!-- Cookie Consent Banner -->
-  <CookieConsent />
 
   <!-- GTM: Global analytics (scroll, engagement, CTA clicks) -->
   <script>
