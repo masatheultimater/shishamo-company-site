@@ -137,10 +137,6 @@ export function trackBlogRead(params: BlogReadParams): void {
   pushEvent('blog_read', { ...params, page_path: window.location.pathname });
 }
 
-export function trackCookieConsent(action: 'accept' | 'dismiss'): void {
-  pushEvent('cookie_consent', { consent_action: action });
-}
-
 /**
  * Track form abandonment when user starts filling but doesn't submit.
  * Fires once on visibilitychange=hidden if form was interacted with.
