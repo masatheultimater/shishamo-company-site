@@ -178,8 +178,8 @@
   --color-error: var(--palette-red-400);
 
   /* Overlays & Glass */
-  --color-overlay-bg: rgba(10, 10, 15, 0.65);
-  --color-overlay-gradient: linear-gradient(135deg, rgba(10, 10, 15, 0.7) 0%, rgba(10, 10, 15, 0.6) 100%);
+  --color-overlay-bg: rgba(10, 10, 15, 0.5);
+  --color-overlay-gradient: linear-gradient(135deg, rgba(10, 10, 15, 0.55) 0%, rgba(10, 10, 15, 0.45) 100%);
   --color-glass-bg: rgba(22, 22, 31, 0.8);
   --color-glass-border: rgba(255, 255, 255, 0.08);
   --color-glass-text: rgba(255, 255, 255, 0.7);
@@ -255,8 +255,8 @@
   --color-error: var(--palette-red-500);
 
   /* Overlays & Glass */
-  --color-overlay-bg: rgba(248, 250, 252, 0.85);
-  --color-overlay-gradient: linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(248, 250, 252, 0.7) 100%);
+  --color-overlay-bg: rgba(248, 250, 252, 0.55);
+  --color-overlay-gradient: linear-gradient(135deg, rgba(248, 250, 252, 0.55) 0%, rgba(248, 250, 252, 0.45) 100%);
   --color-glass-bg: rgba(255, 255, 255, 0.8);
   --color-glass-border: rgba(0, 0, 0, 0.06);
   --color-glass-text: rgba(0, 0, 0, 0.7);
