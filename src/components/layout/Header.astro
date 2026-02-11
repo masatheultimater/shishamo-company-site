@@ -5,6 +5,7 @@
  */
 import { siteBranding, navigationItems } from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
+import { Sun, Moon, Menu } from '@lucide/astro';
 
 interface Props {
   currentPage?: 'home' | 'services' | 'profile' | 'blog' | 'contact';
@@ -50,25 +51,15 @@ const { currentPage, transparent = false } = Astro.props;
         無料相談
       </a>
       <button class="theme-toggle" id="themeToggle" aria-label="テーマ切り替え">
-        <svg class="theme-icon theme-icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-        <svg class="theme-icon theme-icon--dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </svg>
+        <Sun class="theme-icon theme-icon--light" size={18} />
+        <Moon class="theme-icon theme-icon--dark" size={18} />
       </button>
     </nav>
 
     <div class="header-actions">
       <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="テーマ切り替え">
-        <svg class="theme-icon theme-icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-        </svg>
-        <svg class="theme-icon theme-icon--dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </svg>
+        <Sun class="theme-icon theme-icon--light" size={18} />
+        <Moon class="theme-icon theme-icon--dark" size={18} />
       </button>
       <button
         class="mobile-menu-btn"
@@ -77,31 +68,31 @@ const { currentPage, transparent = false } = Astro.props;
         aria-controls="mobileNav"
         id="mobileMenuBtn"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
+        <Menu size={20} />
       </button>
     </div>
   </div>
 </header>
 
 <style>
-  /* ===== HEADER ===== */
+  /* ===== HEADER — Glass Navbar ===== */
   .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    background: var(--gray-50);
-    border-bottom: 1px solid var(--gray-200);
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-glass-border);
     padding: 0 24px;
   }
 
   .header--transparent {
     background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-bottom: none;
   }
 
@@ -131,12 +122,12 @@ const { currentPage, transparent = false } = Astro.props;
   .logo-mark {
     width: 56px;
     height: 36px;
-    background: var(--primary);
+    background: var(--color-accent);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--btn-text-on-primary);
+    color: var(--palette-white);
     padding: 6px 8px;
   }
 
@@ -145,78 +136,39 @@ const { currentPage, transparent = false } = Astro.props;
     height: 100%;
   }
 
-  :global([data-theme="dark"]) .logo-mark {
-    color: var(--btn-text-on-primary-dark);
-  }
-
   .logo-text {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 18px;
-    color: var(--dark);
+    color: var(--color-text-heading);
     white-space: nowrap;
   }
 
-  .logo-sub {
-    color: var(--gray-500);
-    font-weight: 500;
-    font-size: 13px;
-    margin-left: 8px;
-  }
-
-  /* X Link */
-  .header-x-link {
+  /* Social Links */
+  .header-x-link,
+  .header-fb-link {
     width: 32px;
     height: 32px;
-    background: var(--gray-200);
+    background: var(--color-surface-elevated);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    color: var(--gray-600);
-    transition: all 0.2s;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-base);
   }
 
-  .header-x-link:hover {
-    background: var(--dark);
-    color: var(--white);
-    opacity: 0.85;
-  }
-
-  :global([data-theme="dark"]) .header-x-link:hover {
-    background: var(--gray-300);
-    color: var(--dark);
+  .header-x-link:hover,
+  .header-fb-link:hover {
+    background: var(--color-accent);
+    color: var(--palette-white);
   }
 
   .header-x-link:focus-visible,
   .header-fb-link:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
-  }
-
-  .header-fb-link {
-    width: 32px;
-    height: 32px;
-    background: var(--gray-200);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: var(--gray-600);
-    transition: all 0.2s;
-  }
-
-  .header-fb-link:hover {
-    background: var(--dark);
-    color: var(--white);
-    opacity: 0.85;
-  }
-
-  :global([data-theme="dark"]) .header-fb-link:hover {
-    background: var(--gray-300);
-    color: var(--dark);
   }
 
   /* Navigation */
@@ -229,37 +181,33 @@ const { currentPage, transparent = false } = Astro.props;
   .nav-link {
     font-size: 14px;
     font-weight: 500;
-    color: var(--gray-600);
-    transition: color 0.2s;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-base);
     padding: 8px 0;
   }
 
   .nav-link:hover,
   .nav-link--active {
-    color: var(--dark);
+    color: var(--color-text-heading);
   }
 
   .nav-cta {
-    background: var(--primary);
-    color: var(--btn-text-on-primary);
+    background: var(--gradient-semantic-primary);
+    color: var(--palette-white);
     padding: 10px 20px;
     border-radius: var(--radius-md);
     font-size: 14px;
     font-weight: 600;
-    transition: all 0.2s;
+    transition: all var(--transition-base);
   }
 
   .nav-cta:hover {
-    background: var(--primary-light);
-  }
-
-  :global([data-theme="dark"]) .nav-cta {
-    color: var(--btn-text-on-primary-dark);
+    box-shadow: var(--color-btn-primary-hover-shadow);
   }
 
   /* Theme Toggle */
   .theme-toggle {
-    background: var(--gray-200);
+    background: var(--color-surface-elevated);
     border: none;
     width: 36px;
     height: 36px;
@@ -268,18 +216,18 @@ const { currentPage, transparent = false } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: background var(--transition-base);
     position: relative;
   }
 
   .theme-toggle:hover {
-    background: var(--gray-300);
+    background: var(--color-surface-hover);
   }
 
   .theme-icon {
     position: absolute;
-    transition: opacity 0.2s, transform 0.2s;
-    color: var(--gray-600);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+    color: var(--color-text-secondary);
   }
 
   .theme-icon--light {
@@ -292,7 +240,6 @@ const { currentPage, transparent = false } = Astro.props;
     transform: scale(0.8);
   }
 
-  /* Dark mode theme icon states */
   :global([data-theme="light"]) .theme-icon--light {
     opacity: 1;
     transform: scale(1);
@@ -327,20 +274,20 @@ const { currentPage, transparent = false } = Astro.props;
   /* Mobile Menu Button */
   .mobile-menu-btn {
     display: none;
-    background: var(--gray-200);
+    background: var(--color-surface-elevated);
     border: none;
     width: 36px;
     height: 36px;
     border-radius: var(--radius-sm);
     cursor: pointer;
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
     align-items: center;
     justify-content: center;
-    transition: background 0.2s;
+    transition: background var(--transition-base);
   }
 
   .mobile-menu-btn:hover {
-    background: var(--gray-300);
+    background: var(--color-surface-hover);
   }
 
   /* ===== RESPONSIVE ===== */
@@ -380,10 +327,6 @@ const { currentPage, transparent = false } = Astro.props;
 
     .logo-text {
       font-size: 15px;
-    }
-
-    .logo-sub {
-      display: none;
     }
 
     .logo-group {

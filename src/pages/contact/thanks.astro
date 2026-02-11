@@ -71,7 +71,7 @@ import Layout from '../../layouts/Layout.astro';
     min-height: calc(100vh - 200px);
     padding: 8rem 2rem 4rem;
     display: flex; align-items: center; justify-content: center;
-    background: var(--gradient-hero-bg);
+    background: var(--gradient-semantic-hero);
     position: relative; overflow: hidden;
   }
   .thanks-section::before {
@@ -87,7 +87,7 @@ import Layout from '../../layouts/Layout.astro';
     transform: translateY(-50%);
     width: 280px;
     height: 280px;
-    background: linear-gradient(135deg, #10b981, var(--primary));
+    background: linear-gradient(135deg, var(--color-success), var(--color-accent));
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     opacity: 0.06;
     animation: morph 8s ease-in-out infinite;
@@ -98,13 +98,13 @@ import Layout from '../../layouts/Layout.astro';
 
   /* Improvement 3: Accent bar at top of card */
   .thanks-card {
-    background: var(--white); border-radius: var(--radius-lg); padding: 3rem;
-    box-shadow: var(--shadow-xl); text-align: center;
+    background: var(--color-card-bg); border-radius: var(--radius-lg); padding: 3rem;
+    box-shadow: var(--shadow-semantic-xl); text-align: center;
     position: relative; overflow: hidden;
   }
   .thanks-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, #10b981, var(--primary));
+    background: linear-gradient(90deg, var(--color-success), var(--color-accent));
   }
 
   /* Improvement 7: Staggered fade-in for children */
@@ -172,14 +172,14 @@ import Layout from '../../layouts/Layout.astro';
   .thanks-card h1 {
     font-family: var(--font-display); font-size: 1.75rem; font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--dark), var(--accent));
+    background: linear-gradient(135deg, var(--color-text-heading), var(--color-success));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
   .thanks-message {
-    font-size: 1rem; color: var(--gray); line-height: 1.8; margin-bottom: 2rem;
+    font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 2rem;
   }
-  .thanks-message strong { color: var(--accent); }
+  .thanks-message strong { color: var(--color-success); }
 
   /* Improvement 4: Info items as mini-cards */
   .thanks-info {
@@ -189,7 +189,7 @@ import Layout from '../../layouts/Layout.astro';
 
   .info-item {
     display: flex; gap: 1rem; align-items: flex-start;
-    background: var(--gray-lighter);
+    background: var(--color-bg-tertiary);
     border-radius: var(--radius-md);
     padding: 1rem 1.25rem;
     border-left: 3px solid #10b981;
@@ -205,48 +205,9 @@ import Layout from '../../layouts/Layout.astro';
   }
 
   .info-item h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
-  .info-item p { font-size: 0.85rem; color: var(--gray); line-height: 1.6; }
+  .info-item p { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.6; }
 
   .thanks-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-  /* ===== DARK MODE ===== */
-  :global([data-theme="dark"]) .thanks-section::before {
-    background: radial-gradient(ellipse, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
-  }
-  :global([data-theme="dark"]) .thanks-blob {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    opacity: 0.08;
-  }
-  :global([data-theme="dark"]) .thanks-card {
-    background: var(--gray-100);
-    box-shadow: var(--shadow-lg);
-  }
-  :global([data-theme="dark"]) .thanks-card h1 {
-    background: none;
-    -webkit-background-clip: unset;
-    -webkit-text-fill-color: var(--dark);
-    background-clip: unset;
-  }
-  :global([data-theme="dark"]) .thanks-message { color: var(--gray-600); }
-  :global([data-theme="dark"]) .thanks-message strong { color: var(--accent); }
-  :global([data-theme="dark"]) .info-item {
-    background: var(--gray-50);
-    border-left-color: var(--accent);
-  }
-  :global([data-theme="dark"]) .info-icon-wrapper {
-    background: rgba(96, 165, 250, 0.12);
-    color: var(--accent);
-  }
-  :global([data-theme="dark"]) .info-item h3 { color: var(--dark); }
-  :global([data-theme="dark"]) .info-item p { color: var(--gray-600); }
-  :global([data-theme="dark"]) .check-circle,
-  :global([data-theme="dark"]) .check-mark { stroke: var(--accent); }
-  :global([data-theme="dark"]) .thanks-icon::before {
-    background: radial-gradient(circle, rgba(96,165,250,0.15) 0%, transparent 70%);
-  }
-  :global([data-theme="dark"]) .thanks-card::before {
-    background: linear-gradient(90deg, var(--accent), var(--primary));
-  }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {

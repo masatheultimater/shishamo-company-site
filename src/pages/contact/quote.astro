@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import FAQSection from '../../components/ui/FAQSection.astro';
 import { externalAPIs } from '../../lib/siteConfig';
-import ArrowIcon from '../../components/ui/ArrowIcon.astro';
+import { ArrowRight } from '@lucide/astro';
 import '../../styles/forms.css';
 
 const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
@@ -138,7 +138,7 @@ const quoteFAQ = [
 
           <button type="submit" class="btn-primary quote-submit-btn">
             お見積もりを依頼する
-            <ArrowIcon size={14} />
+            <ArrowRight size={14} />
           </button>
         </form>
         <script>
@@ -226,12 +226,12 @@ const quoteFAQ = [
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--secondary), var(--accent));
+    background: var(--gradient-semantic-accent);
   }
   .page-header-label {
     font-size: 11px;
     font-weight: 600;
-    color: var(--gray);
+    color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 10px;
@@ -244,7 +244,7 @@ const quoteFAQ = [
   }
   .page-header p {
     font-size: 15px;
-    color: var(--gray);
+    color: var(--color-text-secondary);
     max-width: 520px;
     margin: 0 auto;
     line-height: 1.7;
@@ -253,7 +253,7 @@ const quoteFAQ = [
   /* Contact Section */
   .contact-section {
     padding: 60px 24px 80px;
-    background: var(--light);
+    background: var(--color-bg-secondary);
   }
   .contact-inner {
     max-width: 1000px;
@@ -265,11 +265,11 @@ const quoteFAQ = [
 
   /* Form Card */
   .contact-form-card {
-    background: var(--white);
-    border: 1px solid var(--gray-light);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: 32px;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-semantic-md);
   }
   .contact-form-card h2 {
     font-family: var(--font-display);
@@ -278,7 +278,7 @@ const quoteFAQ = [
     margin-bottom: 8px;
   }
   .contact-form-card > p {
-    color: var(--gray);
+    color: var(--color-text-secondary);
     font-size: 14px;
     margin-bottom: 28px;
   }
@@ -299,7 +299,7 @@ const quoteFAQ = [
   }
   .form-note {
     font-size: 12px;
-    color: var(--gray);
+    color: var(--color-text-secondary);
     margin-top: 6px;
   }
   .checkbox-group {
@@ -311,7 +311,7 @@ const quoteFAQ = [
   }
   .checkbox-group label {
     font-size: 14px;
-    color: var(--gray);
+    color: var(--color-text-secondary);
   }
 
   .quote-submit-btn {
@@ -319,8 +319,8 @@ const quoteFAQ = [
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--secondary);
-    color: white;
+    background: var(--color-accent);
+    color: var(--palette-white);
     padding: 14px 28px;
     border-radius: var(--radius-sm);
     font-weight: 600;
@@ -331,7 +331,8 @@ const quoteFAQ = [
     width: 100%;
   }
   .quote-submit-btn:hover {
-    background: var(--secondary-dark);
+    opacity: 0.9;
+    box-shadow: var(--shadow-semantic-glow);
   }
   .quote-submit-btn svg {
     transition: transform 0.2s;
@@ -347,14 +348,14 @@ const quoteFAQ = [
     gap: 16px;
   }
   .sidebar-card {
-    background: var(--white);
-    border: 1px solid var(--gray-light);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 20px;
     transition: all 0.2s;
   }
   .sidebar-card:hover {
-    border-color: var(--secondary);
+    border-color: var(--color-accent);
   }
   .sidebar-card h3 {
     font-size: 15px;
@@ -366,14 +367,14 @@ const quoteFAQ = [
   }
   .sidebar-card p {
     font-size: 13px;
-    color: var(--gray);
+    color: var(--color-text-secondary);
     line-height: 1.7;
   }
 
   /* Response Card */
   .response-card {
-    background: var(--secondary-dark);
-    color: white;
+    background: var(--color-accent);
+    color: var(--palette-white);
     border: none;
     position: relative;
     overflow: hidden;
@@ -389,7 +390,7 @@ const quoteFAQ = [
     border-radius: 50%;
   }
   .response-card h3 {
-    color: white;
+    color: var(--palette-white);
   }
   .response-card .response-icon {
     color: rgba(255, 255, 255, 0.8);
@@ -402,40 +403,10 @@ const quoteFAQ = [
   }
   .response-card p {
     opacity: 0.9;
-    color: white;
+    color: var(--palette-white);
   }
   .response-card:hover {
     border-color: transparent;
-  }
-
-  /* ===== DARK MODE ===== */
-  :global([data-theme="dark"]) .page-header::before {
-    background: linear-gradient(90deg, var(--secondary), var(--accent));
-  }
-  :global([data-theme="dark"]) .contact-section { background: var(--gray-50); }
-  :global([data-theme="dark"]) .contact-form-card {
-    background: var(--gray-100);
-    border-color: var(--gray-300);
-    box-shadow: var(--shadow-lg);
-  }
-  :global([data-theme="dark"]) .contact-form-card > p { color: var(--gray-600); }
-  :global([data-theme="dark"]) .sidebar-card {
-    background: var(--gray-100);
-    border-color: var(--gray-300);
-  }
-  :global([data-theme="dark"]) .sidebar-card:hover { border-color: var(--secondary); }
-  :global([data-theme="dark"]) .sidebar-card p { color: var(--gray-600); }
-  :global([data-theme="dark"]) .response-card {
-    background: var(--secondary-dark);
-  }
-  :global([data-theme="dark"]) .response-card h3,
-  :global([data-theme="dark"]) .response-card p { color: #ffffff; }
-  :global([data-theme="dark"]) .quote-submit-btn {
-    background: var(--secondary);
-    color: #ffffff;
-  }
-  :global([data-theme="dark"]) .quote-submit-btn:hover {
-    background: var(--secondary-dark);
   }
 
   /* Responsive */

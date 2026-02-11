@@ -1,50 +1,67 @@
 {
   "$schema": "https://design-tokens.org/schema.json",
   "meta": {
-    "project": "shishamo-site",
-    "style": "modern-tech",
-    "description": "ししゃも｜吉川昌宏 サイト デザイントークン"
+    "project": "shishamo-company-site",
+    "style": "dark-modern",
+    "description": "ししゃもカンパニー デザイントークン — Dark-first semantic system"
   },
-  "colors": {
-    "primary": {
-      "value": "#2563EB",
-      "description": "メインブルー - IT先進性を表現"
-    },
-    "primary-dark": {
-      "value": "#1D4ED8",
-      "description": "プライマリの暗いバリエーション"
-    },
-    "secondary": {
-      "value": "#F59E0B",
-      "description": "アンバー - 温かみ・親しみやすさ"
-    },
-    "accent": {
-      "value": "#10B981",
-      "description": "エメラルド - 成長・挑戦・成功"
-    },
+  "palette": {
+    "gray-950": { "value": "#0a0a0f", "description": "Deepest background" },
+    "gray-900": { "value": "#111118" },
+    "gray-850": { "value": "#16161f" },
+    "gray-800": { "value": "#1c1c2a" },
+    "gray-750": { "value": "#222233" },
+    "gray-700": { "value": "#2a2a3a" },
+    "gray-600": { "value": "#3a3a4d" },
+    "gray-500": { "value": "#6b6b80" },
+    "gray-400": { "value": "#8e8ea0" },
+    "gray-300": { "value": "#b0b0c0" },
+    "gray-200": { "value": "#d1d1dc" },
+    "gray-100": { "value": "#e8e8f0" },
+    "gray-50": { "value": "#f4f4f8" },
+    "white": { "value": "#ffffff" },
+    "blue-700": { "value": "#1d4ed8" },
+    "blue-600": { "value": "#2563eb" },
+    "blue-500": { "value": "#3b82f6" },
+    "blue-400": { "value": "#60a5fa" },
+    "cyan-600": { "value": "#0d9488" },
+    "cyan-400": { "value": "#2dd4bf" },
+    "cyan-300": { "value": "#5eead4" },
+    "orange-600": { "value": "#ea580c" },
+    "orange-400": { "value": "#fb923c" },
+    "amber-500": { "value": "#f59e0b" },
+    "amber-400": { "value": "#fbbf24" },
+    "green-500": { "value": "#10b981" },
+    "green-400": { "value": "#34d399" },
+    "red-500": { "value": "#ef4444" },
+    "red-400": { "value": "#f87171" }
+  },
+  "semantic": {
     "dark": {
-      "value": "#1E293B",
-      "description": "スレートネイビー - 信頼感・プロフェッショナル"
-    },
-    "dark-lighter": {
-      "value": "#334155",
-      "description": "ダークの明るいバリエーション"
+      "bg": "palette.gray-950",
+      "bg-secondary": "palette.gray-850",
+      "bg-tertiary": "palette.gray-800",
+      "surface": "palette.gray-850",
+      "text": "palette.gray-100",
+      "text-secondary": "palette.gray-400",
+      "text-heading": "palette.white",
+      "border": "palette.gray-700",
+      "accent": "palette.blue-500",
+      "orange": "palette.orange-400",
+      "success": "palette.green-400"
     },
     "light": {
-      "value": "#F8FAFC",
-      "description": "クリーンな白背景"
-    },
-    "gray": {
-      "value": "#64748B",
-      "description": "テキスト用グレー"
-    },
-    "gray-light": {
-      "value": "#E2E8F0",
-      "description": "ボーダー・区切り線"
-    },
-    "gray-lighter": {
-      "value": "#F1F5F9",
-      "description": "薄い背景色"
+      "bg": "palette.white",
+      "bg-secondary": "palette.gray-50",
+      "bg-tertiary": "palette.gray-100",
+      "surface": "palette.white",
+      "text": "palette.gray-900",
+      "text-secondary": "palette.gray-500",
+      "text-heading": "palette.gray-900",
+      "border": "palette.gray-200",
+      "accent": "palette.blue-600",
+      "orange": "palette.orange-600",
+      "success": "palette.green-500"
     }
   },
   "typography": {
@@ -71,7 +88,7 @@
     },
     "line-height": {
       "tight": "1.2",
-      "normal": "1.7",
+      "normal": "1.75",
       "relaxed": "1.8"
     }
   },
@@ -93,55 +110,13 @@
     "xl": "24px",
     "full": "9999px"
   },
-  "shadows": {
-    "sm": "0 1px 2px rgba(0,0,0,0.05)",
-    "md": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
-    "lg": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)",
-    "xl": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)",
-    "glow": "0 0 40px rgba(37,99,235,0.15)"
-  },
-  "breakpoints": {
-    "sm": "480px",
-    "md": "768px",
-    "lg": "1024px",
-    "xl": "1280px"
-  },
-  "animations": {
-    "swim": {
-      "keyframes": "0%, 100% { transform: translateX(0) rotate(0deg); } 25% { transform: translateX(3px) rotate(3deg); } 75% { transform: translateX(-3px) rotate(-3deg); }",
-      "duration": "3s",
-      "timing": "ease-in-out",
-      "iteration": "infinite",
-      "description": "ロゴの魚が泳ぐアニメーション"
-    },
-    "morph": {
-      "keyframes": "0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; } 50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }",
-      "duration": "8s",
-      "timing": "ease-in-out",
-      "iteration": "infinite",
-      "description": "背景のblob変形アニメーション"
-    },
-    "float": {
-      "keyframes": "0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); }",
-      "duration": "3s",
-      "timing": "ease-in-out",
-      "iteration": "infinite",
-      "description": "アイコンがふわふわ浮くアニメーション"
-    },
-    "pulse-glow": {
-      "keyframes": "0%, 100% { box-shadow: 0 0 20px rgba(37,99,235,0.3); } 50% { box-shadow: 0 0 40px rgba(37,99,235,0.5); }",
-      "duration": "3s",
-      "timing": "ease-in-out",
-      "iteration": "infinite",
-      "description": "グロー効果のパルス"
-    }
+  "transitions": {
+    "base": "200ms ease",
+    "slow": "300ms ease"
   },
   "gradients": {
-    "primary": "linear-gradient(135deg, #2563EB, #1D4ED8)",
-    "primary-accent": "linear-gradient(135deg, #2563EB, #10B981)",
-    "hero-bg": "linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%)",
-    "footer-bg": "linear-gradient(180deg, #1E293B 0%, #0F172A 100%)",
-    "cta-bg": "linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%)",
-    "rainbow-bar": "linear-gradient(90deg, #2563EB, #10B981, #F59E0B)"
+    "primary": "linear-gradient(135deg, palette.blue-500, palette.blue-600)",
+    "accent": "linear-gradient(135deg, palette.blue-500, palette.cyan-400)",
+    "rainbow": "linear-gradient(90deg, palette.blue-500, palette.cyan-400, palette.amber-400)"
   }
 }
