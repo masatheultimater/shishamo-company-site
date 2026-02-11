@@ -37,20 +37,19 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <div class="profile-photo">
           <Image src={profileImage} alt="吉川昌宏" width={200} height={200} loading="eager" />
         </div>
-        <div class="profile-nickname">
-          <div class="profile-social">
-            <a href="https://x.com/shishamoex09" target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label="X @shishamoex09">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a href="https://www.facebook.com/shishamo.company/" target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label="Facebookページ">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M13.5 9.2V7.6c0-.7.5-1.2 1.2-1.2h1.9V3.2h-2.2c-2.6 0-4.2 1.7-4.2 4.2v1.8H8v3.1h2.2v8.5h3.3v-8.5h2.8l.4-3.1z"/>
-              </svg>
-            </a>
-          </div>
-          ししゃも
+        <div class="profile-social-list">
+          <a href="https://x.com/shishamoex09" target="_blank" rel="noopener noreferrer" class="profile-social-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span>@shishamoex09</span>
+          </a>
+          <a href="https://www.facebook.com/shishamo.company/" target="_blank" rel="noopener noreferrer" class="profile-social-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M13.5 9.2V7.6c0-.7.5-1.2 1.2-1.2h1.9V3.2h-2.2c-2.6 0-4.2 1.7-4.2 4.2v1.8H8v3.1h2.2v8.5h3.3v-8.5h2.8l.4-3.1z"/>
+            </svg>
+            <span>ししゃもカンパニー</span>
+          </a>
         </div>
         <div class="profile-name">吉川 昌宏</div>
         <div class="profile-title">中小企業診断士(登録予定) / ITストラテジスト</div>
