@@ -9,4 +9,21 @@
 |----|------|---|-------|------|
 | #353 | 12:35 PM | 🔄 | Services data deduplication - eliminated 33 redundant field values | ~515 |
 | #338 | 12:24 PM | 🔴 | Fixed four type safety and CSS ownership violations | ~198 |
+
+### Feb 9, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #1189 | 8:48 PM | ⚖️ | MicroCMS + Astro Integration Architecture Decision | ~666 |
+| #1181 | 5:36 PM | 🔵 | MicroCMS Integration Readiness Assessment | ~566 |
+| #1172 | 5:34 PM | 🔵 | MicroCMS API Type Definitions for Blog System | ~476 |
+| #1168 | " | 🔵 | Component Contracts with Active and Planned Type Definitions | ~531 |
+
+### Feb 11, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #2221 | 10:21 PM | ✅ | BlogCategory Type Expanded with 'about' Category | ~145 |
+| #2189 | 10:19 PM | 🔵 | Blog Category Type System Architecture | ~442 |
+| #2186 | 1:30 AM | 🔵 | Blog System Architecture Investigation Complete | ~437 |
 </claude-mem-context>

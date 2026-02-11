@@ -8,4 +8,18 @@
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #357 | 12:41 PM | 🔵 | Service detail page CSS architecture | ~513 |
+
+### Feb 9, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #1111 | 4:22 PM | 🔵 | Astro Image Component HTML Structure Analysis | ~444 |
+| #986 | 3:35 PM | 🔵 | Codebase Health Check Completed - Critical Performance and Maintenance Issues Identified | ~578 |
+
+### Feb 11, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #2197 | 10:20 PM | 🔵 | Homepage Blog Placeholder Styling | ~456 |
+| #2186 | 1:30 AM | 🔵 | Blog System Architecture Investigation Complete | ~437 |
 </claude-mem-context>
