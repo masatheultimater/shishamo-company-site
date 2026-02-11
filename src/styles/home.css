@@ -593,36 +593,6 @@
 .blog {
   background: var(--gray-100);
 }
-.blog-placeholder {
-  max-width: 480px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 40px 32px;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-sm);
-}
-.blog-status {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--gray-400);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
-}
-.blog-placeholder h3 {
-  font-family: var(--font-display);
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: var(--gray-700);
-}
-.blog-placeholder p {
-  font-size: var(--font-size-sm);
-  color: var(--gray-500);
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
 /* ===== BLOG CARDS ===== */
 .blog-cards {
   display: grid;

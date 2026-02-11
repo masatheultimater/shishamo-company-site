@@ -236,57 +236,49 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
   </section>
 
   <!-- BLOG -->
-  <section class="section blog" id="blog">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Blog</div>
-        <h2 class="section-title section-title--compact">ブログ・お役立ち情報</h2>
-      </div>
-      {latestPosts.length > 0 ? (
-        <>
-          <div class="blog-cards">
-            {latestPosts.map((post) => {
-              const cat = getPrimaryCategory(post.category);
-              return (
-                <a href={`/blog/${post.slug || post.id}/`} class="blog-card-home">
-                  {post.thumbnail ? (
-                    <div class="blog-card-home__thumbnail">
-                      <img
-                        src={`${post.thumbnail.url}?w=640&h=360&fit=crop`}
-                        alt={post.title}
-                        width="640"
-                        height="360"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  ) : (
-                    <div class="blog-card-home__thumbnail blog-card-home__thumbnail--empty">
-                      <span>{categoryIcons[cat]}</span>
-                    </div>
-                  )}
-                  <div class="blog-card-home__body">
-                    <span class="blog-card-home__category">{categoryIcons[cat]} {categoryLabels[cat]}</span>
-                    <h3 class="blog-card-home__title">{post.title}</h3>
-                    <time class="blog-card-home__date" datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-          <div class="blog-more">
-            <a href="/blog/" class="btn-secondary" data-track-cta="blog">ブログをもっと見る <ArrowIcon size={14} /></a>
-          </div>
-        </>
-      ) : (
-        <div class="blog-placeholder">
-          <p class="blog-status">Coming Soon</p>
-          <h3>ブログ準備中</h3>
-          <p>DX推進・AI活用・経営改善のノウハウを発信予定です。</p>
+  {latestPosts.length > 0 && (
+    <section class="section blog" id="blog">
+      <div class="container">
+        <div class="section-header section-header--compact">
+          <div class="section-label section-label--compact">Blog</div>
+          <h2 class="section-title section-title--compact">ブログ・お役立ち情報</h2>
         </div>
-      )}
-    </div>
-  </section>
+        <div class="blog-cards">
+          {latestPosts.map((post) => {
+            const cat = getPrimaryCategory(post.category);
+            return (
+              <a href={`/blog/${post.slug || post.id}/`} class="blog-card-home">
+                {post.thumbnail ? (
+                  <div class="blog-card-home__thumbnail">
+                    <img
+                      src={`${post.thumbnail.url}?w=640&h=360&fit=crop`}
+                      alt={post.title}
+                      width="640"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ) : (
+                  <div class="blog-card-home__thumbnail blog-card-home__thumbnail--empty">
+                    <span>{categoryIcons[cat]}</span>
+                  </div>
+                )}
+                <div class="blog-card-home__body">
+                  <span class="blog-card-home__category">{categoryIcons[cat]} {categoryLabels[cat]}</span>
+                  <h3 class="blog-card-home__title">{post.title}</h3>
+                  <time class="blog-card-home__date" datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+        <div class="blog-more">
+          <a href="/blog/" class="btn-secondary" data-track-cta="blog">ブログをもっと見る <ArrowIcon size={14} /></a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- CTA -->
   <section class="section cta">
