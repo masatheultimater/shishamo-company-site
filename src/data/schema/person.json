@@ -1,13 +1,13 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://yoshikawa-masahiro.com/#person",
+  "@id": "https://shishamo-company.com/#person",
   "name": "吉川昌宏",
   "alternateName": "ししゃも",
   "givenName": "昌宏",
   "familyName": "吉川",
   "description": "中小企業診断士・ITストラテジスト。IT × 経営 × 財務で、中小企業の挑戦を後押しする。データとテクノロジーの力で、あなたの会社の「なんとかしたい」を一緒に解決します。",
-  "url": "https://yoshikawa-masahiro.com/profile/",
+  "url": "https://shishamo-company.com/profile/",
   "jobTitle": [
     "中小企業診断士",
     "ITストラテジスト",
@@ -16,7 +16,7 @@
   "worksFor": {
     "@type": "Organization",
     "name": "ししゃもカンパニー",
-    "@id": "https://yoshikawa-masahiro.com/#organization"
+    "@id": "https://shishamo-company.com/#organization"
   },
   "knowsAbout": [
     "中小企業診断士",

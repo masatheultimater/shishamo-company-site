@@ -53,6 +53,7 @@ export const footerServiceLinks: FooterLink[] = [
  */
 export const footerInfoLinks: FooterLink[] = [
   { name: 'プロフィール', href: '/profile/' },
+  { name: '利用規約', href: '/terms/' },
   { name: 'プライバシーポリシー', href: '/privacy-policy/' },
   { name: 'ブログ', href: '/blog/' },
 ];
@@ -79,7 +80,7 @@ export const seoDefaults = {
  * Site metadata (URLs, social handles)
  */
 export const siteMetadata = {
-  siteUrl: 'https://yoshikawa-masahiro.com',
+  siteUrl: 'https://shishamo-company.com',
   twitterHandle: '@shishamoex09',
   geoRegion: 'JP-13',
   geoPlacename: '東京都',
