@@ -32,7 +32,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
         <p>以下のフォームからお問い合わせください。</p>
         <form action={FORMSPREE_ENDPOINT} method="POST" id="contactForm">
           <input type="hidden" name="_subject" value="【ししゃも】お問い合わせ">
-          <input type="hidden" name="_next" value="https://shishamo-company.com/contact/thanks/">
 
           <div class="form-group">
             <label for="contact-name">
@@ -96,8 +95,28 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
         </form>
         <script>
           import { trackFormSubmit, initFormAbandonmentTracking } from '../../lib/analytics';
-          document.getElementById('contactForm')?.addEventListener('submit', () => {
+          const form = document.getElementById('contactForm') as HTMLFormElement | null;
+          form?.addEventListener('submit', async (e) => {
+            e.preventDefault();
             trackFormSubmit({ form_type: 'contact' });
+            const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            if (btn) { btn.disabled = true; btn.textContent = '送信中...'; }
+            try {
+              const res = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' },
+              });
+              if (res.ok) {
+                window.location.href = '/contact/thanks/';
+              } else {
+                alert('送信に失敗しました。もう一度お試しください。');
+                if (btn) { btn.disabled = false; btn.textContent = '送信する →'; }
+              }
+            } catch {
+              alert('送信に失敗しました。もう一度お試しください。');
+              if (btn) { btn.disabled = false; btn.textContent = '送信する →'; }
+            }
           });
           initFormAbandonmentTracking('contactForm', 'contact');
         </script>
