@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
-import ArrowIcon from '../components/ui/ArrowIcon.astro';
+import { ArrowRight } from '@lucide/astro';
 import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
 import '../styles/home.css';
 
@@ -29,7 +29,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           中小企業の「なんとかしたい」に寄り添い、伴走支援いたします。
         </p>
         <div class="hero-cta">
-          <a href="/contact/" class="btn-primary" data-track-cta="hero">無料相談を予約する <ArrowIcon size={14} /></a>
+          <a href="/contact/" class="btn-primary" data-track-cta="hero">無料相談を予約する <ArrowRight size={14} /></a>
           <a href="/services/" class="btn-secondary" data-track-cta="hero">サービス一覧を見る</a>
         </div>
       </div>
@@ -131,32 +131,32 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       <div class="problem-grid">
         <a href="/services/#dx" class="problem-card">
           <span class="problem-text">DXって何から始めればいいかわからない</span>
-          <ArrowIcon class="problem-arrow" />
+          <ArrowRight class="problem-arrow" />
         </a>
         <a href="/services/#ai" class="problem-card">
           <span class="problem-text">ChatGPTを業務に活用したい</span>
-          <ArrowIcon class="problem-arrow" />
+          <ArrowRight class="problem-arrow" />
         </a>
         <a href="/services/#data" class="problem-card">
           <span class="problem-text">データはあるけど活用できていない</span>
-          <ArrowIcon class="problem-arrow" />
+          <ArrowRight class="problem-arrow" />
         </a>
         <a href="/services/#accounting" class="problem-card">
           <span class="problem-text">経理業務の負担を減らしたい</span>
-          <ArrowIcon class="problem-arrow" />
+          <ArrowRight class="problem-arrow" />
         </a>
         <a href="/services/#management" class="problem-card">
           <span class="problem-text">経営を客観的に分析してほしい</span>
-          <ArrowIcon class="problem-arrow" />
+          <ArrowRight class="problem-arrow" />
         </a>
         <a href="/services/#subsidy" class="problem-card">
           <span class="problem-text">補助金を使いたいが申請が難しい</span>
-          <ArrowIcon class="problem-arrow" />
+          <ArrowRight class="problem-arrow" />
         </a>
       </div>
       <div class="problem-cta">
         <p>どれに当てはまるかわからなくても大丈夫です。まずはお気軽にご相談ください。</p>
-        <a href="/contact/" class="btn-primary" data-track-cta="problems">無料相談を予約する <ArrowIcon size={14} /></a>
+        <a href="/contact/" class="btn-primary" data-track-cta="problems">無料相談を予約する <ArrowRight size={14} /></a>
       </div>
     </div>
   </section>
@@ -180,7 +180,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             <li>生成AI導入支援</li>
             <li>Webサイト・アプリ開発</li>
           </ul>
-          <a href="/services/#dx" class="service-link">詳しく見る <ArrowIcon size={14} /></a>
+          <a href="/services/#dx" class="service-link">詳しく見る <ArrowRight size={14} /></a>
         </div>
         <div class="service-card">
           <div class="service-number">02</div>
@@ -191,7 +191,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             <li>KPIダッシュボード構築</li>
             <li>業務プロセスの可視化</li>
           </ul>
-          <a href="/services/#data" class="service-link">詳しく見る <ArrowIcon size={14} /></a>
+          <a href="/services/#data" class="service-link">詳しく見る <ArrowRight size={14} /></a>
         </div>
         <div class="service-card">
           <div class="service-number">03</div>
@@ -202,11 +202,11 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             <li>補助金申請サポート</li>
             <li>記帳代行・経理支援</li>
           </ul>
-          <a href="/services/#management" class="service-link">詳しく見る <ArrowIcon size={14} /></a>
+          <a href="/services/#management" class="service-link">詳しく見る <ArrowRight size={14} /></a>
         </div>
       </div>
       <div class="services-all">
-        <a href="/services/" class="btn-secondary" data-track-cta="services">すべてのサービスを見る <ArrowIcon size={14} /></a>
+        <a href="/services/" class="btn-secondary" data-track-cta="services">すべてのサービスを見る <ArrowRight size={14} /></a>
       </div>
     </div>
   </section>
@@ -262,7 +262,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           })}
         </div>
         <div class="blog-more">
-          <a href="/blog/" class="btn-secondary" data-track-cta="blog">ブログをもっと見る <ArrowIcon size={14} /></a>
+          <a href="/blog/" class="btn-secondary" data-track-cta="blog">ブログをもっと見る <ArrowRight size={14} /></a>
         </div>
       </div>
     </section>
@@ -276,7 +276,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         「こんなこと相談していいのかな？」という内容でも大歓迎です。<br>
         初回30分の無料相談で、御社の課題を一緒に整理しましょう。
       </p>
-      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料相談を予約する <ArrowIcon size={14} /></a>
+      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料相談を予約する <ArrowRight size={14} /></a>
       <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
     </div>
   </section>

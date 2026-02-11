@@ -68,6 +68,7 @@ import { navigationItems } from '../../lib/siteConfig';
 </script>
 
 <style>
+  /* ===== MOBILE NAV — Glass Overlay ===== */
   .mobile-nav {
     display: none;
     position: fixed;
@@ -75,7 +76,7 @@ import { navigationItems } from '../../lib/siteConfig';
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: var(--color-overlay-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 105;
@@ -85,10 +86,6 @@ import { navigationItems } from '../../lib/siteConfig';
     gap: var(--space-xl);
   }
 
-  :global([data-theme="dark"]) .mobile-nav {
-    background: rgba(15, 23, 42, 0.98);
-  }
-
   .mobile-nav--active {
     display: flex;
   }
@@ -96,14 +93,14 @@ import { navigationItems } from '../../lib/siteConfig';
   .mobile-nav__link {
     font-size: var(--font-size-xl);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--color-text-heading);
     padding: var(--space-md) var(--space-xl);
-    transition: color 0.3s;
+    transition: color var(--transition-slow);
   }
 
   .mobile-nav__link:hover,
   .mobile-nav__link:focus {
-    color: var(--primary);
+    color: var(--color-accent);
     outline: none;
   }
 
@@ -111,18 +108,18 @@ import { navigationItems } from '../../lib/siteConfig';
     margin-top: var(--space-md);
     padding: var(--space-md) 2.5rem;
     font-size: var(--font-size-lg);
-    background: var(--gradient-primary);
-    color: white !important;
+    background: var(--gradient-semantic-primary);
+    color: var(--palette-white);
     border-radius: var(--radius-sm);
     font-weight: 600;
-    transition: all 0.3s;
-    box-shadow: var(--shadow-md);
+    transition: all var(--transition-slow);
+    box-shadow: var(--shadow-semantic-md);
   }
 
   .mobile-nav__cta:hover,
   .mobile-nav__cta:focus {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg), 0 0 20px rgba(37, 99, 235, 0.3);
+    box-shadow: var(--shadow-semantic-lg), var(--shadow-semantic-glow);
     outline: none;
   }
 </style>

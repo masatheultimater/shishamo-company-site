@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
-import ArrowIcon from '../components/ui/ArrowIcon.astro';
+import { ArrowRight } from '@lucide/astro';
 import yaml from 'js-yaml';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -243,7 +243,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
       <p class="cta-desc" set:html={profileData.cta.description.replace(/\n/g, '<br>')} />
       <a href={profileData.cta.buttonLink} class="btn-primary" data-track-cta="profile">
         {profileData.cta.buttonText}
-        <ArrowIcon size={14} />
+        <ArrowRight size={14} />
       </a>
       <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
     </div>
@@ -255,7 +255,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   /* Profile Hero */
   .profile-hero {
     padding: 120px 24px 80px;
-    background: var(--gray-light) url('/wp1.webp') center center / cover no-repeat;
+    background: var(--color-bg-secondary) url('/wp1.webp') center center / cover no-repeat;
     position: relative;
     overflow: hidden;
   }
@@ -263,7 +263,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(248, 250, 252, 0.88) 0%, rgba(248, 250, 252, 0.7) 100%);
+    background: var(--color-overlay-gradient);
   }
   .profile-hero-inner {
     max-width: 900px;
@@ -280,8 +280,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     border-radius: var(--radius-lg);
     overflow: hidden;
     flex-shrink: 0;
-    border: 3px solid var(--primary);
-    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--color-accent);
+    box-shadow: var(--shadow-semantic-lg);
   }
   .profile-photo-wrapper img {
     width: 100%;
@@ -293,15 +293,13 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--dark);
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    color: var(--color-text-heading);
   }
   .profile-hero-text .subtitle {
     font-size: 15px;
-    color: var(--gray-700);
+    color: var(--color-text-secondary);
     margin-bottom: 20px;
     line-height: 1.7;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
   }
   .profile-badges {
     display: flex;
@@ -310,15 +308,16 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .profile-badge {
     padding: 6px 14px;
-    background: var(--gray-lighter);
-    color: var(--gray-dark);
+    background: var(--color-bg-tertiary);
+    color: var(--color-text);
     border-radius: 100px;
     font-size: var(--font-size-xs);
     font-weight: 500;
   }
   .profile-badge.highlight {
-    background: var(--primary-lighter);
-    color: var(--primary);
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-text);
+    font-weight: 600;
   }
 
   /* Stats Section */
@@ -336,22 +335,22 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .stat-card {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 24px;
     text-align: center;
     transition: all 0.2s;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--shadow-semantic-sm);
   }
   .stat-card:hover {
-    border-color: var(--primary);
+    border-color: var(--color-accent);
   }
   .stat-number {
     font-family: var(--font-sans);
     font-size: var(--font-size-4xl);
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-accent);
   }
   .stat-unit {
     font-size: var(--font-size-base);
@@ -359,7 +358,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .stat-label {
     font-size: 13px;
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
     margin-top: 4px;
   }
 
@@ -368,7 +367,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     padding: 80px 24px;
   }
   .section--alt {
-    background: var(--gray-light);
+    background: var(--color-bg-secondary);
   }
   .section-inner {
     max-width: 900px;
@@ -376,8 +375,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .section-title {
     font-size: 22px;
-    color: var(--dark);
-    -webkit-text-fill-color: var(--dark);
+    color: var(--color-text-heading);
+    -webkit-text-fill-color: var(--color-text-heading);
     background: none;
     margin-bottom: 32px;
     display: flex;
@@ -388,42 +387,42 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     content: '';
     width: 4px;
     height: 24px;
-    background: var(--primary);
+    background: var(--color-accent);
     border-radius: 2px;
   }
   .section-subtitle {
     font-size: var(--font-size-sm);
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
     margin-top: -24px;
     margin-bottom: 32px;
   }
 
   /* About My Work */
   .about-work {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 40px;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--shadow-semantic-sm);
   }
   .about-lead {
     font-size: 17px;
     line-height: 1.9;
-    color: var(--dark);
+    color: var(--color-text-heading);
     margin-bottom: 16px;
     font-weight: 500;
   }
   .about-desc {
     font-size: 15px;
     line-height: 2;
-    color: var(--gray-dark);
+    color: var(--color-text);
     margin-bottom: 32px;
   }
   .about-subtitle {
     font-family: var(--font-display);
     font-size: var(--font-size-lg);
     font-weight: 700;
-    color: var(--dark);
+    color: var(--color-text-heading);
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -433,7 +432,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     content: '';
     width: 3px;
     height: 18px;
-    background: var(--primary);
+    background: var(--color-accent);
     border-radius: 2px;
   }
   .pillars-grid {
@@ -443,7 +442,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     margin-bottom: 32px;
   }
   .pillar-card {
-    background: var(--gray-light);
+    background: var(--color-bg-tertiary);
     border-radius: var(--radius-sm);
     padding: 24px 20px;
     position: relative;
@@ -452,23 +451,23 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-family: var(--font-sans);
     font-size: var(--font-size-xs);
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-accent);
     margin-bottom: 8px;
     letter-spacing: 0.05em;
   }
   .pillar-card h4 {
     font-size: 15px;
     font-weight: 700;
-    color: var(--dark);
+    color: var(--color-text-heading);
     margin-bottom: 8px;
   }
   .pillar-card p {
     font-size: 13px;
     line-height: 1.7;
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
   }
   .about-note {
-    background: var(--primary-lighter);
+    background: var(--color-accent-subtle);
     border-radius: var(--radius-sm);
     padding: 20px 24px;
     margin-bottom: 24px;
@@ -476,7 +475,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .about-note p {
     font-size: var(--font-size-sm);
     line-height: 1.9;
-    color: var(--gray-dark);
+    color: var(--color-text);
   }
   .about-stance {
     padding-top: 8px;
@@ -484,10 +483,10 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .about-stance p {
     font-size: 15px;
     line-height: 2;
-    color: var(--gray-dark);
+    color: var(--color-text);
   }
   .about-stance strong {
-    color: var(--primary);
+    color: var(--color-accent);
   }
 
   /* Timeline */
@@ -502,7 +501,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     top: 8px;
     bottom: 8px;
     width: 2px;
-    background: var(--gray-lighter);
+    background: var(--color-border);
     border-radius: 2px;
   }
   .timeline-item {
@@ -519,14 +518,14 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     top: 6px;
     width: 12px;
     height: 12px;
-    background: var(--primary);
+    background: var(--color-accent);
     border-radius: 50%;
     transform: translateX(-50%);
-    border: 2px solid var(--light);
+    border: 2px solid var(--color-bg);
   }
   .timeline-date {
     font-size: var(--font-size-xs);
-    color: var(--primary);
+    color: var(--color-accent);
     font-weight: 600;
     margin-bottom: 4px;
     letter-spacing: 0.02em;
@@ -535,11 +534,11 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-size: var(--font-size-base);
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--dark);
+    color: var(--color-text-heading);
   }
   .timeline-desc {
     font-size: var(--font-size-sm);
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
     line-height: 1.8;
   }
   .timeline-tags {
@@ -551,9 +550,9 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .timeline-tag {
     font-size: 11px;
     padding: 4px 10px;
-    background: var(--gray-lighter);
+    background: var(--color-bg-tertiary);
     border-radius: 100px;
-    color: var(--gray-700);
+    color: var(--color-text);
   }
 
   /* Qualifications */
@@ -563,23 +562,23 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 12px;
   }
   .qual-card {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-sm);
     padding: 16px 20px;
     display: flex;
     align-items: center;
     gap: 16px;
     transition: all 0.2s;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--shadow-semantic-sm);
   }
   .qual-card:hover {
-    border-color: var(--primary);
+    border-color: var(--color-accent);
   }
   .qual-icon {
     width: 44px;
     height: 44px;
-    background: var(--primary-lighter);
+    background: var(--color-accent-subtle);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
@@ -589,38 +588,38 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .qual-icon svg {
     width: 22px;
     height: 22px;
-    color: var(--primary);
+    color: var(--color-accent);
   }
   .qual-info h4 {
     font-size: var(--font-size-sm);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--color-text-heading);
     margin-bottom: 2px;
   }
   .qual-info p {
     font-size: var(--font-size-xs);
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
   }
 
   /* Story */
   .story-content {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 40px;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--shadow-semantic-sm);
   }
   .story-content p {
     font-size: 15px;
     line-height: 2;
-    color: var(--gray-dark);
+    color: var(--color-text);
     margin-bottom: 20px;
   }
   .story-content p:last-child {
     margin-bottom: 0;
   }
   .story-highlight {
-    color: var(--dark) !important;
+    color: var(--color-text-heading) !important;
     font-weight: 600;
     font-size: var(--font-size-base);
   }
@@ -628,12 +627,12 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     font-family: var(--font-display);
     font-size: 20px;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--color-accent);
     text-align: center;
     padding: 24px 0;
     margin: 24px 0;
-    border-top: 1px solid var(--gray-lighter);
-    border-bottom: 1px solid var(--gray-lighter);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
   .story-quote:first-child {
     border-top: none;
@@ -642,8 +641,8 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .story-quote--resolve {
     font-size: 22px;
-    color: var(--primary);
-    background: var(--primary-lighter);
+    color: var(--color-accent);
+    background: var(--color-accent-subtle);
     border: none;
     border-radius: var(--radius-sm);
     padding: 20px;
@@ -654,7 +653,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     margin-top: 8px;
   }
   .story-final strong {
-    color: var(--dark);
+    color: var(--color-text-heading);
   }
 
   /* Philosophy */
@@ -664,21 +663,21 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 16px;
   }
   .philosophy-card {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 24px;
     transition: all 0.2s;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--shadow-semantic-sm);
   }
   .philosophy-card:hover {
-    border-color: var(--primary);
+    border-color: var(--color-accent);
   }
   .philosophy-card h4 {
     font-family: var(--font-display);
     font-size: var(--font-size-base);
     font-weight: 700;
-    color: var(--dark);
+    color: var(--color-text-heading);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -688,13 +687,13 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     content: '';
     width: 4px;
     height: 16px;
-    background: var(--primary);
+    background: var(--color-accent);
     border-radius: 2px;
   }
   .philosophy-card p {
     font-size: var(--font-size-sm);
     line-height: 1.8;
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
   }
 
   /* Mottos */
@@ -704,25 +703,25 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     gap: 20px;
   }
   .motto-card {
-    background: var(--card-bg);
-    border: 2px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 32px;
-    border-left: 4px solid var(--primary);
-    box-shadow: var(--card-shadow);
+    border-left: 4px solid var(--color-accent);
+    box-shadow: var(--shadow-semantic-sm);
   }
   .motto-text {
     font-family: var(--font-display);
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--color-text-heading);
     line-height: 1.7;
     margin-bottom: 16px;
     text-align: center;
   }
   .motto-text::before {
     content: '\201C';
-    color: var(--primary);
+    color: var(--color-accent);
     font-size: 48px;
     font-family: Georgia, serif;
     line-height: 1;
@@ -731,7 +730,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   }
   .motto-text::after {
     content: '\201D';
-    color: var(--primary);
+    color: var(--color-accent);
     font-size: 48px;
     font-family: Georgia, serif;
     line-height: 1;
@@ -741,7 +740,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   .motto-meaning {
     font-size: var(--font-size-sm);
     line-height: 1.8;
-    color: var(--gray-600);
+    color: var(--color-text-secondary);
     padding-left: 0;
   }
 
@@ -858,161 +857,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     .stat-card:hover,
     .qual-card:hover,
     .philosophy-card:hover {
-      border-color: var(--gray-lighter);
+      border-color: var(--color-border);
     }
-  }
-
-  /* ===== DARK MODE ===== */
-  :global([data-theme="dark"]) .profile-hero {
-    background: var(--gray-100) url('/wp1.webp') center center / cover no-repeat;
-  }
-  :global([data-theme="dark"]) .profile-hero::before {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
-  }
-  :global([data-theme="dark"]) .profile-photo-wrapper {
-    border-color: var(--primary);
-  }
-  :global([data-theme="dark"]) .profile-hero-text h1 {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .profile-hero-text .subtitle {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .profile-badge {
-    background: var(--gray-300);
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .profile-badge.highlight {
-    background: var(--primary-lighter);
-    color: var(--primary);
-    font-weight: 600;
-  }
-  :global([data-theme="dark"]) .stat-label {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .section {
-    background: var(--gray-50);
-  }
-  :global([data-theme="dark"]) .section--alt {
-    background: var(--gray-100);
-  }
-  :global([data-theme="dark"]) .section-title {
-    color: var(--dark);
-    -webkit-text-fill-color: var(--dark);
-    background: none;
-  }
-  :global([data-theme="dark"]) .section-title::before {
-    background: var(--primary);
-  }
-  :global([data-theme="dark"]) .section-subtitle {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .about-lead {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .about-desc {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .about-subtitle {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .about-subtitle::before {
-    background: var(--primary);
-  }
-  :global([data-theme="dark"]) .pillar-card {
-    background: var(--gray-200);
-  }
-  :global([data-theme="dark"]) .pillar-number {
-    color: var(--primary);
-  }
-  :global([data-theme="dark"]) .pillar-card h4 {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .pillar-card p {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .about-note {
-    background: var(--primary-lighter);
-  }
-  :global([data-theme="dark"]) .about-note p {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .about-stance p {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .about-stance strong {
-    color: var(--primary);
-  }
-  :global([data-theme="dark"]) .timeline::before {
-    background: var(--gray-300);
-  }
-  :global([data-theme="dark"]) .timeline-item::before {
-    background: var(--primary);
-    border-color: var(--gray-50);
-  }
-  :global([data-theme="dark"]) .timeline-date {
-    color: var(--primary);
-  }
-  :global([data-theme="dark"]) .timeline-title {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .timeline-desc {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .timeline-tag {
-    background: var(--gray-300);
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .qual-icon {
-    background: var(--primary-lighter);
-  }
-  :global([data-theme="dark"]) .qual-icon svg {
-    color: var(--primary);
-  }
-  :global([data-theme="dark"]) .qual-info h4 {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .qual-info p {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .story-content p {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .story-highlight {
-    color: var(--dark) !important;
-  }
-  :global([data-theme="dark"]) .story-quote {
-    color: var(--primary);
-    border-color: var(--gray-300);
-  }
-  :global([data-theme="dark"]) .story-quote--resolve {
-    background: var(--primary-lighter);
-  }
-  :global([data-theme="dark"]) .story-final strong {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .philosophy-card h4 {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .philosophy-card h4::before {
-    background: var(--primary);
-  }
-  :global([data-theme="dark"]) .philosophy-card p {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .motto-text {
-    color: var(--dark);
-  }
-  :global([data-theme="dark"]) .motto-text::before {
-    color: var(--primary);
-  }
-  :global([data-theme="dark"]) .motto-meaning {
-    color: var(--gray-600);
-  }
-  :global([data-theme="dark"]) .profile-hero-text h1 {
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  }
-  :global([data-theme="dark"]) .profile-hero-text .subtitle {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
   }
 </style>

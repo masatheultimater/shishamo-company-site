@@ -59,7 +59,7 @@ const faqSchema = generateSchema ? JSON.stringify({
   /* Base FAQ styles */
   .faq-section {
     padding: 4rem 2rem 5rem;
-    background: var(--white);
+    background: var(--color-bg);
   }
   .faq-inner { max-width: 800px; margin: 0 auto; }
   .faq-title {
@@ -70,7 +70,7 @@ const faqSchema = generateSchema ? JSON.stringify({
   }
   .faq-list { display: flex; flex-direction: column; gap: 1rem; }
   .faq-item {
-    background: var(--light);
+    background: var(--color-bg-secondary);
     border-radius: var(--radius-md);
     padding: 1.5rem;
   }
@@ -84,7 +84,7 @@ const faqSchema = generateSchema ? JSON.stringify({
   .faq-q-badge {
     width: 28px;
     height: 28px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: var(--gradient-semantic-accent);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -96,7 +96,7 @@ const faqSchema = generateSchema ? JSON.stringify({
   }
   .faq-a {
     font-size: 0.95rem;
-    color: var(--gray);
+    color: var(--color-text-secondary);
     line-height: 1.8;
     padding-left: calc(28px + 0.75rem);
   }
@@ -110,7 +110,7 @@ const faqSchema = generateSchema ? JSON.stringify({
   }
   .faq-section--detailed .faq-list { gap: 12px; }
   .faq-section--detailed .faq-item {
-    border: 1px solid var(--gray-light);
+    border: 1px solid var(--color-border);
     padding: 20px 24px;
   }
   .faq-section--detailed .faq-q {
@@ -122,7 +122,7 @@ const faqSchema = generateSchema ? JSON.stringify({
   .faq-section--detailed .faq-q-badge {
     width: 24px;
     height: 24px;
-    background: var(--secondary);
+    background: var(--color-accent);
     font-size: 12px;
   }
   .faq-section--detailed .faq-a {
@@ -130,19 +130,11 @@ const faqSchema = generateSchema ? JSON.stringify({
     padding-left: 36px;
   }
   .faq-section--detailed .faq-a :global(a) {
-    color: var(--secondary);
+    color: var(--color-accent);
     text-decoration: underline;
   }
   .faq-section--detailed .faq-a :global(a:hover) {
     text-decoration: none;
-  }
-
-  /* Dark mode */
-  :global([data-theme="dark"]) .faq-section { background: var(--gray-100); }
-  :global([data-theme="dark"]) .faq-item { background: var(--gray-50); }
-  :global([data-theme="dark"]) .faq-a { color: var(--gray-600); }
-  :global([data-theme="dark"]) .faq-section--detailed .faq-item {
-    border-color: var(--gray-300);
   }
 
   /* Responsive: Tablet */

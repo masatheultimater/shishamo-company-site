@@ -1,9 +1,9 @@
 /**
  * ========================================
- * Form Base Styles
+ * Form Base Styles — Semantic Tokens
  * ========================================
  * Shared form styles for contact and quote pages.
- * Per-page differences are absorbed via CSS custom properties.
+ * No [data-theme="dark"] overrides needed.
  */
 
 .form-group {
@@ -15,10 +15,11 @@
   font-size: var(--form-label-size, 0.9rem);
   font-weight: 600;
   margin-bottom: 0.5rem;
+  color: var(--color-text-heading);
 }
 
 .form-group label .required {
-  color: var(--error);
+  color: var(--color-error);
   margin-left: 0.25rem;
 }
 
@@ -26,22 +27,22 @@
 .form-group textarea,
 .form-group select {
   width: 100%;
-  border: var(--form-border-width, 2px) solid var(--gray-light);
+  border: var(--form-border-width, 2px) solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: var(--form-input-padding, 0.875rem 1rem);
   font-family: inherit;
   font-size: var(--form-input-font-size, 1rem);
-  transition: all 0.3s;
-  background: var(--white);
-  color: var(--dark);
+  transition: all var(--transition-slow);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
 }
 
 .form-group textarea {
@@ -51,7 +52,7 @@
 
 .form-note {
   font-size: 0.8rem;
-  color: var(--gray);
+  color: var(--color-text-muted);
   margin-top: 0.375rem;
 }
 
@@ -65,7 +66,7 @@
   width: 20px;
   height: 20px;
   margin-top: 2px;
-  accent-color: var(--primary);
+  accent-color: var(--color-accent);
   cursor: pointer;
 }
 
@@ -73,34 +74,17 @@
   font-size: 0.9rem;
   line-height: 1.5;
   font-weight: normal;
+  color: var(--color-text-secondary);
 }
 
 .checkbox-group a {
-  color: var(--primary);
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
 .checkbox-group a:hover {
   text-decoration: none;
 }
-
-/* ===== DARK MODE ===== */
-[data-theme="dark"] .form-group input,
-[data-theme="dark"] .form-group textarea,
-[data-theme="dark"] .form-group select {
-  background: var(--gray-100);
-  border-color: var(--gray-300);
-  color: var(--dark);
-}
-[data-theme="dark"] .form-group input:focus,
-[data-theme="dark"] .form-group textarea:focus,
-[data-theme="dark"] .form-group select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
-}
-[data-theme="dark"] .form-group label { color: var(--dark); }
-[data-theme="dark"] .form-note { color: var(--gray-600); }
-[data-theme="dark"] .checkbox-group label { color: var(--gray-600); }
 
 /* ===== RESPONSIVE: Mobile (480px) ===== */
 @media (max-width: 480px) {
