@@ -174,16 +174,17 @@ const fullTitle = title.includes(seoDefaults.siteName)
   /* Skip link for accessibility */
   .skip-link {
     position: absolute;
-    top: -40px;
+    top: 0;
     left: 0;
     background: var(--primary);
     color: white;
     padding: var(--space-sm) var(--space-md);
     z-index: 1000;
-    transition: top 0.3s;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
   }
 
   .skip-link:focus {
-    top: 0;
+    transform: translateY(0);
   }
 </style>
