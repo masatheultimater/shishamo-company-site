@@ -718,18 +718,25 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
     color: var(--dark);
     line-height: 1.7;
     margin-bottom: 16px;
-    position: relative;
-    padding-left: 0;
+    text-align: center;
   }
   .motto-text::before {
-    content: '"';
+    content: '\201C';
     color: var(--primary);
-    font-size: 32px;
+    font-size: 48px;
     font-family: Georgia, serif;
-    position: absolute;
-    left: -8px;
-    top: -8px;
-    opacity: 0.3;
+    line-height: 1;
+    margin-right: 4px;
+    opacity: 0.5;
+  }
+  .motto-text::after {
+    content: '\201D';
+    color: var(--primary);
+    font-size: 48px;
+    font-family: Georgia, serif;
+    line-height: 1;
+    margin-left: 4px;
+    opacity: 0.5;
   }
   .motto-meaning {
     font-size: var(--font-size-sm);
