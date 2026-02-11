@@ -19,19 +19,14 @@
 }
 
 .hero--bg-full {
-  background: var(--gradient-semantic-hero);
+  background: var(--color-bg) url('/wp1.webp') center center / cover no-repeat;
 }
 
 .hero--bg-full::before {
   content: '';
   position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: var(--gradient-semantic-glow);
-  pointer-events: none;
+  inset: 0;
+  background: var(--color-overlay-gradient);
 }
 
 .hero--bg-full .hero-inner {

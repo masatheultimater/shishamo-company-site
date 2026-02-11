@@ -211,7 +211,7 @@
 /* ===== PAGE HEADER ===== */
 .page-header {
   padding: var(--space-5xl) var(--space-xl) var(--space-2xl);
-  background: var(--color-bg-secondary);
+  background: var(--color-bg-secondary) url('/wp1.webp') center center / cover no-repeat;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -221,7 +221,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--gradient-semantic-glow);
+  background: var(--color-overlay-gradient);
 }
 
 .page-header-blob {
