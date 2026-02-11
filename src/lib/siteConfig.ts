@@ -21,7 +21,7 @@ export const siteBranding = {
   ownerName: '吉川昌宏',
   ownerNickname: 'ししゃも',
   ownerReading: 'よしかわ まさひろ',
-  clientName: '吉川昌宏事務所',
+  clientName: 'ししゃもカンパニー',
   tagline: '中小企業の挑戦を後押しする',
   concept: 'IT × 経営 × 財務で、ビジネスを加速させる',
   philosophy: 'データとテクノロジーの力で、あなたの会社の「なんとかしたい」を一緒に解決します。',
@@ -70,8 +70,8 @@ export const footerContactLinks: FooterLink[] = [
  * SEO defaults
  */
 export const seoDefaults = {
-  siteName: `${siteBranding.ownerNickname}｜${siteBranding.ownerName}`,
-  defaultDescription: `中小企業の伴走パートナー「${siteBranding.ownerNickname}｜${siteBranding.ownerName}」。${siteBranding.concept}。DX推進・生成AI導入・データ活用・経営支援をサポートします。`,
+  siteName: 'ししゃもカンパニー',
+  defaultDescription: `中小企業の伴走パートナー「ししゃもカンパニー」。${siteBranding.concept}。DX推進・生成AI導入・データ活用・経営支援をサポートします。`,
   locale: 'ja_JP',
   ogType: 'website' as const,
 };

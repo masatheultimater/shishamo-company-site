@@ -1,8 +1,8 @@
 {
   "@context": "https://schema.org",
   "@type": ["ProfessionalService", "LocalBusiness"],
-  "name": "吉川昌宏事務所",
-  "alternateName": "ししゃも｜吉川昌宏",
+  "name": "ししゃもカンパニー",
+  "alternateName": "ししゃもカンパニー",
   "description": "IT × 経営 × 財務で、ビジネスを加速させる。中小企業向けDX推進・生成AI導入・データ活用・経営支援サービスを提供。",
   "url": "https://shishamo-company.com",
   "logo": "https://shishamo-company.com/shishamo-logo.svg",

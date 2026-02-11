@@ -11,8 +11,8 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
 ---
 
 <Layout
-  title="ししゃも｜吉川昌宏 - IT × 経営 × 財務"
-  description="中小企業の伴走パートナー「ししゃも｜吉川昌宏」。DX推進・生成AI導入・データ活用・経営支援で、御社の挑戦を後押しします。"
+  title="ししゃもカンパニー - IT × 経営 × 財務"
+  description="中小企業の伴走パートナー「ししゃもカンパニー」。DX推進・生成AI導入・データ活用・経営支援で、御社の挑戦を後押しします。"
   currentPage="home"
 >
   <!-- HERO -->
@@ -37,7 +37,14 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <div class="profile-photo">
           <Image src={profileImage} alt="吉川昌宏" width={200} height={200} loading="eager" />
         </div>
-        <div class="profile-nickname">ししゃも</div>
+        <div class="profile-nickname">
+          <a href="https://x.com/shishamoex09" target="_blank" rel="noopener noreferrer" class="profile-x-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            ししゃも <span class="profile-x-handle">@shishamoex09</span>
+          </a>
+        </div>
         <div class="profile-name">吉川 昌宏</div>
         <div class="profile-title">中小企業診断士(登録予定) / ITストラテジスト</div>
         <div class="profile-quals">
