@@ -19,6 +19,10 @@ if (isProd && !gtmId) {
   <>
     {/* Skip GTM entirely if disable-analytics flag is set (owner's devices) */}
     <script is:inline define:vars={{ gtmId }}>
+      // ?disable-analytics=true in URL sets the flag (for mobile devices)
+      if (new URLSearchParams(location.search).get('disable-analytics') === 'true') {
+        localStorage.setItem('disable-analytics', 'true');
+      }
       if (localStorage.getItem('disable-analytics') !== 'true') {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
