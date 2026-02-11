@@ -519,9 +519,6 @@
   background: var(--gray-200) url('/wp2.webp') center center / cover no-repeat;
   color: var(--dark);
 }
-[data-theme="dark"] .why-me::before {
-  background: linear-gradient(90deg, var(--primary), var(--teal));
-}
 [data-theme="dark"] .why-me::after {
   background: var(--overlay-dark-gradient);
 }
