@@ -7,6 +7,7 @@ import Layout from '../layouts/Layout.astro';
 import Breadcrumb from './seo/Breadcrumb.astro';
 import StructuredData from './seo/StructuredData.astro';
 import '../styles/service-detail.css';
+import { Icon } from 'astro-icon/components';
 import type { ServiceDetailData } from '@shared/contracts/components';
 
 interface Props {
@@ -58,7 +59,7 @@ const serviceSchemaData = {
   <!-- Service Hero -->
   <section class="service-hero">
     <div class="service-hero-inner">
-      <div class="service-hero-icon">{data.icon}</div>
+      <div class="service-hero-icon"><Icon name={data.icon} size={48} /></div>
       <h1>{data.name}</h1>
       <p>{data.tagline}</p>
       <div class={`service-hero-price${data.originalPriceRange ? ' service-hero-price--discounted' : ''}`}>
@@ -68,7 +69,7 @@ const serviceSchemaData = {
       </div>
       {data.discountReason && (
         <div class="service-hero-notice">
-          <span aria-hidden="true">📋</span>
+          <Icon name="ri:clipboard-line" size={18} aria-hidden="true" />
           <p>
             {data.discountReason}
             <br /><small>正式登録後は通常価格に改定予定です。</small>
@@ -87,7 +88,7 @@ const serviceSchemaData = {
     <div class="service-content-inner">
       <!-- Problems -->
       <section class="content-section">
-        <h2>😥 こんな課題ありませんか？</h2>
+        <h2><Icon name="ri:error-warning-line" size={24} /> こんな課題ありませんか？</h2>
         <div class="problem-list">
           {data.problems.map((problem) => (
             <div class="problem-item">
@@ -99,11 +100,11 @@ const serviceSchemaData = {
 
       <!-- Features -->
       <section class="content-section">
-        <h2>✨ サービスの特徴</h2>
+        <h2><Icon name="ri:sparkling-line" size={24} /> サービスの特徴</h2>
         <div class="feature-grid">
           {data.features.map((feature) => (
             <div class="feature-card">
-              <div class="feature-icon">{feature.icon}</div>
+              <div class="feature-icon"><Icon name={feature.icon} size={32} /></div>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
             </div>
@@ -113,7 +114,7 @@ const serviceSchemaData = {
 
       <!-- Flow -->
       <section class="content-section">
-        <h2>📋 支援の流れ</h2>
+        <h2><Icon name="ri:clipboard-line" size={24} /> 支援の流れ</h2>
         <div class="flow-list">
           {data.flow.map((step, index) => (
             <div class="flow-item" data-step={index + 1}>
@@ -126,7 +127,7 @@ const serviceSchemaData = {
 
       <!-- Pricing -->
       <section class="content-section">
-        <h2>💰 料金プラン</h2>
+        <h2><Icon name="ri:money-dollar-circle-line" size={24} /> 料金プラン</h2>
         <div class="pricing-cards">
           {data.pricing.map((plan) => (
             <div class={`pricing-card${plan.popular ? ' popular' : ''}${plan.originalAmount ? ' discounted' : ''}`}>
@@ -143,11 +144,11 @@ const serviceSchemaData = {
 
       <!-- Related Services -->
       <section class="content-section">
-        <h2>🔗 関連サービス</h2>
+        <h2><Icon name="ri:links-line" size={24} /> 関連サービス</h2>
         <div class="related-grid">
           {data.relatedServices.map((service) => (
             <a href={service.href} class="related-card">
-              <div class="related-card-icon">{service.icon}</div>
+              <div class="related-card-icon"><Icon name={service.icon} size={28} /></div>
               <h3>{service.name}</h3>
               <p>{service.description}</p>
               <span class="related-link">詳しく見る →</span>

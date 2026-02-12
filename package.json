@@ -13,8 +13,9 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
-    "@lucide/astro": "^0.563.0",
+    "@iconify-json/ri": "^1.2.10",
     "astro": "^5.1.0",
+    "astro-icon": "^1.1.5",
     "js-yaml": "^4.1.1",
     "microcms-js-sdk": "^3.3.0"
   },

@@ -7,6 +7,7 @@ import Layout from '../layouts/Layout.astro';
 import Breadcrumb from './seo/Breadcrumb.astro';
 import StructuredData from './seo/StructuredData.astro';
 import '../styles/blog.css';
+import { Icon } from 'astro-icon/components';
 import type { BlogPostResponse } from '@shared/contracts/api';
 import {
   categoryLabels,
@@ -69,7 +70,7 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   <header class="blog-header">
     <div class="blog-header__meta">
       <span class="blog-header__category">
-        <span aria-hidden="true">{categoryIcons[category]}</span>
+        <Icon name={categoryIcons[category]} size={16} aria-hidden="true" />
         {categoryLabels[category]}
       </span>
       <span class="blog-header__date">

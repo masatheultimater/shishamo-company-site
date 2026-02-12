@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../../lib/microcms';
 import type { BlogCategory } from '@shared/contracts/api';
+import { Icon } from 'astro-icon/components';
 import '../../styles/blog.css';
 
 const allPosts = await getAllBlogPosts();
@@ -39,7 +40,7 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
           aria-selected="false"
           data-category={cat}
         >
-          <span aria-hidden="true">{categoryIcons[cat]}</span>
+          <Icon name={categoryIcons[cat]} size={14} aria-hidden="true" />
           {categoryLabels[cat]}
         </a>
       ))}

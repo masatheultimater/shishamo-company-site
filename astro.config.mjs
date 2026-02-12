@@ -1,12 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://shishamo-company.com',
   output: 'static',
   integrations: [
+    icon(),
     sitemap({
       // サイトマップから除外するページ
       filter: (page) => !page.includes('/404') && !page.includes('/CLAUDE'),

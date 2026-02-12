@@ -39,14 +39,14 @@ export const categoryLabels: Record<BlogCategory, string> = {
 };
 
 export const categoryIcons: Record<BlogCategory, string> = {
-  dx: '🚀',
-  ai: '🤖',
-  data: '📊',
-  management: '🎯',
-  accounting: '📝',
-  tech: '💻',
-  news: '📢',
-  about: '👤',
+  dx: 'ri:rocket-line',
+  ai: 'ri:robot-line',
+  data: 'ri:bar-chart-box-line',
+  management: 'ri:focus-3-line',
+  accounting: 'ri:file-edit-line',
+  tech: 'ri:computer-line',
+  news: 'ri:megaphone-line',
+  about: 'ri:user-line',
 };
 
 /** Reverse map: microCMS display name → slug */
