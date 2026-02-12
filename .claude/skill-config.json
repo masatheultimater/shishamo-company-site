@@ -1,0 +1,29 @@
+{
+  "project": {
+    "name": "shishamo-company-site",
+    "framework": "astro",
+    "buildCommand": "npm run build",
+    "sourceExtensions": [".astro", ".ts", ".tsx", ".css", ".js", ".jsx"]
+  },
+  "skills": {
+    "pricing-sync": {
+      "authoritativeSource": "src/data/services.ts",
+      "displaySource": "src/pages/services/index.astro",
+      "discountRate": 0.2,
+      "excludedServices": ["subsidy-support"]
+    },
+    "gtm-event": {
+      "analyticsFile": "src/lib/analytics.ts",
+      "layoutFile": "src/layouts/Layout.astro",
+      "eventsDocFile": ".claude/docs/analytics-events.md"
+    },
+    "deploy-verify": {
+      "provider": "cloudflare-pages",
+      "configFile": "wrangler.toml"
+    },
+    "wcag-audit": {
+      "tokensFile": "src/styles/tokens.css",
+      "themeAttribute": "data-theme"
+    }
+  }
+}
