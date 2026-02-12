@@ -1,20 +1,59 @@
 #!/usr/bin/env python3
-"""編集前チェック: 複雑な変更にはAnalyst相談を提案"""
-import sys, json, os
+"""PreToolUse hook: Check sensitive file edits and inject caution via JSON additionalContext."""
+import sys
+import json
 
-SENSITIVE = ["auth", "security", "migration", "schema", "config", "secret", "crypt", "token", "key"]
+SENSITIVE_PATTERNS = ["auth", "security", "migration", "schema", "secret", "crypt", "token", "key"]
+
+CRITICAL_FILES = [
+    "siteConfig.ts",
+    "services.ts",
+    "tokens.css",
+    "Layout.astro",
+    "analytics.ts",
+    "settings.json",
+    "package.json",
+]
+
 
 def main():
-    tool_input = os.environ.get("TOOL_INPUT", "{}")
     try:
-        data = json.loads(tool_input)
-        file_path = data.get("file_path", data.get("path", ""))
-    except:
+        data = json.loads(sys.stdin.read())
+        tool_input = data.get("tool_input", {})
+        file_path = tool_input.get("file_path", tool_input.get("path", ""))
+    except Exception:
         return
-    for pat in SENSITIVE:
-        if pat in file_path.lower():
-            print(f"⚠️ センシティブファイル: {file_path} - Analyst相談を推奨")
-            return
+
+    if not file_path:
+        return
+
+    warnings = []
+    file_lower = file_path.lower()
+
+    for pat in SENSITIVE_PATTERNS:
+        if pat in file_lower:
+            warnings.append(f"Sensitive pattern '{pat}' detected in path.")
+
+    for crit in CRITICAL_FILES:
+        if file_path.endswith(crit):
+            warnings.append(f"Critical project file: {crit} — verify changes carefully.")
+
+    if not warnings:
+        return
+
+    context = (
+        f"CAUTION: Editing {file_path}\n"
+        + "\n".join(f"- {w}" for w in warnings)
+        + "\nDouble-check this change aligns with project conventions before proceeding."
+    )
+
+    output = {
+        "hookSpecificOutput": {
+            "additionalContext": context
+        }
+    }
+    print(json.dumps(output))
+
 
 if __name__ == "__main__":
     main()
