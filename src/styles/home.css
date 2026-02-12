@@ -336,7 +336,10 @@
 }
 
 .quick-icon {
-  font-size: 2rem;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quick-label {
@@ -629,7 +632,9 @@
 }
 
 .blog-card-home__category {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   padding: 0.15rem 0.6rem;
   border-radius: var(--radius-full);
   background: var(--color-accent-subtle);
@@ -736,7 +741,7 @@
     padding: 1rem 1.25rem;
   }
   .quick-icon {
-    font-size: 1.5rem;
+    /* size controlled by Icon size prop */
   }
   .quick-label {
     font-size: 0.9rem;

@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
-import { ArrowRight } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 import yaml from 'js-yaml';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -25,6 +25,16 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   mottos: { text: string; meaning: string }[];
   philosophy: { title: string; content: string }[];
   cta: { title: string; description: string; buttonText: string; buttonLink: string };
+};
+
+const qualIconMap: Record<string, string> = {
+  '中小企業診断士': 'ri:focus-3-line',
+  'ITストラテジスト': 'ri:computer-line',
+  'E資格': 'ri:robot-line',
+  'データベーススペシャリスト': 'ri:database-2-line',
+  '応用情報技術者': 'ri:smartphone-line',
+  '税理士科目合格（簿記論）': 'ri:calculator-line',
+  'TOEIC815': 'ri:global-line',
 };
 ---
 
@@ -143,27 +153,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
         {profileData.qualifications.map((qual) => (
           <div class="qual-card">
             <div class="qual-icon">
-              {qual.name === '中小企業診断士' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-              )}
-              {qual.name === 'ITストラテジスト' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              )}
-              {qual.name === 'E資格' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="14" r="2"/></svg>
-              )}
-              {qual.name === 'データベーススペシャリスト' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
-              )}
-              {qual.name === '応用情報技術者' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
-              )}
-              {qual.name === '税理士科目合格（簿記論）' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-              )}
-              {qual.name === 'TOEIC815' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              )}
+              <Icon name={qualIconMap[qual.name] || 'ri:award-line'} size={22} />
             </div>
             <div class="qual-info">
               <h4>{qual.name}</h4>
@@ -243,7 +233,7 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
       <p class="cta-desc" set:html={profileData.cta.description.replace(/\n/g, '<br>')} />
       <a href={profileData.cta.buttonLink} class="btn-primary" data-track-cta="profile">
         {profileData.cta.buttonText}
-        <ArrowRight size={14} />
+        <Icon name="ri:arrow-right-line" size={14} />
       </a>
       <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
     </div>

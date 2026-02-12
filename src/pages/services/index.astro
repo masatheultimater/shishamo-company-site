@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { ArrowRight } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 ---
 
 <Layout
@@ -15,11 +15,11 @@ import { ArrowRight } from '@lucide/astro';
 
   <nav class="service-nav" aria-label="サービスカテゴリナビゲーション">
     <div class="service-nav-inner" role="tablist">
-      <a href="#dx" class="active" role="tab" aria-selected="true"><span aria-hidden="true">🚀</span> DX推進</a>
-      <a href="#ai" role="tab" aria-selected="false"><span aria-hidden="true">🤖</span> 生成AI</a>
-      <a href="#data" role="tab" aria-selected="false"><span aria-hidden="true">📊</span> データ活用</a>
-      <a href="#management" role="tab" aria-selected="false"><span aria-hidden="true">🎯</span> 経営支援</a>
-      <a href="#accounting" role="tab" aria-selected="false"><span aria-hidden="true">📝</span> 経理</a>
+      <a href="#dx" class="active" role="tab" aria-selected="true"><Icon name="ri:rocket-line" size={16} /> DX推進</a>
+      <a href="#ai" role="tab" aria-selected="false"><Icon name="ri:robot-line" size={16} /> 生成AI</a>
+      <a href="#data" role="tab" aria-selected="false"><Icon name="ri:bar-chart-box-line" size={16} /> データ活用</a>
+      <a href="#management" role="tab" aria-selected="false"><Icon name="ri:focus-3-line" size={16} /> 経営支援</a>
+      <a href="#accounting" role="tab" aria-selected="false"><Icon name="ri:file-edit-line" size={16} /> 経理</a>
     </div>
   </nav>
 
@@ -27,7 +27,7 @@ import { ArrowRight } from '@lucide/astro';
   <section class="service-section" id="dx">
     <div class="service-section-inner">
       <div class="section-header-row">
-        <div class="section-icon">🚀</div>
+        <div class="section-icon"><Icon name="ri:rocket-line" /></div>
         <div class="section-header-text">
           <h2>DX推進・IT戦略</h2>
           <p>「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。</p>
@@ -76,7 +76,7 @@ import { ArrowRight } from '@lucide/astro';
   <section class="service-section" id="ai">
     <div class="service-section-inner">
       <div class="section-header-row">
-        <div class="section-icon">🤖</div>
+        <div class="section-icon"><Icon name="ri:robot-line" /></div>
         <div class="section-header-text">
           <h2>生成AI導入支援</h2>
           <p>ChatGPT・Claudeなどの生成AIを業務に活かす方法を、設計から定着まで一貫して支援します。</p>
@@ -114,7 +114,7 @@ import { ArrowRight } from '@lucide/astro';
   <section class="service-section" id="data">
     <div class="service-section-inner">
       <div class="section-header-row">
-        <div class="section-icon">📊</div>
+        <div class="section-icon"><Icon name="ri:bar-chart-box-line" /></div>
         <div class="section-header-text">
           <h2>データ活用支援</h2>
           <p>「データはあるけど活用できていない」を解決。分析からダッシュボード構築まで、データドリブンな経営をサポートします。</p>
@@ -153,7 +153,7 @@ import { ArrowRight } from '@lucide/astro';
   <section class="service-section" id="management">
     <div class="service-section-inner">
       <div class="section-header-row">
-        <div class="section-icon">🎯</div>
+        <div class="section-icon"><Icon name="ri:focus-3-line" /></div>
         <div class="section-header-text">
           <h2>経営支援</h2>
           <p>中小企業診断士として、経営課題の整理から改善施策の実行までサポート。補助金活用もお任せください。</p>
@@ -192,7 +192,7 @@ import { ArrowRight } from '@lucide/astro';
   <section class="service-section" id="accounting">
     <div class="service-section-inner">
       <div class="section-header-row">
-        <div class="section-icon">📝</div>
+        <div class="section-icon"><Icon name="ri:file-edit-line" /></div>
         <div class="section-header-text">
           <h2>経理・記帳サポート</h2>
           <p>経理の負担を軽減し、本業に集中できる環境を作ります。クラウド会計の導入支援もお任せください。</p>
@@ -233,7 +233,7 @@ import { ArrowRight } from '@lucide/astro';
     <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
     <a href="/contact/" class="btn-primary" data-track-cta="diagnosis">
       無料相談する
-      <ArrowRight size={14} />
+      <Icon name="ri:arrow-right-line" size={14} />
     </a>
   </section>
 
@@ -271,10 +271,14 @@ import { ArrowRight } from '@lucide/astro';
     display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 3rem;
   }
   .section-icon {
-    font-size: 3.5rem; animation: float 3s ease-in-out infinite; flex-shrink: 0;
+    width: 5.5rem; height: 5.5rem;
+    color: var(--color-accent);
+    display: flex; align-items: center; justify-content: center;
+    animation: float 3s ease-in-out infinite; flex-shrink: 0;
     padding: 1rem; background: var(--color-surface-elevated);
     border-radius: var(--radius-lg); box-shadow: var(--shadow-semantic-md);
   }
+  .section-icon :global(svg) { width: 3rem; height: 3rem; }
   .section-header-text h2 {
     font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem;
     color: var(--color-text-heading);
@@ -381,7 +385,7 @@ import { ArrowRight } from '@lucide/astro';
     .service-nav a { padding: 0.375rem 0.75rem; font-size: 0.75rem; }
 
     .section-header-row { flex-direction: column; text-align: center; }
-    .section-icon { margin: 0 auto; font-size: 3rem; padding: 0.75rem; }
+    .section-icon { margin: 0 auto; width: 4.5rem; height: 4.5rem; padding: 0.75rem; }
     .section-header-text h2 { font-size: 1.5rem; }
 
     .service-section { padding: 3rem 1.5rem; }

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import FAQSection from '../../components/ui/FAQSection.astro';
 import { externalAPIs } from '../../lib/siteConfig';
+import { Icon } from 'astro-icon/components';
 import '../../styles/forms.css';
 
 const contactFAQ = [
@@ -27,7 +28,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   <section class="contact-section">
     <div class="contact-inner">
       <div class="contact-form-card">
-        <h2>📬 メッセージを送る</h2>
+        <h2><Icon name="ri:mail-send-line" size={22} /> メッセージを送る</h2>
         <p>以下のフォームからお問い合わせください。</p>
         <form action={FORMSPREE_ENDPOINT} method="POST" id="contactForm">
           <input type="hidden" name="_subject" value="【ししゃも】お問い合わせ">
@@ -123,13 +124,13 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
       <div class="contact-sidebar">
         <div class="sidebar-card response-card">
-          <h3>⚡ 返信目安</h3>
+          <h3><Icon name="ri:flashlight-line" size={18} /> 返信目安</h3>
           <div class="response-time">24時間以内</div>
           <p>に必ずご返信します</p>
         </div>
 
         <div class="sidebar-card">
-          <h3>💬 初回相談無料</h3>
+          <h3><Icon name="ri:chat-3-line" size={18} /> 初回相談無料</h3>
           <p>30分のオンライン相談で、御社の課題を整理します。</p>
           <ul>
             <li>課題のヒアリング</li>
@@ -139,12 +140,12 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
         </div>
 
         <div class="sidebar-card">
-          <h3>📍 対応エリア</h3>
+          <h3><Icon name="ri:map-pin-line" size={18} /> 対応エリア</h3>
           <p>オンライン対応のため全国OK。対面をご希望の場合は関東圏で調整可能です。</p>
         </div>
 
         <div class="sidebar-card">
-          <h3>🔒 情報管理</h3>
+          <h3><Icon name="ri:lock-line" size={18} /> 情報管理</h3>
           <p>お預かりした情報は適切に管理し、ご相談対応以外の目的には使用しません。</p>
         </div>
       </div>
@@ -181,6 +182,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   }
   .sidebar-card:hover { border-color: var(--color-accent); }
   .sidebar-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .sidebar-card h3 :global(svg) { color: var(--color-accent); flex-shrink: 0; }
   .sidebar-card p { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.7; }
   .sidebar-card ul { margin-top: 0.75rem; }
   .sidebar-card li {
@@ -194,8 +196,10 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
     color: var(--palette-white); border: none; position: relative; overflow: hidden;
   }
   .response-card::before {
-    content: '⚡'; position: absolute; right: 10px; top: 10px;
-    font-size: 4rem; opacity: 0.15;
+    content: ''; position: absolute; right: -20px; top: -20px;
+    width: 100px; height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
   }
   .response-card h3 { color: var(--palette-white); }
   .response-time { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin: 0.5rem 0; }

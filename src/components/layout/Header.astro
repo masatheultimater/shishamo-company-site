@@ -5,7 +5,7 @@
  */
 import { siteBranding, navigationItems } from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
-import { Sun, Moon, Menu } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   currentPage?: 'home' | 'services' | 'profile' | 'blog' | 'contact';
@@ -51,15 +51,15 @@ const { currentPage, transparent = false } = Astro.props;
         無料相談
       </a>
       <button class="theme-toggle" id="themeToggle" aria-label="テーマ切り替え">
-        <Sun class="theme-icon theme-icon--light" size={18} />
-        <Moon class="theme-icon theme-icon--dark" size={18} />
+        <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
+        <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
       </button>
     </nav>
 
     <div class="header-actions">
       <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="テーマ切り替え">
-        <Sun class="theme-icon theme-icon--light" size={18} />
-        <Moon class="theme-icon theme-icon--dark" size={18} />
+        <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
+        <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
       </button>
       <button
         class="mobile-menu-btn"
@@ -68,7 +68,7 @@ const { currentPage, transparent = false } = Astro.props;
         aria-controls="mobileNav"
         id="mobileMenuBtn"
       >
-        <Menu size={20} />
+        <Icon name="ri:menu-line" size={20} />
       </button>
     </div>
   </div>

@@ -13,7 +13,7 @@
 
 import type { BreadcrumbProps, BreadcrumbItem } from '@shared/contracts/components';
 import type { BreadcrumbItemSchema } from '@shared/contracts/api';
-import { House } from '@lucide/astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props extends BreadcrumbProps {
   showHome?: boolean;
@@ -58,7 +58,7 @@ const structuredData = {
             <a href={item.href} class="breadcrumb__link">
               {index === 0 && showHome && item.href === '/' ? (
                 <span class="breadcrumb__home-icon" aria-hidden="true">
-                  <House size={16} />
+                  <Icon name="ri:home-line" size={16} />
                 </span>
               ) : null}
               <span>{item.name}</span>
