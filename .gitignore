@@ -16,7 +16,18 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Claude Code / AI CLI configs
 .claude/
+.codex/
+.gemini/
+
+# Old project artifacts
+wireframe/
+reports/
+CLOUDFLARE_SETUP.md
+PROMPT_FOR_CLAUDE_CODE.md
+TECH_ARCHITECTURE.md
+privacy-policy.docx
 
 # Prevent CLAUDE.md from becoming routable Astro pages
 src/pages/**/CLAUDE.md
