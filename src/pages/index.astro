@@ -4,7 +4,6 @@ import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import { Icon } from 'astro-icon/components';
 import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
-import { caseStudies } from '../data/caseStudies';
 import '../styles/home.css';
 
 const allPosts = await getAllBlogPosts();
@@ -236,26 +235,6 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           <h3>わかりやすいコミュニケーション</h3>
           <p>専門用語を使わず、経営者目線でご説明します。「何を聞いていいかわからない」という方も安心してご相談ください。</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIAL -->
-  <section class="section testimonial">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Voice</div>
-        <h2 class="section-title section-title--compact">お客様の声</h2>
-      </div>
-      <blockquote class="testimonial-quote">
-        <p>{caseStudies[0].clientVoice}</p>
-        <footer class="testimonial-footer">
-          <span class="testimonial-client">{caseStudies[0].clientProfile.industry}（{caseStudies[0].clientProfile.employees}）</span>
-          <span class="testimonial-service">{caseStudies[0].serviceBadge}</span>
-        </footer>
-      </blockquote>
-      <div class="testimonial-more">
-        <a href="/case-studies/" class="btn-secondary" data-track-cta="testimonial">事例をもっと見る <Icon name="ri:arrow-right-line" size={14} /></a>
       </div>
     </div>
   </section>
