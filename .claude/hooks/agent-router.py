@@ -2,6 +2,9 @@
 """Agent Router: Classify user prompt and inject workflow directives via JSON additionalContext."""
 import sys
 import json
+import os
+import glob
+import re
 
 CONSENSUS_TRIGGERS = [
     "重要", "critical", "大規模", "large-scale",
@@ -30,26 +33,45 @@ MULTI_FILE_TRIGGERS = [
     "フッター変更", "ヘッダー変更", "レイアウト変更"
 ]
 
-# Skill keyword → skill name mapping (bilingual)
-SKILL_TRIGGERS = {
-    "/refactor": ["refactor", "リファクタ", "code quality", "コード品質", "clean up", "技術的負債"],
-    "/deploy-verify": ["deploy", "デプロイ", "production check", "本番確認", "pre-deploy"],
-    "/wcag-audit": ["contrast", "WCAG", "a11y", "コントラスト", "視認性", "accessibility", "アクセシビリティ"],
-    "/pricing-sync": ["pricing", "料金", "sync prices", "価格", "料金同期", "料金チェック"],
-    "/gtm-event": ["tracking", "GTM", "イベント追加", "トラッキング", "dataLayer", "analytics event"],
-    "/checkpointing": ["checkpoint", "セッション保存", "save session", "進捗保存", "save progress"],
-    "/hook-scaffold": ["new hook", "create hook", "add hook", "フック追加", "新しいフック", "フック作成"],
-    "/hook-debug": ["test hook", "debug hook", "hook not working", "フックテスト", "フックデバッグ", "フック動かない"],
-    "/rules-audit": ["audit rules", "consolidate rules", "rules cleanup", "ルール整理", "ルール統合", "ルール重複"],
-}
+
+def discover_skills():
+    """Scan ~/.claude/skills/*/SKILL.md for trigger keywords from frontmatter."""
+    skills = {}
+    skill_dirs = glob.glob(os.path.expanduser("~/.claude/skills/*/SKILL.md"))
+    for path in skill_dirs:
+        try:
+            with open(path) as f:
+                content = f.read()
+            match = re.match(r'^---\n(.*?)\n---', content, re.DOTALL)
+            if not match:
+                continue
+            fm = match.group(1)
+            name = ""
+            triggers = []
+            in_triggers = False
+            for line in fm.split("\n"):
+                if line.startswith("name:"):
+                    name = line.split(":", 1)[1].strip().strip("'\"")
+                elif line.strip() == "triggers:":
+                    in_triggers = True
+                elif in_triggers and line.startswith("  - "):
+                    triggers.append(line.strip().lstrip("- ").strip())
+                elif in_triggers and not line.startswith("  "):
+                    in_triggers = False
+            if name and triggers:
+                skills[f"/{name}"] = triggers
+        except Exception:
+            continue
+    return skills
 
 
 def classify(prompt):
     """Classify prompt into workflow type and matched trigger."""
     p = prompt.lower()
 
-    # Check skill triggers first
-    for skill, keywords in SKILL_TRIGGERS.items():
+    # Dynamically discover skill triggers from SKILL.md frontmatter
+    skill_triggers = discover_skills()
+    for skill, keywords in skill_triggers.items():
         for kw in keywords:
             if kw.lower() in p:
                 return "skill", skill, kw
