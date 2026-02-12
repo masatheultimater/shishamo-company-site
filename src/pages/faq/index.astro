@@ -1,0 +1,189 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
+import FAQSection from '../../components/ui/FAQSection.astro';
+import { Icon } from 'astro-icon/components';
+import { faqCategories, getAllFAQItems } from '../../data/faq';
+
+const allItems = getAllFAQItems();
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer.replace(/<[^>]*>/g, '')
+    }
+  }))
+});
+---
+
+<Layout
+  title="よくある質問 | ししゃもカンパニー"
+  description="ししゃもカンパニーへのよくある質問をまとめました。サービス内容、料金、契約プロセス、DX・IT関連、経理・財務に関するご質問にお答えします。"
+>
+  <script type="application/ld+json" set:html={faqSchema} />
+
+  <section class="page-header">
+    <h1>よくある質問</h1>
+    <p>サービスに関するよくある質問をまとめました</p>
+  </section>
+
+  <div class="faq-page-inner">
+    <Breadcrumb items={[
+      { name: 'よくある質問', href: '/faq/' }
+    ]} />
+
+    <nav class="faq-nav" aria-label="FAQカテゴリナビゲーション">
+      <div class="faq-nav-inner" role="tablist">
+        {faqCategories.map((cat, i) => (
+          <a
+            href={`#${cat.id}`}
+            class={i === 0 ? 'active' : ''}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+          >
+            <Icon name={cat.icon} size={16} />
+            {cat.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    {faqCategories.map(cat => (
+      <section class="faq-category" id={cat.id}>
+        <FAQSection title={cat.title} items={cat.items} variant="detailed" />
+      </section>
+    ))}
+  </div>
+
+  <section class="cta--dark">
+    <h2>質問が見つかりませんでしたか？</h2>
+    <p>お気軽にお問い合わせください。<br>初回30分の無料相談で、御社の疑問にお答えします。</p>
+    <a href="/contact/" class="btn-primary" data-track-cta="faq">
+      無料相談を予約する
+      <Icon name="ri:arrow-right-line" size={14} />
+    </a>
+  </section>
+</Layout>
+
+<style>
+  .faq-page-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* FAQ Category Nav (reuses service-nav pattern) */
+  .faq-nav {
+    position: sticky;
+    top: 70px;
+    z-index: 50;
+    background: var(--color-glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    margin: 0 -2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .faq-nav-inner {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .faq-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    white-space: nowrap;
+  }
+
+  .faq-nav a:hover {
+    color: var(--color-accent);
+    background: var(--color-bg-tertiary);
+  }
+
+  .faq-nav a.active {
+    background: var(--color-accent);
+    color: var(--palette-white);
+    box-shadow: var(--shadow-semantic-md);
+  }
+
+  .faq-category {
+    scroll-margin-top: 140px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .faq-page-inner {
+      padding: 0 1.5rem;
+    }
+
+    .faq-nav {
+      top: 60px;
+      padding: 0.75rem 1rem;
+      margin: 0 -1.5rem;
+    }
+
+    .faq-nav-inner {
+      gap: 0.375rem;
+    }
+
+    .faq-nav a {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .faq-page-inner {
+      padding: 0 1rem;
+    }
+
+    .faq-nav {
+      margin: 0 -1rem;
+    }
+
+    .faq-nav a {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  const sections = document.querySelectorAll('.faq-category');
+  const navLinks = document.querySelectorAll('.faq-nav a');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = (section as HTMLElement).offsetTop - 160;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id') || '';
+      }
+    });
+
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === `#${current}`;
+      link.classList.toggle('active', isActive);
+      link.setAttribute('aria-selected', String(isActive));
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+</script>
