@@ -1,0 +1,307 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
+import { Icon } from 'astro-icon/components';
+import { caseStudies } from '../../data/caseStudies';
+---
+
+<Layout
+  title="お客様の声・事例紹介 | ししゃもカンパニー"
+  description="ししゃもカンパニーの支援事例をご紹介。DX推進、生成AI導入、経営診断・データ分析など、実際のお客様の声と成果をお届けします。"
+>
+  <section class="page-header">
+    <h1>お客様の声</h1>
+    <p>実際のご支援事例と、お客様からいただいた声をご紹介します</p>
+  </section>
+
+  <div class="case-studies-inner">
+    <Breadcrumb items={[
+      { name: 'お客様の声', href: '/case-studies/' }
+    ]} />
+
+    <p class="privacy-notice">
+      <Icon name="ri:shield-check-line" size={16} />
+      掲載している事例は、お客様のプライバシー保護のため匿名化しています。
+    </p>
+
+    <div class="case-list">
+      {caseStudies.map(cs => (
+        <article class="case-card">
+          <div class="case-header">
+            <span class="case-label">{cs.label}</span>
+            <a href={cs.serviceHref} class="case-badge">{cs.serviceBadge}</a>
+          </div>
+
+          <div class="case-profile">
+            <div class="profile-item">
+              <span class="profile-key">業種</span>
+              <span class="profile-value">{cs.clientProfile.industry}</span>
+            </div>
+            <div class="profile-item">
+              <span class="profile-key">従業員数</span>
+              <span class="profile-value">{cs.clientProfile.employees}</span>
+            </div>
+          </div>
+
+          <div class="case-section">
+            <h3 class="case-section-title">
+              <Icon name="ri:error-warning-line" size={18} />
+              課題
+            </h3>
+            <p class="case-section-text">{cs.clientProfile.challenge}</p>
+          </div>
+
+          <div class="case-section">
+            <h3 class="case-section-title">
+              <Icon name="ri:lightbulb-line" size={18} />
+              アプローチ
+            </h3>
+            <p class="case-section-text">{cs.approach}</p>
+          </div>
+
+          <div class="case-section">
+            <h3 class="case-section-title">
+              <Icon name="ri:bar-chart-box-line" size={18} />
+              成果
+            </h3>
+            <ul class="case-results">
+              {cs.results.map(r => (
+                <li>{r}</li>
+              ))}
+            </ul>
+          </div>
+
+          <blockquote class="case-voice">
+            <p>{cs.clientVoice}</p>
+          </blockquote>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <section class="cta--dark">
+    <h2>御社の課題も、一緒に解決しませんか？</h2>
+    <p>まずはお気軽にご相談ください。<br>初回30分の無料相談で、御社に合った進め方をご提案します。</p>
+    <a href="/contact/" class="btn-primary" data-track-cta="case-studies">
+      無料相談を予約する
+      <Icon name="ri:arrow-right-line" size={14} />
+    </a>
+  </section>
+</Layout>
+
+<style>
+  .case-studies-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .privacy-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    background: var(--color-bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .case-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* Case Card */
+  .case-card {
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: border-color 0.3s;
+  }
+
+  .case-card:hover {
+    border-color: var(--color-accent);
+  }
+
+  .case-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-label {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .case-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--color-badge-accent-bg);
+    color: var(--color-accent);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: opacity 0.3s;
+  }
+
+  .case-badge:hover {
+    opacity: 0.8;
+  }
+
+  /* Client Profile */
+  .case-profile {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .profile-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .profile-key {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .profile-value {
+    font-size: 0.9rem;
+    color: var(--color-text-heading);
+    font-weight: 600;
+  }
+
+  /* Case Sections */
+  .case-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .case-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-section-title :global(svg) {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .case-section-text {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    padding-left: calc(18px + 0.5rem);
+  }
+
+  /* Results */
+  .case-results {
+    padding-left: calc(18px + 0.5rem);
+  }
+
+  .case-results li {
+    font-size: 0.9rem;
+    color: var(--color-text-heading);
+    padding: 0.25rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .case-results li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-orange);
+    font-weight: bold;
+  }
+
+  /* Client Voice */
+  .case-voice {
+    margin-top: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bg-tertiary);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .case-voice p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .case-voice p::before {
+    content: '"';
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-right: 0.25rem;
+  }
+
+  .case-voice p::after {
+    content: '"';
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    font-weight: 700;
+    margin-left: 0.25rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .case-studies-inner {
+      padding: 0 1.5rem 3rem;
+    }
+
+    .case-card {
+      padding: 1.5rem;
+    }
+
+    .case-profile {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .case-section-text,
+    .case-results {
+      padding-left: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .case-studies-inner {
+      padding: 0 1rem 2.5rem;
+    }
+
+    .case-card {
+      padding: 1.25rem;
+    }
+
+    .case-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .case-voice {
+      padding: 1rem;
+    }
+  }
+</style>
