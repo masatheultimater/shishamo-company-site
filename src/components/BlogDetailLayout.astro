@@ -15,6 +15,7 @@ import {
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
+  sanitizeBlogContent,
 } from '../lib/microcms';
 import { siteMetadata } from '../lib/siteConfig';
 
@@ -105,7 +106,7 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   )}
 
   <!-- Article Content (Rich Editor HTML) -->
-  <article class="blog-content" set:html={post.content} />
+  <article class="blog-content" set:html={sanitizeBlogContent(post.content)} />
 
   <!-- Related Blogs -->
   {post.relatedBlogs && post.relatedBlogs.length > 0 && (

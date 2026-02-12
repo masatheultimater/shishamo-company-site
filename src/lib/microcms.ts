@@ -146,6 +146,20 @@ export function getPrimaryCategory(categories: string[]): BlogCategory {
   return displayNameToSlug[raw] || (raw as BlogCategory);
 }
 
+/** Sanitize blog HTML content from microCMS rich editor */
+export function sanitizeBlogContent(html: string): string {
+  let sanitized = html;
+  // Strip YAML frontmatter rendered as <pre><code class="language-yaml">...</code></pre>
+  sanitized = sanitized.replace(/^<pre><code class="language-yaml">[\s\S]*?<\/code><\/pre>\s*/, '');
+  // Strip leading <hr> that often follows the frontmatter block
+  sanitized = sanitized.replace(/^<hr\s*\/?>/, '');
+  // Remove the first <h1> (already displayed in the page header)
+  sanitized = sanitized.replace(/<h1[^>]*>[\s\S]*?<\/h1>/, '');
+  // Strip leading <hr> again (often follows the removed h1)
+  sanitized = sanitized.replace(/^\s*<hr\s*\/?>/, '');
+  return sanitized.trim();
+}
+
 /** Format date for display (YYYY.MM.DD) */
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
