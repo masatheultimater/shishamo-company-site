@@ -152,7 +152,7 @@
   /* Text */
   --color-text: var(--palette-gray-100);
   --color-text-secondary: var(--palette-gray-400);
-  --color-text-muted: var(--palette-gray-500);
+  --color-text-muted: #808096;
   --color-text-heading: var(--palette-white);
   --color-text-link: var(--palette-blue-400);
 
@@ -228,8 +228,8 @@
 
   /* Text */
   --color-text: var(--palette-gray-900);
-  --color-text-secondary: var(--palette-gray-500);
-  --color-text-muted: var(--palette-gray-400);
+  --color-text-secondary: #555568;
+  --color-text-muted: var(--palette-gray-500);
   --color-text-heading: var(--palette-gray-900);
   --color-text-link: var(--palette-blue-600);
 
@@ -267,7 +267,7 @@
   --gradient-semantic-accent: linear-gradient(135deg, var(--palette-blue-600), var(--palette-cyan-600));
   --gradient-semantic-hero: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #DBEAFE 100%);
   --gradient-semantic-surface: linear-gradient(135deg, var(--palette-gray-50) 0%, var(--palette-gray-100) 100%);
-  --gradient-semantic-cta: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
+  --gradient-semantic-cta: linear-gradient(135deg, #1e293b 0%, #162032 50%, #0f172a 100%);
   --gradient-semantic-footer: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
   --gradient-semantic-glow: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
   --gradient-semantic-rainbow: linear-gradient(90deg, var(--palette-blue-600), var(--palette-cyan-600), var(--palette-amber-500));
