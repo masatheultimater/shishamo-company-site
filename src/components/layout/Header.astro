@@ -163,6 +163,11 @@ const { currentPage, transparent = false } = Astro.props;
     transition: all var(--transition-base);
   }
 
+  .header-social-link.header-x-link {
+    background: var(--color-text-heading);
+    color: var(--color-bg);
+  }
+
   .header-social-link:hover {
     background: var(--color-accent);
     color: var(--palette-white);
@@ -178,11 +183,11 @@ const { currentPage, transparent = false } = Astro.props;
     display: none;
     width: 36px;
     height: 36px;
-    background: var(--color-surface-elevated);
+    background: var(--color-text-heading);
+    color: var(--color-bg);
     border-radius: var(--radius-sm);
     align-items: center;
     justify-content: center;
-    color: var(--color-text-secondary);
     transition: all var(--transition-base);
   }
 

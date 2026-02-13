@@ -152,14 +152,22 @@ interface Props {}
     width: 44px;
     height: 44px;
     background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     color: var(--color-text-secondary);
     transition: all var(--transition-base);
   }
 
+  .footer__social-link:first-child {
+    background: var(--color-text-heading);
+    color: var(--color-bg);
+    border-color: transparent;
+  }
+
   .footer__social-link:hover {
     background: var(--color-accent);
     color: var(--palette-white);
+    border-color: var(--color-accent);
   }
 
   .footer__social-link:focus-visible {
