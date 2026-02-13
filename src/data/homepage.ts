@@ -5,6 +5,8 @@
 
 export interface ProblemItem {
   text: string;
+  serviceId: string;
+  serviceName: string;
 }
 
 export interface YarukotoItem {
@@ -13,9 +15,14 @@ export interface YarukotoItem {
   description: string;
 }
 
+export interface ServiceCategoryItem {
+  text: string;
+  serviceId?: string;
+}
+
 export interface ServiceCategory {
   title: string;
-  items: string[];
+  items: ServiceCategoryItem[];
   note?: string;
 }
 
@@ -30,15 +37,15 @@ export interface QualificationGroup {
   items: string[];
 }
 
-/** Section 3: Checkbox-style problem items */
+/** Section 3: Checkbox-style problem items with service mapping */
 export const problemItems: ProblemItem[] = [
-  { text: '独立したけど、HPも名刺もまだない' },
-  { text: 'デジタル化したいけど、何から手をつければいいかわからない' },
-  { text: '数字の管理がどんぶり勘定のまま' },
-  { text: '業務が属人化して、自分が倒れたら回らない' },
-  { text: 'ITツールを入れたけど、誰も使いこなせていない' },
-  { text: '補助金・助成金を使いたいけど、申請が難しそう' },
-  { text: '事業承継を考え始めたけど、何を準備すればいいのかわからない' },
+  { text: '独立したけど、HPも名刺もまだない', serviceId: 'web-development', serviceName: 'Web開発' },
+  { text: 'デジタル化したいけど、何から手をつければいいかわからない', serviceId: 'dx-consulting', serviceName: 'DX推進' },
+  { text: '数字の管理がどんぶり勘定のまま', serviceId: 'bookkeeping', serviceName: '記帳代行' },
+  { text: '業務が属人化して、自分が倒れたら回らない', serviceId: 'dx-consulting', serviceName: 'DX推進' },
+  { text: 'ITツールを入れたけど、誰も使いこなせていない', serviceId: 'dx-consulting', serviceName: 'DX推進' },
+  { text: '補助金・助成金を使いたいけど、申請が難しそう', serviceId: 'subsidy-support', serviceName: '補助金申請' },
+  { text: '事業承継を考え始めたけど、何を準備すればいいのかわからない', serviceId: 'management-consulting', serviceName: '経営支援' },
 ];
 
 /** Section 4: What we do (3 cards) */
@@ -68,25 +75,25 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: '経営の伴走支援',
     items: [
-      '事業計画の策定、経営数値の分析、経営改善の提案',
-      '補助金・助成金の申請支援',
-      '事業承継・M&Aの初期相談',
+      { text: '事業計画の策定、経営数値の分析、経営改善の提案', serviceId: 'management-consulting' },
+      { text: '補助金・助成金の申請支援', serviceId: 'subsidy-support' },
+      { text: '事業承継・M&Aの初期相談', serviceId: 'management-consulting' },
     ],
   },
   {
     title: 'IT・DX支援',
     items: [
-      'Webサイトの企画・構築・運用（自社で保守可能な形で）',
-      '業務システムの選定・導入・定着支援',
-      'データ分析基盤の構築、経営ダッシュボードの作成',
+      { text: 'Webサイトの企画・構築・運用（自社で保守可能な形で）', serviceId: 'web-development' },
+      { text: '業務システムの選定・導入・定着支援', serviceId: 'dx-consulting' },
+      { text: 'データ分析基盤の構築、経営ダッシュボードの作成', serviceId: 'kpi-dashboard' },
     ],
   },
   {
     title: '財務・会計の整備',
     items: [
-      '記帳・月次の仕組みづくり',
-      '管理会計の導入、経営判断に使える数字の整備',
-      '税務に関する基礎的な相談',
+      { text: '記帳・月次の仕組みづくり', serviceId: 'bookkeeping' },
+      { text: '管理会計の導入、経営判断に使える数字の整備', serviceId: 'data-analysis' },
+      { text: '税務に関する基礎的な相談' },
     ],
     note: '※ 税理士資格取得後、税務顧問サービスを開始予定です。現在は税理士科目合格（簿記論）の状態で、法人税法・相続税法を学習中です。',
   },

@@ -143,10 +143,11 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       </div>
       <div class="problem-list">
         {problemItems.map((item) => (
-          <div class="problem-item" data-track="problem">
+          <a href={`/services/${item.serviceId}/`} class="problem-item" data-track="problem">
             <Icon name="ri:checkbox-blank-line" class="problem-check" size={20} />
             <span class="problem-text">{item.text}</span>
-          </div>
+            <span class="problem-service">{item.serviceName} <Icon name="ri:arrow-right-s-line" size={14} /></span>
+          </a>
         ))}
       </div>
       <div class="problem-cta">
@@ -188,7 +189,13 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             <h3>{cat.title}</h3>
             <ul>
               {cat.items.map((item) => (
-                <li>{item}</li>
+                <li>
+                  {item.serviceId ? (
+                    <a href={`/services/${item.serviceId}/`} class="dekiru-link">{item.text} <Icon name="ri:arrow-right-s-line" size={13} /></a>
+                  ) : (
+                    <span>{item.text}</span>
+                  )}
+                </li>
               ))}
             </ul>
             {cat.note && <p class="dekiru-note">{cat.note}</p>}
@@ -315,10 +322,10 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
   <script>
     import { trackProblemClick } from '../lib/analytics';
 
-    document.querySelectorAll<HTMLElement>('.problem-item').forEach(el => {
+    document.querySelectorAll<HTMLAnchorElement>('.problem-item').forEach(el => {
       el.addEventListener('click', () => {
         const text = el.querySelector('.problem-text')?.textContent?.trim() || '';
-        trackProblemClick(text, '/contact/');
+        trackProblemClick(text, el.getAttribute('href') || '');
       });
     });
   </script>

@@ -42,10 +42,10 @@ export const navigationItems: NavigationItem[] = [
  * Footer service links
  */
 export const footerServiceLinks: FooterLink[] = [
-  { name: 'DX推進', href: '/services/#dx-consulting' },
-  { name: '生成AI導入', href: '/services/#ai-consulting' },
-  { name: 'データ分析', href: '/services/#data-analysis' },
-  { name: '記帳代行', href: '/services/#bookkeeping' },
+  { name: 'DX推進', href: '/services/dx-consulting/' },
+  { name: '生成AI導入', href: '/services/ai-consulting/' },
+  { name: 'データ分析', href: '/services/data-analysis/' },
+  { name: '記帳代行', href: '/services/bookkeeping/' },
 ];
 
 /**
