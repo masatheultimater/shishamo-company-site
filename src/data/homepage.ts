@@ -140,7 +140,6 @@ export const qualificationGroups: QualificationGroup[] = [
     axis: '数字がわかる',
     items: [
       '税理士科目合格（簿記論）※法人税法・相続税法 学習中',
-      'TOEIC 815',
     ],
   },
 ];
