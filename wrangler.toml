@@ -6,15 +6,12 @@ name = "shishamo-company-site"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
 
-# 環境変数はCloudflare Pagesダッシュボードで管理
-# Settings > Environment Variables に以下を設定:
-#   ENVIRONMENT = "production"
-#   PUBLIC_GTM_ID = "GTM-PFVZJRX9"
-#   MICROCMS_SERVICE_DOMAIN = (microCMS管理画面から)
-#   MICROCMS_API_KEY = (microCMS管理画面から)
-#
-# 注意: [vars] セクションが存在するとダッシュボードの値が無視されるため、
-# このファイルには [vars] を定義しない
+# 環境変数
+# PUBLIC_* はビルド時にHTMLへ埋め込まれる公開変数（wrangler.tomlで管理）
+# シークレット（MICROCMS_API_KEY等）はダッシュボードの Secrets で管理
+#   Settings > Variables and Secrets > Add > Encrypt
+[vars]
+PUBLIC_GTM_ID = "GTM-PFVZJRX9"
 
 # ルーティング設定
 # [[routes]]
