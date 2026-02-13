@@ -80,6 +80,18 @@ export interface RelatedService {
   description: string;
 }
 
+export interface ServiceUseCase {
+  scene: string;
+  action: string;
+  outcome: string;
+}
+
+export interface ServiceExpectedOutcome {
+  metric: string;
+  description: string;
+  example: string;
+}
+
 export interface ServiceDetailData {
   // Meta & SEO
   id: string;
@@ -97,7 +109,9 @@ export interface ServiceDetailData {
 
   // Content Sections
   problems: string[];
+  useCases?: ServiceUseCase[];
   features: ServiceFeature[];
+  expectedOutcomes?: ServiceExpectedOutcome[];
   flow: ServiceFlowStep[];
   pricing: ServicePricingPlan[];
   relatedServices: RelatedService[];

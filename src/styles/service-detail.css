@@ -194,6 +194,47 @@
   color: var(--color-text);
 }
 
+/* ===== USE CASES ===== */
+.usecase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.usecase-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.25rem;
+  padding: 1.5rem 2rem;
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+  transition: border-color var(--transition-slow);
+}
+.usecase-card:hover {
+  border-color: var(--color-accent);
+}
+.usecase-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  padding-top: 0.15rem;
+}
+.usecase-label--scene { color: var(--color-text-secondary); }
+.usecase-label--action { color: var(--color-accent); }
+.usecase-label--outcome { color: var(--color-green); }
+.usecase-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+.usecase-text--outcome {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
 /* ===== FEATURE GRID ===== */
 .feature-grid {
   --grid-min-width: 220px;
@@ -229,6 +270,46 @@
   font-size: 0.95rem;
   color: var(--color-text-secondary);
   line-height: 1.7;
+}
+
+/* ===== EXPECTED OUTCOMES ===== */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.outcome-card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  border: 2px solid var(--color-border);
+  transition: all var(--transition-slow);
+  text-align: center;
+}
+.outcome-card:hover {
+  border-color: var(--color-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-semantic-md);
+}
+.outcome-metric {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+.outcome-desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+.outcome-example {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
 }
 
 /* ===== FLOW LIST ===== */
@@ -455,9 +536,18 @@
   }
   .problem-list,
   .feature-grid,
+  .outcomes-grid,
   .pricing-cards,
   .related-grid {
     grid-template-columns: 1fr;
+  }
+  .usecase-card {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    padding: 1.25rem 1.5rem;
+  }
+  .usecase-label {
+    font-size: 0.7rem;
   }
   .feature-card,
   .pricing-card {
@@ -514,7 +604,9 @@
 
 @media (hover: none) {
   .problem-item:hover,
+  .usecase-card:hover,
   .feature-card:hover,
+  .outcome-card:hover,
   .flow-item:hover,
   .pricing-card:hover,
   .related-card:hover {
