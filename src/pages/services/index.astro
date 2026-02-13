@@ -5,12 +5,12 @@ import { Icon } from 'astro-icon/components';
 
 <Layout
   title="サービス | ししゃもカンパニー"
-  description="DX推進・生成AI導入・データ活用・経営支援・経理サポート。IT × 経営 × 財務の3つの視点で、御社の課題解決をサポートします。"
+  description="DX推進・生成AI導入・データ活用・経営改善・経理代行。IT × 経営 × 財務の3つの視点で、御社の困りごとを一緒に解決します。"
   currentPage="services"
 >
   <section class="page-header">
     <h1>サービス</h1>
-    <p>IT × 経営 × 財務の3つの視点で、御社の課題解決をサポートします</p>
+    <p>IT × 経営 × 財務の3つの視点で、御社の困りごとを一緒に解決します</p>
   </section>
 
   <nav class="service-nav" aria-label="サービスカテゴリナビゲーション">
@@ -19,7 +19,7 @@ import { Icon } from 'astro-icon/components';
       <a href="#ai" role="tab" aria-selected="false"><Icon name="ri:robot-line" size={16} /> 生成AI</a>
       <a href="#data" role="tab" aria-selected="false"><Icon name="ri:bar-chart-box-line" size={16} /> データ活用</a>
       <a href="#management" role="tab" aria-selected="false"><Icon name="ri:focus-3-line" size={16} /> 経営支援</a>
-      <a href="#accounting" role="tab" aria-selected="false"><Icon name="ri:file-edit-line" size={16} /> 経理</a>
+      <a href="#accounting" role="tab" aria-selected="false"><Icon name="ri:file-edit-line" size={16} /> 経理・記帳</a>
     </div>
   </nav>
 
@@ -30,25 +30,25 @@ import { Icon } from 'astro-icon/components';
         <div class="section-icon"><Icon name="ri:rocket-line" /></div>
         <div class="section-header-text">
           <h2>DX推進・IT戦略</h2>
-          <p>「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。</p>
+          <p>「DXって何から始めれば？」にお答えします。業務の見直しからシステム導入まで、御社のデジタル変革を一緒に進めます。</p>
         </div>
       </div>
       <div class="service-cards">
         <div class="service-card service-card--discounted">
           <h3>DX推進サポート</h3>
-          <p>現状分析から課題特定、ロードマップ策定、導入支援まで一貫してサポート。経営視点でのIT活用を提案します。</p>
+          <p>現状分析から課題特定、ロードマップ策定、導入まで一貫して対応。経営視点でのIT活用を提案します。</p>
           <div class="service-price service-price--discounted"><span class="original">25〜50</span><span class="amount">20〜40</span><span class="unit">万円/月</span></div>
           <ul class="service-features">
             <li>現状業務プロセスの可視化</li>
             <li>課題特定とロードマップ策定</li>
             <li>ベンダー選定・導入支援</li>
-            <li>定着化サポート</li>
+            <li>定着化まで対応</li>
           </ul>
           <a href="/services/dx-consulting/" class="service-link">詳しく見る →</a>
         </div>
         <div class="service-card service-card--discounted">
           <h3>IT戦略策定</h3>
-          <p>経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位付けをサポートします。</p>
+          <p>経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位を一緒に整理します。</p>
           <div class="service-price service-price--discounted"><span class="original">25〜50</span><span class="amount">20〜40</span><span class="unit">万円</span></div>
           <ul class="service-features">
             <li>IT資産の棚卸し</li>
@@ -79,13 +79,13 @@ import { Icon } from 'astro-icon/components';
         <div class="section-icon"><Icon name="ri:robot-line" /></div>
         <div class="section-header-text">
           <h2>生成AI導入支援</h2>
-          <p>ChatGPT・Claudeなどの生成AIを業務に活かす方法を、設計から定着まで一貫して支援します。</p>
+          <p>ChatGPT・Claudeなどの生成AIを業務に活かす方法を、設計から定着まで一貫して対応します。</p>
         </div>
       </div>
       <div class="service-cards">
         <div class="service-card">
-          <h3>生成AI活用サポート</h3>
-          <p>御社の業務に最適なAI活用シーンを特定し、プロンプト設計から社内展開までサポートします。</p>
+          <h3>生成AI活用プラン</h3>
+          <p>御社の業務に合ったAI活用シーンを見つけ、プロンプト設計から社内展開まで対応します。</p>
           <div class="service-price"><span class="amount">15〜30</span><span class="unit">万円/月</span></div>
           <ul class="service-features">
             <li>活用シーン特定ワークショップ</li>
@@ -117,7 +117,7 @@ import { Icon } from 'astro-icon/components';
         <div class="section-icon"><Icon name="ri:bar-chart-box-line" /></div>
         <div class="section-header-text">
           <h2>データ活用支援</h2>
-          <p>「データはあるけど活用できていない」を解決。分析からダッシュボード構築まで、データドリブンな経営をサポートします。</p>
+          <p>「データはあるけど活用できていない」を解決。分析からダッシュボード構築まで、データに基づく判断を後押しします。</p>
         </div>
       </div>
       <div class="service-cards">
@@ -135,7 +135,7 @@ import { Icon } from 'astro-icon/components';
         </div>
         <div class="service-card">
           <h3>KPIダッシュボード構築</h3>
-          <p>重要指標をリアルタイムで確認できるダッシュボードを構築。データに基づく迅速な意思決定を支援します。</p>
+          <p>重要指標をリアルタイムで確認できるダッシュボードを構築。データに基づく素早い判断を後押しします。</p>
           <div class="service-price"><span class="amount">30〜80</span><span class="unit">万円/PJ</span></div>
           <ul class="service-features">
             <li>KPI設計支援</li>
@@ -156,7 +156,7 @@ import { Icon } from 'astro-icon/components';
         <div class="section-icon"><Icon name="ri:focus-3-line" /></div>
         <div class="section-header-text">
           <h2>経営支援</h2>
-          <p>中小企業診断士として、経営課題の整理から改善施策の実行までサポート。補助金活用もお任せください。</p>
+          <p>中小企業診断士として、経営課題の整理から改善施策の実行まで一緒に取り組みます。補助金活用もお任せください。</p>
         </div>
       </div>
       <div class="service-cards">
@@ -174,12 +174,12 @@ import { Icon } from 'astro-icon/components';
         </div>
         <div class="service-card">
           <h3>補助金申請サポート</h3>
-          <p>IT導入補助金、ものづくり補助金等の申請をサポート。採択率を高める事業計画書作成を支援します。</p>
+          <p>IT導入補助金、ものづくり補助金等の申請に対応。採択率を高める事業計画書を一緒に作ります。</p>
           <div class="service-price"><span class="amount">10〜30</span><span class="unit">万円 + 成功報酬</span></div>
           <ul class="service-features">
             <li>補助金選定アドバイス</li>
             <li>事業計画書作成支援</li>
-            <li>申請手続きサポート</li>
+            <li>申請手続きの代行</li>
             <li>採択後の報告支援</li>
           </ul>
           <a href="/services/subsidy-support/" class="service-link">詳しく見る →</a>
@@ -188,20 +188,20 @@ import { Icon } from 'astro-icon/components';
     </div>
   </section>
 
-  <!-- 経理・記帳サポート -->
+  <!-- 経理・記帳代行 -->
   <section class="service-section" id="accounting">
     <div class="service-section-inner">
       <div class="section-header-row">
         <div class="section-icon"><Icon name="ri:file-edit-line" /></div>
         <div class="section-header-text">
-          <h2>経理・記帳サポート</h2>
-          <p>経理の負担を軽減し、本業に集中できる環境を作ります。クラウド会計の導入支援もお任せください。</p>
+          <h2>経理・記帳代行</h2>
+          <p>経理の負担を減らし、本業に集中できる環境を作ります。クラウド会計の導入もお任せください。</p>
         </div>
       </div>
       <div class="service-cards">
         <div class="service-card">
           <h3>記帳代行</h3>
-          <p>月次の記帳業務を代行。正確な経理処理で経営数字の把握をサポートします。</p>
+          <p>月次の記帳業務を代行。正確な経理処理で経営数字の「見える化」を実現します。</p>
           <div class="service-price"><span class="amount">2〜5</span><span class="unit">万円/月</span></div>
           <ul class="service-features">
             <li>仕訳入力代行</li>
@@ -213,13 +213,13 @@ import { Icon } from 'astro-icon/components';
         </div>
         <div class="service-card">
           <h3>クラウド会計導入</h3>
-          <p>freee・マネーフォワードなどのクラウド会計への移行をサポート。業務効率化と見える化を実現します。</p>
+          <p>freee・マネーフォワードなどのクラウド会計への移行に対応。業務効率化と見える化を実現します。</p>
           <div class="service-price"><span class="amount">10〜30</span><span class="unit">万円/PJ</span></div>
           <ul class="service-features">
             <li>ツール選定支援</li>
             <li>初期設定・移行作業</li>
             <li>操作トレーニング</li>
-            <li>運用定着サポート</li>
+            <li>運用定着まで対応</li>
           </ul>
           <a href="/services/cloud-accounting/" class="service-link">詳しく見る →</a>
         </div>
@@ -230,9 +230,9 @@ import { Icon } from 'astro-icon/components';
   <!-- 診断CTA -->
   <section class="cta--dark diagnosis-section">
     <h2>どれが合うかわからない？</h2>
-    <p>御社の状況をお聞かせください。<br>最適なサービスの組み合わせをご提案します。</p>
+    <p>御社の状況をお聞かせください。<br>一緒に整理して、合うやり方を考えましょう。</p>
     <a href="/contact/" class="btn-primary" data-track-cta="diagnosis">
-      無料相談する
+      無料で相談する
       <Icon name="ri:arrow-right-line" size={14} />
     </a>
   </section>

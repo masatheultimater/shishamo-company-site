@@ -44,7 +44,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
   'dx-consulting': createServiceData({
     id: 'dx-consulting',
     title: 'DX推進サポート',
-    metaDescription: '「DXって何から始めれば？」にお答えします。業務プロセスの見直しからシステム導入まで、御社のデジタル変革を伴走支援します。',
+    metaDescription: '「DXって何から始めれば？」にお答えします。業務の見直しからシステム導入まで、御社のデジタル変革を一緒に進めます。',
     icon: 'ri:rocket-line',
     priceRange: '20〜40',
     originalPriceRange: '25〜50',
@@ -58,23 +58,23 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     features: [
       { icon: 'ri:focus-3-line', title: '経営視点でのIT提案', description: '中小企業診断士として、経営課題を踏まえた上で最適なIT活用を提案。「技術先行」ではなく「課題解決」を重視します。' },
-      { icon: 'ri:hand-heart-line', title: '伴走型のサポート', description: '単発のアドバイスではなく、継続的に寄り添いながら変革を推進。社内に知見が蓄積するようサポートします。' },
+      { icon: 'ri:hand-heart-line', title: '継続型の改善推進', description: '単発のアドバイスではなく、継続的に変革を推進。社内に知見が残るよう仕組みを作ります。' },
       { icon: 'ri:computer-line', title: '技術がわかる', description: '7年のWeb開発経験があるからこそ、実装レベルまで踏み込んだ提案が可能。ベンダー選定や技術評価もお任せください。' },
-      { icon: 'ri:bar-chart-box-line', title: 'データ活用も得意', description: 'DXで生まれるデータを経営に活かす提案も。データ分析やダッシュボード構築まで一貫してサポートできます。' },
+      { icon: 'ri:bar-chart-box-line', title: 'データ活用も得意', description: 'DXで生まれるデータを経営に活かす提案も。データ分析やダッシュボード構築まで一貫して対応できます。' },
     ],
     flow: [
       { title: '現状把握・課題整理', description: 'ヒアリングを通じて業務プロセスと課題を可視化。本当に解決すべき課題を特定します。' },
       { title: '施策立案・ロードマップ策定', description: '課題に対する解決策を複数提案。優先度と投資対効果を踏まえたロードマップを作成します。' },
-      { title: '導入支援・ベンダー調整', description: 'システム選定、ベンダー交渉、導入プロジェクト管理をサポート。御社の立場で伴走します。' },
-      { title: '定着化・改善サイクル', description: '導入後の定着化と効果測定、継続的な改善をサポート。自走できる体制構築を目指します。' },
+      { title: '導入・ベンダー調整', description: 'システム選定、ベンダー交渉、導入プロジェクト管理を担当。御社の立場で一緒に進めます。' },
+      { title: '定着化・改善サイクル', description: '導入後の定着と効果測定、継続的な改善まで対応。自走できる体制づくりを目指します。' },
     ],
     pricing: [
       { plan: 'スポット相談', amount: '4', originalAmount: '5', unit: '万円〜/回', description: 'まずは相談だけしたい方向け。課題整理や方向性のアドバイスを行います。', discountLabel: '登録準備価格' },
-      { plan: '月額顧問', amount: '20', originalAmount: '25', unit: '万円〜/月', description: '継続的な伴走支援。定期的なミーティングと随時相談で着実に変革を推進。', popular: true, discountLabel: '登録準備価格' },
+      { plan: '月額顧問', amount: '20', originalAmount: '25', unit: '万円〜/月', description: '継続的な改善推進。定期ミーティングと随時相談で着実に進めます。', popular: true, discountLabel: '登録準備価格' },
       { plan: 'プロジェクト型', amount: '40', originalAmount: '50', unit: '万円〜/PJ', description: '特定のプロジェクト（システム導入等）に集中して支援。期間・範囲を明確に。', discountLabel: '登録準備価格' },
     ],
     relatedServices: [
-      { href: '/services/ai-consulting/', icon: 'ri:robot-line', name: '生成AI導入支援', description: 'ChatGPT・Claudeを業務に活かす方法を設計から導入まで支援。' },
+      { href: '/services/ai-consulting/', icon: 'ri:robot-line', name: '生成AI導入', description: 'ChatGPT・Claudeを業務に活かす方法を設計から導入まで対応。' },
       { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'DXで生まれるデータを経営判断に活かすための分析・可視化。' },
       { href: '/services/subsidy-support/', icon: 'ri:money-dollar-circle-line', name: '補助金申請サポート', description: 'IT導入補助金等を活用してDX投資の負担を軽減。' },
     ],
@@ -86,7 +86,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
   'ai-consulting': createServiceData({
     id: 'ai-consulting',
     title: '生成AI導入支援',
-    metaDescription: 'ChatGPT・Claude等の生成AIを業務に活かす方法を、設計から導入、定着まで一貫してサポートします。',
+    metaDescription: 'ChatGPT・Claude等の生成AIを業務に活かす方法を、設計から導入、定着まで一貫して対応します。',
     icon: 'ri:robot-line',
     priceRange: '15〜30',
     priceUnit: '万円/月',
@@ -98,8 +98,8 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     features: [
       { icon: 'ri:focus-3-line', title: '業務に合わせた活用提案', description: '御社の業務フローを理解した上で、実際に効果が出る活用方法を提案します。' },
-      { icon: 'ri:shield-check-line', title: 'セキュリティ対策', description: '情報漏洩リスクを考慮したガイドライン策定とツール選定をサポートします。' },
-      { icon: 'ri:book-open-line', title: '社員研修・定着支援', description: '使い方の研修から、日常業務への定着までしっかりサポートします。' },
+      { icon: 'ri:shield-check-line', title: 'セキュリティ対策', description: '情報漏洩リスクを考慮したガイドライン策定とツール選定を行います。' },
+      { icon: 'ri:book-open-line', title: '社員研修・定着', description: '使い方の研修から日常業務への定着まで、しっかり手を動かします。' },
       { icon: 'ri:flashlight-line', title: '最新トレンドをキャッチアップ', description: '日進月歩のAI技術。最新動向を踏まえた提案を行います。' },
     ],
     flow: [
@@ -110,13 +110,13 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       { plan: 'スポット相談', amount: '5', unit: '万円〜/回', description: 'AI活用の方向性を相談したい方向け。' },
-      { plan: '導入支援パック', amount: '30', unit: '万円〜', description: '計画策定から研修まで一気通貫でサポート。', popular: true },
-      { plan: '継続サポート', amount: '15', unit: '万円〜/月', description: '導入後の運用改善と最新情報の提供。' },
+      { plan: '導入パック', amount: '30', unit: '万円〜', description: '計画策定から研修まで一気通貫で対応。', popular: true },
+      { plan: '継続プラン', amount: '15', unit: '万円〜/月', description: '導入後の運用改善と最新情報の提供。' },
     ],
     relatedServices: [
       { href: '/services/ai-tools/', icon: 'ri:tools-line', name: 'AIツール開発', description: '御社専用のAIツールを開発・カスタマイズ。' },
       { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'AI導入を含む全社的なDX戦略の立案・実行。' },
-      { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'AIと組み合わせたデータ活用で意思決定を高度化。' },
+      { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'AIとデータを組み合わせて経営判断を強化。' },
     ],
     cta: {
       description: '生成AIの活用方法について、お気軽にご相談ください。<br>御社に合った導入プランをご提案します。',
@@ -141,7 +141,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
     features: [
       { icon: 'ri:road-map-line', title: '経営戦略との連動', description: '経営目標を達成するためのIT戦略を策定。投資対効果を明確にします。' },
       { icon: 'ri:clipboard-line', title: 'ロードマップ作成', description: '3〜5年の中長期計画を策定し、段階的な実行プランを提示します。' },
-      { icon: 'ri:lightbulb-line', title: '投資判断の支援', description: 'IT投資の優先順位付けと費用対効果の評価をサポートします。' },
+      { icon: 'ri:lightbulb-line', title: '投資判断の整理', description: 'IT投資の優先順位付けと費用対効果の評価を行います。' },
       { icon: 'ri:refresh-line', title: '定期的な見直し', description: '環境変化に応じて戦略を柔軟に見直す体制を構築します。' },
     ],
     flow: [
@@ -152,12 +152,12 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     pricing: [
       { plan: 'IT戦略策定', amount: '40', originalAmount: '50', unit: '万円〜', description: '経営戦略に基づいたIT戦略とロードマップを策定。', popular: true, discountLabel: '登録準備価格' },
-      { plan: '年間顧問', amount: '20', originalAmount: '25', unit: '万円〜/月', description: '戦略の実行支援と定期的な見直しをサポート。', discountLabel: '登録準備価格' },
+      { plan: '年間顧問', amount: '20', originalAmount: '25', unit: '万円〜/月', description: '戦略の実行と定期的な見直しに対応。', discountLabel: '登録準備価格' },
     ],
     relatedServices: [
-      { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'IT戦略に基づくDX施策の実行を支援。' },
-      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営支援', description: 'IT戦略と連動した経営改善をサポート。' },
-      { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'データに基づく戦略立案を支援。' },
+      { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'IT戦略に基づくDX施策の実行を推進。' },
+      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営改善', description: 'IT戦略と連動した経営改善に取り組みます。' },
+      { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'データに基づく戦略立案を後押し。' },
     ],
     cta: {
       description: '御社のIT戦略について、お気軽にご相談ください。<br>経営目標達成に向けた最適なプランをご提案します。',
@@ -181,7 +181,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { icon: 'ri:palette-line', title: 'カスタム開発', description: '御社の業務に最適化したAIツールをオーダーメイドで開発します。' },
       { icon: 'ri:links-line', title: 'システム連携', description: '既存の業務システムやSaaSとの連携も対応可能です。' },
       { icon: 'ri:book-open-line', title: 'ナレッジ活用', description: '社内文書やFAQをAIに学習させ、独自の知識ベースを構築。' },
-      { icon: 'ri:settings-3-line', title: '運用サポート', description: '開発後の改善や機能追加もサポートします。' },
+      { icon: 'ri:settings-3-line', title: '運用・改善', description: '開発後の改善や機能追加にも対応します。' },
     ],
     flow: [
       { title: '要件定義', description: '実現したい機能と業務フローを詳細にヒアリングします。' },
@@ -195,7 +195,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { plan: '大規模開発', amount: '100', unit: '万円〜', description: '複数機能・複雑な要件の開発。' },
     ],
     relatedServices: [
-      { href: '/services/ai-consulting/', icon: 'ri:robot-line', name: '生成AI導入支援', description: 'AIツールの活用戦略から定着まで支援。' },
+      { href: '/services/ai-consulting/', icon: 'ri:robot-line', name: '生成AI導入', description: 'AIツールの活用戦略から定着まで対応。' },
       { href: '/services/web-development/', icon: 'ri:globe-line', name: 'Web開発・システム構築', description: 'Webアプリケーション全般の開発。' },
       { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'AIを活用したDX全体の推進。' },
     ],
@@ -279,17 +279,17 @@ export const serviceData: Record<string, ServiceDetailData> = {
     relatedServices: [
       { href: '/services/kpi-dashboard/', icon: 'ri:dashboard-3-line', name: 'KPIダッシュボード構築', description: '分析結果を常に見られるダッシュボードを構築。' },
       { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'データ活用を軸としたDX推進。' },
-      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営支援', description: 'データに基づく経営改善の支援。' },
+      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営改善', description: 'データに基づく経営改善に対応。' },
     ],
     cta: {
-      description: 'データ活用について、お気軽にご相談ください。<br>御社のデータから価値を引き出すお手伝いをします。',
+      description: 'データ活用について、お気軽にご相談ください。<br>御社のデータを経営に活かす方法を一緒に考えましょう。',
     },
   }),
 
   'kpi-dashboard': createServiceData({
     id: 'kpi-dashboard',
     title: 'KPIダッシュボード構築',
-    metaDescription: '経営指標をリアルタイムで可視化するダッシュボードを構築し、データドリブンな意思決定を支援します。',
+    metaDescription: '経営指標をリアルタイムで可視化するダッシュボードを構築。データに基づく判断を後押しします。',
     icon: 'ri:dashboard-3-line',
     priceRange: '30〜80',
     priceUnit: '万円/PJ',
@@ -322,14 +322,14 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'データ活用を軸としたDX推進。' },
     ],
     cta: {
-      description: 'KPIダッシュボードについて、お気軽にご相談ください。<br>御社の経営判断を支えるダッシュボードを構築します。',
+      description: 'KPIダッシュボードについて、お気軽にご相談ください。<br>御社の経営判断に役立つダッシュボードを構築します。',
     },
   }),
 
   'management-consulting': createServiceData({
     id: 'management-consulting',
     title: '経営支援',
-    metaDescription: '中小企業診断士として、経営課題の整理から改善施策の実行まで伴走支援します。',
+    metaDescription: '中小企業診断士として、経営課題の整理から改善施策の実行まで一緒に取り組みます。',
     icon: 'ri:line-chart-line',
     priceRange: '8〜20',
     originalPriceRange: '10〜25',
@@ -344,14 +344,14 @@ export const serviceData: Record<string, ServiceDetailData> = {
     features: [
       { icon: 'ri:focus-3-line', title: '経営課題の整理', description: '漠然とした課題を構造化し、優先順位をつけます。' },
       { icon: 'ri:bar-chart-box-line', title: 'データに基づく提案', description: '財務分析や市場分析に基づいた客観的な提案を行います。' },
-      { icon: 'ri:hand-heart-line', title: '伴走型支援', description: '計画を立てるだけでなく、実行段階まで寄り添います。' },
-      { icon: 'ri:computer-line', title: 'IT活用の視点', description: 'IT×経営の両面から課題解決をサポートします。' },
+      { icon: 'ri:hand-heart-line', title: '実行まで一緒に', description: '計画を立てるだけでなく、実行段階まで一緒にやります。' },
+      { icon: 'ri:computer-line', title: 'IT活用の視点', description: 'IT×経営の両面から課題解決に取り組みます。' },
     ],
     flow: [
       { title: '現状分析', description: '経営状況と課題を詳しくヒアリング・分析します。' },
       { title: '課題の特定', description: '根本的な課題を特定し、優先順位をつけます。' },
       { title: '施策立案', description: '具体的な改善施策とアクションプランを策定します。' },
-      { title: '実行支援', description: '施策の実行を伴走しながらサポートします。' },
+      { title: '実行・改善', description: '施策の実行を一緒に進め、結果を見ながら改善します。' },
     ],
     pricing: [
       { plan: 'スポット相談', amount: '4', originalAmount: '5', unit: '万円〜/回', description: '特定のテーマについての相談。', discountLabel: '登録準備価格' },
@@ -360,8 +360,8 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     relatedServices: [
       { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'IT活用による経営改善を推進。' },
-      { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'データに基づく経営判断を支援。' },
-      { href: '/services/subsidy-support/', icon: 'ri:money-dollar-circle-line', name: '補助金申請サポート', description: '経営改善に活用できる補助金を申請。' },
+      { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: 'データに基づく経営判断を後押し。' },
+      { href: '/services/subsidy-support/', icon: 'ri:money-dollar-circle-line', name: '補助金申請サポート', description: '経営改善に使える補助金の申請を代行。' },
     ],
     cta: {
       description: '経営のお悩みをお聞かせください。<br>一緒に課題を整理し、改善の道筋を考えましょう。',
@@ -371,7 +371,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
   'subsidy-support': createServiceData({
     id: 'subsidy-support',
     title: '補助金申請サポート',
-    metaDescription: 'IT導入補助金、ものづくり補助金など、御社の事業に活用できる補助金の申請を支援します。',
+    metaDescription: 'IT導入補助金、ものづくり補助金など、御社の事業に使える補助金の申請を手伝います。',
     icon: 'ri:money-dollar-circle-line',
     priceRange: '成功報酬',
     priceUnit: '10〜15%',
@@ -383,15 +383,15 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     features: [
       { icon: 'ri:search-line', title: '最適な補助金の提案', description: '御社の事業計画に合った補助金を調査・提案します。' },
-      { icon: 'ri:file-edit-line', title: '申請書類の作成', description: '採択率を高める申請書類の作成をサポートします。' },
-      { icon: 'ri:clipboard-line', title: '事業計画の策定', description: '補助金申請に必要な事業計画の策定を支援します。' },
-      { icon: 'ri:check-double-line', title: '採択後のフォロー', description: '採択後の実績報告まで一貫してサポートします。' },
+      { icon: 'ri:file-edit-line', title: '申請書類の作成', description: '採択率を高める申請書類を一緒に作ります。' },
+      { icon: 'ri:clipboard-line', title: '事業計画の策定', description: '補助金申請に必要な事業計画を一緒に練ります。' },
+      { icon: 'ri:check-double-line', title: '採択後のフォロー', description: '採択後の実績報告まで一貫して対応します。' },
     ],
     flow: [
       { title: '補助金の選定', description: '御社の事業に適した補助金を調査・選定します。' },
-      { title: '事業計画策定', description: '申請に必要な事業計画を一緒に策定します。' },
-      { title: '申請書類作成', description: '申請書類を作成し、提出をサポートします。' },
-      { title: '採択後支援', description: '採択後の事業実施と報告をサポートします。' },
+      { title: '事業計画策定', description: '申請に必要な事業計画を一緒に練ります。' },
+      { title: '申請書類作成', description: '申請書類を作成し、提出まで対応します。' },
+      { title: '採択後の対応', description: '採択後の事業実施と実績報告まで一貫して対応します。' },
     ],
     pricing: [
       { plan: '着手金', amount: '5', unit: '万円〜', description: '申請準備の着手金。' },
@@ -399,7 +399,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
     ],
     relatedServices: [
       { href: '/services/dx-consulting/', icon: 'ri:rocket-line', name: 'DX推進サポート', description: 'IT導入補助金を活用したDX推進。' },
-      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営支援', description: '補助金を活用した経営改善。' },
+      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営改善', description: '補助金を活用した経営改善。' },
       { href: '/services/web-development/', icon: 'ri:globe-line', name: 'Web開発・システム構築', description: '補助金を活用したシステム導入。' },
     ],
     cta: {
@@ -424,7 +424,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { icon: 'ri:time-line', title: '時間の創出', description: '経理作業を代行し、経営者の時間を確保します。' },
       { icon: 'ri:check-double-line', title: '正確な記帳', description: '会計事務所経験を活かした正確な記帳を行います。' },
       { icon: 'ri:bar-chart-box-line', title: '月次レポート', description: '毎月の経営状況をわかりやすくレポートします。' },
-      { icon: 'ri:hand-heart-line', title: '税理士連携', description: '顧問税理士との連携もスムーズに行います。' },
+      { icon: 'ri:hand-heart-line', title: '税理士との連携', description: '顧問税理士とのやり取りもスムーズに進めます。' },
     ],
     flow: [
       { title: 'ヒアリング', description: '現在の経理フローと課題を確認します。' },
@@ -440,7 +440,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
     relatedServices: [
       { href: '/services/cloud-accounting/', icon: 'ri:cloud-line', name: 'クラウド会計導入', description: 'freee・マネーフォワードの導入支援。' },
       { href: '/services/data-analysis/', icon: 'ri:bar-chart-box-line', name: '経営データ分析', description: '会計データを活用した経営分析。' },
-      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営支援', description: '財務面からの経営改善支援。' },
+      { href: '/services/management-consulting/', icon: 'ri:line-chart-line', name: '経営改善', description: '財務面からの経営改善に対応。' },
     ],
     cta: {
       description: '経理業務の負担軽減について、お気軽にご相談ください。<br>御社に合ったプランをご提案します。',
@@ -464,13 +464,13 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { icon: 'ri:refresh-line', title: '自動連携', description: '銀行・クレジットカードとの自動連携で入力作業を削減。' },
       { icon: 'ri:cloud-line', title: 'どこでもアクセス', description: 'クラウドなので、いつでもどこでも作業可能。' },
       { icon: 'ri:bar-chart-box-line', title: 'リアルタイム把握', description: '経営状況をリアルタイムで把握できます。' },
-      { icon: 'ri:graduation-cap-line', title: '操作研修', description: '導入後の操作研修で定着をサポート。' },
+      { icon: 'ri:graduation-cap-line', title: '操作研修', description: '導入後の操作研修で定着まで手伝います。' },
     ],
     flow: [
       { title: '現状確認', description: '現在の会計フローと要件を確認します。' },
       { title: 'ソフト選定', description: '御社に最適なクラウド会計ソフトを選定します。' },
       { title: '初期設定・移行', description: '初期設定とデータ移行を行います。' },
-      { title: '研修・定着', description: '操作研修を実施し、定着をサポートします。' },
+      { title: '研修・定着', description: '操作研修を実施し、使いこなせるようになるまで対応します。' },
     ],
     pricing: [
       { plan: '新規導入', amount: '10', unit: '万円〜', description: '新規でクラウド会計を導入。' },

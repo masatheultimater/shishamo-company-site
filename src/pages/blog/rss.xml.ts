@@ -7,7 +7,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'ブログ | ししゃもカンパニー',
-    description: 'DX推進・生成AI・データ活用・経営支援に関するナレッジ・事例・お知らせ',
+    description: 'DX推進・生成AI・データ活用・経営改善に関するナレッジ・事例・お知らせ',
     site: context.site!.toString(),
     items: posts.map((post) => ({
       title: post.title,
