@@ -98,6 +98,25 @@ const serviceSchemaData = {
         </div>
       </section>
 
+      <!-- Use Cases -->
+      {data.useCases && data.useCases.length > 0 && (
+        <section class="content-section">
+          <h2><Icon name="ri:lightbulb-line" size={24} /> こんな場面で活用されています</h2>
+          <div class="usecase-list">
+            {data.useCases.map((uc) => (
+              <div class="usecase-card">
+                <span class="usecase-label usecase-label--scene">場面</span>
+                <p class="usecase-text">{uc.scene}</p>
+                <span class="usecase-label usecase-label--action">対応</span>
+                <p class="usecase-text">{uc.action}</p>
+                <span class="usecase-label usecase-label--outcome">成果</span>
+                <p class="usecase-text usecase-text--outcome">{uc.outcome}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       <!-- Features -->
       <section class="content-section">
         <h2><Icon name="ri:sparkling-line" size={24} /> サービスの特徴</h2>
@@ -111,6 +130,22 @@ const serviceSchemaData = {
           ))}
         </div>
       </section>
+
+      <!-- Expected Outcomes -->
+      {data.expectedOutcomes && data.expectedOutcomes.length > 0 && (
+        <section class="content-section">
+          <h2><Icon name="ri:bar-chart-grouped-line" size={24} /> 期待できる効果</h2>
+          <div class="outcomes-grid">
+            {data.expectedOutcomes.map((out) => (
+              <div class="outcome-card">
+                <div class="outcome-metric">{out.metric}</div>
+                <p class="outcome-desc">{out.description}</p>
+                <p class="outcome-example">{out.example}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <!-- Flow -->
       <section class="content-section">
