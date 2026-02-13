@@ -4,7 +4,21 @@ import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import { Icon } from 'astro-icon/components';
 import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
+import { problemItems, yarukotoItems, serviceCategories, careerHighlights, qualificationGroups } from '../data/homepage';
+import yaml from 'js-yaml';
+import fs from 'node:fs';
+import path from 'node:path';
 import '../styles/home.css';
+
+// Load story from profile.yaml (single source of truth)
+const yamlPath = path.join(process.cwd(), 'src/data/profile.yaml');
+const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
+  story: {
+    grandfatherWords: string;
+    content: string;
+  };
+  mottos: { text: string; meaning: string }[];
+};
 
 const allPosts = await getAllBlogPosts();
 const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
@@ -12,25 +26,25 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
 
 <Layout
   title="ししゃもカンパニー - IT × 経営 × 財務"
-  description="中小企業の伴走パートナー「ししゃもカンパニー」。DX推進・生成AI導入・データ活用・経営支援で、御社の挑戦を後押しします。"
+  description="踏み出す人の、すぐ横にいる。IT × 経営 × 財務で、中小企業の困りごとを一緒に解決します。"
   currentPage="home"
 >
-  <!-- HERO -->
+  <!-- 1. HERO -->
   <section class="hero hero--bg-full">
     <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-badge">中小企業診断士(登録予定) × ITストラテジスト</div>
         <h1 class="hero-title">
-          IT・データ・財務の力で<br>
-          <span class="highlight">経営の課題</span>を解決します
+          踏み出す人の、<br>
+          <span class="highlight">すぐ横にいる。</span>
         </h1>
         <p class="hero-desc">
-          Web開発12年、会計事務所1年の経験を活かし、DX推進から経営改善まで。
-          中小企業の「なんとかしたい」に寄り添い、伴走支援いたします。
+          IT × 経営 × 財務——分断せずに支えます。<br>
+          「何から始めればいい？」から一緒に考えます。
         </p>
         <div class="hero-cta">
-          <a href="/contact/" class="btn-primary" data-track-cta="hero">無料相談を予約する <Icon name="ri:arrow-right-line" size={14} /></a>
-          <a href="/services/" class="btn-secondary" data-track-cta="hero">サービス一覧を見る</a>
+          <a href="/contact/" class="btn-primary" data-track-cta="hero">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
+          <a href="/services/" class="btn-secondary" data-track-cta="hero">できることを見る</a>
         </div>
       </div>
       <div class="profile-card">
@@ -99,142 +113,157 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- QUICK ACCESS -->
-  <section class="quick-access">
-    <div class="quick-cards">
-      <a href="/services/" class="quick-card">
-        <span class="quick-icon"><Icon name="ri:rocket-line" size={28} /></span>
-        <span class="quick-label">サービス</span>
-        <span class="quick-desc">何ができる？</span>
-      </a>
-      <a href="/profile/" class="quick-card">
-        <span class="quick-icon"><Icon name="ri:user-line" size={28} /></span>
-        <span class="quick-label">プロフィール</span>
-        <span class="quick-desc">どんな人？</span>
-      </a>
-      <a href="/contact/" class="quick-card">
-        <span class="quick-icon"><Icon name="ri:chat-3-line" size={28} /></span>
-        <span class="quick-label">お問い合わせ</span>
-        <span class="quick-desc">相談したい</span>
-      </a>
+  <!-- 2. ORIGIN -->
+  <section class="section origin">
+    <div class="container">
+      <div class="section-header section-header--compact">
+        <div class="section-label section-label--compact">Origin</div>
+        <h2 class="section-title section-title--compact">私の原点</h2>
+      </div>
+      <div class="origin-content">
+        <blockquote class="origin-quote">「{profileData.story.grandfatherWords}」</blockquote>
+        <p>祖父がいつも言っていた言葉です。</p>
+        <p>祖父は小さな印刷会社を営んでいました。地域の商店のチラシ、名刺、パンフレット。一つひとつ丁寧に、お客さんの商売がうまくいくようにと、夜遅くまで働いていました。</p>
+        <p>でも、紙からデジタルへ。時代が変わり、祖父の会社は廃業しました。</p>
+        <p>何十年も続けてきた会社が、時代の波に飲み込まれていく。その時の自分には、ITの知識も、経営の知識も、財務の知識もなく、ただ見ていることしかできませんでした。</p>
+        <p class="origin-highlight">あの悔しさが、今の自分の原点です。</p>
+        <p>Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。<br>「次に同じ場面に出会ったら、絶対に助けられる自分になる」——その一心で、ここまで来ました。</p>
+      </div>
     </div>
   </section>
 
-  <!-- PROBLEMS -->
+  <!-- 3. PROBLEMS -->
   <section class="section problems">
     <div class="container">
       <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Problems</div>
-        <h2 class="section-title section-title--compact">こんなお悩みはありませんか？</h2>
-        <p class="section-desc section-desc--compact">一つでも当てはまれば、お力になれるかもしれません</p>
+        <div class="section-label section-label--compact">For You</div>
+        <h2 class="section-title section-title--compact">こんな状態なら、力になれます</h2>
+        <p class="section-desc section-desc--compact">一つでも当てはまるなら、まず話を聞かせてください</p>
       </div>
-      <div class="problem-grid">
-        <a href="/services/#dx" class="problem-card">
-          <span class="problem-text">DXって何から始めればいいかわからない</span>
-          <Icon name="ri:arrow-right-line" class="problem-arrow" />
-        </a>
-        <a href="/services/#ai" class="problem-card">
-          <span class="problem-text">ChatGPTを業務に活用したい</span>
-          <Icon name="ri:arrow-right-line" class="problem-arrow" />
-        </a>
-        <a href="/services/#data" class="problem-card">
-          <span class="problem-text">データはあるけど活用できていない</span>
-          <Icon name="ri:arrow-right-line" class="problem-arrow" />
-        </a>
-        <a href="/services/#accounting" class="problem-card">
-          <span class="problem-text">経理業務の負担を減らしたい</span>
-          <Icon name="ri:arrow-right-line" class="problem-arrow" />
-        </a>
-        <a href="/services/#management" class="problem-card">
-          <span class="problem-text">経営を客観的に分析してほしい</span>
-          <Icon name="ri:arrow-right-line" class="problem-arrow" />
-        </a>
-        <a href="/services/#subsidy" class="problem-card">
-          <span class="problem-text">補助金を使いたいが申請が難しい</span>
-          <Icon name="ri:arrow-right-line" class="problem-arrow" />
-        </a>
+      <div class="problem-list">
+        {problemItems.map((item) => (
+          <div class="problem-item" data-track="problem">
+            <Icon name="ri:checkbox-blank-line" class="problem-check" size={20} />
+            <span class="problem-text">{item.text}</span>
+          </div>
+        ))}
       </div>
       <div class="problem-cta">
-        <p>どれに当てはまるかわからなくても大丈夫です。まずはお気軽にご相談ください。</p>
-        <a href="/contact/" class="btn-primary" data-track-cta="problems">無料相談を予約する <Icon name="ri:arrow-right-line" size={14} /></a>
+        <a href="/contact/" class="btn-primary" data-track-cta="problems">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section services">
+  <!-- 4. YARUKOTO -->
+  <section class="section yarukoto">
+    <div class="container">
+      <div class="section-header section-header--compact">
+        <div class="section-label section-label--compact">What I Do</div>
+        <h2 class="section-title section-title--compact">やること</h2>
+      </div>
+      <div class="yarukoto-grid">
+        {yarukotoItems.map((item) => (
+          <div class="yarukoto-card">
+            <div class="yarukoto-number">{item.number}</div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SERVICES -->
+  <section class="section dekiru">
     <div class="container">
       <div class="section-header section-header--compact">
         <div class="section-label section-label--compact">Services</div>
-        <h2 class="section-title section-title--compact">3つの専門分野でサポート</h2>
-        <p class="section-desc section-desc--compact">IT・データ・経営財務を横断的に支援できるのが強みです</p>
+        <h2 class="section-title section-title--compact">できること</h2>
+        <p class="section-desc section-desc--compact">IT・データ・経営財務を横断的に支援します</p>
       </div>
-      <div class="service-grid">
-        <div class="service-card">
-          <div class="service-number">01</div>
-          <h3>DX推進・IT戦略</h3>
-          <p class="service-desc">デジタル技術を活用した業務改善・競争力強化を支援します。</p>
-          <ul>
-            <li>DX推進サポート</li>
-            <li>IT戦略策定支援</li>
-            <li>生成AI導入支援</li>
-            <li>Webサイト・アプリ開発</li>
-          </ul>
-          <a href="/services/#dx" class="service-link">詳しく見る <Icon name="ri:arrow-right-line" size={14} /></a>
-        </div>
-        <div class="service-card">
-          <div class="service-number">02</div>
-          <h3>データ活用</h3>
-          <p class="service-desc">経営データを分析し、意思決定を支援する仕組みを構築します。</p>
-          <ul>
-            <li>経営データ分析</li>
-            <li>KPIダッシュボード構築</li>
-            <li>業務プロセスの可視化</li>
-          </ul>
-          <a href="/services/#data" class="service-link">詳しく見る <Icon name="ri:arrow-right-line" size={14} /></a>
-        </div>
-        <div class="service-card">
-          <div class="service-number">03</div>
-          <h3>経営・財務支援</h3>
-          <p class="service-desc">経営診断から資金調達まで、経営基盤の強化を支援します。</p>
-          <ul>
-            <li>経営診断・改善提案</li>
-            <li>補助金申請サポート</li>
-            <li>記帳代行・経理支援</li>
-          </ul>
-          <a href="/services/#management" class="service-link">詳しく見る <Icon name="ri:arrow-right-line" size={14} /></a>
-        </div>
+      <div class="dekiru-grid">
+        {serviceCategories.map((cat) => (
+          <div class="dekiru-category">
+            <h3>{cat.title}</h3>
+            <ul>
+              {cat.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {cat.note && <p class="dekiru-note">{cat.note}</p>}
+          </div>
+        ))}
       </div>
-      <div class="services-all">
+      <div class="dekiru-all">
         <a href="/services/" class="btn-secondary" data-track-cta="services">すべてのサービスを見る <Icon name="ri:arrow-right-line" size={14} /></a>
       </div>
     </div>
   </section>
 
-  <!-- WHY ME -->
-  <section class="why-me">
-    <div class="why-me-container">
+  <!-- 6. CAREER -->
+  <section class="section career">
+    <div class="container">
       <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Why Choose Me</div>
-        <h2 class="section-title section-title--compact">選ばれる3つの理由</h2>
-        <p class="section-desc section-desc--compact">専門性と実務経験の両方を活かし、実行可能な支援を提供します</p>
+        <div class="section-label section-label--compact">Career</div>
+        <h2 class="section-title section-title--compact">経歴</h2>
       </div>
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="why-number">01</div>
-          <h3>IT×経営×財務の複合スキル</h3>
-          <p>システム開発から経営診断、財務分析まで一貫して対応。部分最適ではなく、全体最適な提案ができます。</p>
-        </div>
-        <div class="why-card">
-          <div class="why-number">02</div>
-          <h3>伴走型の支援スタイル</h3>
-          <p>提案だけでなく、実装・運用まで一緒に取り組みます。「絵に描いた餅」で終わらせません。</p>
-        </div>
-        <div class="why-card">
-          <div class="why-number">03</div>
-          <h3>わかりやすいコミュニケーション</h3>
-          <p>専門用語を使わず、経営者目線でご説明します。「何を聞いていいかわからない」という方も安心してご相談ください。</p>
-        </div>
+      <div class="career-grid">
+        {careerHighlights.map((item) => (
+          <div class="career-item">
+            <div class="career-years">{item.years}</div>
+            <h3>{item.title}</h3>
+            <p>{item.benefit}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. QUALIFICATIONS -->
+  <section class="section quals">
+    <div class="container">
+      <div class="section-header section-header--compact">
+        <div class="section-label section-label--compact">Qualifications</div>
+        <h2 class="section-title section-title--compact">保有資格</h2>
+      </div>
+      <div class="quals-grid">
+        {qualificationGroups.map((group) => (
+          <div class="quals-group">
+            <h3>{group.axis}</h3>
+            <ul>
+              {group.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. STYLE -->
+  <section class="section style-section">
+    <div class="container">
+      <div class="style-content">
+        <h2>正直に言います。</h2>
+        <p>「やめた方がいい」も言います。<br>「今はまだ早い」も言います。</p>
+        <p>お気持ちは大切にしますが、結論は根拠をもってお伝えします。</p>
+        <p class="style-emphasis">対等に、誠実に、長く効く改善を一緒に作る。<br>それが自分のスタイルです。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. MOTTO -->
+  <section class="section motto-section">
+    <div class="container">
+      <div class="motto-content">
+        <blockquote class="motto-quote">
+          馬を水辺に連れて行くことはできても、水を飲ませることはできない。
+        </blockquote>
+        <p class="motto-meaning">
+          支援はできても、最後に行動するのは御社自身。<br>
+          だからこそ、「やりたい」と思える環境づくりを大切にしています。
+        </p>
       </div>
     </div>
   </section>
@@ -268,28 +297,27 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </section>
   )}
 
-  <!-- CTA -->
+  <!-- 10. CTA -->
   <section class="section cta">
     <div class="cta-inner">
-      <h2 class="cta-title">まずはお気軽にご相談ください</h2>
+      <h2 class="cta-title">「こんなこと聞いていいのかな？」——大歓迎です。</h2>
       <p class="cta-desc">
-        「こんなこと相談していいのかな？」という内容でも大歓迎です。<br>
-        初回30分の無料相談で、御社の課題を一緒に整理しましょう。
+        踏み出すかどうか迷っている段階でも構いません。<br>
+        まずは話を聞かせてください。
       </p>
-      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料相談を予約する <Icon name="ri:arrow-right-line" size={14} /></a>
-      <p class="cta-note">※ 相談だけでも問題ありません。押し売りは一切いたしません。</p>
+      <p class="cta-reassure">初回30分の無料相談。雑談だけでも構いません。</p>
+      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
     </div>
   </section>
 
-  <!-- GTM: Track problem card clicks (CTA tracking handled globally by Layout) -->
+  <!-- Analytics: Track problem item interactions -->
   <script>
     import { trackProblemClick } from '../lib/analytics';
 
-    document.querySelectorAll<HTMLAnchorElement>('.problem-card').forEach(el => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
+    document.querySelectorAll<HTMLElement>('.problem-item').forEach(el => {
+      el.addEventListener('click', () => {
         const text = el.querySelector('.problem-text')?.textContent?.trim() || '';
-        trackProblemClick(text, el.href);
+        trackProblemClick(text, '/contact/');
       });
     });
   </script>

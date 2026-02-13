@@ -22,8 +22,8 @@ export const siteBranding = {
   ownerNickname: 'ししゃも',
   ownerReading: 'よしかわ まさひろ',
   clientName: 'ししゃもカンパニー',
-  tagline: '中小企業の挑戦を後押しする',
-  concept: 'IT × 経営 × 財務で、ビジネスを加速させる',
+  tagline: 'IT × 経営 × 財務で、踏み出す人を支える',
+  concept: '踏み出す人の、すぐ横にいる。',
   philosophy: 'データとテクノロジーの力で、あなたの会社の「なんとかしたい」を一緒に解決します。',
   year: new Date().getFullYear(),
 } as const;
@@ -72,7 +72,7 @@ export const footerContactLinks: FooterLink[] = [
  */
 export const seoDefaults = {
   siteName: 'ししゃもカンパニー',
-  defaultDescription: `中小企業の伴走パートナー「ししゃもカンパニー」。${siteBranding.concept}。DX推進・生成AI導入・データ活用・経営支援をサポートします。`,
+  defaultDescription: `ししゃもカンパニー——${siteBranding.tagline}。DX推進・データ活用・経営改善・財務整備を、わかりやすく一緒に。`,
   locale: 'ja_JP',
   ogType: 'website' as const,
 };

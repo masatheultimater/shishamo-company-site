@@ -16,14 +16,6 @@ const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
   stats: { number: string; label: string }[];
   career: { period: string; title: string; description: string; tags: string[] }[];
   qualifications: { icon: string; name: string; description: string }[];
-  story: {
-    title: string;
-    subtitle: string;
-    grandfatherWords: string;
-    content: string;
-  };
-  mottos: { text: string; meaning: string }[];
-  philosophy: { title: string; content: string }[];
   cta: { title: string; description: string; buttonText: string; buttonLink: string };
 };
 
@@ -159,67 +151,6 @@ const qualIconMap: Record<string, string> = {
               <h4>{qual.name}</h4>
               <p>{qual.description}</p>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Story -->
-  <section class="section">
-    <div class="section-inner">
-      <h2 class="section-title">{profileData.story.title}</h2>
-      <p class="section-subtitle">{profileData.story.subtitle}</p>
-
-      <div class="story-content">
-        <blockquote class="story-quote">「{profileData.story.grandfatherWords}」</blockquote>
-        <p>祖父からいつも言われていた言葉です。</p>
-
-        <p>祖父は、小さな印刷会社を営んでいました。地域の商店や企業のチラシ、名刺、パンフレット。一つひとつ丁寧に仕事をし、お客様に喜ばれていました。「お客さんの商売がうまくいくように」——祖父はいつもそう言って、夜遅くまで働いていました。</p>
-
-        <p>しかし、時代は変わりました。紙からデジタルへ。印刷物の需要は急速に減り、祖父の会社は廃業を余儀なくされました。地域に根ざして何十年も続けてきた会社が、時代の波に飲み込まれていく。その光景を、私はただ見ていることしかできませんでした。</p>
-
-        <p>当時の私には、何もできませんでした。ITの知識も、経営の知識も、財務の知識もない。「何かできることはないか」と思っても、具体的に何をすればいいのかわからない。</p>
-
-        <p class="story-highlight">ただ見ているしかできなかった、あの悔しさ。それが、今の私の原動力です。</p>
-
-        <p>IT、経営、財務。必要なことは何でも学ぼうと決めました。Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。中小企業診断士、ITストラテジスト、データベーススペシャリスト...。「次は絶対に助けられる自分になる」——その一心で、ここまで来ました。</p>
-
-        <blockquote class="story-quote story-quote--resolve">「次は絶対に助ける」</blockquote>
-
-        <p>自分自身、そして自分が関わる大切な人たちを取り巻くこの環境を、少しでも良くしたい。人の役に立つ人間でありたい。その想いが、私を突き動かしています。</p>
-
-        <p>同じように時代の変化に直面している中小企業の社長さんがいたら、今度こそ、一緒に乗り越える力になりたい。ITも、経営も、財務も。必要なことは何でもやる。</p>
-
-        <p class="story-final"><strong>それが、祖父への約束であり、私がこの仕事をする理由です。</strong></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Philosophy -->
-  <section class="section section--alt">
-    <div class="section-inner">
-      <h2 class="section-title">大切にしていること</h2>
-      <div class="philosophy-grid">
-        {profileData.philosophy.map((item) => (
-          <div class="philosophy-card">
-            <h4>{item.title}</h4>
-            <p>{item.content}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Mottos -->
-  <section class="section">
-    <div class="section-inner">
-      <h2 class="section-title">座右の銘</h2>
-      <div class="mottos-list">
-        {profileData.mottos.map((motto) => (
-          <div class="motto-card">
-            <blockquote class="motto-text">{motto.text}</blockquote>
-            <p class="motto-meaning">{motto.meaning}</p>
           </div>
         ))}
       </div>
@@ -591,149 +522,6 @@ const qualIconMap: Record<string, string> = {
     color: var(--color-text-secondary);
   }
 
-  /* Story */
-  .story-content {
-    background: var(--color-card-bg);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 40px;
-    box-shadow: var(--shadow-semantic-sm);
-  }
-  .story-content p {
-    font-size: 15px;
-    line-height: 2;
-    color: var(--color-text);
-    margin-bottom: 20px;
-  }
-  .story-content p:last-child {
-    margin-bottom: 0;
-  }
-  .story-highlight {
-    color: var(--color-text-heading) !important;
-    font-weight: 600;
-    font-size: var(--font-size-base);
-  }
-  .story-quote {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--color-accent);
-    text-align: center;
-    padding: 24px 0;
-    margin: 24px 0;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-  }
-  .story-quote:first-child {
-    border-top: none;
-    margin-top: 0;
-    padding-top: 0;
-  }
-  .story-quote--resolve {
-    font-size: 22px;
-    color: var(--color-accent);
-    background: var(--color-accent-subtle);
-    border: none;
-    border-radius: var(--radius-sm);
-    padding: 20px;
-  }
-  .story-final {
-    text-align: center;
-    font-size: var(--font-size-base);
-    margin-top: 8px;
-  }
-  .story-final strong {
-    color: var(--color-text-heading);
-  }
-
-  /* Philosophy */
-  .philosophy-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-  .philosophy-card {
-    background: var(--color-card-bg);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 24px;
-    transition: all 0.2s;
-    box-shadow: var(--shadow-semantic-sm);
-  }
-  .philosophy-card:hover {
-    border-color: var(--color-accent);
-  }
-  .philosophy-card h4 {
-    font-family: var(--font-display);
-    font-size: var(--font-size-base);
-    font-weight: 700;
-    color: var(--color-text-heading);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .philosophy-card h4::before {
-    content: '';
-    width: 4px;
-    height: 16px;
-    background: var(--color-accent);
-    border-radius: 2px;
-  }
-  .philosophy-card p {
-    font-size: var(--font-size-sm);
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-  }
-
-  /* Mottos */
-  .mottos-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  .motto-card {
-    background: var(--color-card-bg);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 32px;
-    border-left: 4px solid var(--color-accent);
-    box-shadow: var(--shadow-semantic-sm);
-  }
-  .motto-text {
-    font-family: var(--font-display);
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: var(--color-text-heading);
-    line-height: 1.7;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  .motto-text::before {
-    content: '\201C';
-    color: var(--color-accent);
-    font-size: 48px;
-    font-family: Georgia, serif;
-    line-height: 1;
-    margin-right: 4px;
-    opacity: 0.5;
-  }
-  .motto-text::after {
-    content: '\201D';
-    color: var(--color-accent);
-    font-size: 48px;
-    font-family: Georgia, serif;
-    line-height: 1;
-    margin-left: 4px;
-    opacity: 0.5;
-  }
-  .motto-meaning {
-    font-size: var(--font-size-sm);
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    padding-left: 0;
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
     .profile-hero {
@@ -775,24 +563,6 @@ const qualIconMap: Record<string, string> = {
     }
     .qual-grid {
       grid-template-columns: 1fr;
-    }
-    .story-content {
-      padding: 24px 20px;
-    }
-    .story-quote {
-      font-size: var(--font-size-lg);
-    }
-    .story-quote--resolve {
-      font-size: 20px;
-    }
-    .philosophy-grid {
-      grid-template-columns: 1fr;
-    }
-    .motto-card {
-      padding: 20px 16px;
-    }
-    .motto-text {
-      font-size: var(--font-size-sm);
     }
     .about-work {
       padding: 24px 16px;
@@ -845,8 +615,7 @@ const qualIconMap: Record<string, string> = {
 
   @media (hover: none) {
     .stat-card:hover,
-    .qual-card:hover,
-    .philosophy-card:hover {
+    .qual-card:hover {
       border-color: var(--color-border);
     }
   }
