@@ -7,11 +7,9 @@ compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
 
 # 環境変数
-# PUBLIC_* はビルド時にHTMLへ埋め込まれる公開変数（wrangler.tomlで管理）
-# シークレット（MICROCMS_API_KEY等）はダッシュボードの Secrets で管理
+# PUBLIC_* : .env.production に定義（ビルド時にHTMLへ埋め込まれる公開値）
+# シークレット（MICROCMS_API_KEY等）: ダッシュボードの Secrets で管理
 #   Settings > Variables and Secrets > Add > Encrypt
-[vars]
-PUBLIC_GTM_ID = "GTM-PFVZJRX9"
 
 # ルーティング設定
 # [[routes]]
