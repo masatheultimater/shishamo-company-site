@@ -8,6 +8,7 @@ import {
   footerServiceLinks,
   footerInfoLinks,
   footerContactLinks,
+  socialLinks,
 } from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
 
@@ -24,6 +25,18 @@ interface Props {}
         {siteBranding.clientName}
       </div>
       <p>{siteBranding.tagline}<br>{siteBranding.concept}</p>
+      <div class="footer__social">
+        <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label={socialLinks.x.label}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label={socialLinks.facebook.label}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.5 9.2V7.6c0-.7.5-1.2 1.2-1.2h1.9V3.2h-2.2c-2.6 0-4.2 1.7-4.2 4.2v1.8H8v3.1h2.2v8.5h3.3v-8.5h2.8l.4-3.1z"/>
+          </svg>
+        </a>
+      </div>
     </div>
 
     <div class="footer__links">
@@ -125,6 +138,35 @@ interface Props {}
     line-height: 1.8;
   }
 
+  /* Social Links */
+  .footer__social {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--color-surface-elevated);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    transition: all var(--transition-base);
+  }
+
+  .footer__social-link:hover {
+    background: var(--color-accent);
+    color: var(--palette-white);
+  }
+
+  .footer__social-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
   /* Links Sections */
   .footer__links h4 {
     color: var(--color-text-heading);
@@ -190,6 +232,10 @@ interface Props {}
     }
 
     .footer__brand .footer__logo {
+      justify-content: center;
+    }
+
+    .footer__social {
       justify-content: center;
     }
 

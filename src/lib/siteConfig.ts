@@ -88,6 +88,21 @@ export const siteMetadata = {
 } as const;
 
 /**
+ * Social media links
+ */
+export const socialLinks = {
+  x: {
+    url: 'https://x.com/shishamoex09',
+    handle: '@shishamoex09',
+    label: 'X @shishamoex09',
+  },
+  facebook: {
+    url: 'https://www.facebook.com/shishamo.company/',
+    label: 'Facebookページ',
+  },
+} as const;
+
+/**
  * External API endpoints
  */
 export const externalAPIs = {

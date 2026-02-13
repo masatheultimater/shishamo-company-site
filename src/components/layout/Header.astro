@@ -3,7 +3,7 @@
  * Header Component
  * Implements HeaderProps from shared/contracts/components.ts
  */
-import { siteBranding, navigationItems } from '../../lib/siteConfig';
+import { siteBranding, navigationItems, socialLinks } from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
 import { Icon } from 'astro-icon/components';
 
@@ -26,12 +26,12 @@ const { currentPage, transparent = false } = Astro.props;
           {siteBranding.clientName}
         </div>
       </a>
-      <a href="https://x.com/shishamoex09" target="_blank" rel="noopener noreferrer" class="header-x-link" aria-label="X @shishamoex09">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-x-link" aria-label={socialLinks.x.label}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
         </svg>
       </a>
-      <a href="https://www.facebook.com/shishamo.company/" target="_blank" rel="noopener noreferrer" class="header-fb-link" aria-label="Facebookページ">
+      <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-fb-link" aria-label={socialLinks.facebook.label}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M13.5 9.2V7.6c0-.7.5-1.2 1.2-1.2h1.9V3.2h-2.2c-2.6 0-4.2 1.7-4.2 4.2v1.8H8v3.1h2.2v8.5h3.3v-8.5h2.8l.4-3.1z"/>
         </svg>
@@ -57,6 +57,11 @@ const { currentPage, transparent = false } = Astro.props;
     </nav>
 
     <div class="header-actions">
+      <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-actions__x-link" aria-label={socialLinks.x.label}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      </a>
       <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="テーマ切り替え">
         <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
         <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
@@ -144,9 +149,8 @@ const { currentPage, transparent = false } = Astro.props;
     white-space: nowrap;
   }
 
-  /* Social Links */
-  .header-x-link,
-  .header-fb-link {
+  /* Social Links (desktop, in logo-group) */
+  .header-social-link {
     width: 32px;
     height: 32px;
     background: var(--color-surface-elevated);
@@ -159,14 +163,35 @@ const { currentPage, transparent = false } = Astro.props;
     transition: all var(--transition-base);
   }
 
-  .header-x-link:hover,
-  .header-fb-link:hover {
+  .header-social-link:hover {
     background: var(--color-accent);
     color: var(--palette-white);
   }
 
-  .header-x-link:focus-visible,
-  .header-fb-link:focus-visible {
+  .header-social-link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Mobile X link (in header-actions, hidden on desktop) */
+  .header-actions__x-link {
+    display: none;
+    width: 36px;
+    height: 36px;
+    background: var(--color-surface-elevated);
+    border-radius: var(--radius-sm);
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-base);
+  }
+
+  .header-actions__x-link:hover {
+    background: var(--color-accent);
+    color: var(--palette-white);
+  }
+
+  .header-actions__x-link:focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
@@ -308,9 +333,12 @@ const { currentPage, transparent = false } = Astro.props;
       display: flex;
     }
 
-    .header-x-link,
-    .header-fb-link {
+    .header-social-link {
       display: none;
+    }
+
+    .header-actions__x-link {
+      display: flex;
     }
   }
 
