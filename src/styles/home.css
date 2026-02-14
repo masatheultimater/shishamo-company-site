@@ -80,7 +80,7 @@
 }
 
 .hero-desc {
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   line-height: 1.8;
   margin-bottom: 28px;
@@ -140,7 +140,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   padding: 4px 12px;
   border-radius: var(--radius-sm);
   color: var(--color-text-secondary);
@@ -201,7 +201,7 @@
 
 .stat-value {
   font-family: var(--font-sans);
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-accent);
 }
@@ -212,7 +212,7 @@
 }
 
 .stat-label {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--color-text-muted);
   margin-top: 2px;
 }
@@ -229,8 +229,8 @@
   border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
   line-height: 1.6;
-  white-space: nowrap;
   max-width: calc(100vw - 48px);
+  overflow-wrap: break-word;
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-base);
@@ -276,7 +276,7 @@
 }
 
 .section-label--compact {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
@@ -285,13 +285,13 @@
 }
 
 .section-title--compact {
-  font-size: 26px;
+  font-size: 1.625rem;
   color: var(--color-text-heading);
   margin-bottom: 12px;
 }
 
 .section-desc--compact {
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   max-width: 520px;
   margin: 0 auto;
@@ -309,7 +309,7 @@
 }
 
 .origin-content p {
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 2;
   color: var(--color-text);
   margin-bottom: 20px;
@@ -321,7 +321,7 @@
 
 .origin-quote {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--color-accent);
   text-align: center;
@@ -415,7 +415,7 @@
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--color-accent-text);
   font-weight: 500;
   white-space: nowrap;
@@ -487,14 +487,14 @@
 
 .yarukoto-card h3 {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--color-text-heading);
 }
 
 .yarukoto-card p {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
   line-height: 1.8;
 }
@@ -526,7 +526,7 @@
 
 .dekiru-category h3 {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 1.0625rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--color-text-heading);
@@ -548,7 +548,7 @@
 }
 
 .dekiru-category li {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
   padding: 5px 0;
   padding-left: 16px;
@@ -580,7 +580,7 @@
 }
 
 .dekiru-note {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
   line-height: 1.6;
   margin-top: 8px;
@@ -620,7 +620,7 @@
 
 .career-years {
   font-family: var(--font-sans);
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-accent);
   margin-bottom: 8px;
@@ -628,14 +628,14 @@
 
 .career-item h3 {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--color-text-heading);
 }
 
 .career-item p {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
   line-height: 1.8;
 }
@@ -667,7 +667,7 @@
 
 .quals-group h3 {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--color-accent);
@@ -680,7 +680,7 @@
 }
 
 .quals-group li {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
   padding: 6px 0;
   border-bottom: 1px solid var(--color-border);
@@ -704,14 +704,14 @@
 
 .style-content h2 {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-text-heading);
   margin-bottom: 24px;
 }
 
 .style-content p {
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--color-text);
   line-height: 2;
   margin-bottom: 16px;
@@ -834,7 +834,7 @@
 }
 
 .cta-reassure {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--color-text-muted);
   margin-bottom: 28px;
 }
@@ -893,10 +893,10 @@
     padding: 96px 24px 60px;
   }
   .hero-title {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
   .hero-desc {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
   .profile-stats {
     grid-template-columns: repeat(3, 1fr);
@@ -905,7 +905,7 @@
     padding: 60px 24px;
   }
   .section-title--compact {
-    font-size: 26px;
+    font-size: 1.625rem;
   }
   .yarukoto-grid {
     grid-template-columns: 1fr;
@@ -946,7 +946,7 @@
     padding: 88px 16px 48px;
   }
   .hero-title {
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
   .hero-badge {
     font-size: var(--font-size-xs);
@@ -962,7 +962,7 @@
     gap: 8px;
   }
   .stat-value {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   .stat-tooltip {
     white-space: normal;
@@ -971,7 +971,7 @@
     padding: 48px 16px;
   }
   .section-title--compact {
-    font-size: 19px;
+    font-size: 1.1875rem;
   }
   .problem-item {
     padding: 14px 16px;
@@ -992,7 +992,7 @@
     padding: 24px 20px;
   }
   .style-content h2 {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   .motto-content {
     padding: 24px 16px;

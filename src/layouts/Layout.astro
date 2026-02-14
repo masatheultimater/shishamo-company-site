@@ -118,6 +118,17 @@ const fullTitle = title.includes(seoDefaults.siteName)
     })();
   </script>
 
+  <!-- Font Size Initialization (prevents flash of wrong size) -->
+  <script is:inline>
+    (function() {
+      var s = localStorage.getItem('font-size-preference');
+      var l = (s === 'medium' || s === 'large' || s === 'xlarge') ? s : 'small';
+      document.documentElement.setAttribute('data-font-size', l);
+      var m = { small: 16, medium: 18, large: 20, xlarge: 22 };
+      document.documentElement.style.fontSize = m[l] + 'px';
+    })();
+  </script>
+
   <!-- Additional head content slot -->
   <slot name="head" />
 </head>

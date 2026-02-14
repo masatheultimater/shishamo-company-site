@@ -282,7 +282,7 @@
 }
 
 .cta-desc {
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
   margin-bottom: var(--space-lg);
   line-height: 1.8;
@@ -402,7 +402,7 @@
   }
 
   .section-title {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 
   .btn-primary,
