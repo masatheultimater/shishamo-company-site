@@ -102,7 +102,6 @@ export const serviceCategories: ServiceCategory[] = [
     items: [
       { text: '記帳・月次の仕組みづくり', serviceId: 'bookkeeping' },
       { text: '管理会計の導入、経営判断に使える数字の整備', serviceId: 'data-analysis' },
-      { text: '税務に関する基礎的な相談' },
     ],
     note: '※ 税理士資格取得後、税務顧問サービスを開始予定です。現在は税理士科目合格（簿記論）の状態で、法人税法・相続税法を学習中です。',
   },
