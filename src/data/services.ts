@@ -62,7 +62,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
       { scene: '小売業（3店舗）：各店舗の売上データが統合されておらず、仕入れ判断が勘頼み', action: 'POSデータをクラウドに集約し、商品別・店舗別の売上ダッシュボードを構築', outcome: '死筋商品の早期発見で在庫回転率が1.4倍に改善。仕入れコスト年間15%削減' },
     ],
     features: [
-      { icon: 'ri:focus-3-line', title: '経営課題から逆算するIT提案', description: '中小企業診断士として財務・業務の両面から課題を分析し、「売上を上げる」「コストを下げる」に直結するIT施策だけを提案します。技術先行の無駄な投資はしません。' },
+      { icon: 'ri:focus-3-line', title: '経営課題から逆算するIT提案', description: '財務・業務の両面から課題を分析し、「売上を上げる」「コストを下げる」に直結するIT施策だけを提案します。技術先行の無駄な投資はしません。' },
       { icon: 'ri:hand-heart-line', title: '月次伴走で確実に定着', description: '導入して終わりではなく、毎月のミーティングで利用状況を確認し改善を繰り返します。半年後に「自分たちで回せる」状態を目指します。' },
       { icon: 'ri:computer-line', title: '開発12年の技術力で踏み込む', description: 'Web開発12年・データサイエンス3年の実務経験があるため、ベンダーの見積もりが妥当かの評価、要件定義の同席、技術選定まで一緒に入れます。' },
       { icon: 'ri:bar-chart-box-line', title: 'データ活用まで一貫対応', description: 'DXで生まれるデータを経営ダッシュボードに可視化し、数字に基づいた意思決定ができる体制まで構築します。' },
@@ -399,7 +399,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
   'management-consulting': createServiceData({
     id: 'management-consulting',
     title: '経営支援',
-    metaDescription: '中小企業診断士として、経営課題の整理から改善施策の実行まで一緒に取り組みます。',
+    metaDescription: '経営課題の整理から改善施策の実行まで一緒に取り組みます。補助金活用もお任せください。',
     icon: 'ri:line-chart-line',
     priceRange: '8〜20',
     originalPriceRange: '10〜25',
@@ -469,7 +469,7 @@ export const serviceData: Record<string, ServiceDetailData> = {
     features: [
       { icon: 'ri:search-line', title: '御社に最適な補助金を選定', description: 'IT導入補助金・ものづくり補助金・事業再構築補助金・小規模事業者持続化補助金等、数百種類から御社の投資計画に合致するものを調査・提案します。' },
       { icon: 'ri:file-edit-line', title: '審査員に刺さる申請書を作成', description: '審査基準を踏まえた事業計画書を一緒に作成。「なぜこの投資が必要か」「どう収益に繋がるか」を数字で説得力のあるストーリーに仕上げます。' },
-      { icon: 'ri:clipboard-line', title: '経営課題と一体の事業計画', description: '補助金を通すためだけの計画ではなく、実際に経営改善に繋がる事業計画を策定。中小企業診断士として事業の成長まで見据えた計画を作ります。' },
+      { icon: 'ri:clipboard-line', title: '経営課題と一体の事業計画', description: '補助金を通すためだけの計画ではなく、実際に経営改善に繋がる事業計画を策定。事業の成長まで見据えた計画を作ります。' },
       { icon: 'ri:check-double-line', title: '採択後の実績報告まで伴走', description: '採択がゴールではありません。経費の証憑整理、実績報告書の作成、完了検査対応まで一貫してサポート。補助金返還リスクを防ぎます。' },
     ],
     expectedOutcomes: [
