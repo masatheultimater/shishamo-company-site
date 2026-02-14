@@ -3,21 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import { Icon } from 'astro-icon/components';
-import yaml from 'js-yaml';
-import fs from 'node:fs';
-import path from 'node:path';
+import { loadProfile } from '../data/profileLoader';
 
-// YAMLファイルを読み込み
-const yamlPath = path.join(process.cwd(), 'src/data/profile.yaml');
-const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
-  name: string;
-  subtitle: string;
-  badges: { label: string }[];
-  stats: { number: string; label: string }[];
-  career: { period: string; title: string; description: string; tags: string[] }[];
-  qualifications: { icon: string; name: string; description: string }[];
-  cta: { title: string; description: string; buttonText: string; buttonLink: string };
-};
+const profileData = loadProfile();
 
 const qualIconMap: Record<string, string> = {
   '中小企業診断士': 'ri:focus-3-line',

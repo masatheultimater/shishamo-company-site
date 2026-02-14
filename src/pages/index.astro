@@ -6,20 +6,12 @@ import { Icon } from 'astro-icon/components';
 import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
 import { problemItems, yarukotoItems, serviceCategories, careerHighlights, qualificationGroups } from '../data/homepage';
 import { socialLinks } from '../lib/siteConfig';
-import yaml from 'js-yaml';
-import fs from 'node:fs';
-import path from 'node:path';
+import { loadProfile } from '../data/profileLoader';
+import XIcon from '../components/ui/XIcon.astro';
+import FacebookIcon from '../components/ui/FacebookIcon.astro';
 import '../styles/home.css';
 
-// Load story from profile.yaml (single source of truth)
-const yamlPath = path.join(process.cwd(), 'src/data/profile.yaml');
-const profileData = yaml.load(fs.readFileSync(yamlPath, 'utf8')) as {
-  story: {
-    grandfatherWords: string;
-    content: string;
-  };
-  mottos: { text: string; meaning: string }[];
-};
+const profileData = loadProfile();
 
 const allPosts = await getAllBlogPosts();
 const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
@@ -54,15 +46,11 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         </div>
         <div class="profile-social-list">
           <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label={socialLinks.x.label}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
+            <XIcon size={13} />
             <span>{socialLinks.x.handle}</span>
           </a>
           <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label={socialLinks.facebook.label}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M13.5 9.2V7.6c0-.7.5-1.2 1.2-1.2h1.9V3.2h-2.2c-2.6 0-4.2 1.7-4.2 4.2v1.8H8v3.1h2.2v8.5h3.3v-8.5h2.8l.4-3.1z"/>
-            </svg>
+            <FacebookIcon size={13} />
             <span>ししゃもカンパニー</span>
           </a>
         </div>

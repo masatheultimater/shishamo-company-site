@@ -99,12 +99,10 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
       target.setAttribute('aria-selected', 'true');
 
       const category = target.getAttribute('href')?.replace('#', '');
-      let visibleCount = 0;
 
       cards.forEach((card) => {
         if (category === 'all' || card.dataset.category === category) {
           card.style.display = '';
-          visibleCount++;
         } else {
           card.style.display = 'none';
         }
