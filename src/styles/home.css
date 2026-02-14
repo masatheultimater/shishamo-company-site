@@ -377,6 +377,32 @@
   color: var(--color-accent);
 }
 
+.problem-check--checked {
+  display: none;
+}
+
+.problem-item--checked .problem-check--unchecked {
+  display: none;
+}
+
+.problem-item--checked .problem-check--checked {
+  display: block;
+}
+
+.problem-item--checked {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.problem-item--checked .problem-check {
+  color: var(--color-accent);
+}
+
+.problem-item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .problem-text {
   font-size: var(--font-size-sm);
   color: var(--color-text);
