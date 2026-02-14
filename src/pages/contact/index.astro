@@ -118,6 +118,43 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
           });
           initFormAbandonmentTracking('contactForm', 'contact');
         </script>
+        <script>
+          // Pre-fill from homepage problem selections
+          const problemTexts = [
+            '独立したけど、HPも名刺もまだない',
+            'デジタル化したいけど、何から手をつければいいかわからない',
+            '数字の管理がどんぶり勘定のまま',
+            '業務が属人化して、自分が倒れたら回らない',
+            'ITツールを入れたけど、誰も使いこなせていない',
+            '補助金・助成金を使いたいけど、申請が難しそう',
+            '事業承継を考え始めたけど、何を準備すればいいのかわからない',
+          ];
+          const problemCategories = ['dx', 'dx', 'accounting', 'dx', 'dx', 'management', 'management'];
+
+          const params = new URLSearchParams(window.location.search);
+          const problemsParam = params.get('problems');
+          if (problemsParam) {
+            const indices = problemsParam.split(',')
+              .map(Number)
+              .filter(n => !isNaN(n) && n >= 0 && n < problemTexts.length);
+
+            if (indices.length > 0) {
+              // Pre-fill textarea
+              const textarea = document.getElementById('contact-message') as HTMLTextAreaElement | null;
+              if (textarea && !textarea.value) {
+                const lines = indices.map(i => `・${problemTexts[i]}`).join('\n');
+                textarea.value = `以下について相談したいです：\n${lines}\n`;
+              }
+
+              // Auto-select category if all map to same one
+              const categories = [...new Set(indices.map(i => problemCategories[i]))];
+              const select = document.getElementById('contact-category') as HTMLSelectElement | null;
+              if (select && !select.value) {
+                select.value = categories.length === 1 ? categories[0] : 'other';
+              }
+            }
+          }
+        </script>
       </div>
 
       <div class="contact-sidebar">

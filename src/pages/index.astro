@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import { Icon } from 'astro-icon/components';
 import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
-import { problemItems, yarukotoItems, serviceCategories, careerHighlights, qualificationGroups } from '../data/homepage';
+import { problemItems, yarukotoItems, serviceCategories, careerHighlights, qualificationGroups, serviceIdToCategoryMap } from '../data/homepage';
 import { socialLinks } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
 import XIcon from '../components/ui/XIcon.astro';
@@ -130,16 +130,28 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <p class="section-desc section-desc--compact">一つでも当てはまるなら、まず話を聞かせてください</p>
       </div>
       <div class="problem-list">
-        {problemItems.map((item) => (
-          <a href={`/services/${item.serviceId}/`} class="problem-item" data-track="problem">
-            <Icon name="ri:checkbox-blank-line" class="problem-check" size={20} />
+        {problemItems.map((item, index) => (
+          <div
+            class="problem-item"
+            role="checkbox"
+            aria-checked="false"
+            tabindex="0"
+            data-problem-index={index}
+            data-service-id={item.serviceId}
+          >
+            <Icon name="ri:checkbox-blank-line" class="problem-check problem-check--unchecked" size={20} />
+            <Icon name="ri:checkbox-fill" class="problem-check problem-check--checked" size={20} />
             <span class="problem-text">{item.text}</span>
-            <span class="problem-service">{item.serviceName} <Icon name="ri:arrow-right-s-line" size={14} /></span>
-          </a>
+            <a href={`/services/${item.serviceId}/`} class="problem-service" data-track="problem">
+              {item.serviceName} <Icon name="ri:arrow-right-s-line" size={14} />
+            </a>
+          </div>
         ))}
       </div>
       <div class="problem-cta">
-        <a href="/contact/" class="btn-primary" data-track-cta="problems">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
+        <a href="/contact/" class="btn-primary" id="problem-cta-btn" data-track-cta="problems">
+          <span id="problem-cta-text">無料で相談する</span> <Icon name="ri:arrow-right-line" size={14} />
+        </a>
       </div>
     </div>
   </section>
@@ -306,14 +318,92 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- Analytics: Track problem item interactions -->
+  <!-- Problem checkbox interactions -->
   <script>
     import { trackProblemClick } from '../lib/analytics';
 
-    document.querySelectorAll<HTMLAnchorElement>('.problem-item').forEach(el => {
-      el.addEventListener('click', () => {
-        const text = el.querySelector('.problem-text')?.textContent?.trim() || '';
-        trackProblemClick(text, el.getAttribute('href') || '');
+    const problemItems = document.querySelectorAll<HTMLElement>('.problem-item');
+    const ctaBtn = document.getElementById('problem-cta-btn') as HTMLAnchorElement | null;
+    const ctaText = document.getElementById('problem-cta-text');
+    const defaultCtaText = '無料で相談する';
+    const defaultCtaHref = '/contact/';
+    const STORAGE_KEY = 'problem-checked';
+
+    function getCheckedIndices(): number[] {
+      const indices: number[] = [];
+      problemItems.forEach(el => {
+        if (el.getAttribute('aria-checked') === 'true') {
+          indices.push(Number(el.dataset.problemIndex));
+        }
+      });
+      return indices;
+    }
+
+    function saveState() {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(getCheckedIndices()));
+    }
+
+    function restoreState() {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      try {
+        const indices: number[] = JSON.parse(saved);
+        problemItems.forEach(el => {
+          const idx = Number(el.dataset.problemIndex);
+          if (indices.includes(idx)) {
+            el.setAttribute('aria-checked', 'true');
+            el.classList.add('problem-item--checked');
+          }
+        });
+        updateCTA();
+      } catch { /* ignore corrupt data */ }
+    }
+
+    function updateCTA() {
+      const checked = getCheckedIndices();
+      if (!ctaBtn || !ctaText) return;
+      if (checked.length > 0) {
+        ctaText.textContent = `${checked.length}件の悩みをまとめて相談する`;
+        ctaBtn.href = `/contact/?problems=${checked.join(',')}`;
+      } else {
+        ctaText.textContent = defaultCtaText;
+        ctaBtn.href = defaultCtaHref;
+      }
+    }
+
+    function toggleItem(el: HTMLElement) {
+      const isChecked = el.getAttribute('aria-checked') === 'true';
+      el.setAttribute('aria-checked', String(!isChecked));
+      el.classList.toggle('problem-item--checked', !isChecked);
+      updateCTA();
+      saveState();
+    }
+
+    // Restore previous selections
+    restoreState();
+
+    problemItems.forEach(el => {
+      el.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.problem-service')) return;
+        toggleItem(el);
+      });
+
+      el.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          toggleItem(el);
+        }
+      });
+    });
+
+    // Track service link clicks
+    document.querySelectorAll<HTMLAnchorElement>('.problem-service').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const item = link.closest('.problem-item');
+        const text = item?.querySelector('.problem-text')?.textContent?.trim() || '';
+        trackProblemClick(text, link.getAttribute('href') || '');
       });
     });
   </script>

@@ -37,6 +37,15 @@ export interface QualificationGroup {
   items: string[];
 }
 
+/** Maps serviceId to contact form category value */
+export const serviceIdToCategoryMap: Record<string, string> = {
+  'web-development': 'dx',
+  'dx-consulting': 'dx',
+  'bookkeeping': 'accounting',
+  'subsidy-support': 'management',
+  'management-consulting': 'management',
+};
+
 /** Section 3: Checkbox-style problem items with service mapping */
 export const problemItems: ProblemItem[] = [
   { text: '独立したけど、HPも名刺もまだない', serviceId: 'web-development', serviceName: 'Web開発' },
