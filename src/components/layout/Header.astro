@@ -50,12 +50,59 @@ const { currentPage, transparent = false } = Astro.props;
         <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
         <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
       </button>
+      <div class="font-size-control" role="group" aria-label="文字サイズ調整">
+        <span class="font-size-label" aria-hidden="true">文字</span>
+        <button class="font-size-btn" data-font-size-level="small"
+          aria-label="文字サイズ: 小（標準）" aria-pressed="true">
+          <span class="font-size-btn__text font-size-btn__text--small">小</span>
+        </button>
+        <button class="font-size-btn" data-font-size-level="medium"
+          aria-label="文字サイズ: 中" aria-pressed="false">
+          <span class="font-size-btn__text font-size-btn__text--medium">中</span>
+        </button>
+        <button class="font-size-btn" data-font-size-level="large"
+          aria-label="文字サイズ: 大" aria-pressed="false">
+          <span class="font-size-btn__text font-size-btn__text--large">大</span>
+        </button>
+        <button class="font-size-btn" data-font-size-level="xlarge"
+          aria-label="文字サイズ: 特大" aria-pressed="false">
+          <span class="font-size-btn__text font-size-btn__text--xlarge">特大</span>
+        </button>
+      </div>
     </nav>
 
     <div class="header-actions">
       <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-actions__x-link" aria-label={socialLinks.x.label}>
         <XIcon size={16} />
       </a>
+      <div class="font-size-wrapper">
+        <button class="font-size-toggle" id="fontSizeToggle"
+          aria-label="文字サイズを変更" aria-haspopup="true" aria-expanded="false">
+          <span class="font-size-toggle__text">Aa</span>
+        </button>
+        <div class="font-size-popover" id="fontSizePopover" role="group"
+          aria-label="文字サイズ選択" hidden>
+          <span class="font-size-popover__label">文字サイズ</span>
+          <div class="font-size-popover__buttons">
+            <button class="font-size-btn" data-font-size-level="small"
+              aria-label="文字サイズ: 小（標準）" aria-pressed="true">
+              <span class="font-size-btn__text font-size-btn__text--small">小</span>
+            </button>
+            <button class="font-size-btn" data-font-size-level="medium"
+              aria-label="文字サイズ: 中" aria-pressed="false">
+              <span class="font-size-btn__text font-size-btn__text--medium">中</span>
+            </button>
+            <button class="font-size-btn" data-font-size-level="large"
+              aria-label="文字サイズ: 大" aria-pressed="false">
+              <span class="font-size-btn__text font-size-btn__text--large">大</span>
+            </button>
+            <button class="font-size-btn" data-font-size-level="xlarge"
+              aria-label="文字サイズ: 特大" aria-pressed="false">
+              <span class="font-size-btn__text font-size-btn__text--xlarge">特大</span>
+            </button>
+          </div>
+        </div>
+      </div>
       <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="テーマ切り替え">
         <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
         <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
@@ -101,7 +148,7 @@ const { currentPage, transparent = false } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 72px;
+    min-height: 72px;
   }
 
   /* Logo Group */
@@ -140,6 +187,9 @@ const { currentPage, transparent = false } = Astro.props;
     letter-spacing: 0.18em;
     color: var(--color-text-heading);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   /* Social Links (desktop, in logo-group) */
@@ -287,6 +337,143 @@ const { currentPage, transparent = false } = Astro.props;
     display: none;
   }
 
+  /* Font Size Control */
+  .font-size-control {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    border-left: 1px solid var(--color-border-subtle);
+    padding-left: 12px;
+    margin-left: 4px;
+  }
+
+  .font-size-label {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    user-select: none;
+    margin-right: 4px;
+  }
+
+  .font-size-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    min-width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    color: var(--color-text-secondary);
+  }
+
+  .font-size-btn:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-text-heading);
+  }
+
+  .font-size-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  .font-size-btn--active {
+    background: var(--color-accent-subtle);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  /* Button text sizes in px (must NOT self-scale) */
+  .font-size-btn__text--small { font-size: 11px; }
+  .font-size-btn__text--medium { font-size: 13px; }
+  .font-size-btn__text--large { font-size: 15px; }
+  .font-size-btn__text--xlarge { font-size: 17px; }
+
+  .font-size-btn__text {
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  /* Font Size Popover (mobile only) */
+  .font-size-wrapper {
+    display: none;
+    position: relative;
+  }
+
+  .font-size-toggle {
+    width: 44px;
+    height: 44px;
+    background: var(--color-surface-elevated);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-base);
+  }
+
+  .font-size-toggle:hover {
+    background: var(--color-surface-hover);
+  }
+
+  .font-size-toggle:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .font-size-toggle__text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    line-height: 1;
+  }
+
+  .font-size-popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 102;
+    background: var(--color-surface-elevated);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-semantic-lg);
+    padding: 12px 16px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .font-size-popover[hidden] {
+    display: block;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .font-size-popover__label {
+    display: block;
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .font-size-popover__buttons {
+    display: flex;
+    gap: 4px;
+  }
+
+  .font-size-popover .font-size-btn {
+    min-width: 48px;
+    height: 48px;
+  }
+
   /* Header Actions */
   .header-actions {
     display: flex;
@@ -316,7 +503,7 @@ const { currentPage, transparent = false } = Astro.props;
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
     .header-inner {
-      height: 64px;
+      min-height: 64px;
     }
 
     .nav {
@@ -337,6 +524,14 @@ const { currentPage, transparent = false } = Astro.props;
 
     .header-actions__x-link {
       display: flex;
+    }
+
+    .font-size-control {
+      display: none;
+    }
+
+    .font-size-wrapper {
+      display: block;
     }
   }
 
@@ -362,4 +557,59 @@ const { currentPage, transparent = false } = Astro.props;
 
 <script>
   import '../../scripts/theme';
+  import '../../scripts/fontSize';
+
+  function initFontSizePopover() {
+    const toggle = document.getElementById('fontSizeToggle');
+    const popover = document.getElementById('fontSizePopover');
+    if (!toggle || !popover) return;
+
+    function openPopover() {
+      popover!.removeAttribute('hidden');
+      toggle!.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePopover() {
+      popover!.setAttribute('hidden', '');
+      toggle!.setAttribute('aria-expanded', 'false');
+    }
+
+    function isOpen() {
+      return !popover!.hasAttribute('hidden');
+    }
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isOpen()) {
+        closePopover();
+      } else {
+        openPopover();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (isOpen() && !popover!.contains(e.target as Node)) {
+        closePopover();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) {
+        closePopover();
+        toggle!.focus();
+      }
+    });
+
+    popover.querySelectorAll('.font-size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTimeout(closePopover, 100);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFontSizePopover);
+  } else {
+    initFontSizePopover();
+  }
 </script>

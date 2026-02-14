@@ -36,6 +36,28 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
         <span>Facebook</span>
       </a>
     </div>
+
+    <div class="mobile-nav__font-size" role="group" aria-label="文字サイズ調整">
+      <span class="mobile-nav__font-size-label">文字サイズ</span>
+      <div class="mobile-nav__font-size-buttons">
+        <button class="font-size-btn" data-font-size-level="small"
+          aria-label="文字サイズ: 小（標準）" aria-pressed="true">
+          <span class="font-size-btn__text font-size-btn__text--small">小</span>
+        </button>
+        <button class="font-size-btn" data-font-size-level="medium"
+          aria-label="文字サイズ: 中" aria-pressed="false">
+          <span class="font-size-btn__text font-size-btn__text--medium">中</span>
+        </button>
+        <button class="font-size-btn" data-font-size-level="large"
+          aria-label="文字サイズ: 大" aria-pressed="false">
+          <span class="font-size-btn__text font-size-btn__text--large">大</span>
+        </button>
+        <button class="font-size-btn" data-font-size-level="xlarge"
+          aria-label="文字サイズ: 特大" aria-pressed="false">
+          <span class="font-size-btn__text font-size-btn__text--xlarge">特大</span>
+        </button>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -235,4 +257,65 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
     border-color: var(--color-accent);
     outline: none;
   }
+
+  /* Font Size Control */
+  .mobile-nav__font-size {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .mobile-nav__font-size-label {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .mobile-nav__font-size-buttons {
+    display: flex;
+    gap: 6px;
+  }
+
+  .mobile-nav__font-size-buttons .font-size-btn {
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    color: var(--color-text-secondary);
+  }
+
+  .mobile-nav__font-size-buttons .font-size-btn:hover,
+  .mobile-nav__font-size-buttons .font-size-btn:focus {
+    background: var(--color-surface-hover);
+    color: var(--color-text-heading);
+    outline: none;
+  }
+
+  .mobile-nav__font-size-buttons .font-size-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 1px;
+  }
+
+  .mobile-nav__font-size-buttons .font-size-btn.font-size-btn--active {
+    background: var(--color-accent-subtle);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  /* Button text sizes in px (must NOT self-scale) */
+  .font-size-btn__text { font-weight: 600; line-height: 1; }
+  .font-size-btn__text--small { font-size: 12px; }
+  .font-size-btn__text--medium { font-size: 14px; }
+  .font-size-btn__text--large { font-size: 16px; }
+  .font-size-btn__text--xlarge { font-size: 18px; }
 </style>

@@ -82,6 +82,7 @@
 /* ===== HERO DISCOUNT VARIANTS ===== */
 .service-hero-price--discounted {
   border-color: var(--color-orange);
+  flex-wrap: wrap;
 }
 .service-hero-price .original {
   font-family: var(--font-display);
@@ -90,7 +91,7 @@
   text-decoration: line-through;
   text-decoration-color: var(--color-orange);
   text-decoration-thickness: 2px;
-  margin-right: 0.5rem;
+  width: 100%;
 }
 
 .service-hero-notice {
@@ -344,8 +345,8 @@
   left: -3rem;
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
-  width: 40px;
-  height: 40px;
+  width: 2.5em;
+  height: 2.5em;
   background: var(--color-accent);
   color: var(--palette-white);
   border-radius: 50%;
@@ -554,8 +555,8 @@
   }
   .flow-item::before {
     left: -2rem;
-    width: 32px;
-    height: 32px;
+    width: 2em;
+    height: 2em;
     font-size: 0.85rem;
   }
   .pricing-amount {
@@ -587,10 +588,13 @@
   .flow-list {
     padding-left: 1.5rem;
   }
+  .flow-item {
+    padding-left: 2.5rem;
+  }
   .flow-item::before {
     left: -1.5rem;
-    width: 28px;
-    height: 28px;
+    width: 1.75em;
+    height: 1.75em;
     font-size: 0.75rem;
   }
 }
