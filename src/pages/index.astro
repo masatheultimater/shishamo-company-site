@@ -318,6 +318,44 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const statItems = Array.from(
+        document.querySelectorAll<HTMLElement>(".profile-stats .stat-item")
+      );
+      if (!statItems.length) return;
+
+      let activeItem: HTMLElement | null = null;
+
+      const isTouchDevice = () => window.matchMedia("(hover: none)").matches;
+
+      const closeActive = () => {
+        if (activeItem) {
+          activeItem.classList.remove("stat-item--active");
+          activeItem = null;
+        }
+      };
+
+      statItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          if (!isTouchDevice()) return;
+          e.stopPropagation();
+          if (activeItem === item) {
+            closeActive();
+            return;
+          }
+          closeActive();
+          item.classList.add("stat-item--active");
+          activeItem = item;
+        });
+      });
+
+      document.addEventListener("click", () => {
+        closeActive();
+      });
+    });
+  </script>
+
   <!-- Problem checkbox interactions -->
   <script>
     import { trackProblemClick } from '../lib/analytics';
