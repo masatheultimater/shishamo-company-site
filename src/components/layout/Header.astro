@@ -5,6 +5,8 @@
  */
 import { siteBranding, navigationItems, socialLinks } from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
+import XIcon from '../ui/XIcon.astro';
+import FacebookIcon from '../ui/FacebookIcon.astro';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -27,14 +29,10 @@ const { currentPage, transparent = false } = Astro.props;
         </div>
       </a>
       <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-x-link" aria-label={socialLinks.x.label}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
+        <XIcon size={14} />
       </a>
       <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-fb-link" aria-label={socialLinks.facebook.label}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M13.5 9.2V7.6c0-.7.5-1.2 1.2-1.2h1.9V3.2h-2.2c-2.6 0-4.2 1.7-4.2 4.2v1.8H8v3.1h2.2v8.5h3.3v-8.5h2.8l.4-3.1z"/>
-        </svg>
+        <FacebookIcon size={14} />
       </a>
     </div>
 
@@ -58,9 +56,7 @@ const { currentPage, transparent = false } = Astro.props;
 
     <div class="header-actions">
       <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-actions__x-link" aria-label={socialLinks.x.label}>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
+        <XIcon size={16} />
       </a>
       <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="テーマ切り替え">
         <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />

@@ -330,10 +330,10 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.origin-highlight {
-  color: var(--color-text-heading) !important;
+.origin-content .origin-highlight {
+  color: var(--color-text-heading);
   font-weight: 600;
-  font-size: var(--font-size-base) !important;
+  font-size: var(--font-size-base);
 }
 
 /* ===== PROBLEMS ===== */
@@ -691,10 +691,10 @@
   margin-bottom: 16px;
 }
 
-.style-emphasis {
-  color: var(--color-accent) !important;
+.style-content .style-emphasis {
+  color: var(--color-accent);
   font-weight: 600;
-  margin-top: 24px !important;
+  margin-top: 24px;
 }
 
 /* ===== MOTTO ===== */
@@ -805,22 +805,6 @@
   max-width: 640px;
   margin: 0 auto;
   text-align: center;
-}
-
-.cta-title {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--color-text-heading);
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
-.cta-desc {
-  font-size: 15px;
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-  margin-bottom: 12px;
 }
 
 .cta-reassure {

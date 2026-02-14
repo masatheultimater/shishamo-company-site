@@ -136,7 +136,7 @@ const quoteFAQ = [
             </div>
           </div>
 
-          <button type="submit" class="btn-primary quote-submit-btn">
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
             お見積もりを依頼する
             <Icon name="ri:arrow-right-line" size={14} />
           </button>
@@ -312,33 +312,6 @@ const quoteFAQ = [
   .checkbox-group label {
     font-size: 14px;
     color: var(--color-text-secondary);
-  }
-
-  .quote-submit-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--color-accent);
-    color: var(--palette-white);
-    padding: 14px 28px;
-    border-radius: var(--radius-sm);
-    font-weight: 600;
-    font-size: 15px;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  .quote-submit-btn:hover {
-    opacity: 0.9;
-    box-shadow: var(--shadow-semantic-glow);
-  }
-  .quote-submit-btn svg {
-    transition: transform 0.2s;
-  }
-  .quote-submit-btn:hover svg {
-    transform: translateX(4px);
   }
 
   /* Sidebar */

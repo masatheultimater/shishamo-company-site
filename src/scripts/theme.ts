@@ -60,7 +60,7 @@ function toggleTheme(): void {
   applyTheme(newTheme);
 }
 
-export function initTheme(): void {
+function initTheme(): void {
   const preference = getThemePreference();
   applyTheme(preference);
 

@@ -6,10 +6,7 @@
  * variant="detailed" adds borders and uses secondary badge color
  * (used for quote page with its more formal style).
  */
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+import type { FAQItem } from '../../data/faq';
 
 interface Props {
   title: string;
@@ -85,7 +82,7 @@ const faqSchema = generateSchema ? JSON.stringify({
     width: 28px;
     height: 28px;
     background: var(--gradient-semantic-accent);
-    color: white;
+    color: var(--palette-white);
     border-radius: 50%;
     display: flex;
     align-items: center;
