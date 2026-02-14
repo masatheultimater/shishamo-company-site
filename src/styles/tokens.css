@@ -77,6 +77,7 @@
   --font-sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Noto Sans JP', sans-serif;
   --font-body: var(--font-sans);
+  --font-logo: 'Outfit', var(--font-sans);
 
   /* Font Sizes */
   --font-size-xs: 0.75rem;

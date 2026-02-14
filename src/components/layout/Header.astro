@@ -24,9 +24,7 @@ const { currentPage, transparent = false } = Astro.props;
         <div class="logo-mark">
           <Logo />
         </div>
-        <div class="logo-text">
-          {siteBranding.clientName}
-        </div>
+        <div class="logo-text">SHISHAMO COMPANY</div>
       </a>
       <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-x-link" aria-label={socialLinks.x.label}>
         <XIcon size={14} />
@@ -115,21 +113,19 @@ const { currentPage, transparent = false } = Astro.props;
 
   .logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 2px;
     min-width: 0;
   }
 
   .logo-mark {
-    width: 56px;
-    height: 36px;
-    background: var(--color-accent);
-    border-radius: var(--radius-sm);
+    width: 64px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--palette-white);
-    padding: 6px 8px;
+    color: var(--color-text-heading);
   }
 
   .logo-mark :global(svg) {
@@ -138,9 +134,10 @@ const { currentPage, transparent = false } = Astro.props;
   }
 
   .logo-text {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 18px;
+    font-family: var(--font-logo);
+    font-weight: 600;
+    font-size: 9px;
+    letter-spacing: 0.18em;
     color: var(--color-text-heading);
     white-space: nowrap;
   }
@@ -349,13 +346,12 @@ const { currentPage, transparent = false } = Astro.props;
     }
 
     .logo-mark {
-      width: 48px;
-      height: 30px;
-      padding: 5px 6px;
+      width: 54px;
+      height: 35px;
     }
 
     .logo-text {
-      font-size: 15px;
+      font-size: 8px;
     }
 
     .logo-group {
