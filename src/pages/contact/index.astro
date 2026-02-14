@@ -100,6 +100,7 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
             e.preventDefault();
             trackFormSubmit({ form_type: 'contact' });
             const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            const resetBtn = () => { if (btn) { btn.disabled = false; btn.textContent = '送信する →'; } };
             if (btn) { btn.disabled = true; btn.textContent = '送信中...'; }
             try {
               const res = await fetch(form.action, {
@@ -107,15 +108,12 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
                 body: new FormData(form),
                 headers: { 'Accept': 'application/json' },
               });
-              if (res.ok) {
-                window.location.href = '/contact/thanks/';
-              } else {
-                alert('送信に失敗しました。もう一度お試しください。');
-                if (btn) { btn.disabled = false; btn.textContent = '送信する →'; }
-              }
+              if (res.ok) { window.location.href = '/contact/thanks/'; return; }
+              alert('送信に失敗しました。もう一度お試しください。');
+              resetBtn();
             } catch {
               alert('送信に失敗しました。もう一度お試しください。');
-              if (btn) { btn.disabled = false; btn.textContent = '送信する →'; }
+              resetBtn();
             }
           });
           initFormAbandonmentTracking('contactForm', 'contact');
