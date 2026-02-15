@@ -84,6 +84,9 @@
 .service-hero-price--discounted {
   flex-wrap: wrap;
 }
+.service-hero-price--discounted .amount {
+  color: var(--color-orange);
+}
 .service-hero-price .original {
   font-family: var(--font-display);
   font-size: 1.25rem;
@@ -433,6 +436,9 @@
 .pricing-card.discounted {
   position: relative;
   overflow: visible;
+}
+.pricing-card.discounted .pricing-amount {
+  color: var(--color-orange);
 }
 .pricing-card .discount-badge {
   position: absolute;
