@@ -430,6 +430,19 @@
 .pricing-card.discounted {
   position: relative;
 }
+.pricing-card .discount-badge {
+  position: absolute;
+  top: -12px;
+  right: 12px;
+}
+.pricing-card.popular.discounted .discount-badge {
+  right: 12px;
+}
+.pricing-card.discounted:not(.popular) .discount-badge {
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 /* ===== RELATED GRID ===== */
 .related-grid {
