@@ -748,37 +748,6 @@
   margin-top: 24px;
 }
 
-/* ===== MOTTO ===== */
-.motto-section {
-  background: var(--color-bg-secondary);
-}
-
-.motto-content {
-  max-width: 640px;
-  margin: 0 auto;
-  text-align: center;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 40px 32px;
-  border-left: 4px solid var(--color-accent);
-}
-
-.motto-quote {
-  font-family: var(--font-display);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--color-text-heading);
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.motto-meaning {
-  font-size: var(--font-size-sm);
-  line-height: 1.8;
-  color: var(--color-text-secondary);
-}
-
 /* ===== BLOG ===== */
 .blog {
   background: var(--color-bg-tertiary);
@@ -977,9 +946,6 @@
     grid-template-columns: 1fr;
     max-width: 480px;
   }
-  .motto-content {
-    padding: 28px 20px;
-  }
 }
 
 /* ===== RESPONSIVE: Mobile (480px) ===== */
@@ -1037,12 +1003,6 @@
   }
   .style-content h2 {
     font-size: 1.25rem;
-  }
-  .motto-content {
-    padding: 24px 16px;
-  }
-  .motto-quote {
-    font-size: var(--font-size-base);
   }
 }
 

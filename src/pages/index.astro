@@ -189,12 +189,12 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 5. CAREER -->
+  <!-- 5. CAREER & QUALIFICATIONS -->
   <section class="section career">
     <div class="container">
       <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Career</div>
-        <h2 class="section-title section-title--compact">経歴</h2>
+        <div class="section-label section-label--compact">Career & Qualifications</div>
+        <h2 class="section-title section-title--compact">経歴・保有資格</h2>
       </div>
       <div class="career-grid">
         {careerHighlights.map((item) => (
@@ -204,16 +204,6 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             <p>{item.benefit}</p>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. QUALIFICATIONS -->
-  <section class="section quals">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Qualifications</div>
-        <h2 class="section-title section-title--compact">保有資格</h2>
       </div>
       <div class="quals-grid">
         {qualificationGroups.map((group) => (
@@ -230,7 +220,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 7. ORIGIN -->
+  <!-- 6. ORIGIN -->
   <section class="section origin">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -249,7 +239,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 8. STYLE -->
+  <!-- 7. STYLE -->
   <section class="section style-section">
     <div class="container">
       <div class="style-content">
@@ -261,22 +251,20 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 9. MOTTO -->
-  <section class="section motto-section">
-    <div class="container">
-      <div class="motto-content">
-        <blockquote class="motto-quote">
-          馬を水辺に連れて行くことはできても、水を飲ませることはできない。
-        </blockquote>
-        <p class="motto-meaning">
-          支援はできても、最後に行動するのは御社自身。<br>
-          だからこそ、「やりたい」と思える環境づくりを大切にしています。
-        </p>
-      </div>
+  <!-- 8. CTA -->
+  <section class="section cta">
+    <div class="cta-inner">
+      <h2 class="cta-title">「こんなこと聞いていいのかな？」——大歓迎です。</h2>
+      <p class="cta-desc">
+        踏み出すかどうか迷っている段階でも構いません。<br>
+        まずは話を聞かせてください。
+      </p>
+      <p class="cta-reassure">初回30分の無料相談。雑談だけでも構いません。</p>
+      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
     </div>
   </section>
 
-  <!-- BLOG -->
+  <!-- 9. BLOG -->
   {latestPosts.length > 0 && (
     <section class="section blog" id="blog">
       <div class="container">
@@ -304,19 +292,6 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       </div>
     </section>
   )}
-
-  <!-- 10. CTA -->
-  <section class="section cta">
-    <div class="cta-inner">
-      <h2 class="cta-title">「こんなこと聞いていいのかな？」——大歓迎です。</h2>
-      <p class="cta-desc">
-        踏み出すかどうか迷っている段階でも構いません。<br>
-        まずは話を聞かせてください。
-      </p>
-      <p class="cta-reassure">初回30分の無料相談。雑談だけでも構いません。</p>
-      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
-    </div>
-  </section>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
