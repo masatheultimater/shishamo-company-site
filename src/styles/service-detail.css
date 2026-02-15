@@ -87,6 +87,9 @@
 .service-hero-price--discounted .amount {
   color: var(--color-orange);
 }
+.service-hero-price:has(.original) .amount {
+  color: var(--color-orange);
+}
 .service-hero-price .original {
   font-family: var(--font-display);
   font-size: 1.25rem;
