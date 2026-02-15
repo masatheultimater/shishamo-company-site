@@ -20,12 +20,12 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
 
 <Layout
   title="ブログ | ししゃもカンパニー"
-  description="DX推進・生成AI・データ活用・経営改善に関するナレッジ・事例・お知らせを発信しています。"
+  description="IT・経営・会計の「で、うちはどうすればいい？」に答えるブログ。個人事業主・中小企業の方に向けて、わかりやすく書いています。"
   currentPage="blog"
 >
   <section class="page-header">
     <h1>ブログ</h1>
-    <p>DX・AI・経営に関するナレッジを発信しています</p>
+    <p>「で、うちはどうすればいい？」に答える記事を書いています</p>
   </section>
 
   <nav class="blog-nav" aria-label="ブログカテゴリナビゲーション">
@@ -51,7 +51,7 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
     {posts.length === 0 ? (
       <div class="blog-empty">
         <p>まだ記事がありません</p>
-        <p>近日中に公開予定です。お楽しみに！</p>
+        <p>ただいま準備中です。もう少しお待ちください。</p>
       </div>
     ) : (
       posts.map((post) => {
