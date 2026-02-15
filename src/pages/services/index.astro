@@ -34,10 +34,10 @@ import { Icon } from 'astro-icon/components';
         </div>
       </div>
       <div class="service-cards">
-        <div class="service-card service-card--discounted">
+        <div class="service-card">
           <h3>DX推進サポート</h3>
           <p>現状分析から課題特定、ロードマップ策定、導入まで一貫して対応。経営視点でのIT活用を提案します。</p>
-          <div class="service-price service-price--discounted"><span class="original">25〜50</span><span class="amount">20〜40</span><span class="unit">万円/月</span></div>
+          <div class="service-price"><span class="original">25〜50</span><span class="amount">20〜40</span><span class="unit">万円/月</span></div>
           <ul class="service-features">
             <li>現状業務プロセスの可視化</li>
             <li>課題特定とロードマップ策定</li>
@@ -46,10 +46,10 @@ import { Icon } from 'astro-icon/components';
           </ul>
           <a href="/services/dx-consulting/" class="service-link">詳しく見る →</a>
         </div>
-        <div class="service-card service-card--discounted">
+        <div class="service-card">
           <h3>IT戦略策定</h3>
           <p>経営戦略と連動したIT投資計画を策定。限られた予算で最大の効果を出す優先順位を一緒に整理します。</p>
-          <div class="service-price service-price--discounted"><span class="original">25〜50</span><span class="amount">20〜40</span><span class="unit">万円</span></div>
+          <div class="service-price"><span class="original">25〜50</span><span class="amount">20〜40</span><span class="unit">万円</span></div>
           <ul class="service-features">
             <li>IT資産の棚卸し</li>
             <li>投資対効果の試算</li>
@@ -121,10 +121,10 @@ import { Icon } from 'astro-icon/components';
         </div>
       </div>
       <div class="service-cards">
-        <div class="service-card service-card--discounted">
+        <div class="service-card">
           <h3>経営データ分析</h3>
           <p>売上・顧客・業務データを分析し、意思決定に役立つインサイトを抽出。レポートとしてお届けします。</p>
-          <div class="service-price service-price--discounted"><span class="original">10〜50</span><span class="amount">8〜40</span><span class="unit">万円/PJ</span></div>
+          <div class="service-price"><span class="original">10〜50</span><span class="amount">8〜40</span><span class="unit">万円/PJ</span></div>
           <ul class="service-features">
             <li>売上・収益性分析</li>
             <li>顧客セグメント分析</li>
@@ -160,10 +160,10 @@ import { Icon } from 'astro-icon/components';
         </div>
       </div>
       <div class="service-cards">
-        <div class="service-card service-card--discounted">
+        <div class="service-card">
           <h3>経営診断・改善提案</h3>
           <p>財務分析と現場ヒアリングで経営課題を可視化。優先度を付けた改善提案を行います。</p>
-          <div class="service-price service-price--discounted"><span class="original">10〜25</span><span class="amount">8〜20</span><span class="unit">万円/月</span></div>
+          <div class="service-price"><span class="original">10〜25</span><span class="amount">8〜20</span><span class="unit">万円/月</span></div>
           <ul class="service-features">
             <li>財務諸表分析</li>
             <li>強み・弱みの整理</li>
@@ -329,32 +329,11 @@ import { Icon } from 'astro-icon/components';
   }
   .service-price .unit { font-size: 0.85rem; color: var(--color-text-secondary); }
 
-  /* Discounted service card */
-  .service-card--discounted {
-    border-color: var(--color-orange);
-  }
-  .service-card--discounted::before {
-    background: var(--color-orange);
-    transform: scaleX(1);
-  }
-  .service-card--discounted:hover {
-    border-color: var(--color-orange);
-  }
-
-  /* Discounted price badge */
-  .service-price--discounted {
-    background: var(--color-orange-subtle);
-    border: 1px solid var(--color-orange);
-    flex-wrap: wrap;
-  }
-  .service-price--discounted .amount {
-    color: var(--color-orange);
-  }
   .service-price .original {
     font-size: var(--font-size-sm);
     color: var(--color-text-muted);
     text-decoration: line-through;
-    text-decoration-color: var(--color-orange);
+    text-decoration-color: var(--color-text-muted);
     width: 100%;
   }
 

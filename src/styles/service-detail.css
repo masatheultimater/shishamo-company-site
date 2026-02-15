@@ -81,7 +81,6 @@
 
 /* ===== HERO DISCOUNT VARIANTS ===== */
 .service-hero-price--discounted {
-  border-color: var(--color-orange);
   flex-wrap: wrap;
 }
 .service-hero-price .original {
@@ -89,7 +88,7 @@
   font-size: 1.25rem;
   color: var(--color-text-muted);
   text-decoration: line-through;
-  text-decoration-color: var(--color-orange);
+  text-decoration-color: var(--color-text-muted);
   text-decoration-thickness: 2px;
   width: 100%;
 }
@@ -98,8 +97,6 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  background: var(--color-orange-subtle);
-  border: 1px solid var(--color-orange);
   border-radius: var(--radius-md);
   padding: 1rem 1.25rem;
   margin-bottom: 2rem;
@@ -431,21 +428,7 @@
 
 /* Discounted pricing card */
 .pricing-card.discounted {
-  border-color: var(--color-orange);
   position: relative;
-}
-.pricing-card .discount-badge {
-  position: absolute;
-  top: -12px;
-  right: 12px;
-}
-.pricing-card.popular.discounted .discount-badge {
-  right: 12px;
-}
-.pricing-card.discounted:not(.popular) .discount-badge {
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 /* ===== RELATED GRID ===== */
