@@ -189,12 +189,12 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 5. CAREER & QUALIFICATIONS -->
+  <!-- 5. CAREER -->
   <section class="section career">
     <div class="container">
       <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Career & Qualifications</div>
-        <h2 class="section-title section-title--compact">経歴・保有資格</h2>
+        <div class="section-label section-label--compact">Career</div>
+        <h2 class="section-title section-title--compact">経歴</h2>
       </div>
       <div class="career-grid">
         {careerHighlights.map((item) => (
@@ -204,6 +204,16 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             <p>{item.benefit}</p>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. QUALIFICATIONS -->
+  <section class="section quals">
+    <div class="container">
+      <div class="section-header section-header--compact">
+        <div class="section-label section-label--compact">Qualifications</div>
+        <h2 class="section-title section-title--compact">保有資格</h2>
       </div>
       <div class="quals-grid">
         {qualificationGroups.map((group) => (
@@ -220,7 +230,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 6. ORIGIN -->
+  <!-- 7. ORIGIN -->
   <section class="section origin">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -239,7 +249,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 7. STYLE -->
+  <!-- 8. STYLE -->
   <section class="section style-section">
     <div class="container">
       <div class="style-content">
@@ -251,7 +261,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 8. CTA -->
+  <!-- 9. CTA -->
   <section class="section cta">
     <div class="cta-inner">
       <h2 class="cta-title">「こんなこと聞いていいのかな？」——大歓迎です。</h2>
@@ -264,7 +274,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 9. BLOG -->
+  <!-- 10. BLOG -->
   {latestPosts.length > 0 && (
     <section class="section blog" id="blog">
       <div class="container">
