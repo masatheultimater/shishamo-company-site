@@ -32,6 +32,7 @@
   max-width: var(--container-sm);
   margin: 0 auto;
   position: relative;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 .service-hero-icon {
   color: var(--color-accent);
@@ -47,7 +48,7 @@
 }
 .service-hero-inner > p {
   font-size: 1.1rem;
-  color: var(--color-text-secondary);
+  color: var(--color-text);
   max-width: 650px;
   margin-bottom: 2rem;
   line-height: 1.8;
@@ -371,6 +372,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-width), 1fr));
   gap: 1.5rem;
+  padding-top: 16px;
+  overflow: visible;
 }
 .pricing-card {
   background: var(--color-card-bg);
@@ -429,6 +432,7 @@
 /* Discounted pricing card */
 .pricing-card.discounted {
   position: relative;
+  overflow: visible;
 }
 .pricing-card .discount-badge {
   position: absolute;
