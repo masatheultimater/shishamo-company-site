@@ -57,11 +57,12 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: var(--color-text);
-  padding: 8px 18px;
+  padding: 10px 20px;
   border-radius: var(--radius-full);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  text-shadow: none;
 }
 
 .hero-title {
@@ -958,7 +959,7 @@
     font-size: 1.3125rem;
   }
   .hero-badge {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-sm);
   }
   .hero-cta {
     flex-direction: column;
