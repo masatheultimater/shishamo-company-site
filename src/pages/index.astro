@@ -102,26 +102,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 2. ORIGIN -->
-  <section class="section origin">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Origin</div>
-        <h2 class="section-title section-title--compact">私の原点</h2>
-      </div>
-      <div class="origin-content">
-        <blockquote class="origin-quote">「{profileData.story.grandfatherWords}」</blockquote>
-        <p>祖父がいつも言っていた言葉です。</p>
-        <p>祖父は小さな印刷会社を営んでいました。地域の商店のチラシ、名刺、パンフレット。一つひとつ丁寧に、お客さんの商売がうまくいくようにと、夜遅くまで働いていました。</p>
-        <p>でも、紙からデジタルへ。時代が変わり、祖父の会社は廃業しました。</p>
-        <p>何十年も続けてきた会社が、時代の波に飲み込まれていく。その時の自分には、ITの知識も、経営の知識も、財務の知識もなく、ただ見ていることしかできませんでした。</p>
-        <p class="origin-highlight">あの悔しさが、今の自分の原点です。</p>
-        <p>Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。<br>「次に同じ場面に出会ったら、絶対に助けられる自分になる」——その一心で、ここまで来ました。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. PROBLEMS -->
+  <!-- 2. PROBLEMS -->
   <section class="section problems">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -156,26 +137,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 4. YARUKOTO -->
-  <section class="section yarukoto">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">What I Do</div>
-        <h2 class="section-title section-title--compact">やること</h2>
-      </div>
-      <div class="yarukoto-grid">
-        {yarukotoItems.map((item) => (
-          <div class="yarukoto-card">
-            <div class="yarukoto-number">{item.number}</div>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. SERVICES -->
+  <!-- 3. SERVICES -->
   <section class="section dekiru">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -208,7 +170,26 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 6. CAREER -->
+  <!-- 4. YARUKOTO -->
+  <section class="section yarukoto">
+    <div class="container">
+      <div class="section-header section-header--compact">
+        <div class="section-label section-label--compact">What I Do</div>
+        <h2 class="section-title section-title--compact">やること</h2>
+      </div>
+      <div class="yarukoto-grid">
+        {yarukotoItems.map((item) => (
+          <div class="yarukoto-card">
+            <div class="yarukoto-number">{item.number}</div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CAREER -->
   <section class="section career">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -227,7 +208,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     </div>
   </section>
 
-  <!-- 7. QUALIFICATIONS -->
+  <!-- 6. QUALIFICATIONS -->
   <section class="section quals">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -245,6 +226,25 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
             </ul>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. ORIGIN -->
+  <section class="section origin">
+    <div class="container">
+      <div class="section-header section-header--compact">
+        <div class="section-label section-label--compact">Origin</div>
+        <h2 class="section-title section-title--compact">私の原点</h2>
+      </div>
+      <div class="origin-content">
+        <blockquote class="origin-quote">「{profileData.story.grandfatherWords}」</blockquote>
+        <p>祖父がいつも言っていた言葉です。</p>
+        <p>祖父は小さな印刷会社を営んでいました。地域の商店のチラシ、名刺、パンフレット。一つひとつ丁寧に、お客さんの商売がうまくいくようにと、夜遅くまで働いていました。</p>
+        <p>でも、紙からデジタルへ。時代が変わり、祖父の会社は廃業しました。</p>
+        <p>何十年も続けてきた会社が、時代の波に飲み込まれていく。その時の自分には、ITの知識も、経営の知識も、財務の知識もなく、ただ見ていることしかできませんでした。</p>
+        <p class="origin-highlight">あの悔しさが、今の自分の原点です。</p>
+        <p>Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。<br>「次に同じ場面に出会ったら、絶対に助けられる自分になる」——その一心で、ここまで来ました。</p>
       </div>
     </div>
   </section>
