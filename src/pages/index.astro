@@ -138,32 +138,6 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
               </ul>
             </div>
           </div>
-          <!-- Mobile tap-to-expand detail panels (one per stat) -->
-          <div class="stat-details">
-            <ul>
-              <li>Webアプリケーション開発</li>
-              <li>業務システム設計・構築</li>
-              <li>データベース設計・運用</li>
-              <li>API開発・連携</li>
-            </ul>
-          </div>
-          <div class="stat-details">
-            <ul>
-              <li>記帳代行・月次決算</li>
-              <li>法人・個人の税務申告</li>
-              <li>経営分析・財務アドバイス</li>
-            </ul>
-          </div>
-          <div class="stat-details">
-            <ul>
-              <li>中小企業診断士(登録予定)</li>
-              <li>税理士科目合格(簿記論)</li>
-              <li>ITストラテジスト</li>
-              <li>データベーススペシャリスト</li>
-              <li>応用情報技術者</li>
-              <li>E資格（JDLA認定）</li>
-            </ul>
-          </div>
         </div>
       </div>
     </div>
@@ -450,32 +424,20 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       const statItems = Array.from(
         document.querySelectorAll<HTMLElement>('.profile-stats .stat-item')
       );
-      const statDetails = Array.from(
-        document.querySelectorAll<HTMLElement>('.stat-details')
-      );
       if (!statItems.length) return;
 
       let activeItem: HTMLElement | null = null;
-      let activeDetail: HTMLElement | null = null;
-
-      const isTouchDevice = () => window.matchMedia('(hover: none)').matches;
 
       const closeActive = () => {
         if (activeItem) {
           activeItem.classList.remove('stat-item--active');
           activeItem = null;
         }
-        if (activeDetail) {
-          activeDetail.classList.remove('stat-details--active');
-          activeDetail = null;
-        }
       };
 
-      statItems.forEach((item, index) => {
+      statItems.forEach((item) => {
         item.addEventListener('click', (e) => {
-          if (!isTouchDevice()) return;
           e.stopPropagation();
-          const detail = statDetails[index];
           if (activeItem === item) {
             closeActive();
             return;
@@ -483,11 +445,6 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           closeActive();
           item.classList.add('stat-item--active');
           activeItem = item;
-          if (detail) {
-            detail.classList.add('stat-details--active');
-            activeDetail = detail;
-            detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
         });
       });
 
