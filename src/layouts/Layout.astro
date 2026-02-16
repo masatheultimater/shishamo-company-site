@@ -57,124 +57,162 @@ const fullTitle = title.includes(seoDefaults.siteName)
   : `${title} | ${seoDefaults.siteName}`;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <!-- SEO Meta Tags -->
-  <MetaTags
-    title={fullTitle}
-    description={description}
-    ogImage={ogImage}
-    ogType={ogType}
-    canonicalUrl={canonicalUrl}
-    noIndex={noIndex}
-    keywords={keywords}
-    publishedTime={publishedTime}
-    modifiedTime={modifiedTime}
-  />
+  <head>
+    <!-- SEO Meta Tags -->
+    <MetaTags
+      title={fullTitle}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      canonicalUrl={canonicalUrl}
+      noIndex={noIndex}
+      keywords={keywords}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+    />
 
-  <!-- Fonts: Inter + Noto Sans JP -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;900&family=Outfit:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+    <!-- Fonts: Inter + Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;900&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Title -->
-  <title>{fullTitle}</title>
+    <!-- Title -->
+    <title>{fullTitle}</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- RSS Autodiscovery -->
-  <link rel="alternate" type="application/rss+xml" title="ブログ | ししゃもカンパニー" href="/blog/rss.xml">
+    <!-- RSS Autodiscovery -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="ブログ | ししゃもカンパニー"
+      href="/blog/rss.xml"
+    />
 
-  <!-- Preload hero backgrounds -->
-  <link rel="preload" as="image" type="image/webp" href="/wp1.webp">
-  <link rel="preload" as="image" type="image/webp" href="/wp2.webp">
+    <!-- Preload hero backgrounds -->
+    <link rel="preload" as="image" type="image/webp" href="/wp1.webp" />
+    <link rel="preload" as="image" type="image/webp" href="/wp2.webp" />
 
-  <!-- Google Tag Manager -->
-  <Analytics />
+    <!-- Google Tag Manager -->
+    <Analytics />
 
-  <!-- Structured Data -->
-  {showOrganizationSchema && <StructuredData type="Organization" />}
-  {showPersonSchema && <StructuredData type="Person" />}
+    <!-- Structured Data -->
+    {showOrganizationSchema && <StructuredData type="Organization" />}
+    {showPersonSchema && <StructuredData type="Person" />}
 
-  <!-- Theme Initialization (prevents flash of unstyled content) -->
-  <script is:inline>
-    (function() {
-      var stored = localStorage.getItem('theme-preference');
-      if (stored === 'light' || stored === 'dark') {
-        document.documentElement.setAttribute('data-theme', stored);
-      } else {
-        var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      }
-    })();
-  </script>
+    <!-- Theme Initialization (prevents flash of unstyled content) -->
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem('theme-preference');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        } else {
+          const isDark = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          ).matches;
+          document.documentElement.setAttribute(
+            'data-theme',
+            isDark ? 'dark' : 'light'
+          );
+        }
+      })();
+    </script>
 
-  <!-- Font Size Initialization (prevents flash of wrong size) -->
-  <script is:inline>
-    (function() {
-      var s = localStorage.getItem('font-size-preference');
-      var l = (s === 'medium' || s === 'large' || s === 'xlarge') ? s : 'small';
-      document.documentElement.setAttribute('data-font-size', l);
-      var m = { small: 16, medium: 18, large: 20, xlarge: 22 };
-      document.documentElement.style.fontSize = m[l] + 'px';
-    })();
-  </script>
+    <!-- Font Size Initialization (prevents flash of wrong size) -->
+    <script is:inline>
+      (function () {
+        const s = localStorage.getItem('font-size-preference');
+        const l =
+          s === 'medium' || s === 'large' || s === 'xlarge' ? s : 'small';
+        document.documentElement.setAttribute('data-font-size', l);
+        const m = { small: 16, medium: 18, large: 20, xlarge: 22 };
+        document.documentElement.style.fontSize = m[l] + 'px';
+      })();
+    </script>
 
-  <!-- Additional head content slot -->
-  <slot name="head" />
-</head>
-<body>
-  {/* GTM noscript fallback */}
-  {import.meta.env.PROD && gtmId && (
-    <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  )}
+    <!-- Additional head content slot -->
+    <slot name="head" />
+  </head>
+  <body>
+    {/* GTM noscript fallback */}
+    {
+      import.meta.env.PROD && gtmId && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+          />
+        </noscript>
+      )
+    }
 
-  <!-- Skip to main content link for accessibility -->
-  <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
 
-  <!-- Header with navigation -->
-  <Header currentPage={currentPage} transparent={transparentHeader} />
+    <!-- Header with navigation -->
+    <Header currentPage={currentPage} transparent={transparentHeader} />
 
-  <!-- Mobile navigation overlay -->
-  <MobileNav />
+    <!-- Mobile navigation overlay -->
+    <MobileNav />
 
-  <!-- Main content -->
-  <main id="main-content">
-    <slot />
-  </main>
+    <!-- Main content -->
+    <main id="main-content">
+      <slot />
+    </main>
 
-  <!-- Footer -->
-  <Footer />
+    <!-- Footer -->
+    <Footer />
 
+    <!-- GTM: Global analytics (scroll, engagement, CTA clicks) -->
+    <script>
+      import {
+        initScrollTracking,
+        initEngagementTracking,
+        trackCTAClick,
+      } from '../lib/analytics';
 
-  <!-- GTM: Global analytics (scroll, engagement, CTA clicks) -->
-  <script>
-    import { initScrollTracking, initEngagementTracking, trackCTAClick } from '../lib/analytics';
+      initScrollTracking();
+      initEngagementTracking();
 
-    initScrollTracking();
-    initEngagementTracking();
+      document
+        .querySelectorAll<HTMLAnchorElement>('[data-track-cta]')
+        .forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            trackCTAClick(
+              {
+                cta_location: el.dataset.trackCta || 'unknown',
+                cta_text: el.textContent?.trim() || '',
+                destination_url: el.href,
+              },
+              el.href
+            );
+          });
+        });
+    </script>
+    <script>
+      import { initSentry } from '../lib/sentry';
 
-    document.querySelectorAll<HTMLAnchorElement>('[data-track-cta]').forEach(el => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        trackCTAClick({
-          cta_location: el.dataset.trackCta || 'unknown',
-          cta_text: el.textContent?.trim() || '',
-          destination_url: el.href,
-        }, el.href);
-      });
-    });
-  </script>
-</body>
+      initSentry();
+    </script>
+    <script>
+      import { initWebVitals } from '../lib/web-vitals';
+
+      initWebVitals();
+    </script>
+  </body>
 </html>
 
 <style is:global>
