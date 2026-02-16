@@ -258,7 +258,7 @@
 }
 
 .stat-tooltip::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -290,6 +290,22 @@
 
 .stat-tooltip li {
   padding: 2px 0;
+}
+
+/* Mobile expandable stat details (replaces floating tooltip) */
+.stat-details {
+  display: none;
+}
+
+.stat-details ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.stat-details li {
+  padding: 3px 0;
+  color: var(--color-text);
 }
 
 /* ===== SECTION COMMON ===== */
@@ -773,7 +789,10 @@
   border-radius: var(--radius-md);
   text-decoration: none;
   color: inherit;
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .blog-card-home:hover {
@@ -902,17 +921,30 @@
     position: static;
   }
   .stat-tooltip {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    top: calc(100% + 12px);
-    transform: none;
-    white-space: normal;
-    max-width: none;
+    display: none !important;
   }
-  .stat-tooltip::after {
-    display: none;
+  .stat-details {
+    grid-column: 1 / -1;
+    background: var(--color-surface-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-size: var(--font-size-xs);
+    line-height: 1.6;
+  }
+  .stat-details--active {
+    display: block;
+    animation: statExpand 0.2s ease-out;
+  }
+  @keyframes statExpand {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .section {
     padding: 60px 24px;
