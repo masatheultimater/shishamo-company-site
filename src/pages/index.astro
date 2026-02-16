@@ -3,10 +3,25 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import { Icon } from 'astro-icon/components';
-import { getAllBlogPosts, categoryLabels, categoryIcons, getPrimaryCategory, formatDate, transformBlogPost } from '../lib/microcms';
-import { problemItems, yarukotoItems, serviceCategories, careerHighlights, qualificationGroups, serviceIdToCategoryMap } from '../data/homepage';
-import { socialLinks } from '../lib/siteConfig';
+import {
+  getAllBlogPosts,
+  categoryLabels,
+  categoryIcons,
+  getPrimaryCategory,
+  formatDate,
+  transformBlogPost,
+} from '../lib/microcms';
+import {
+  problemItems,
+  yarukotoItems,
+  serviceCategories,
+  careerHighlights,
+  qualificationGroups,
+  serviceIdToCategoryMap,
+} from '../data/homepage';
+import { socialLinks, siteMetadata } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
+import StructuredData from '../components/seo/StructuredData.astro';
 import XIcon from '../components/ui/XIcon.astro';
 import FacebookIcon from '../components/ui/FacebookIcon.astro';
 import '../styles/home.css';
@@ -22,40 +37,66 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
   description="踏み出す人の、すぐ横にいる。IT × 経営 × 財務で、中小企業の困りごとを一緒に解決します。"
   currentPage="home"
 >
+  <StructuredData slot="head" type="WebSite" />
+
   <!-- 1. HERO -->
   <section class="hero hero--bg-full">
     <div class="hero-inner">
       <div class="hero-content">
         <h1 class="hero-title">
-          踏み出す人の、<br>
+          踏み出す人の、<br />
           <span class="highlight">すぐ横にいる。</span>
         </h1>
         <p class="hero-desc">
-          "やりたいけど、どうすれば？"を一緒に解きほぐします。<br>
+          "やりたいけど、どうすれば？"を一緒に解きほぐします。<br />
           IT・経営・財務、何でも相談できる場所です。
         </p>
         <div class="hero-cta">
-          <a href="/contact/" class="btn-primary" data-track-cta="hero">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
-          <a href="/services/" class="btn-secondary" data-track-cta="hero">できることを見る</a>
+          <a href="/contact/" class="btn-primary" data-track-cta="hero"
+            >無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a
+          >
+          <a href="/services/" class="btn-secondary" data-track-cta="hero"
+            >できることを見る</a
+          >
         </div>
       </div>
       <div class="profile-card">
         <div class="profile-photo">
-          <Image src={profileImage} alt="吉川昌宏" width={200} height={200} loading="eager" />
+          <Image
+            src={profileImage}
+            alt="吉川昌宏"
+            width={200}
+            height={200}
+            loading="eager"
+          />
         </div>
         <div class="profile-social-list">
-          <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label={socialLinks.x.label}>
+          <a
+            href={socialLinks.x.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="profile-social-link"
+            aria-label={socialLinks.x.label}
+          >
             <XIcon size={13} />
             <span>{socialLinks.x.handle}</span>
           </a>
-          <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="profile-social-link" aria-label={socialLinks.facebook.label}>
+          <a
+            href={socialLinks.facebook.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="profile-social-link"
+            aria-label={socialLinks.facebook.label}
+          >
             <FacebookIcon size={13} />
             <span>ししゃもカンパニー</span>
           </a>
         </div>
         <div class="profile-name">吉川 昌宏</div>
         <div class="hero-badge">個人事業主・中小企業の よろず相談所</div>
-        <div class="profile-title">中小企業診断士(登録予定) / ITストラテジスト</div>
+        <div class="profile-title">
+          中小企業診断士(登録予定) / ITストラテジスト
+        </div>
         <p class="profile-intro">
           エンジニアと会計、両方の現場経験あり。本当に必要なことを見極めて、わかりやすく提案します。
         </p>
@@ -97,6 +138,32 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
               </ul>
             </div>
           </div>
+          <!-- Mobile tap-to-expand detail panels (one per stat) -->
+          <div class="stat-details">
+            <ul>
+              <li>Webアプリケーション開発</li>
+              <li>業務システム設計・構築</li>
+              <li>データベース設計・運用</li>
+              <li>API開発・連携</li>
+            </ul>
+          </div>
+          <div class="stat-details">
+            <ul>
+              <li>記帳代行・月次決算</li>
+              <li>法人・個人の税務申告</li>
+              <li>経営分析・財務アドバイス</li>
+            </ul>
+          </div>
+          <div class="stat-details">
+            <ul>
+              <li>中小企業診断士(登録予定)</li>
+              <li>税理士科目合格(簿記論)</li>
+              <li>ITストラテジスト</li>
+              <li>データベーススペシャリスト</li>
+              <li>応用情報技術者</li>
+              <li>E資格（JDLA認定）</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -107,31 +174,56 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     <div class="container">
       <div class="section-header section-header--compact">
         <div class="section-label section-label--compact">For You</div>
-        <h2 class="section-title section-title--compact">こんな状態なら、力になれます</h2>
-        <p class="section-desc section-desc--compact">一つでも当てはまるなら、まず話を聞かせてください</p>
+        <h2 class="section-title section-title--compact">
+          こんな状態なら、力になれます
+        </h2>
+        <p class="section-desc section-desc--compact">
+          一つでも当てはまるなら、まず話を聞かせてください
+        </p>
       </div>
       <div class="problem-list">
-        {problemItems.map((item, index) => (
-          <div
-            class="problem-item"
-            role="checkbox"
-            aria-checked="false"
-            tabindex="0"
-            data-problem-index={index}
-            data-service-id={item.serviceId}
-          >
-            <Icon name="ri:checkbox-blank-line" class="problem-check problem-check--unchecked" size={20} />
-            <Icon name="ri:checkbox-fill" class="problem-check problem-check--checked" size={20} />
-            <span class="problem-text">{item.text}</span>
-            <a href={`/services/${item.serviceId}/`} class="problem-service" data-track="problem">
-              {item.serviceName} <Icon name="ri:arrow-right-s-line" size={14} />
-            </a>
-          </div>
-        ))}
+        {
+          problemItems.map((item, index) => (
+            <div
+              class="problem-item"
+              role="checkbox"
+              aria-checked="false"
+              tabindex="0"
+              data-problem-index={index}
+              data-service-id={item.serviceId}
+            >
+              <Icon
+                name="ri:checkbox-blank-line"
+                class="problem-check problem-check--unchecked"
+                size={20}
+              />
+              <Icon
+                name="ri:checkbox-fill"
+                class="problem-check problem-check--checked"
+                size={20}
+              />
+              <span class="problem-text">{item.text}</span>
+              <a
+                href={`/services/${item.serviceId}/`}
+                class="problem-service"
+                data-track="problem"
+              >
+                {item.serviceName}{' '}
+                <Icon name="ri:arrow-right-s-line" size={14} />
+              </a>
+            </div>
+          ))
+        }
       </div>
       <div class="problem-cta">
-        <a href="/contact/" class="btn-primary" id="problem-cta-btn" data-track-cta="problems">
-          <span id="problem-cta-text">無料で相談する</span> <Icon name="ri:arrow-right-line" size={14} />
+        <a
+          href="/contact/"
+          class="btn-primary"
+          id="problem-cta-btn"
+          data-track-cta="problems"
+        >
+          <span id="problem-cta-text">無料で相談する</span>
+          <Icon name="ri:arrow-right-line" size={14} />
         </a>
       </div>
     </div>
@@ -143,29 +235,44 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       <div class="section-header section-header--compact">
         <div class="section-label section-label--compact">Services</div>
         <h2 class="section-title section-title--compact">できること</h2>
-        <p class="section-desc section-desc--compact">IT・データ・経営財務を横断的に支援します</p>
+        <p class="section-desc section-desc--compact">
+          IT・データ・経営財務を横断的に支援します
+        </p>
       </div>
       <div class="dekiru-grid">
-        {serviceCategories.map((cat) => (
-          <div class="dekiru-category">
-            <h3>{cat.title}</h3>
-            <ul>
-              {cat.items.map((item) => (
-                <li>
-                  {item.serviceId ? (
-                    <a href={`/services/${item.serviceId}/`} class="dekiru-link">{item.text} <Icon name="ri:arrow-right-s-line" size={13} /></a>
-                  ) : (
-                    <span>{item.text}</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-            {cat.note && <p class="dekiru-note">{cat.note}</p>}
-          </div>
-        ))}
+        {
+          serviceCategories.map((cat) => (
+            <div class="dekiru-category">
+              <h3>{cat.title}</h3>
+              <ul>
+                {cat.items.map((item) => (
+                  <li>
+                    {item.serviceId ? (
+                      <a
+                        href={`/services/${item.serviceId}/`}
+                        class="dekiru-link"
+                      >
+                        {item.text}{' '}
+                        <Icon name="ri:arrow-right-s-line" size={13} />
+                      </a>
+                    ) : (
+                      <span>{item.text}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              {cat.note && <p class="dekiru-note">{cat.note}</p>}
+            </div>
+          ))
+        }
       </div>
       <div class="dekiru-all">
-        <a href="/services/" class="btn-secondary" data-track-cta="services">すべてのサービスを見る <Icon name="ri:arrow-right-line" size={14} /></a>
+        <a href="/services/" class="btn-secondary" data-track-cta="services"
+          >すべてのサービスを見る <Icon
+            name="ri:arrow-right-line"
+            size={14}
+          /></a
+        >
       </div>
     </div>
   </section>
@@ -178,13 +285,15 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <h2 class="section-title section-title--compact">やること</h2>
       </div>
       <div class="yarukoto-grid">
-        {yarukotoItems.map((item) => (
-          <div class="yarukoto-card">
-            <div class="yarukoto-number">{item.number}</div>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
-        ))}
+        {
+          yarukotoItems.map((item) => (
+            <div class="yarukoto-card">
+              <div class="yarukoto-number">{item.number}</div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -197,13 +306,15 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <h2 class="section-title section-title--compact">経歴</h2>
       </div>
       <div class="career-grid">
-        {careerHighlights.map((item) => (
-          <div class="career-item">
-            <div class="career-years">{item.years}</div>
-            <h3>{item.title}</h3>
-            <p>{item.benefit}</p>
-          </div>
-        ))}
+        {
+          careerHighlights.map((item) => (
+            <div class="career-item">
+              <div class="career-years">{item.years}</div>
+              <h3>{item.title}</h3>
+              <p>{item.benefit}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -216,16 +327,18 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <h2 class="section-title section-title--compact">保有資格</h2>
       </div>
       <div class="quals-grid">
-        {qualificationGroups.map((group) => (
-          <div class="quals-group">
-            <h3>{group.axis}</h3>
-            <ul>
-              {group.items.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {
+          qualificationGroups.map((group) => (
+            <div class="quals-group">
+              <h3>{group.axis}</h3>
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -238,13 +351,22 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
         <h2 class="section-title section-title--compact">私の原点</h2>
       </div>
       <div class="origin-content">
-        <blockquote class="origin-quote">「{profileData.story.grandfatherWords}」</blockquote>
+        <blockquote class="origin-quote">
+          「{profileData.story.grandfatherWords}」
+        </blockquote>
         <p>祖父がいつも言っていた言葉です。</p>
-        <p>祖父は小さな印刷会社を営んでいました。地域の商店のチラシ、名刺、パンフレット。一つひとつ丁寧に、お客さんの商売がうまくいくようにと、夜遅くまで働いていました。</p>
+        <p>
+          祖父は小さな印刷会社を営んでいました。地域の商店のチラシ、名刺、パンフレット。一つひとつ丁寧に、お客さんの商売がうまくいくようにと、夜遅くまで働いていました。
+        </p>
         <p>でも、紙からデジタルへ。時代が変わり、祖父の会社は廃業しました。</p>
-        <p>何十年も続けてきた会社が、時代の波に飲み込まれていく。その時の自分には、ITの知識も、経営の知識も、財務の知識もなく、ただ見ていることしかできませんでした。</p>
+        <p>
+          何十年も続けてきた会社が、時代の波に飲み込まれていく。その時の自分には、ITの知識も、経営の知識も、財務の知識もなく、ただ見ていることしかできませんでした。
+        </p>
         <p class="origin-highlight">あの悔しさが、今の自分の原点です。</p>
-        <p>Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。<br>「次に同じ場面に出会ったら、絶対に助けられる自分になる」——その一心で、ここまで来ました。</p>
+        <p>
+          Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。<br
+          />「次に同じ場面に出会ったら、絶対に助けられる自分になる」——その一心で、ここまで来ました。
+        </p>
       </div>
     </div>
   </section>
@@ -254,9 +376,12 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     <div class="container">
       <div class="style-content">
         <h2>正直に言います。</h2>
-        <p>「やめた方がいい」も言います。<br>「今はまだ早い」も言います。</p>
+        <p>「やめた方がいい」も言います。<br />「今はまだ早い」も言います。</p>
         <p>お気持ちは大切にしますが、結論は根拠をもってお伝えします。</p>
-        <p class="style-emphasis">対等に、誠実に、長く効く改善を一緒に作る。<br>それが自分のスタイルです。</p>
+        <p class="style-emphasis">
+          対等に、誠実に、長く効く改善を一緒に作る。<br
+          />それが自分のスタイルです。
+        </p>
       </div>
     </div>
   </section>
@@ -266,76 +391,107 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     <div class="cta-inner">
       <h2 class="cta-title">「こんなこと聞いていいのかな？」——大歓迎です。</h2>
       <p class="cta-desc">
-        踏み出すかどうか迷っている段階でも構いません。<br>
+        踏み出すかどうか迷っている段階でも構いません。<br />
         まずは話を聞かせてください。
       </p>
       <p class="cta-reassure">初回30分の無料相談。雑談だけでも構いません。</p>
-      <a href="/contact/" class="btn-primary" data-track-cta="bottom">無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a>
+      <a href="/contact/" class="btn-primary" data-track-cta="bottom"
+        >無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a
+      >
     </div>
   </section>
 
   <!-- 10. BLOG -->
-  {latestPosts.length > 0 && (
-    <section class="section blog" id="blog">
-      <div class="container">
-        <div class="section-header section-header--compact">
-          <div class="section-label section-label--compact">Blog</div>
-          <h2 class="section-title section-title--compact">最近のブログ</h2>
+  {
+    latestPosts.length > 0 && (
+      <section class="section blog" id="blog">
+        <div class="container">
+          <div class="section-header section-header--compact">
+            <div class="section-label section-label--compact">Blog</div>
+            <h2 class="section-title section-title--compact">最近のブログ</h2>
+          </div>
+          <div class="blog-cards">
+            {latestPosts.map((post) => {
+              const cat = getPrimaryCategory(post.category);
+              return (
+                <a
+                  href={`/blog/${post.slug || post.id}/`}
+                  class="blog-card-home"
+                >
+                  <div class="blog-card-home__meta">
+                    <span class="blog-card-home__category">
+                      <Icon name={categoryIcons[cat]} size={14} />{' '}
+                      {categoryLabels[cat]}
+                    </span>
+                    <time
+                      class="blog-card-home__date"
+                      datetime={post.publishedAt}
+                    >
+                      {formatDate(post.publishedAt)}
+                    </time>
+                  </div>
+                  <h3 class="blog-card-home__title">{post.title}</h3>
+                </a>
+              );
+            })}
+          </div>
+          <div class="blog-more">
+            <a href="/blog/" class="btn-secondary" data-track-cta="blog">
+              ブログをもっと見る <Icon name="ri:arrow-right-line" size={14} />
+            </a>
+          </div>
         </div>
-        <div class="blog-cards">
-          {latestPosts.map((post) => {
-            const cat = getPrimaryCategory(post.category);
-            return (
-              <a href={`/blog/${post.slug || post.id}/`} class="blog-card-home">
-                <div class="blog-card-home__meta">
-                  <span class="blog-card-home__category"><Icon name={categoryIcons[cat]} size={14} /> {categoryLabels[cat]}</span>
-                  <time class="blog-card-home__date" datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-                </div>
-                <h3 class="blog-card-home__title">{post.title}</h3>
-              </a>
-            );
-          })}
-        </div>
-        <div class="blog-more">
-          <a href="/blog/" class="btn-secondary" data-track-cta="blog">ブログをもっと見る <Icon name="ri:arrow-right-line" size={14} /></a>
-        </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener('DOMContentLoaded', () => {
       const statItems = Array.from(
-        document.querySelectorAll<HTMLElement>(".profile-stats .stat-item")
+        document.querySelectorAll<HTMLElement>('.profile-stats .stat-item')
+      );
+      const statDetails = Array.from(
+        document.querySelectorAll<HTMLElement>('.stat-details')
       );
       if (!statItems.length) return;
 
       let activeItem: HTMLElement | null = null;
+      let activeDetail: HTMLElement | null = null;
 
-      const isTouchDevice = () => window.matchMedia("(hover: none)").matches;
+      const isTouchDevice = () => window.matchMedia('(hover: none)').matches;
 
       const closeActive = () => {
         if (activeItem) {
-          activeItem.classList.remove("stat-item--active");
+          activeItem.classList.remove('stat-item--active');
           activeItem = null;
+        }
+        if (activeDetail) {
+          activeDetail.classList.remove('stat-details--active');
+          activeDetail = null;
         }
       };
 
-      statItems.forEach((item) => {
-        item.addEventListener("click", (e) => {
+      statItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
           if (!isTouchDevice()) return;
           e.stopPropagation();
+          const detail = statDetails[index];
           if (activeItem === item) {
             closeActive();
             return;
           }
           closeActive();
-          item.classList.add("stat-item--active");
+          item.classList.add('stat-item--active');
           activeItem = item;
+          if (detail) {
+            detail.classList.add('stat-details--active');
+            activeDetail = detail;
+            detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         });
       });
 
-      document.addEventListener("click", () => {
+      document.addEventListener('click', () => {
         closeActive();
       });
     });
@@ -345,8 +501,11 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
   <script>
     import { trackProblemClick } from '../lib/analytics';
 
-    const problemItems = document.querySelectorAll<HTMLElement>('.problem-item');
-    const ctaBtn = document.getElementById('problem-cta-btn') as HTMLAnchorElement | null;
+    const problemItems =
+      document.querySelectorAll<HTMLElement>('.problem-item');
+    const ctaBtn = document.getElementById(
+      'problem-cta-btn'
+    ) as HTMLAnchorElement | null;
     const ctaText = document.getElementById('problem-cta-text');
     const defaultCtaText = '無料で相談する';
     const defaultCtaHref = '/contact/';
@@ -354,7 +513,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
 
     function getCheckedIndices(): number[] {
       const indices: number[] = [];
-      problemItems.forEach(el => {
+      problemItems.forEach((el) => {
         if (el.getAttribute('aria-checked') === 'true') {
           indices.push(Number(el.dataset.problemIndex));
         }
@@ -371,7 +530,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       if (!saved) return;
       try {
         const indices: number[] = JSON.parse(saved);
-        problemItems.forEach(el => {
+        problemItems.forEach((el) => {
           const idx = Number(el.dataset.problemIndex);
           if (indices.includes(idx)) {
             el.setAttribute('aria-checked', 'true');
@@ -379,7 +538,9 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           }
         });
         updateCTA();
-      } catch { /* ignore corrupt data */ }
+      } catch {
+        /* ignore corrupt data */
+      }
     }
 
     function updateCTA() {
@@ -405,7 +566,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     // Restore previous selections
     restoreState();
 
-    problemItems.forEach(el => {
+    problemItems.forEach((el) => {
       el.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
         if (target.closest('.problem-service')) return;
@@ -421,13 +582,16 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
     });
 
     // Track service link clicks
-    document.querySelectorAll<HTMLAnchorElement>('.problem-service').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const item = link.closest('.problem-item');
-        const text = item?.querySelector('.problem-text')?.textContent?.trim() || '';
-        trackProblemClick(text, link.getAttribute('href') || '');
+    document
+      .querySelectorAll<HTMLAnchorElement>('.problem-service')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const item = link.closest('.problem-item');
+          const text =
+            item?.querySelector('.problem-text')?.textContent?.trim() || '';
+          trackProblemClick(text, link.getAttribute('href') || '');
+        });
       });
-    });
   </script>
 </Layout>
