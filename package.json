@@ -8,6 +8,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "upload-articles": "node scripts/upload-blog-articles.mjs"
   },
   "dependencies": {
@@ -20,7 +25,30 @@
     "microcms-js-sdk": "^3.3.0"
   },
   "devDependencies": {
+    "@sentry/browser": "^9.0.0",
+    "@eslint/js": "^9.36.0",
     "@types/js-yaml": "^4.0.9",
-    "marked": "^17.0.1"
+    "eslint": "^9.36.0",
+    "eslint-plugin-astro": "^0.34.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "marked": "^17.0.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.0",
+    "typescript-eslint": "^8.43.0",
+    "web-vitals": "^4.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.astro": [
+      "eslint --fix",
+      "prettier --write --plugin=prettier-plugin-astro"
+    ],
+    "*.{css,json,md,yaml,yml}": [
+      "prettier --write"
+    ]
   }
 }
