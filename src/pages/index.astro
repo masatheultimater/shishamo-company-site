@@ -101,7 +101,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           エンジニアと会計、両方の現場経験あり。本当に必要なことを見極めて、わかりやすく提案します。
         </p>
         <div class="profile-stats">
-          <div class="stat-item" data-stat="dev">
+          <div class="stat-item">
             <div class="stat-value">12<span class="stat-unit">年</span></div>
             <div class="stat-label">システム開発</div>
             <div class="stat-tooltip">
@@ -113,15 +113,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
               </ul>
             </div>
           </div>
-          <div class="stat-details" data-stat-for="dev">
-            <ul>
-              <li>Webアプリケーション開発</li>
-              <li>業務システム設計・構築</li>
-              <li>データベース設計・運用</li>
-              <li>API開発・連携</li>
-            </ul>
-          </div>
-          <div class="stat-item" data-stat="accounting">
+          <div class="stat-item">
             <div class="stat-value">1<span class="stat-unit">年</span></div>
             <div class="stat-label">会計事務所</div>
             <div class="stat-tooltip">
@@ -132,14 +124,7 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
               </ul>
             </div>
           </div>
-          <div class="stat-details" data-stat-for="accounting">
-            <ul>
-              <li>記帳代行・月次決算</li>
-              <li>法人・個人の税務申告</li>
-              <li>経営分析・財務アドバイス</li>
-            </ul>
-          </div>
-          <div class="stat-item" data-stat="quals">
+          <div class="stat-item">
             <div class="stat-value">6<span class="stat-unit">+</span></div>
             <div class="stat-label">国家資格</div>
             <div class="stat-tooltip">
@@ -153,7 +138,23 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
               </ul>
             </div>
           </div>
-          <div class="stat-details" data-stat-for="quals">
+          <!-- Mobile tap-to-expand detail panels (one per stat) -->
+          <div class="stat-details">
+            <ul>
+              <li>Webアプリケーション開発</li>
+              <li>業務システム設計・構築</li>
+              <li>データベース設計・運用</li>
+              <li>API開発・連携</li>
+            </ul>
+          </div>
+          <div class="stat-details">
+            <ul>
+              <li>記帳代行・月次決算</li>
+              <li>法人・個人の税務申告</li>
+              <li>経営分析・財務アドバイス</li>
+            </ul>
+          </div>
+          <div class="stat-details">
             <ul>
               <li>中小企業診断士(登録予定)</li>
               <li>税理士科目合格(簿記論)</li>
@@ -449,47 +450,44 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
       const statItems = Array.from(
         document.querySelectorAll<HTMLElement>('.profile-stats .stat-item')
       );
+      const statDetails = Array.from(
+        document.querySelectorAll<HTMLElement>('.stat-details')
+      );
       if (!statItems.length) return;
 
       let activeItem: HTMLElement | null = null;
+      let activeDetail: HTMLElement | null = null;
 
       const isTouchDevice = () => window.matchMedia('(hover: none)').matches;
 
       const closeActive = () => {
         if (activeItem) {
           activeItem.classList.remove('stat-item--active');
-          const key = activeItem.dataset.stat;
-          if (key) {
-            const details = document.querySelector<HTMLElement>(
-              `.stat-details[data-stat-for="${key}"]`
-            );
-            details?.classList.remove('stat-details--active');
-          }
           activeItem = null;
+        }
+        if (activeDetail) {
+          activeDetail.classList.remove('stat-details--active');
+          activeDetail = null;
         }
       };
 
-      statItems.forEach((item) => {
+      statItems.forEach((item, index) => {
         item.addEventListener('click', (e) => {
           if (!isTouchDevice()) return;
           e.stopPropagation();
+          const detail = statDetails[index];
           if (activeItem === item) {
             closeActive();
             return;
           }
           closeActive();
           item.classList.add('stat-item--active');
-          const key = item.dataset.stat;
-          if (key) {
-            const details = document.querySelector<HTMLElement>(
-              `.stat-details[data-stat-for="${key}"]`
-            );
-            if (details) {
-              details.classList.add('stat-details--active');
-              details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-          }
           activeItem = item;
+          if (detail) {
+            detail.classList.add('stat-details--active');
+            activeDetail = detail;
+            detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
         });
       });
 
