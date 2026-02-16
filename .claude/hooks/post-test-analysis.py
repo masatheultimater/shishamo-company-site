@@ -34,7 +34,7 @@ def main():
         if isinstance(tool_input, dict):
             command = tool_input.get("command", "")
         tool_response = data.get("tool_response", "")
-        if isinstance(tool_response, dict):
+        if not isinstance(tool_response, str):
             tool_response = json.dumps(tool_response)
     except Exception:
         return

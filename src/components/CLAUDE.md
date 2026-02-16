@@ -8,4 +8,17 @@
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #2186 | 1:30 AM | 🔵 | Blog System Architecture Investigation Complete | ~437 |
+
+### Feb 12, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #2781 | 1:22 AM | 🔵 | Blog Card Implementation Architecture Analysis | ~877 |
+
+### Feb 13, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #2874 | 2:49 AM | ✅ | Related Blog Card HTML Simplified to Minimal Content Structure | ~520 |
+| #2803 | 2:43 AM | 🔵 | Blog Detail Related Articles and Analytics Tracking | ~624 |
 </claude-mem-context>
