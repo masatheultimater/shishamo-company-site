@@ -8,11 +8,11 @@ import { loadProfile } from '../data/profileLoader';
 const profileData = loadProfile();
 
 const qualIconMap: Record<string, string> = {
-  '中小企業診断士': 'ri:focus-3-line',
-  'ITストラテジスト': 'ri:computer-line',
-  'E資格': 'ri:robot-line',
-  'データベーススペシャリスト': 'ri:database-2-line',
-  '応用情報技術者': 'ri:smartphone-line',
+  中小企業診断士: 'ri:focus-3-line',
+  ITストラテジスト: 'ri:computer-line',
+  E資格: 'ri:robot-line',
+  データベーススペシャリスト: 'ri:database-2-line',
+  応用情報技術者: 'ri:smartphone-line',
   '税理士科目合格（簿記論）': 'ri:calculator-line',
 };
 ---
@@ -21,20 +21,31 @@ const qualIconMap: Record<string, string> = {
   title="プロフィール | ししゃもカンパニー"
   description="吉川昌宏のプロフィール。中小企業診断士・ITストラテジスト。Web開発12年、会計事務所1年の経験を活かし、IT × 経営 × 財務で中小企業の挑戦を後押しします。"
   currentPage="profile"
+  showPersonSchema={true}
 >
   <!-- Profile Hero -->
   <section class="profile-hero">
     <div class="profile-hero-inner">
       <div class="profile-photo-wrapper">
-        <Image src={profileImage} alt="吉川昌宏" width={400} height={400} loading="eager" />
+        <Image
+          src={profileImage}
+          alt="吉川昌宏"
+          width={400}
+          height={400}
+          loading="eager"
+        />
       </div>
       <div class="profile-hero-text">
         <h1>{profileData.name}</h1>
         <p class="subtitle">{profileData.subtitle}</p>
         <div class="profile-badges">
-          {profileData.badges.map((badge, index) => (
-            <span class={`profile-badge ${index < 2 ? 'highlight' : ''}`}>{badge.label}</span>
-          ))}
+          {
+            profileData.badges.map((badge, index) => (
+              <span class={`profile-badge ${index < 2 ? 'highlight' : ''}`}>
+                {badge.label}
+              </span>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -43,14 +54,23 @@ const qualIconMap: Record<string, string> = {
   <!-- Stats -->
   <section class="stats-section">
     <div class="stats-grid">
-      {profileData.stats.slice(0, 3).map((stat) => (
-        <div class="stat-card">
-          <div class="stat-number">
-            {stat.number}<span class="stat-unit">{stat.label.includes('年') ? '年' : stat.label.includes('+') ? '' : ''}</span>
+      {
+        profileData.stats.slice(0, 3).map((stat) => (
+          <div class="stat-card">
+            <div class="stat-number">
+              {stat.number}
+              <span class="stat-unit">
+                {stat.label.includes('年')
+                  ? '年'
+                  : stat.label.includes('+')
+                    ? ''
+                    : ''}
+              </span>
+            </div>
+            <div class="stat-label">{stat.label.replace('年の', '')}</div>
           </div>
-          <div class="stat-label">{stat.label.replace('年の', '')}</div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
@@ -60,12 +80,14 @@ const qualIconMap: Record<string, string> = {
       <h2 class="section-title">私の仕事</h2>
       <div class="about-work">
         <p class="about-lead">
-          「数字が見えない」「業務が回らない」——そんな悩みを抱える小規模事業者さんの力になりたい。<br>
+          「数字が見えない」「業務が回らない」——そんな悩みを抱える小規模事業者さんの力になりたい。<br
+          />
           そんな想いで、経営の改善に一緒に取り組んでいます。
         </p>
         <p class="about-desc">
-          データサイエンティストとして3年、会計事務所で1年。<br>
-          「データで見える化する力」と「会計の実務感覚」、両方の経験を活かして<br>
+          データサイエンティストとして3年、会計事務所で1年。<br />
+          「データで見える化する力」と「会計の実務感覚」、両方の経験を活かして<br
+          />
           記帳・月次の整備から、業務フロー改善、ツール導入まで一気通貫でお手伝いします。
         </p>
 
@@ -74,30 +96,43 @@ const qualIconMap: Record<string, string> = {
           <div class="pillar-card">
             <div class="pillar-number">01</div>
             <h4>数字の土台づくり</h4>
-            <p>「今どうなってるの？」がわかる状態を一緒に作ります。記帳・月次を整え、経営判断に使える数字に。</p>
+            <p>
+              「今どうなってるの？」がわかる状態を一緒に作ります。記帳・月次を整え、経営判断に使える数字に。
+            </p>
           </div>
           <div class="pillar-card">
             <div class="pillar-number">02</div>
             <h4>属人化の解消</h4>
-            <p>「あの人しかわからない」をなくします。業務をフロー・ルール・役割に落とし込んで、誰でも回せる形に。</p>
+            <p>
+              「あの人しかわからない」をなくします。業務をフロー・ルール・役割に落とし込んで、誰でも回せる形に。
+            </p>
           </div>
           <div class="pillar-card">
             <div class="pillar-number">03</div>
             <h4>省力化と定着</h4>
-            <p>ツールは入れて終わりじゃない。「ちゃんと使える・続けられる」まで一緒に走ります。</p>
+            <p>
+              ツールは入れて終わりじゃない。「ちゃんと使える・続けられる」まで一緒に走ります。
+            </p>
           </div>
         </div>
 
         <div class="about-note">
-          <p>DX支援やIT戦略もお受けしますが、派手な提案はしません。<br>
-          「何のために？」「今の人員・予算でできる？」を一緒に考えて、<br>
-          <strong>本当に回る形</strong>に落とし込むことを大事にしています。</p>
+          <p>
+            DX支援やIT戦略もお受けしますが、派手な提案はしません。<br />
+            「何のために？」「今の人員・予算でできる？」を一緒に考えて、<br />
+            <strong>本当に回る形</strong>に落とし込むことを大事にしています。
+          </p>
         </div>
 
         <div class="about-stance">
-          <p>お気持ちやご事情はもちろん大切にします。でも、結論は正直にお伝えします。<br>
-          「なんとなく良さそう」ではなく、根拠のある選択肢と具体的な手順をお伝えします。<br>
-          <strong>誠実に、対等に、長く効く改善を一緒に作っていく。それが私のスタイルです。</strong></p>
+          <p>
+            お気持ちやご事情はもちろん大切にします。でも、結論は正直にお伝えします。<br
+            />
+            「なんとなく良さそう」ではなく、根拠のある選択肢と具体的な手順をお伝えします。<br
+            />
+            <strong
+              >誠実に、対等に、長く効く改善を一緒に作っていく。それが私のスタイルです。</strong>
+          </p>
         </div>
       </div>
     </div>
@@ -108,18 +143,22 @@ const qualIconMap: Record<string, string> = {
     <div class="section-inner">
       <h2 class="section-title">経歴</h2>
       <div class="timeline">
-        {profileData.career.map((item) => (
-          <div class="timeline-item">
-            <div class="timeline-date">{item.period.replace('〜', ' - ')}</div>
-            <div class="timeline-title">{item.title}</div>
-            <div class="timeline-desc">{item.description}</div>
-            <div class="timeline-tags">
-              {item.tags.map((tag) => (
-                <span class="timeline-tag">{tag}</span>
-              ))}
+        {
+          profileData.career.map((item) => (
+            <div class="timeline-item">
+              <div class="timeline-date">
+                {item.period.replace('〜', ' - ')}
+              </div>
+              <div class="timeline-title">{item.title}</div>
+              <div class="timeline-desc">{item.description}</div>
+              <div class="timeline-tags">
+                {item.tags.map((tag) => (
+                  <span class="timeline-tag">{tag}</span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -129,17 +168,22 @@ const qualIconMap: Record<string, string> = {
     <div class="section-inner">
       <h2 class="section-title">保有資格</h2>
       <div class="qual-grid">
-        {profileData.qualifications.map((qual) => (
-          <div class="qual-card">
-            <div class="qual-icon">
-              <Icon name={qualIconMap[qual.name] || 'ri:award-line'} size={22} />
+        {
+          profileData.qualifications.map((qual) => (
+            <div class="qual-card">
+              <div class="qual-icon">
+                <Icon
+                  name={qualIconMap[qual.name] || 'ri:award-line'}
+                  size={22}
+                />
+              </div>
+              <div class="qual-info">
+                <h4>{qual.name}</h4>
+                <p>{qual.description}</p>
+              </div>
             </div>
-            <div class="qual-info">
-              <h4>{qual.name}</h4>
-              <p>{qual.description}</p>
-            </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
@@ -148,22 +192,29 @@ const qualIconMap: Record<string, string> = {
   <section class="section cta">
     <div class="cta-inner">
       <h2 class="cta-title">{profileData.cta.title}</h2>
-      <p class="cta-desc" set:html={profileData.cta.description.replace(/\n/g, '<br>')} />
-      <a href={profileData.cta.buttonLink} class="btn-primary" data-track-cta="profile">
+      <p
+        class="cta-desc"
+        set:html={profileData.cta.description.replace(/\n/g, '<br>')}
+      />
+      <a
+        href={profileData.cta.buttonLink}
+        class="btn-primary"
+        data-track-cta="profile"
+      >
         {profileData.cta.buttonText}
         <Icon name="ri:arrow-right-line" size={14} />
       </a>
       <p class="cta-note">※ 相談だけでも問題ありません。雑談からでもどうぞ。</p>
     </div>
   </section>
-
 </Layout>
 
 <style>
   /* Profile Hero */
   .profile-hero {
     padding: 120px 24px 80px;
-    background: var(--color-bg-secondary) url('/wp1.webp') center center / cover no-repeat;
+    background: var(--color-bg-secondary) url('/wp1.webp') center center / cover
+      no-repeat;
     position: relative;
     overflow: hidden;
   }

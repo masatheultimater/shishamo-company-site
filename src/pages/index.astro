@@ -19,8 +19,9 @@ import {
   qualificationGroups,
   serviceIdToCategoryMap,
 } from '../data/homepage';
-import { socialLinks } from '../lib/siteConfig';
+import { socialLinks, siteMetadata } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
+import StructuredData from '../components/seo/StructuredData.astro';
 import XIcon from '../components/ui/XIcon.astro';
 import FacebookIcon from '../components/ui/FacebookIcon.astro';
 import '../styles/home.css';
@@ -36,6 +37,8 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
   description="踏み出す人の、すぐ横にいる。IT × 経営 × 財務で、中小企業の困りごとを一緒に解決します。"
   currentPage="home"
 >
+  <StructuredData slot="head" type="WebSite" />
+
   <!-- 1. HERO -->
   <section class="hero hero--bg-full">
     <div class="hero-inner">

@@ -1,15 +1,32 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import FAQSection from '../../components/ui/FAQSection.astro';
-import { externalAPIs } from '../../lib/siteConfig';
+import StructuredData from '../../components/seo/StructuredData.astro';
+import { externalAPIs, siteMetadata } from '../../lib/siteConfig';
 import { Icon } from 'astro-icon/components';
 import '../../styles/forms.css';
 
 const contactFAQ = [
-  { question: '相談は本当に無料ですか？', answer: 'はい、初回30分のオンライン相談は完全無料です。ご契約前に費用が発生することはありません。' },
-  { question: 'どんな規模の会社でも対応できますか？', answer: '個人事業主から従業員100名程度の中小企業まで対応しています。大企業向けの複雑な案件は、信頼できる専門家をご紹介することも可能です。' },
-  { question: 'リモートでの対応は可能ですか？', answer: 'もちろんです。Zoom、Google Meet、Microsoft Teamsなどに対応しています。全国どこからでもご相談いただけます。' },
-  { question: 'まだ何を相談すればいいかわかりません', answer: 'それでも大丈夫です！「なんとなく困っている」「もっと良くなりそうな気がする」という段階でもお気軽にご相談ください。一緒に課題を整理するところから始められます。' },
+  {
+    question: '相談は本当に無料ですか？',
+    answer:
+      'はい、初回30分のオンライン相談は完全無料です。ご契約前に費用が発生することはありません。',
+  },
+  {
+    question: 'どんな規模の会社でも対応できますか？',
+    answer:
+      '個人事業主から従業員100名程度の中小企業まで対応しています。大企業向けの複雑な案件は、信頼できる専門家をご紹介することも可能です。',
+  },
+  {
+    question: 'リモートでの対応は可能ですか？',
+    answer:
+      'もちろんです。Zoom、Google Meet、Microsoft Teamsなどに対応しています。全国どこからでもご相談いただけます。',
+  },
+  {
+    question: 'まだ何を相談すればいいかわかりません',
+    answer:
+      'それでも大丈夫です！「なんとなく困っている」「もっと良くなりそうな気がする」という段階でもお気軽にご相談ください。一緒に課題を整理するところから始められます。',
+  },
 ];
 
 const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
@@ -20,6 +37,17 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
   description="ご相談・お見積りは無料です。DX推進・生成AI導入・データ活用・経営改善について、お気軽にご連絡ください。"
   currentPage="contact"
 >
+  <StructuredData
+    slot="head"
+    type="ContactPage"
+    data={{
+      name: 'お問い合わせ',
+      url: `${siteMetadata.siteUrl}/contact/`,
+      description:
+        'ご相談・お見積りは無料です。DX推進・生成AI導入・データ活用・経営改善について、お気軽にご連絡ください。',
+    }}
+  />
+
   <section class="page-header">
     <h1>お問い合わせ</h1>
     <p>ご相談・お見積りは無料です。お気軽にご連絡ください。</p>
@@ -31,19 +59,35 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
         <h2><Icon name="ri:mail-send-line" size={22} /> メッセージを送る</h2>
         <p>以下のフォームからお問い合わせください。</p>
         <form action={FORMSPREE_ENDPOINT} method="POST" id="contactForm">
-          <input type="hidden" name="_subject" value="【ししゃも】お問い合わせ">
+          <input
+            type="hidden"
+            name="_subject"
+            value="【ししゃも】お問い合わせ"
+          />
 
           <div class="form-group">
             <label for="contact-name">
               お名前<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <input type="text" id="contact-name" name="name" required aria-required="true" placeholder="山田 太郎">
+            <input
+              type="text"
+              id="contact-name"
+              name="name"
+              required
+              aria-required="true"
+              placeholder="山田 太郎"
+            />
           </div>
 
           <div class="form-group">
             <label for="contact-company">会社名</label>
-            <input type="text" id="contact-company" name="company" placeholder="株式会社〇〇">
+            <input
+              type="text"
+              id="contact-company"
+              name="company"
+              placeholder="株式会社〇〇"
+            />
           </div>
 
           <div class="form-group">
@@ -51,12 +95,24 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
               メールアドレス<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <input type="email" id="contact-email" name="email" required aria-required="true" placeholder="example@company.com">
+            <input
+              type="email"
+              id="contact-email"
+              name="email"
+              required
+              aria-required="true"
+              placeholder="example@company.com"
+            />
           </div>
 
           <div class="form-group">
             <label for="contact-phone">電話番号</label>
-            <input type="tel" id="contact-phone" name="phone" placeholder="03-1234-5678">
+            <input
+              type="tel"
+              id="contact-phone"
+              name="phone"
+              placeholder="03-1234-5678"
+            />
           </div>
 
           <div class="form-group">
@@ -64,7 +120,12 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
               ご相談内容<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <select id="contact-category" name="category" required aria-required="true">
+            <select
+              id="contact-category"
+              name="category"
+              required
+              aria-required="true"
+            >
               <option value="">選択してください</option>
               <option value="dx">DX推進・IT戦略について</option>
               <option value="ai">生成AI導入について</option>
@@ -80,35 +141,67 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
               詳細<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <textarea id="contact-message" name="message" required aria-required="true" placeholder="ご相談内容、現在の課題、ご要望などをお書きください"></textarea>
-            <p class="form-note">「こんなこと相談していいのかな？」も大歓迎です！</p>
+            <textarea
+              id="contact-message"
+              name="message"
+              required
+              aria-required="true"
+              placeholder="ご相談内容、現在の課題、ご要望などをお書きください"
+            ></textarea>
+            <p class="form-note">
+              「こんなこと相談していいのかな？」も大歓迎です！
+            </p>
           </div>
 
           <div class="form-group">
             <div class="checkbox-group">
-              <input type="checkbox" id="privacy" name="privacy" required>
-              <label for="privacy"><a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意する</label>
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <label for="privacy"
+                ><a
+                  href="/privacy-policy/"
+                  target="_blank"
+                  rel="noopener noreferrer">プライバシーポリシー</a
+                >に同意する</label
+              >
             </div>
           </div>
 
           <button type="submit" class="btn-primary">送信する →</button>
         </form>
         <script>
-          import { trackFormSubmit, initFormAbandonmentTracking } from '../../lib/analytics';
-          const form = document.getElementById('contactForm') as HTMLFormElement | null;
+          import {
+            trackFormSubmit,
+            initFormAbandonmentTracking,
+          } from '../../lib/analytics';
+          const form = document.getElementById(
+            'contactForm'
+          ) as HTMLFormElement | null;
           form?.addEventListener('submit', async (e) => {
             e.preventDefault();
             trackFormSubmit({ form_type: 'contact' });
-            const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-            const resetBtn = () => { if (btn) { btn.disabled = false; btn.textContent = '送信する →'; } };
-            if (btn) { btn.disabled = true; btn.textContent = '送信中...'; }
+            const btn = form.querySelector(
+              'button[type="submit"]'
+            ) as HTMLButtonElement;
+            const resetBtn = () => {
+              if (btn) {
+                btn.disabled = false;
+                btn.textContent = '送信する →';
+              }
+            };
+            if (btn) {
+              btn.disabled = true;
+              btn.textContent = '送信中...';
+            }
             try {
               const res = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
-                headers: { 'Accept': 'application/json' },
+                headers: { Accept: 'application/json' },
               });
-              if (res.ok) { window.location.href = '/contact/thanks/'; return; }
+              if (res.ok) {
+                window.location.href = '/contact/thanks/';
+                return;
+              }
               alert('送信に失敗しました。もう一度お試しください。');
               resetBtn();
             } catch {
@@ -129,28 +222,46 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
             '補助金・助成金を使いたいけど、申請が難しそう',
             '事業承継を考え始めたけど、何を準備すればいいのかわからない',
           ];
-          const problemCategories = ['dx', 'dx', 'accounting', 'dx', 'dx', 'management', 'management'];
+          const problemCategories = [
+            'dx',
+            'dx',
+            'accounting',
+            'dx',
+            'dx',
+            'management',
+            'management',
+          ];
 
           const params = new URLSearchParams(window.location.search);
           const problemsParam = params.get('problems');
           if (problemsParam) {
-            const indices = problemsParam.split(',')
+            const indices = problemsParam
+              .split(',')
               .map(Number)
-              .filter(n => !isNaN(n) && n >= 0 && n < problemTexts.length);
+              .filter((n) => !isNaN(n) && n >= 0 && n < problemTexts.length);
 
             if (indices.length > 0) {
               // Pre-fill textarea
-              const textarea = document.getElementById('contact-message') as HTMLTextAreaElement | null;
+              const textarea = document.getElementById(
+                'contact-message'
+              ) as HTMLTextAreaElement | null;
               if (textarea && !textarea.value) {
-                const lines = indices.map(i => `・${problemTexts[i]}`).join('\n');
+                const lines = indices
+                  .map((i) => `・${problemTexts[i]}`)
+                  .join('\n');
                 textarea.value = `以下について相談したいです：\n${lines}\n`;
               }
 
               // Auto-select category if all map to same one
-              const categories = [...new Set(indices.map(i => problemCategories[i]))];
-              const select = document.getElementById('contact-category') as HTMLSelectElement | null;
+              const categories = [
+                ...new Set(indices.map((i) => problemCategories[i])),
+              ];
+              const select = document.getElementById(
+                'contact-category'
+              ) as HTMLSelectElement | null;
               if (select && !select.value) {
-                select.value = categories.length === 1 ? categories[0] : 'other';
+                select.value =
+                  categories.length === 1 ? categories[0] : 'other';
               }
             }
           }
@@ -176,12 +287,16 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
         <div class="sidebar-card">
           <h3><Icon name="ri:map-pin-line" size={18} /> 対応エリア</h3>
-          <p>オンライン対応のため全国OK。対面をご希望の場合は関東圏で調整可能です。</p>
+          <p>
+            オンライン対応のため全国OK。対面をご希望の場合は関東圏で調整可能です。
+          </p>
         </div>
 
         <div class="sidebar-card">
           <h3><Icon name="ri:lock-line" size={18} /> 情報管理</h3>
-          <p>お預かりした情報は適切に管理し、ご相談対応以外の目的には使用しません。</p>
+          <p>
+            お預かりした情報は適切に管理し、ご相談対応以外の目的には使用しません。
+          </p>
         </div>
       </div>
     </div>
@@ -193,67 +308,161 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
 <style>
   /* Contact Section */
-  .contact-section { padding: 4rem 2rem 5rem; position: relative; }
+  .contact-section {
+    padding: 4rem 2rem 5rem;
+    position: relative;
+  }
   .contact-inner {
-    max-width: 1000px; margin: 0 auto;
-    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    position: relative;
   }
 
   /* Form Card */
   .contact-form-card {
-    background: var(--color-card-bg); border-radius: var(--radius-lg); padding: 2.5rem;
-    box-shadow: var(--shadow-semantic-xl); border: 1px solid var(--color-border);
+    background: var(--color-card-bg);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-semantic-xl);
+    border: 1px solid var(--color-border);
   }
-  .contact-form-card h2 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .contact-form-card > p { color: var(--color-text-secondary); font-size: 0.95rem; margin-bottom: 2rem; }
+  .contact-form-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .contact-form-card > p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
 
-  .contact-form-card .btn-primary { width: 100%; justify-content: center; }
+  .contact-form-card .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 
   /* Sidebar */
-  .contact-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
   .sidebar-card {
-    background: var(--color-card-bg); border-radius: var(--radius-md); padding: 1.5rem;
-    border: 2px solid var(--color-border); transition: all 0.3s;
+    background: var(--color-card-bg);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    border: 2px solid var(--color-border);
+    transition: all 0.3s;
   }
-  .sidebar-card:hover { border-color: var(--color-accent); }
-  .sidebar-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
-  .sidebar-card h3 :global(svg) { color: var(--color-accent); flex-shrink: 0; }
-  .sidebar-card p { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.7; }
-  .sidebar-card ul { margin-top: 0.75rem; }
+  .sidebar-card:hover {
+    border-color: var(--color-accent);
+  }
+  .sidebar-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .sidebar-card h3 :global(svg) {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  .sidebar-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+  }
+  .sidebar-card ul {
+    margin-top: 0.75rem;
+  }
   .sidebar-card li {
-    font-size: 0.85rem; color: var(--color-text-secondary); padding: 0.25rem 0;
-    padding-left: 1.25rem; position: relative;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    padding: 0.25rem 0;
+    padding-left: 1.25rem;
+    position: relative;
   }
-  .sidebar-card li::before { content: '✓'; position: absolute; left: 0; color: var(--color-orange); }
+  .sidebar-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-orange);
+  }
 
   .response-card {
     background: var(--color-accent);
-    color: var(--palette-white); border: none; position: relative; overflow: hidden;
+    color: var(--palette-white);
+    border: none;
+    position: relative;
+    overflow: hidden;
   }
   .response-card::before {
-    content: ''; position: absolute; right: -20px; top: -20px;
-    width: 100px; height: 100px;
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    width: 100px;
+    height: 100px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
   }
-  .response-card h3 { color: var(--palette-white); }
-  .response-time { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin: 0.5rem 0; }
-  .response-card p { color: rgba(255, 255, 255, 0.85); }
+  .response-card h3 {
+    color: var(--palette-white);
+  }
+  .response-time {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+  }
+  .response-card p {
+    color: rgba(255, 255, 255, 0.85);
+  }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .contact-section { padding: 3rem 1.5rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-sidebar { order: -1; flex-direction: row; flex-wrap: wrap; }
-    .sidebar-card { flex: 1; min-width: 200px; }
-    .contact-form-card { padding: 2rem 1.5rem; }
-    .contact-form-card h2 { font-size: 1.35rem; }
+    .contact-section {
+      padding: 3rem 1.5rem;
+    }
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .contact-sidebar {
+      order: -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .sidebar-card {
+      flex: 1;
+      min-width: 200px;
+    }
+    .contact-form-card {
+      padding: 2rem 1.5rem;
+    }
+    .contact-form-card h2 {
+      font-size: 1.35rem;
+    }
   }
 
   @media (max-width: 480px) {
-    .contact-section { padding: 2rem 1rem; }
-    .contact-sidebar { flex-direction: column; }
-    .sidebar-card { min-width: auto; }
-    .contact-form-card { padding: 1.5rem 1rem; }
+    .contact-section {
+      padding: 2rem 1rem;
+    }
+    .contact-sidebar {
+      flex-direction: column;
+    }
+    .sidebar-card {
+      min-width: auto;
+    }
+    .contact-form-card {
+      padding: 1.5rem 1rem;
+    }
   }
 </style>

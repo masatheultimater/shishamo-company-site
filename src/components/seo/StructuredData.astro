@@ -19,7 +19,18 @@ import organizationData from '../../data/schema/organization.json';
 import personData from '../../data/schema/person.json';
 
 interface Props {
-  type: 'Organization' | 'Person' | 'LocalBusiness' | 'Article' | 'BlogPosting' | 'BreadcrumbList' | 'Service';
+  type:
+    | 'Organization'
+    | 'Person'
+    | 'LocalBusiness'
+    | 'Article'
+    | 'BlogPosting'
+    | 'BreadcrumbList'
+    | 'Service'
+    | 'WebSite'
+    | 'WebPage'
+    | 'ContactPage'
+    | 'CollectionPage';
   data?: Record<string, unknown>;
 }
 
@@ -33,7 +44,9 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
   switch (type) {
     case 'Organization':
     case 'LocalBusiness':
-      return customData ? { ...organizationData, ...customData } : organizationData;
+      return customData
+        ? { ...organizationData, ...customData }
+        : organizationData;
 
     case 'Person':
       return customData ? { ...personData, ...customData } : personData;
@@ -49,7 +62,7 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
         author: {
           '@type': 'Person',
           '@id': `${siteUrl}/#person`,
-          name: '吉川昌宏'
+          name: '吉川昌宏',
         },
         publisher: {
           '@type': 'Organization',
@@ -57,10 +70,10 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
           name: siteBranding.clientName,
           logo: {
             '@type': 'ImageObject',
-            url: `${siteUrl}/shishamo-logo.svg`
-          }
+            url: `${siteUrl}/shishamo-logo.svg`,
+          },
         },
-        ...customData
+        ...customData,
       };
 
     case 'BreadcrumbList':
@@ -70,7 +83,7 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
       return {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        ...customData
+        ...customData,
       };
 
     case 'Service':
@@ -83,14 +96,45 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
         provider: {
           '@type': 'ProfessionalService',
           '@id': `${siteUrl}/#organization`,
-          name: siteBranding.clientName
+          name: siteBranding.clientName,
         },
         areaServed: {
           '@type': 'Country',
-          name: 'JP'
+          name: 'JP',
         },
         availableLanguage: 'Japanese',
-        ...customData
+        ...customData,
+      };
+
+    case 'WebSite':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        name: siteBranding.clientName,
+        url: siteUrl,
+        publisher: {
+          '@type': 'Organization',
+          '@id': `${siteUrl}/#organization`,
+        },
+        inLanguage: 'ja',
+        ...customData,
+      };
+
+    case 'WebPage':
+    case 'ContactPage':
+    case 'CollectionPage':
+      if (!customData) {
+        return null;
+      }
+      return {
+        '@context': 'https://schema.org',
+        '@type': type,
+        isPartOf: {
+          '@type': 'WebSite',
+          '@id': `${siteUrl}/#website`,
+        },
+        ...customData,
       };
 
     default:
@@ -101,9 +145,11 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
 const structuredData = getStructuredData(type, data);
 ---
 
-{structuredData && (
-  <script
-    type="application/ld+json"
-    set:html={JSON.stringify(structuredData, null, 0)}
-  />
-)}
+{
+  structuredData && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData, null, 0)}
+    />
+  )
+}
