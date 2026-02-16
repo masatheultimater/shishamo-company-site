@@ -1,7 +1,7 @@
 ---
 /**
  * MobileNav Component
- * Full-screen mobile navigation menu
+ * Full-screen mobile navigation with staggered animations
  */
 import { navigationItems, socialLinks } from '../../lib/siteConfig';
 import XIcon from '../ui/XIcon.astro';
@@ -9,53 +9,121 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
 ---
 
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-  <button class="mobile-nav__close" id="mobileNavClose" aria-label="メニューを閉じる">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <div class="mobile-nav__accent"></div>
+
+  <button
+    class="mobile-nav__close"
+    id="mobileNavClose"
+    aria-label="メニューを閉じる"
+  >
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
       <line x1="18" y1="6" x2="6" y2="18"></line>
       <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
   </button>
 
   <div class="mobile-nav__content">
-    {navigationItems.map((item) => (
-      <a href={item.href} class="mobile-nav__link">
-        {item.title}
-      </a>
-    ))}
-    <a href="/contact/" class="mobile-nav__cta">
-      お問い合わせ
-    </a>
-
-    <div class="mobile-nav__social">
-      <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="mobile-nav__social-link" aria-label={socialLinks.x.label}>
-        <XIcon size={18} />
-        <span>Xで最新情報をチェック</span>
-      </a>
-      <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="mobile-nav__social-link" aria-label={socialLinks.facebook.label}>
-        <FacebookIcon size={18} />
-        <span>Facebook</span>
+    <div class="mobile-nav__links">
+      {
+        navigationItems.map((item, i) => (
+          <a
+            href={item.href}
+            class="mobile-nav__link"
+            style={`--stagger: ${i}`}
+          >
+            {item.title}
+          </a>
+        ))
+      }
+      <a
+        href="/contact/"
+        class="mobile-nav__cta"
+        style={`--stagger: ${navigationItems.length}`}
+      >
+        お問い合わせ
       </a>
     </div>
 
-    <div class="mobile-nav__font-size" role="group" aria-label="文字サイズ調整">
-      <span class="mobile-nav__font-size-label">文字サイズ</span>
-      <div class="mobile-nav__font-size-buttons">
-        <button class="font-size-btn" data-font-size-level="small"
-          aria-label="文字サイズ: 小（標準）" aria-pressed="true">
-          <span class="font-size-btn__text font-size-btn__text--small">小</span>
-        </button>
-        <button class="font-size-btn" data-font-size-level="medium"
-          aria-label="文字サイズ: 中" aria-pressed="false">
-          <span class="font-size-btn__text font-size-btn__text--medium">中</span>
-        </button>
-        <button class="font-size-btn" data-font-size-level="large"
-          aria-label="文字サイズ: 大" aria-pressed="false">
-          <span class="font-size-btn__text font-size-btn__text--large">大</span>
-        </button>
-        <button class="font-size-btn" data-font-size-level="xlarge"
-          aria-label="文字サイズ: 特大" aria-pressed="false">
-          <span class="font-size-btn__text font-size-btn__text--xlarge">特大</span>
-        </button>
+    <div class="mobile-nav__footer">
+      <div class="mobile-nav__social">
+        <a
+          href={socialLinks.x.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mobile-nav__social-link"
+          aria-label={socialLinks.x.label}
+        >
+          <XIcon size={16} />
+        </a>
+        <a
+          href={socialLinks.facebook.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mobile-nav__social-link"
+          aria-label={socialLinks.facebook.label}
+        >
+          <FacebookIcon size={16} />
+        </a>
+      </div>
+
+      <div
+        class="mobile-nav__font-size"
+        role="group"
+        aria-label="文字サイズ調整"
+      >
+        <span class="mobile-nav__font-size-label">文字サイズ</span>
+        <div class="mobile-nav__font-size-buttons">
+          <button
+            class="font-size-btn"
+            data-font-size-level="small"
+            aria-label="文字サイズ: 小（標準）"
+            aria-pressed="true"
+          >
+            <span class="font-size-btn__text font-size-btn__text--small"
+              >小</span
+            >
+          </button>
+          <button
+            class="font-size-btn"
+            data-font-size-level="medium"
+            aria-label="文字サイズ: 中"
+            aria-pressed="false"
+          >
+            <span class="font-size-btn__text font-size-btn__text--medium"
+              >中</span
+            >
+          </button>
+          <button
+            class="font-size-btn"
+            data-font-size-level="large"
+            aria-label="文字サイズ: 大"
+            aria-pressed="false"
+          >
+            <span class="font-size-btn__text font-size-btn__text--large"
+              >大</span
+            >
+          </button>
+          <button
+            class="font-size-btn"
+            data-font-size-level="xlarge"
+            aria-label="文字サイズ: 特大"
+            aria-pressed="false"
+          >
+            <span class="font-size-btn__text font-size-btn__text--xlarge"
+              >特大</span
+            >
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -73,7 +141,6 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
       mobileNav.classList.add('mobile-nav--active');
       mobileMenuBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
-      // Focus the close button for accessibility
       mobileNavClose?.focus();
     }
 
@@ -84,7 +151,6 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
       mobileMenuBtn.focus();
     }
 
-    // Hamburger button opens menu
     mobileMenuBtn.addEventListener('click', () => {
       const isOpen = mobileNav.classList.contains('mobile-nav--active');
       if (isOpen) {
@@ -94,80 +160,100 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
       }
     });
 
-    // Close button inside overlay
     mobileNavClose?.addEventListener('click', closeMenu);
 
-    // Click on overlay background (not content) to close
     mobileNav.addEventListener('click', (e) => {
       if (e.target === mobileNav) {
         closeMenu();
       }
     });
 
-    // Close menu when clicking a link
-    mobileNav.querySelectorAll('a').forEach(link => {
+    mobileNav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
 
-    // Close menu on escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileNav.classList.contains('mobile-nav--active')) {
+      if (
+        e.key === 'Escape' &&
+        mobileNav.classList.contains('mobile-nav--active')
+      ) {
         closeMenu();
       }
     });
   }
 
-  // Initialize on page load
   initMobileNav();
-
-  // Re-initialize on Astro page transitions (if using View Transitions)
   document.addEventListener('astro:page-load', initMobileNav);
 </script>
 
 <style>
-  /* ===== MOBILE NAV — Glass Overlay ===== */
+  /* ===== MOBILE NAV — Animated Glass Overlay ===== */
   .mobile-nav {
-    display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: var(--color-overlay-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     z-index: 105;
+    display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
   }
 
   .mobile-nav--active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
-  /* Close button inside overlay */
+  /* Accent gradient line at top */
+  .mobile-nav__accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-semantic-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease 0.1s;
+  }
+
+  .mobile-nav--active .mobile-nav__accent {
+    transform: scaleX(1);
+  }
+
+  /* Close button — minimal */
   .mobile-nav__close {
     position: absolute;
-    top: 12px;
+    top: 16px;
     right: 16px;
     width: 44px;
     height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-surface-elevated);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-heading);
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
     cursor: pointer;
-    transition: all var(--transition-base);
+    border-radius: var(--radius-sm);
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
     z-index: 1;
   }
 
   .mobile-nav__close:hover,
   .mobile-nav__close:focus {
-    background: var(--color-surface-hover);
     color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
     outline: none;
   }
 
@@ -176,23 +262,52 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
     outline-offset: 2px;
   }
 
-  /* Content container to prevent overlay-click-to-close on content */
+  /* Content layout */
   .mobile-nav__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-xl);
+    justify-content: center;
+    gap: 48px;
     max-height: 100vh;
     overflow-y: auto;
-    padding: var(--space-xl) var(--space-md);
+    padding: 80px 24px 40px;
+    width: 100%;
+  }
+
+  /* Nav links group */
+  .mobile-nav__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Staggered slide-up animation */
+  .mobile-nav__link,
+  .mobile-nav__cta {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s ease,
+      color 0.2s ease;
+    transition-delay: calc(var(--stagger, 0) * 0.06s + 0.1s);
+  }
+
+  .mobile-nav--active .mobile-nav__link,
+  .mobile-nav--active .mobile-nav__cta {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .mobile-nav__link {
-    font-size: var(--font-size-xl);
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text-heading);
-    padding: var(--space-md) var(--space-xl);
-    transition: color var(--transition-slow);
+    padding: 12px 32px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
   }
 
   .mobile-nav__link:hover,
@@ -202,14 +317,14 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
   }
 
   .mobile-nav__cta {
-    margin-top: var(--space-md);
-    padding: var(--space-md) 2.5rem;
+    margin-top: 16px;
+    padding: 14px 40px;
     font-size: var(--font-size-lg);
+    font-weight: 600;
     background: var(--gradient-semantic-primary);
     color: var(--palette-white);
     border-radius: var(--radius-sm);
-    font-weight: 600;
-    transition: all var(--transition-slow);
+    text-decoration: none;
     box-shadow: var(--shadow-semantic-md);
   }
 
@@ -220,34 +335,40 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
     outline: none;
   }
 
-  /* Social Links */
+  /* Footer section */
+  .mobile-nav__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.35s;
+  }
+
+  .mobile-nav--active .mobile-nav__footer {
+    opacity: 1;
+  }
+
+  /* Social — icon-only pills */
   .mobile-nav__social {
     display: flex;
-    gap: var(--space-md);
-    margin-top: var(--space-xl);
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-border-subtle);
+    gap: 12px;
   }
 
   .mobile-nav__social-link {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    min-height: 44px;
-    padding: var(--space-sm) var(--space-lg);
-    font-size: var(--font-size-base);
-    font-weight: 500;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     color: var(--color-text-secondary);
     background: var(--color-surface-elevated);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    transition: all var(--transition-base);
-  }
-
-  .mobile-nav__social-link:first-child {
-    color: var(--color-text-heading);
-    background: var(--color-surface-hover);
-    border-color: var(--color-border-strong);
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      border-color 0.2s ease;
   }
 
   .mobile-nav__social-link:hover,
@@ -258,45 +379,46 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
     outline: none;
   }
 
-  /* Font Size Control */
+  /* Font Size Control — pill style */
   .mobile-nav__font-size {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-border-subtle);
+    gap: 12px;
   }
 
   .mobile-nav__font-size-label {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--color-text-muted);
     font-weight: 500;
   }
 
   .mobile-nav__font-size-buttons {
     display: flex;
-    gap: 6px;
+    gap: 4px;
+    background: var(--color-surface);
+    border-radius: var(--radius-full);
+    padding: 3px;
+    border: 1px solid var(--color-border);
   }
 
   .mobile-nav__font-size-buttons .font-size-btn {
-    background: var(--color-surface-elevated);
-    border: 1px solid var(--color-border);
-    min-width: 48px;
-    min-height: 48px;
-    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    min-width: 40px;
+    min-height: 36px;
+    border-radius: var(--radius-full);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-base);
-    color: var(--color-text-secondary);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+    color: var(--color-text-muted);
   }
 
   .mobile-nav__font-size-buttons .font-size-btn:hover,
   .mobile-nav__font-size-buttons .font-size-btn:focus {
-    background: var(--color-surface-hover);
     color: var(--color-text-heading);
     outline: none;
   }
@@ -307,15 +429,54 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
   }
 
   .mobile-nav__font-size-buttons .font-size-btn.font-size-btn--active {
-    background: var(--color-accent-subtle);
-    color: var(--color-accent);
-    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: var(--palette-white);
   }
 
   /* Button text sizes in px (must NOT self-scale) */
-  .font-size-btn__text { font-weight: 600; line-height: 1; }
-  .font-size-btn__text--small { font-size: 12px; }
-  .font-size-btn__text--medium { font-size: 14px; }
-  .font-size-btn__text--large { font-size: 16px; }
-  .font-size-btn__text--xlarge { font-size: 18px; }
+  .font-size-btn__text {
+    font-weight: 600;
+    line-height: 1;
+  }
+  .font-size-btn__text--small {
+    font-size: 11px;
+  }
+  .font-size-btn__text--medium {
+    font-size: 13px;
+  }
+  .font-size-btn__text--large {
+    font-size: 15px;
+  }
+  .font-size-btn__text--xlarge {
+    font-size: 17px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-nav {
+      transition: none;
+    }
+    .mobile-nav__accent {
+      transition: none;
+    }
+    .mobile-nav__link,
+    .mobile-nav__cta {
+      transition: none;
+      transition-delay: 0s;
+    }
+    .mobile-nav__footer {
+      transition: none;
+    }
+    .mobile-nav--active .mobile-nav__link,
+    .mobile-nav--active .mobile-nav__cta {
+      opacity: 1;
+      transform: none;
+    }
+    .mobile-nav--active .mobile-nav__footer {
+      opacity: 1;
+    }
+    .mobile-nav--active .mobile-nav__accent {
+      transform: scaleX(1);
+    }
+  }
 </style>
