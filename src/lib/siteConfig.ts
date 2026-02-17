@@ -22,9 +22,10 @@ export const siteBranding = {
   ownerNickname: 'ししゃも',
   ownerReading: 'よしかわ まさひろ',
   clientName: 'ししゃもカンパニー',
-  tagline: 'IT × 経営 × 財務で、踏み出す人を支える',
+  tagline: 'IT・会計・経営、まとめて聞ける',
   concept: '踏み出す人の、すぐ横にいる。',
-  philosophy: 'データとテクノロジーの力で、あなたの会社の「なんとかしたい」を一緒に解決します。',
+  philosophy:
+    'IT・会計・経営の3つの視点で、中小企業の経営課題を一緒に整理します。',
   year: new Date().getFullYear(),
 } as const;
 
