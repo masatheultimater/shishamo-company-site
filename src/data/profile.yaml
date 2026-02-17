@@ -4,7 +4,7 @@
 name: 吉川 昌宏
 nameReading: よしかわ まさひろ
 handle-name: ししゃも
-subtitle: IT × 経営 × 財務で、踏み出す人を支える
+subtitle: IT・会計・経営、まとめて聞ける
 icon: public/自画像_シンプル背景.png
 
 # バッジ（資格・肩書きのハイライト）
@@ -18,13 +18,13 @@ badges:
 
 # 実績数字
 stats:
-  - number: "12"
+  - number: '12'
     label: 年のWeb開発経験
-  - number: "1"
+  - number: '1'
     label: 年の会計事務所経験
-  - number: "5+"
+  - number: '5+'
     label: 保有資格
-  - number: "∞"
+  - number: '∞'
     label: 挑戦への情熱
 
 # 経歴（タイムライン）
