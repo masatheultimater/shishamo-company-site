@@ -1,0 +1,368 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import StructuredData from '../../components/seo/StructuredData.astro';
+import { Icon } from 'astro-icon/components';
+import '../../styles/diagnostic.css';
+import {
+  diagnosticTree,
+  DIAGNOSTIC_START,
+  getQuestionCount,
+} from '../../data/diagnostic';
+import { serviceData } from '../../data/services';
+import { siteMetadata } from '../../lib/siteConfig';
+
+const questionCount = getQuestionCount();
+const treeValues = Object.values(diagnosticTree);
+---
+
+<Layout
+  title="簡易経営診断"
+  description="5分で経営課題を診断。あなたの事業に必要なサービスを提案します。"
+>
+  <StructuredData
+    slot="head"
+    type="WebPage"
+    data={{
+      name: '簡易経営診断',
+      url: `${siteMetadata.siteUrl}/diagnostic/`,
+      description:
+        '5分で経営課題を診断。あなたの事業に必要なサービスを提案します。',
+    }}
+  />
+
+  <section class="page-header">
+    <div class="page-header-content">
+      <h1>簡易経営診断</h1>
+      <p>5分で、今の課題と次の一手を整理します。</p>
+    </div>
+  </section>
+
+  <section class="diag-container diagnostic-container">
+    <div class="diag-progress" id="diag-progress" aria-live="polite">
+      STEP 1 / {questionCount}
+    </div>
+    <button type="button" class="diag-back-btn" id="diag-back-btn" hidden>
+      <Icon name="ri:arrow-left-line" size={14} />
+      <span>前の質問に戻る</span>
+    </button>
+
+    <div class="diag-stage" id="diag-stage" data-dir="forward">
+      {
+        treeValues.map((node) =>
+          node.type === 'question' ? (
+            <fieldset
+              class="diag-card diag-question-node"
+              data-node-id={node.id}
+              hidden={node.id !== DIAGNOSTIC_START}
+            >
+              <legend class="diag-question">{node.text}</legend>
+              {node.hint && <p class="diag-hint">{node.hint}</p>}
+              <div class="diag-answers">
+                {node.answers.map((answer) => (
+                  <button
+                    type="button"
+                    class="diag-answer-btn"
+                    data-next-id={answer.nextId}
+                    data-question-id={node.id}
+                    data-answer-text={answer.text}
+                  >
+                    {answer.text}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+          ) : null
+        )
+      }
+
+      {
+        treeValues.map((node) => {
+          if (node.type !== 'result') return null;
+
+          return (
+            <section
+              class="diag-card diag-result diag-result-node"
+              data-result-id={node.id}
+              hidden
+            >
+              <h2 class="diag-result-title">{node.title}</h2>
+              <p class="diag-result-desc">{node.description}</p>
+
+              <div class="diag-services">
+                {node.recommendedServices.map((serviceId) => {
+                  const service = serviceData[serviceId];
+                  if (!service) return null;
+
+                  return (
+                    <article class="diag-service-card">
+                      <h3>
+                        <Icon name={service.icon} size={18} />
+                        <span>{service.title}</span>
+                      </h3>
+                      <p>
+                        料金目安: {service.priceRange}
+                        {service.priceUnit}
+                      </p>
+                      <a
+                        href={`/services/${service.id}/`}
+                        class="btn-secondary"
+                        data-track-cta="diagnostic-result"
+                      >
+                        このサービスを詳しく見る
+                      </a>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div class="diag-cta-group">
+                <a
+                  href={`/contact/?diagnostic=${node.id}&prefill=${encodeURIComponent(node.contactPreFill)}`}
+                  class="btn-primary"
+                  data-track-cta="diagnostic-result"
+                >
+                  無料で相談する
+                  <Icon name="ri:arrow-right-line" size={14} />
+                </a>
+                <button type="button" class="btn-ghost" data-action="restart">
+                  もう一度診断する
+                </button>
+              </div>
+            </section>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <script>
+    import {
+      trackDiagnosticStart,
+      trackDiagnosticAnswer,
+      trackDiagnosticComplete,
+    } from '../../lib/analytics';
+    import {
+      diagnosticTree,
+      DIAGNOSTIC_START,
+      getQuestionCount,
+    } from '../../data/diagnostic';
+
+    const STORAGE_KEY = 'diagnostic_state_v1';
+    const START_NODE_ID = DIAGNOSTIC_START;
+    const TOTAL_QUESTIONS = getQuestionCount();
+    const tree = diagnosticTree;
+
+    const stage = document.getElementById('diag-stage') as HTMLElement | null;
+    const progress = document.getElementById(
+      'diag-progress'
+    ) as HTMLElement | null;
+    const backBtn = document.getElementById(
+      'diag-back-btn'
+    ) as HTMLButtonElement | null;
+
+    if (stage && progress && backBtn) {
+      let currentNodeId = START_NODE_ID;
+      let history: string[] = [];
+      let activePanel: HTMLElement | null =
+        stage.querySelector(`[data-node-id="${START_NODE_ID}"]`) || null;
+      let startedTracked = false;
+      const completedResults = new Set<string>();
+
+      const isQuestion = (id: string) => tree[id]?.type === 'question';
+      const isResult = (id: string) => tree[id]?.type === 'result';
+
+      const saveState = () => {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({
+            history,
+            currentNodeId,
+          })
+        );
+      };
+
+      const updateProgress = () => {
+        if (isQuestion(currentNodeId)) {
+          progress.textContent = `STEP ${history.length + 1} / ${TOTAL_QUESTIONS}`;
+        } else {
+          progress.textContent = '診断結果';
+        }
+      };
+
+      const updateBackButton = () => {
+        backBtn.hidden = history.length === 0;
+      };
+
+      const clearHash = () => {
+        if (!window.location.hash) return;
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}`
+        );
+      };
+
+      const animateTo = (
+        nextPanel: HTMLElement,
+        direction: 'forward' | 'back'
+      ) => {
+        stage.dataset.dir = direction;
+
+        if (activePanel === nextPanel) {
+          activePanel.hidden = false;
+          return;
+        }
+
+        nextPanel.hidden = false;
+        nextPanel.classList.add('diag-card--enter');
+
+        if (activePanel) {
+          activePanel.classList.add('diag-card--exit');
+        }
+
+        requestAnimationFrame(() => {
+          nextPanel.classList.remove('diag-card--enter');
+        });
+
+        window.setTimeout(() => {
+          if (activePanel) {
+            activePanel.hidden = true;
+            activePanel.classList.remove('diag-card--exit');
+          }
+          activePanel = nextPanel;
+        }, 220);
+      };
+
+      const showCurrentNode = (direction: 'forward' | 'back' = 'forward') => {
+        const node = tree[currentNodeId];
+        if (!node) {
+          currentNodeId = START_NODE_ID;
+        }
+
+        if (isQuestion(currentNodeId)) {
+          clearHash();
+          const panel = stage.querySelector(
+            `[data-node-id="${currentNodeId}"]`
+          ) as HTMLElement | null;
+          if (panel) animateTo(panel, direction);
+        }
+
+        if (isResult(currentNodeId)) {
+          const result = tree[currentNodeId];
+          const panel = stage.querySelector(
+            `[data-result-id="${currentNodeId}"]`
+          ) as HTMLElement | null;
+          if (panel) animateTo(panel, direction);
+
+          window.location.hash = `result=${encodeURIComponent(result.id)}`;
+
+          if (!completedResults.has(result.id)) {
+            completedResults.add(result.id);
+            trackDiagnosticComplete(result.id, result.recommendedServices);
+          }
+        }
+
+        updateProgress();
+        updateBackButton();
+      };
+
+      const moveToNext = (
+        nextId: string,
+        questionId: string,
+        answerText: string
+      ) => {
+        if (!tree[nextId]) return;
+
+        if (!startedTracked) {
+          startedTracked = true;
+          trackDiagnosticStart();
+        }
+
+        trackDiagnosticAnswer(questionId, answerText);
+        history.push(currentNodeId);
+        currentNodeId = nextId;
+        saveState();
+        showCurrentNode('forward');
+      };
+
+      const goBack = () => {
+        if (history.length === 0) return;
+        const prev = history.pop();
+        if (!prev) return;
+        currentNodeId = prev;
+        saveState();
+        showCurrentNode('back');
+      };
+
+      const restart = () => {
+        history = [];
+        currentNodeId = START_NODE_ID;
+        localStorage.removeItem(STORAGE_KEY);
+        showCurrentNode('back');
+      };
+
+      stage.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement;
+        const answerBtn = target.closest(
+          '.diag-answer-btn'
+        ) as HTMLButtonElement | null;
+        const restartBtn = target.closest(
+          '[data-action="restart"]'
+        ) as HTMLButtonElement | null;
+
+        if (answerBtn) {
+          const nextId = answerBtn.dataset.nextId;
+          const questionId = answerBtn.dataset.questionId || '';
+          const answerText = answerBtn.dataset.answerText || '';
+          if (nextId) moveToNext(nextId, questionId, answerText);
+        }
+
+        if (restartBtn) {
+          restart();
+        }
+      });
+
+      backBtn.addEventListener('click', goBack);
+
+      const hash = window.location.hash;
+      const hashMatch = hash.match(/^#result=(.+)$/);
+
+      if (hashMatch) {
+        const resultId = decodeURIComponent(hashMatch[1]);
+        if (isResult(resultId)) {
+          currentNodeId = resultId;
+          showCurrentNode('forward');
+        } else {
+          showCurrentNode('forward');
+        }
+      } else {
+        const rawState = localStorage.getItem(STORAGE_KEY);
+        if (rawState) {
+          try {
+            const parsed = JSON.parse(rawState) as {
+              history?: string[];
+              currentNodeId?: string;
+            };
+            const restoredHistory = Array.isArray(parsed.history)
+              ? parsed.history.filter(
+                  (id) => typeof id === 'string' && tree[id]
+                )
+              : [];
+            const restoredCurrent =
+              parsed.currentNodeId && tree[parsed.currentNodeId]
+                ? parsed.currentNodeId
+                : START_NODE_ID;
+
+            history = restoredHistory;
+            currentNodeId = restoredCurrent;
+          } catch {
+            history = [];
+            currentNodeId = START_NODE_ID;
+          }
+        }
+
+        showCurrentNode('forward');
+      }
+    }
+  </script>
+</Layout>

@@ -1,0 +1,233 @@
+.diag-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.diag-progress {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.875rem;
+}
+
+.diag-stage {
+  position: relative;
+}
+
+.diag-card {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-semantic-lg);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+}
+
+.diag-question-node {
+  margin: 0;
+}
+
+.diag-question {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--color-text-heading);
+  font-size: 1.5rem;
+  line-height: 1.45;
+  margin-bottom: 0.75rem;
+}
+
+.diag-hint {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.diag-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.diag-answer-btn {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+  transition:
+    border-color var(--transition-slow),
+    box-shadow var(--transition-slow),
+    background-color var(--transition-slow),
+    color var(--transition-slow),
+    transform var(--transition-slow);
+  cursor: pointer;
+}
+
+.diag-answer-btn:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+  color: var(--color-text-heading);
+  transform: translateX(3px);
+}
+
+.diag-answer-btn:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-subtle);
+}
+
+.diag-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.85rem;
+  margin-bottom: 0.875rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-slow);
+}
+
+.diag-back-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.diag-result {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.diag-result-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-text-heading);
+  line-height: 1.4;
+}
+
+.diag-result-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.diag-services {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.diag-service-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diag-service-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-text-heading);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.diag-service-card p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.diag-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.diag-card--enter {
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+.diag-card--exit {
+  opacity: 0;
+  transform: translateX(-16px);
+}
+
+.diag-stage[data-dir='back'] .diag-card--enter {
+  transform: translateX(-16px);
+}
+
+.diag-stage[data-dir='back'] .diag-card--exit {
+  transform: translateX(16px);
+}
+
+@media (max-width: 768px) {
+  .diag-container {
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .diag-card {
+    padding: 1.5rem;
+  }
+
+  .diag-question,
+  .diag-result-title {
+    font-size: 1.35rem;
+  }
+
+  .diag-services {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .diag-container {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .diag-card {
+    padding: 1.2rem;
+  }
+
+  .diag-question,
+  .diag-result-title {
+    font-size: 1.2rem;
+  }
+
+  .diag-answer-btn,
+  .diag-result-desc,
+  .diag-hint {
+    font-size: 0.95rem;
+  }
+
+  .diag-cta-group {
+    flex-direction: column;
+  }
+
+  .diag-cta-group > * {
+    width: 100%;
+    justify-content: center;
+  }
+}

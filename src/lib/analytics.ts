@@ -42,7 +42,11 @@ function pushEvent(event: string, params: Record<string, unknown>): void {
  * Uses GTM's eventCallback to wait for tag processing before navigation.
  * Falls back to timeout if GTM is slow or unavailable.
  */
-function pushEventAndNavigate(event: string, params: Record<string, unknown>, url: string): void {
+function pushEventAndNavigate(
+  event: string,
+  params: Record<string, unknown>,
+  url: string
+): void {
   if (typeof window === 'undefined') return;
 
   let navigated = false;
@@ -72,7 +76,10 @@ export function trackFormSubmit(params: FormSubmitParams): void {
   pushEvent('form_submit', { ...params });
 }
 
-export function trackCTAClick(params: CTAClickParams, navigateTo?: string): void {
+export function trackCTAClick(
+  params: CTAClickParams,
+  navigateTo?: string
+): void {
   if (navigateTo) {
     pushEventAndNavigate('cta_click', { ...params }, navigateTo);
   } else {
@@ -96,7 +103,8 @@ export function initScrollTracking(): void {
 
   const check = () => {
     const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const docHeight =
+      document.documentElement.scrollHeight - window.innerHeight;
     if (docHeight <= 0) return;
     const pct = Math.round((scrollTop / docHeight) * 100);
 
@@ -112,19 +120,33 @@ export function initScrollTracking(): void {
   };
 
   let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(() => { check(); ticking = false; });
-    }
-  }, { passive: true });
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          check();
+          ticking = false;
+        });
+      }
+    },
+    { passive: true }
+  );
 }
 
-export function trackProblemClick(problemText: string, targetUrl: string): void {
-  pushEventAndNavigate('problem_card_click', {
-    problem_text: problemText,
-    problem_target: targetUrl,
-  }, targetUrl);
+export function trackProblemClick(
+  problemText: string,
+  targetUrl: string
+): void {
+  pushEventAndNavigate(
+    'problem_card_click',
+    {
+      problem_text: problemText,
+      problem_target: targetUrl,
+    },
+    targetUrl
+  );
 }
 
 export interface BlogReadParams {
@@ -141,7 +163,10 @@ export function trackBlogRead(params: BlogReadParams): void {
  * Track form abandonment when user starts filling but doesn't submit.
  * Fires once on visibilitychange=hidden if form was interacted with.
  */
-export function initFormAbandonmentTracking(formId: string, formType: 'contact' | 'quote'): void {
+export function initFormAbandonmentTracking(
+  formId: string,
+  formType: 'contact' | 'quote'
+): void {
   if (typeof window === 'undefined') return;
 
   const form = document.getElementById(formId) as HTMLFormElement | null;
@@ -160,16 +185,22 @@ export function initFormAbandonmentTracking(formId: string, formType: 'contact' 
     }
   });
 
-  form.addEventListener('submit', () => { submitted = true; });
+  form.addEventListener('submit', () => {
+    submitted = true;
+  });
 
   const trackAbandonment = () => {
     if (!started || submitted || tracked) return;
     tracked = true;
 
     let filled = 0;
-    form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
-      'input:not([type="hidden"]):not([type="checkbox"]), select, textarea'
-    ).forEach(el => { if (el.value.trim()) filled++; });
+    form
+      .querySelectorAll<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >('input:not([type="hidden"]):not([type="checkbox"]), select, textarea')
+      .forEach((el) => {
+        if (el.value.trim()) filled++;
+      });
 
     pushEvent('form_abandonment', {
       form_type: formType,
@@ -208,7 +239,10 @@ export function initEngagementTracking(thresholdMs: number = 60000): void {
   const schedule = () => {
     if (fired) return;
     const remaining = thresholdMs - accumulated;
-    if (remaining <= 0) { fire(); return; }
+    if (remaining <= 0) {
+      fire();
+      return;
+    }
     segmentStart = Date.now();
     timerId = setTimeout(fire, remaining);
   };
@@ -216,11 +250,45 @@ export function initEngagementTracking(thresholdMs: number = 60000): void {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
       accumulated += Date.now() - segmentStart;
-      if (timerId) { clearTimeout(timerId); timerId = null; }
+      if (timerId) {
+        clearTimeout(timerId);
+        timerId = null;
+      }
     } else {
       schedule();
     }
   });
 
   schedule();
+}
+
+export function trackDiagnosticStart(): void {
+  if (typeof window === 'undefined') return;
+  pushEvent('diagnostic_start', {
+    page_path: window.location.pathname,
+  });
+}
+
+export function trackDiagnosticAnswer(
+  questionId: string,
+  answerText: string
+): void {
+  if (typeof window === 'undefined') return;
+  pushEvent('diagnostic_answer', {
+    question_id: questionId,
+    answer_text: answerText,
+    page_path: window.location.pathname,
+  });
+}
+
+export function trackDiagnosticComplete(
+  resultId: string,
+  recommendedServices: string[]
+): void {
+  if (typeof window === 'undefined') return;
+  pushEvent('diagnostic_complete', {
+    result_id: resultId,
+    recommended_services: recommendedServices.join(','),
+    page_path: window.location.pathname,
+  });
 }

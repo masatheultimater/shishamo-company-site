@@ -234,6 +234,26 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
           const params = new URLSearchParams(window.location.search);
           const problemsParam = params.get('problems');
+          const diagnosticResultId = params.get('diagnostic');
+          const diagnosticPrefill = params.get('prefill');
+          const textarea = document.getElementById(
+            'contact-message'
+          ) as HTMLTextAreaElement | null;
+          const select = document.getElementById(
+            'contact-category'
+          ) as HTMLSelectElement | null;
+
+          if (
+            diagnosticResultId &&
+            diagnosticPrefill &&
+            textarea &&
+            !textarea.value
+          ) {
+            textarea.value =
+              `簡易経営診断の結果（${diagnosticResultId}）を見て相談したいです。\n` +
+              `${diagnosticPrefill}\n`;
+          }
+
           if (problemsParam) {
             const indices = problemsParam
               .split(',')
@@ -242,9 +262,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
             if (indices.length > 0) {
               // Pre-fill textarea
-              const textarea = document.getElementById(
-                'contact-message'
-              ) as HTMLTextAreaElement | null;
               if (textarea && !textarea.value) {
                 const lines = indices
                   .map((i) => `・${problemTexts[i]}`)
@@ -256,9 +273,6 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
               const categories = [
                 ...new Set(indices.map((i) => problemCategories[i])),
               ];
-              const select = document.getElementById(
-                'contact-category'
-              ) as HTMLSelectElement | null;
               if (select && !select.value) {
                 select.value =
                   categories.length === 1 ? categories[0] : 'other';
