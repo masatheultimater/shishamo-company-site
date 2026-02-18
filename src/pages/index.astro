@@ -23,7 +23,6 @@ import { socialLinks, siteMetadata } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
 import StructuredData from '../components/seo/StructuredData.astro';
 import XIcon from '../components/ui/XIcon.astro';
-import FacebookIcon from '../components/ui/FacebookIcon.astro';
 import '../styles/home.css';
 
 const profileData = loadProfile();
@@ -80,16 +79,6 @@ const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
           >
             <XIcon size={13} />
             <span>{socialLinks.x.handle}</span>
-          </a>
-          <a
-            href={socialLinks.facebook.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="profile-social-link"
-            aria-label={socialLinks.facebook.label}
-          >
-            <FacebookIcon size={13} />
-            <span>ししゃもカンパニー</span>
           </a>
         </div>
         <div class="profile-name">吉川 昌宏</div>
