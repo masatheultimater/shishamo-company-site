@@ -24,8 +24,7 @@ export const siteBranding = {
   clientName: 'ししゃもカンパニー',
   tagline: 'IT・会計・経営、まとめて聞ける',
   concept: '踏み出す人の、すぐ横にいる。',
-  philosophy:
-    'IT・会計・経営の3つの視点で、中小企業の経営課題を一緒に整理します。',
+  philosophy: '共感も否定もしない。まず聞く。根拠をもって、一緒に動く。',
   year: new Date().getFullYear(),
 } as const;
 

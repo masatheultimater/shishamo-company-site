@@ -41,20 +41,48 @@ export interface QualificationGroup {
 export const serviceIdToCategoryMap: Record<string, string> = {
   'web-development': 'dx',
   'dx-consulting': 'dx',
-  'bookkeeping': 'accounting',
+  bookkeeping: 'accounting',
   'subsidy-support': 'management',
   'management-consulting': 'management',
 };
 
 /** Section 3: Checkbox-style problem items with service mapping */
 export const problemItems: ProblemItem[] = [
-  { text: '独立したけど、HPも名刺もまだない', serviceId: 'web-development', serviceName: 'Web開発' },
-  { text: 'デジタル化したいけど、何から手をつければいいかわからない', serviceId: 'dx-consulting', serviceName: 'DX推進' },
-  { text: '数字の管理がどんぶり勘定のまま', serviceId: 'bookkeeping', serviceName: '記帳代行' },
-  { text: '業務が属人化して、自分が倒れたら回らない', serviceId: 'dx-consulting', serviceName: 'DX推進' },
-  { text: 'ITツールを入れたけど、誰も使いこなせていない', serviceId: 'dx-consulting', serviceName: 'DX推進' },
-  { text: '補助金・助成金を使いたいけど、申請が難しそう', serviceId: 'subsidy-support', serviceName: '補助金申請' },
-  { text: '事業承継を考え始めたけど、何を準備すればいいのかわからない', serviceId: 'management-consulting', serviceName: '経営支援' },
+  {
+    text: '独立したけど、HPも名刺もまだない',
+    serviceId: 'web-development',
+    serviceName: 'Web開発',
+  },
+  {
+    text: 'デジタル化したいけど、何から手をつければいいかわからない',
+    serviceId: 'dx-consulting',
+    serviceName: 'DX推進',
+  },
+  {
+    text: '数字の管理がどんぶり勘定のまま',
+    serviceId: 'bookkeeping',
+    serviceName: '記帳代行',
+  },
+  {
+    text: '業務が属人化して、自分が倒れたら回らない',
+    serviceId: 'dx-consulting',
+    serviceName: 'DX推進',
+  },
+  {
+    text: 'ITツールを入れたけど、誰も使いこなせていない',
+    serviceId: 'dx-consulting',
+    serviceName: 'DX推進',
+  },
+  {
+    text: '補助金・助成金を使いたいけど、申請が難しそう',
+    serviceId: 'subsidy-support',
+    serviceName: '補助金申請',
+  },
+  {
+    text: '事業承継を考え始めたけど、何を準備すればいいのかわからない',
+    serviceId: 'management-consulting',
+    serviceName: '経営支援',
+  },
 ];
 
 /** Section 4: What we do (3 cards) */
@@ -73,9 +101,9 @@ export const yarukotoItems: YarukotoItem[] = [
   },
   {
     number: '03',
-    title: 'ITは手段。目的は、御社の困りごとを減らすこと。',
+    title: 'ITは手段。目的は、困りごとを減らすこと。',
     description:
-      'このサイトは Astro + microCMS + Cloudflare で構築しています（年間運用コストはドメイン代だけ）。同じ考え方で、御社にも「必要十分な技術を、最小コストで」提案します。大がかりな改革より、明日から使える改善を。',
+      'このサイトは Astro + microCMS + Cloudflare で構築しています（年間運用コストはドメイン代だけ）。同じ考え方で、「必要十分な技術を、最小コストで」提案します。大がかりな改革より、明日から使える改善を。',
   },
 ];
 
@@ -84,7 +112,10 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: '経営の伴走支援',
     items: [
-      { text: '事業計画の策定、経営数値の分析、経営改善の提案', serviceId: 'management-consulting' },
+      {
+        text: '事業計画の策定、経営数値の分析、経営改善の提案',
+        serviceId: 'management-consulting',
+      },
       { text: '補助金・助成金の申請支援', serviceId: 'subsidy-support' },
       { text: '事業承継・M&Aの初期相談', serviceId: 'management-consulting' },
     ],
@@ -92,16 +123,28 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: 'IT・DX支援',
     items: [
-      { text: 'Webサイトの企画・構築・運用（自社で保守可能な形で）', serviceId: 'web-development' },
-      { text: '業務システムの選定・導入・定着支援', serviceId: 'dx-consulting' },
-      { text: 'データ分析基盤の構築、経営ダッシュボードの作成', serviceId: 'kpi-dashboard' },
+      {
+        text: 'Webサイトの企画・構築・運用（自社で保守可能な形で）',
+        serviceId: 'web-development',
+      },
+      {
+        text: '業務システムの選定・導入・定着支援',
+        serviceId: 'dx-consulting',
+      },
+      {
+        text: 'データ分析基盤の構築、経営ダッシュボードの作成',
+        serviceId: 'kpi-dashboard',
+      },
     ],
   },
   {
     title: '財務・会計の整備',
     items: [
       { text: '記帳・月次の仕組みづくり', serviceId: 'bookkeeping' },
-      { text: '管理会計の導入、経営判断に使える数字の整備', serviceId: 'data-analysis' },
+      {
+        text: '管理会計の導入、経営判断に使える数字の整備',
+        serviceId: 'data-analysis',
+      },
     ],
     note: '※ 税理士資格取得後、税務顧問サービスを開始予定です。現在は税理士科目合格（簿記論）の状態で、法人税法・相続税法を学習中です。',
   },
@@ -146,8 +189,6 @@ export const qualificationGroups: QualificationGroup[] = [
   },
   {
     axis: '数字がわかる',
-    items: [
-      '税理士科目合格（簿記論）※法人税法・相続税法 学習中',
-    ],
+    items: ['税理士科目合格（簿記論）※法人税法・相続税法 学習中'],
   },
 ];
