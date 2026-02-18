@@ -12,9 +12,8 @@ import {
 } from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
 import XIcon from '../ui/XIcon.astro';
-import FacebookIcon from '../ui/FacebookIcon.astro';
 
-interface Props {}
+type Props = Record<string, never>;
 ---
 
 <footer class="footer">
@@ -26,13 +25,16 @@ interface Props {}
         </span>
         <span class="footer__logo-text">SHISHAMO COMPANY</span>
       </div>
-      <p>{siteBranding.tagline}<br>{siteBranding.concept}</p>
+      <p>{siteBranding.tagline}<br />{siteBranding.concept}</p>
       <div class="footer__social">
-        <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label={socialLinks.x.label}>
+        <a
+          href={socialLinks.x.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer__social-link"
+          aria-label={socialLinks.x.label}
+        >
           <XIcon size={16} />
-        </a>
-        <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="footer__social-link" aria-label={socialLinks.facebook.label}>
-          <FacebookIcon size={16} />
         </a>
       </div>
     </div>
@@ -40,39 +42,48 @@ interface Props {}
     <div class="footer__links">
       <h4>サービス</h4>
       <ul>
-        {footerServiceLinks.map((link) => (
-          <li>
-            <a href={link.href}>{link.name}</a>
-          </li>
-        ))}
+        {
+          footerServiceLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.name}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <div class="footer__links">
       <h4>情報</h4>
       <ul>
-        {footerInfoLinks.map((link) => (
-          <li>
-            <a href={link.href}>{link.name}</a>
-          </li>
-        ))}
+        {
+          footerInfoLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.name}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
 
     <div class="footer__links">
       <h4>お問い合わせ</h4>
       <ul>
-        {footerContactLinks.map((link) => (
-          <li>
-            <a href={link.href}>{link.name}</a>
-          </li>
-        ))}
+        {
+          footerContactLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.name}</a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
 
   <div class="footer__bottom">
-    <p>&copy; {siteBranding.year} {siteBranding.clientName} All rights reserved.</p>
+    <p>
+      &copy; {siteBranding.year}
+      {siteBranding.clientName} All rights reserved.
+    </p>
   </div>
 </footer>
 

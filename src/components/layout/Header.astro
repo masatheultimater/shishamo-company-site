@@ -3,10 +3,13 @@
  * Header Component
  * Implements HeaderProps from shared/contracts/components.ts
  */
-import { siteBranding, navigationItems, socialLinks } from '../../lib/siteConfig';
+import {
+  siteBranding,
+  navigationItems,
+  socialLinks,
+} from '../../lib/siteConfig';
 import Logo from '../ui/Logo.astro';
 import XIcon from '../ui/XIcon.astro';
-import FacebookIcon from '../ui/FacebookIcon.astro';
 import { Icon } from 'astro-icon/components';
 
 interface Props {
@@ -17,7 +20,7 @@ interface Props {
 const { currentPage, transparent = false } = Astro.props;
 ---
 
-<header class:list={["header", { "header--transparent": transparent }]}>
+<header class:list={['header', { 'header--transparent': transparent }]}>
   <div class="header-inner">
     <div class="logo-group">
       <a href="/" class="logo">
@@ -26,86 +29,179 @@ const { currentPage, transparent = false } = Astro.props;
         </div>
         <div class="logo-text">SHISHAMO COMPANY</div>
       </a>
-      <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-x-link" aria-label={socialLinks.x.label}>
+      <a
+        href={socialLinks.x.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-social-link header-x-link"
+        aria-label={socialLinks.x.label}
+      >
         <XIcon size={14} />
-      </a>
-      <a href={socialLinks.facebook.url} target="_blank" rel="noopener noreferrer" class="header-social-link header-fb-link" aria-label={socialLinks.facebook.label}>
-        <FacebookIcon size={14} />
       </a>
     </div>
 
     <nav class="nav" aria-label="Main navigation">
-      {navigationItems.map((item) => (
-        <a
-          href={item.href}
-          class:list={["nav-link", { "nav-link--active": currentPage === item.slug }]}
-        >
-          {item.title}
-        </a>
-      ))}
-      <a href="/contact/" class:list={["nav-cta", { "nav-cta--active": currentPage === 'contact' }]}>
+      {
+        navigationItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'nav-link',
+              { 'nav-link--active': currentPage === item.slug },
+            ]}
+          >
+            {item.title}
+          </a>
+        ))
+      }
+      <a
+        href="/contact/"
+        class:list={[
+          'nav-cta',
+          { 'nav-cta--active': currentPage === 'contact' },
+        ]}
+      >
         無料相談
       </a>
       <button class="theme-toggle" id="themeToggle" aria-label="テーマ切り替え">
-        <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
-        <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
+        <Icon
+          name="ri:sun-line"
+          class="theme-icon theme-icon--light"
+          size={18}
+        />
+        <Icon
+          name="ri:moon-line"
+          class="theme-icon theme-icon--dark"
+          size={18}
+        />
       </button>
       <div class="font-size-control" role="group" aria-label="文字サイズ調整">
         <span class="font-size-label" aria-hidden="true">文字</span>
-        <button class="font-size-btn" data-font-size-level="small"
-          aria-label="文字サイズ: 小（標準）" aria-pressed="true">
+        <button
+          class="font-size-btn"
+          data-font-size-level="small"
+          aria-label="文字サイズ: 小（標準）"
+          aria-pressed="true"
+        >
           <span class="font-size-btn__text font-size-btn__text--small">小</span>
         </button>
-        <button class="font-size-btn" data-font-size-level="medium"
-          aria-label="文字サイズ: 中" aria-pressed="false">
-          <span class="font-size-btn__text font-size-btn__text--medium">中</span>
+        <button
+          class="font-size-btn"
+          data-font-size-level="medium"
+          aria-label="文字サイズ: 中"
+          aria-pressed="false"
+        >
+          <span class="font-size-btn__text font-size-btn__text--medium">中</span
+          >
         </button>
-        <button class="font-size-btn" data-font-size-level="large"
-          aria-label="文字サイズ: 大" aria-pressed="false">
+        <button
+          class="font-size-btn"
+          data-font-size-level="large"
+          aria-label="文字サイズ: 大"
+          aria-pressed="false"
+        >
           <span class="font-size-btn__text font-size-btn__text--large">大</span>
         </button>
-        <button class="font-size-btn" data-font-size-level="xlarge"
-          aria-label="文字サイズ: 特大" aria-pressed="false">
-          <span class="font-size-btn__text font-size-btn__text--xlarge">特大</span>
+        <button
+          class="font-size-btn"
+          data-font-size-level="xlarge"
+          aria-label="文字サイズ: 特大"
+          aria-pressed="false"
+        >
+          <span class="font-size-btn__text font-size-btn__text--xlarge"
+            >特大</span
+          >
         </button>
       </div>
     </nav>
 
     <div class="header-actions">
-      <a href={socialLinks.x.url} target="_blank" rel="noopener noreferrer" class="header-actions__x-link" aria-label={socialLinks.x.label}>
+      <a
+        href={socialLinks.x.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-actions__x-link"
+        aria-label={socialLinks.x.label}
+      >
         <XIcon size={16} />
       </a>
       <div class="font-size-wrapper">
-        <button class="font-size-toggle" id="fontSizeToggle"
-          aria-label="文字サイズを変更" aria-haspopup="true" aria-expanded="false">
+        <button
+          class="font-size-toggle"
+          id="fontSizeToggle"
+          aria-label="文字サイズを変更"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           <span class="font-size-toggle__text">Aa</span>
         </button>
-        <div class="font-size-popover" id="fontSizePopover" role="group"
-          aria-label="文字サイズ選択" hidden>
+        <div
+          class="font-size-popover"
+          id="fontSizePopover"
+          role="group"
+          aria-label="文字サイズ選択"
+          hidden
+        >
           <span class="font-size-popover__label">文字サイズ</span>
           <div class="font-size-popover__buttons">
-            <button class="font-size-btn" data-font-size-level="small"
-              aria-label="文字サイズ: 小（標準）" aria-pressed="true">
-              <span class="font-size-btn__text font-size-btn__text--small">小</span>
+            <button
+              class="font-size-btn"
+              data-font-size-level="small"
+              aria-label="文字サイズ: 小（標準）"
+              aria-pressed="true"
+            >
+              <span class="font-size-btn__text font-size-btn__text--small"
+                >小</span
+              >
             </button>
-            <button class="font-size-btn" data-font-size-level="medium"
-              aria-label="文字サイズ: 中" aria-pressed="false">
-              <span class="font-size-btn__text font-size-btn__text--medium">中</span>
+            <button
+              class="font-size-btn"
+              data-font-size-level="medium"
+              aria-label="文字サイズ: 中"
+              aria-pressed="false"
+            >
+              <span class="font-size-btn__text font-size-btn__text--medium"
+                >中</span
+              >
             </button>
-            <button class="font-size-btn" data-font-size-level="large"
-              aria-label="文字サイズ: 大" aria-pressed="false">
-              <span class="font-size-btn__text font-size-btn__text--large">大</span>
+            <button
+              class="font-size-btn"
+              data-font-size-level="large"
+              aria-label="文字サイズ: 大"
+              aria-pressed="false"
+            >
+              <span class="font-size-btn__text font-size-btn__text--large"
+                >大</span
+              >
             </button>
-            <button class="font-size-btn" data-font-size-level="xlarge"
-              aria-label="文字サイズ: 特大" aria-pressed="false">
-              <span class="font-size-btn__text font-size-btn__text--xlarge">特大</span>
+            <button
+              class="font-size-btn"
+              data-font-size-level="xlarge"
+              aria-label="文字サイズ: 特大"
+              aria-pressed="false"
+            >
+              <span class="font-size-btn__text font-size-btn__text--xlarge"
+                >特大</span
+              >
             </button>
           </div>
         </div>
       </div>
-      <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="テーマ切り替え">
-        <Icon name="ri:sun-line" class="theme-icon theme-icon--light" size={18} />
-        <Icon name="ri:moon-line" class="theme-icon theme-icon--dark" size={18} />
+      <button
+        class="theme-toggle theme-toggle--mobile"
+        id="themeToggleMobile"
+        aria-label="テーマ切り替え"
+      >
+        <Icon
+          name="ri:sun-line"
+          class="theme-icon theme-icon--light"
+          size={18}
+        />
+        <Icon
+          name="ri:moon-line"
+          class="theme-icon theme-icon--dark"
+          size={18}
+        />
       </button>
       <button
         class="mobile-menu-btn"
@@ -299,7 +395,9 @@ const { currentPage, transparent = false } = Astro.props;
 
   .theme-icon {
     position: absolute;
-    transition: opacity var(--transition-base), transform var(--transition-base);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base);
     color: var(--color-text-secondary);
   }
 
@@ -313,22 +411,22 @@ const { currentPage, transparent = false } = Astro.props;
     transform: scale(0.8);
   }
 
-  :global([data-theme="light"]) .theme-icon--light {
+  :global([data-theme='light']) .theme-icon--light {
     opacity: 1;
     transform: scale(1);
   }
 
-  :global([data-theme="light"]) .theme-icon--dark {
+  :global([data-theme='light']) .theme-icon--dark {
     opacity: 0;
     transform: scale(0.8);
   }
 
-  :global([data-theme="dark"]) .theme-icon--light {
+  :global([data-theme='dark']) .theme-icon--light {
     opacity: 0;
     transform: scale(0.8);
   }
 
-  :global([data-theme="dark"]) .theme-icon--dark {
+  :global([data-theme='dark']) .theme-icon--dark {
     opacity: 1;
     transform: scale(1);
   }
@@ -385,10 +483,18 @@ const { currentPage, transparent = false } = Astro.props;
   }
 
   /* Button text sizes in px (must NOT self-scale) */
-  .font-size-btn__text--small { font-size: 11px; }
-  .font-size-btn__text--medium { font-size: 13px; }
-  .font-size-btn__text--large { font-size: 15px; }
-  .font-size-btn__text--xlarge { font-size: 17px; }
+  .font-size-btn__text--small {
+    font-size: 11px;
+  }
+  .font-size-btn__text--medium {
+    font-size: 13px;
+  }
+  .font-size-btn__text--large {
+    font-size: 15px;
+  }
+  .font-size-btn__text--xlarge {
+    font-size: 17px;
+  }
 
   .font-size-btn__text {
     font-weight: 600;
@@ -444,7 +550,9 @@ const { currentPage, transparent = false } = Astro.props;
     padding: 12px 16px;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   .font-size-popover[hidden] {
@@ -600,7 +708,7 @@ const { currentPage, transparent = false } = Astro.props;
       }
     });
 
-    popover.querySelectorAll('.font-size-btn').forEach(btn => {
+    popover.querySelectorAll('.font-size-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         setTimeout(closePopover, 100);
       });

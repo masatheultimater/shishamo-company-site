@@ -5,7 +5,6 @@
  */
 import { navigationItems, socialLinks } from '../../lib/siteConfig';
 import XIcon from '../ui/XIcon.astro';
-import FacebookIcon from '../ui/FacebookIcon.astro';
 ---
 
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
@@ -64,15 +63,6 @@ import FacebookIcon from '../ui/FacebookIcon.astro';
           aria-label={socialLinks.x.label}
         >
           <XIcon size={16} />
-        </a>
-        <a
-          href={socialLinks.facebook.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mobile-nav__social-link"
-          aria-label={socialLinks.facebook.label}
-        >
-          <FacebookIcon size={16} />
         </a>
       </div>
 
