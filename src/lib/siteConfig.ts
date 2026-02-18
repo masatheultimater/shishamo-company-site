@@ -96,10 +96,6 @@ export const socialLinks = {
     handle: '@shishamoex09',
     label: 'X @shishamoex09',
   },
-  facebook: {
-    url: 'https://www.facebook.com/shishamo.company/',
-    label: 'Facebookページ',
-  },
 } as const;
 
 /**
