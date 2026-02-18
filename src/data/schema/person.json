@@ -6,13 +6,9 @@
   "alternateName": "ししゃも",
   "givenName": "昌宏",
   "familyName": "吉川",
-  "description": "中小企業診断士・ITストラテジスト。IT × 経営 × 財務で、中小企業の挑戦を後押しする。データとテクノロジーの力で、あなたの会社の「なんとかしたい」を一緒に解決します。",
+  "description": "中小企業診断士・ITストラテジスト。IT・会計・経営の3つの視点で、中小企業の「どこに聞けばいいかわからない」を一緒に整理します。",
   "url": "https://shishamo-company.com/profile/",
-  "jobTitle": [
-    "中小企業診断士",
-    "ITストラテジスト",
-    "伴走パートナー"
-  ],
+  "jobTitle": ["中小企業診断士", "ITストラテジスト"],
   "worksFor": {
     "@type": "Organization",
     "name": "ししゃもカンパニー",
@@ -50,10 +46,17 @@
       "@type": "EducationalOccupationalCredential",
       "name": "データベーススペシャリスト",
       "credentialCategory": "国家資格"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "応用情報技術者",
+      "credentialCategory": "国家資格"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "税理士科目合格（簿記論）",
+      "credentialCategory": "国家資格"
     }
   ],
-  "sameAs": [
-    "https://x.com/shishamoex09",
-    "https://note.com/shishamo"
-  ]
+  "sameAs": ["https://x.com/shishamoex09", "https://note.com/shishamo"]
 }

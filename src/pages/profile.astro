@@ -80,15 +80,16 @@ const qualIconMap: Record<string, string> = {
       <h2 class="section-title">私の仕事</h2>
       <div class="about-work">
         <p class="about-lead">
-          「数字が見えない」「業務が回らない」——そんな悩みを抱える小規模事業者さんの力になりたい。<br
+          壊れているものを見つけて、正しい状態に戻す。<br />
+          SE時代はシステムの不具合を直し、会計事務所では数字の乱れを整え、今は経営の仕組みに取り組んでいます。<br
           />
-          そんな想いで、経営の改善に一緒に取り組んでいます。
+          対象は変わっても、やっていることの根っこは同じです。
         </p>
         <p class="about-desc">
-          データサイエンティストとして3年、会計事務所で1年。<br />
-          「データで見える化する力」と「会計の実務感覚」、両方の経験を活かして<br
+          Web開発12年、データサイエンス3年、会計事務所1年。<br />
+          ITも数字もわかるから、「何のために」「今の体制でできるか」を一緒に考えられます。<br
           />
-          記帳・月次の整備から、業務フロー改善、ツール導入まで一気通貫でお手伝いします。
+          記帳・月次の整備から、業務フロー改善、ツール導入まで一気通貫で対応します。
         </p>
 
         <h3 class="about-subtitle">大切にしている3つのこと</h3>
@@ -126,12 +127,10 @@ const qualIconMap: Record<string, string> = {
 
         <div class="about-stance">
           <p>
-            お気持ちやご事情はもちろん大切にします。でも、結論は正直にお伝えします。<br
-            />
-            「なんとなく良さそう」ではなく、根拠のある選択肢と具体的な手順をお伝えします。<br
-            />
+            話はちゃんと聞きます。でも、結論は正直にお伝えします。<br />
+            「やめた方がいい」も「今はまだ早い」も、根拠をもって言います。<br />
             <strong
-              >誠実に、対等に、長く効く改善を一緒に作っていく。それが私のスタイルです。</strong
+              >冷静な頭と、目の前の人を何とかしたいという気持ち。両方で仕事をしています。</strong
             >
           </p>
         </div>
@@ -139,8 +138,28 @@ const qualIconMap: Record<string, string> = {
     </div>
   </section>
 
-  <!-- Career Timeline -->
+  <!-- Philosophy -->
   <section class="section section--alt">
+    <div class="section-inner">
+      <h2 class="section-title">大切にしていること</h2>
+      <div class="philosophy-grid">
+        {
+          profileData.philosophy.map((item, index) => (
+            <div class="philosophy-card">
+              <div class="philosophy-number">
+                {String(index + 1).padStart(2, '0')}
+              </div>
+              <h4>{item.title}</h4>
+              <p>{item.content}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Timeline -->
+  <section class="section">
     <div class="section-inner">
       <h2 class="section-title">経歴</h2>
       <div class="timeline">
@@ -426,6 +445,43 @@ const qualIconMap: Record<string, string> = {
     line-height: 1.7;
     color: var(--color-text-secondary);
   }
+  /* Philosophy Grid */
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .philosophy-card {
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 24px 20px;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-semantic-sm);
+  }
+  .philosophy-card:hover {
+    border-color: var(--color-accent);
+  }
+  .philosophy-number {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .philosophy-card h4 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--color-text-heading);
+    margin-bottom: 8px;
+  }
+  .philosophy-card p {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
   .about-note {
     background: var(--color-accent-subtle);
     border-radius: var(--radius-sm);
@@ -610,6 +666,10 @@ const qualIconMap: Record<string, string> = {
       grid-template-columns: 1fr;
       gap: 12px;
     }
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -654,7 +714,8 @@ const qualIconMap: Record<string, string> = {
 
   @media (hover: none) {
     .stat-card:hover,
-    .qual-card:hover {
+    .qual-card:hover,
+    .philosophy-card:hover {
       border-color: var(--color-border);
     }
   }
