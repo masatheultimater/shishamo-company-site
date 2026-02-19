@@ -7,11 +7,15 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://shishamo-company.com',
   output: 'static',
+  trailingSlash: 'always',
   integrations: [
     icon(),
     sitemap({
       // サイトマップから除外するページ
-      filter: (page) => !page.includes('/404') && !page.includes('/CLAUDE'),
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/CLAUDE') &&
+        !page.includes('/contact/thanks'),
       // 変更頻度と優先度の設定
       serialize(item) {
         // トップページ
