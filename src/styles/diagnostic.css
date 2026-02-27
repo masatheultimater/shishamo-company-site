@@ -17,6 +17,10 @@
   position: relative;
 }
 
+.diag-card[hidden] {
+  display: none !important;
+}
+
 .diag-card {
   background: var(--color-card-bg);
   border: 1px solid var(--color-border);
