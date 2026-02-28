@@ -72,6 +72,7 @@
   line-height: 1.4;
   color: var(--color-text-heading);
   margin-bottom: 16px;
+  text-wrap: balance;
 }
 
 .hero-title .highlight {
@@ -86,6 +87,7 @@
   color: var(--color-text);
   line-height: 1.8;
   margin-bottom: 28px;
+  text-wrap: balance;
 }
 
 .hero-cta {
@@ -176,6 +178,7 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   margin-bottom: 20px;
+  text-wrap: balance;
 }
 
 .profile-intro {
@@ -183,6 +186,7 @@
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
   margin: 0 0 20px;
+  text-wrap: balance;
 }
 
 .profile-stats {
@@ -454,7 +458,22 @@
 }
 
 .problem-cta {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: var(--space-lg);
+}
+
+.problem-cta .btn-secondary {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+
+.problem-cta .btn-secondary:hover {
+  background: var(--color-accent);
+  color: var(--palette-white);
 }
 
 /* ===== YARUKOTO ===== */
