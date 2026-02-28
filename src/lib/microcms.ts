@@ -19,9 +19,7 @@ const serviceDomain = import.meta.env.MICROCMS_SERVICE_DOMAIN;
 const apiKey = import.meta.env.MICROCMS_API_KEY;
 const isConfigured = Boolean(serviceDomain && apiKey);
 
-const client = isConfigured
-  ? createClient({ serviceDomain, apiKey })
-  : null;
+const client = isConfigured ? createClient({ serviceDomain, apiKey }) : null;
 
 // ========================================
 // Category / Tag labels
@@ -51,7 +49,10 @@ export const categoryIcons: Record<BlogCategory, string> = {
 
 /** Reverse map: microCMS display name → slug */
 const displayNameToSlug: Record<string, BlogCategory> = Object.fromEntries(
-  Object.entries(categoryLabels).map(([slug, label]) => [label, slug as BlogCategory])
+  Object.entries(categoryLabels).map(([slug, label]) => [
+    label,
+    slug as BlogCategory,
+  ])
 );
 
 // ========================================
@@ -85,7 +86,9 @@ export async function getBlogDetail(
   queries?: MicroCMSQueries
 ): Promise<BlogPostResponse> {
   if (!client) {
-    throw new Error('microCMS is not configured. Set MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.');
+    throw new Error(
+      'microCMS is not configured. Set MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.'
+    );
   }
   return client.getListDetail<BlogPostResponse>({
     endpoint: 'blogs',
@@ -150,13 +153,21 @@ export function getPrimaryCategory(categories: string[]): BlogCategory {
 export function sanitizeBlogContent(html: string): string {
   let sanitized = html;
   // Strip YAML frontmatter rendered as <pre><code class="language-yaml">...</code></pre>
-  sanitized = sanitized.replace(/^<pre><code class="language-yaml">[\s\S]*?<\/code><\/pre>\s*/, '');
+  sanitized = sanitized.replace(
+    /^<pre><code class="language-yaml">[\s\S]*?<\/code><\/pre>\s*/,
+    ''
+  );
   // Strip leading <hr> that often follows the frontmatter block
   sanitized = sanitized.replace(/^<hr\s*\/?>/, '');
   // Remove the first <h1> (already displayed in the page header)
   sanitized = sanitized.replace(/<h1[^>]*>[\s\S]*?<\/h1>/, '');
   // Strip leading <hr> again (often follows the removed h1)
   sanitized = sanitized.replace(/^\s*<hr\s*\/?>/, '');
+  // Keep native table semantics and handle horizontal overflow on a wrapper
+  sanitized = sanitized.replace(
+    /<table\b([^>]*)>([\s\S]*?)<\/table>/gi,
+    '<div class="blog-table-scroll" role="region" aria-label="Scrollable table" tabindex="0"><table$1>$2</table></div>'
+  );
   return sanitized.trim();
 }
 
