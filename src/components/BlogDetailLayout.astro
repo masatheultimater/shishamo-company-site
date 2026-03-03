@@ -8,6 +8,8 @@ import Breadcrumb from './seo/Breadcrumb.astro';
 import StructuredData from './seo/StructuredData.astro';
 import '../styles/blog.css';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import profileImage from '../assets/images/profile.jpg';
 import type { BlogPostResponse } from '@shared/contracts/api';
 import {
   categoryLabels,
@@ -200,11 +202,11 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   <!-- Author Box (E-E-A-T) -->
   <aside class="blog-author-box">
     <div class="blog-author-box__inner">
-      <img
-        src="/自画像_シンプル背景.png"
+      <Image
+        src={profileImage}
         alt={profile.name}
-        width="80"
-        height="80"
+        width={80}
+        height={80}
         class="blog-author-box__avatar"
         loading="lazy"
       />
@@ -220,7 +222,7 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
             ))
           }
         </div>
-        <p class="blog-author-box__bio">{profile.subtitle}</p>
+        <p class="blog-author-box__bio">{profile.bio}</p>
         <a href="/profile/" class="blog-author-box__link"
           >プロフィールを見る →</a
         >

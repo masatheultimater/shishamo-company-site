@@ -56,6 +56,7 @@ export interface ProfileData {
   nameReading: string;
   'handle-name': string;
   subtitle: string;
+  bio: string;
   icon: string;
   badges: ProfileBadge[];
   stats: ProfileStat[];
