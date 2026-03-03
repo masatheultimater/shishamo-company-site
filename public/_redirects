@@ -19,6 +19,12 @@
 # お問い合わせのショートカット
 /inquiry /contact/ 301
 
+# カテゴリURL移行（旧→新）
+/blog/category/dx/ /blog/category/kaizen/ 301
+/blog/category/tech/ /blog/category/kaizen/ 301
+/blog/category/news/ /blog/ 301
+/blog/category/about/ /profile/ 301
+
 # 404ページ
 # NOTE: Cloudflare Pages は 404 ステータスコード非対応（200/301/302/303/307/308のみ）。
 # /404.html は自動的に使用される。

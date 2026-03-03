@@ -37,40 +37,33 @@ export interface MicroCMSListResponse<T> {
 // ========================================
 
 export type BlogCategory =
-  | 'dx'           // DX推進
-  | 'ai'           // 生成AI
-  | 'data'         // データ活用
-  | 'management'   // 経営
-  | 'accounting'   // 経理・税務
-  | 'tech'         // テクノロジー
-  | 'news'         // お知らせ
-  | 'about';       // About
+  | 'kaizen' // 業務改善
+  | 'ai' // AI活用
+  | 'data' // データ分析
+  | 'funding' // 補助金・制度
+  | 'accounting' // 経理・届出
+  | 'management'; // 経営のヒント
 
 export type BlogTag =
-  | 'chatgpt'          // ChatGPT
-  | 'claude'           // Claude
-  | 'automation'       // 業務自動化
+  | 'subsidy' // 補助金・助成金
+  | 'automation' // 業務自動化
   | 'cloud-accounting' // クラウド会計
-  | 'freee'            // freee
-  | 'subsidy'          // 補助金・助成金
-  | 'kpi'              // KPI管理
-  | 'web'              // Web制作
-  | 'startup'          // スタートアップ
-  | 'tax'              // 税務
-  | 'bookkeeping'      // 記帳代行
-  | 'productivity';    // 生産性向上
+  | 'cost-saving' // コスト削減
+  | 'kpi' // KPI管理
+  | 'compliance' // 法改正対応
+  | 'first-step'; // はじめの一歩
 
 export interface BlogPostResponse extends MicroCMSBase {
   title: string;
   slug: string;
-  category: string[];          // microCMSセレクトフィールド → string[]（単一選択でも配列）
-  tags?: string[];             // microCMS複数セレクトフィールド → string[]
-  excerpt?: string;            // 抜粋（プレーンテキスト、120〜160文字）
+  category: string[]; // microCMSセレクトフィールド → string[]（単一選択でも配列）
+  tags?: string[]; // microCMS複数セレクトフィールド → string[]
+  excerpt?: string; // 抜粋（プレーンテキスト、120〜160文字）
   thumbnail?: MicroCMSImage;
-  content: string;             // リッチエディタ（HTML）
-  metaDescription?: string;    // SEO上書き用（excerpt優先）
-  ogImage?: MicroCMSImage;     // SNS上書き用（thumbnail優先）
-  relatedBlogs?: BlogPostResponse[];  // 自己参照、最大3件推奨
+  content: string; // リッチエディタ（HTML）
+  metaDescription?: string; // SEO上書き用（excerpt優先）
+  ogImage?: MicroCMSImage; // SNS上書き用（thumbnail優先）
+  relatedBlogs?: BlogPostResponse[]; // 自己参照、最大3件推奨
 }
 
 // ========================================
@@ -84,10 +77,10 @@ export interface MicroCMSServiceFeature {
 }
 
 export interface ServiceResponse extends MicroCMSBase {
-  serviceId: string;         // dx-consulting, ai-consulting, etc.
+  serviceId: string; // dx-consulting, ai-consulting, etc.
   title: string;
   description: string;
-  longDescription?: string;  // リッチエディタ
+  longDescription?: string; // リッチエディタ
   icon: string;
   priceMin?: number;
   priceMax?: number;
