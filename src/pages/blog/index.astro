@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
 import StructuredData from '../../components/seo/StructuredData.astro';
 import {
   getAllBlogPosts,
@@ -40,8 +41,17 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
       url: `${siteMetadata.siteUrl}/blog/`,
       description:
         'IT・経営・会計の「で、うちはどうすればいい？」に答えるブログ。',
+      hasPart: posts.slice(0, 10).map((post) => ({
+        '@type': 'BlogPosting',
+        headline: post.title,
+        url: `${siteMetadata.siteUrl}/blog/${post.slug || post.id}/`,
+      })),
     }}
   />
+
+  <div class="blog-breadcrumb-wrapper">
+    <Breadcrumb items={[{ name: 'ブログ', href: '/blog/' }]} separator="›" />
+  </div>
 
   <section class="page-header">
     <h1>ブログ</h1>
@@ -56,7 +66,7 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
       {
         categories.map((cat) => (
           <a
-            href={`#${cat}`}
+            href={`/blog/category/${cat}/`}
             role="tab"
             aria-selected="false"
             data-category={cat}
@@ -96,7 +106,12 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
               {post.tags && post.tags.length > 0 && (
                 <div class="blog-card__tags">
                   {post.tags.slice(0, 3).map((tag) => (
-                    <span class="blog-card__tag">#{tag}</span>
+                    <a
+                      href={`/blog/tag/${tag}/`}
+                      class="blog-card__tag blog-card__tag--link"
+                    >
+                      #{tag}
+                    </a>
                   ))}
                 </div>
               )}
@@ -109,7 +124,8 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
 </Layout>
 
 <script>
-  // Client-side category filtering
+  // Client-side category filtering (JS enhancement for "すべて" tab)
+  // Category-specific links navigate to /blog/category/{slug}/
   const nav = document.querySelector('.blog-nav-inner');
   const cards = document.querySelectorAll<HTMLElement>('.blog-card');
 
@@ -117,6 +133,11 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
     nav.addEventListener('click', (e) => {
       const target = (e.target as HTMLElement).closest('a');
       if (!target) return;
+
+      const href = target.getAttribute('href') || '';
+
+      // Only intercept hash links (the "すべて" tab)
+      if (!href.startsWith('#')) return;
       e.preventDefault();
 
       // Update active tab
@@ -127,25 +148,12 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
       target.classList.add('active');
       target.setAttribute('aria-selected', 'true');
 
-      const category = target.getAttribute('href')?.replace('#', '');
-
+      // Show all cards
       cards.forEach((card) => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = '';
       });
 
-      // Update URL hash without scroll
-      history.replaceState(null, '', `#${category}`);
+      history.replaceState(null, '', '#all');
     });
-
-    // Handle initial hash
-    const hash = window.location.hash.replace('#', '');
-    if (hash && hash !== 'all') {
-      const tab = nav.querySelector(`a[href="#${hash}"]`) as HTMLElement;
-      if (tab) tab.click();
-    }
   }
 </script>

@@ -171,6 +171,39 @@ export function sanitizeBlogContent(html: string): string {
   return sanitized.trim();
 }
 
+// ========================================
+// Service ↔ Blog category mapping
+// ========================================
+
+/** Maps service IDs to their corresponding blog category */
+export const serviceToBlogCategory: Record<string, BlogCategory> = {
+  'dx-consulting': 'dx',
+  'ai-consulting': 'ai',
+  'data-analysis': 'data',
+  'kpi-dashboard': 'data',
+  'management-consulting': 'management',
+  'subsidy-support': 'management',
+  bookkeeping: 'accounting',
+  'tax-filing': 'accounting',
+  'web-development': 'tech',
+  'cloud-setup': 'tech',
+  'it-support': 'tech',
+};
+
+/** Fetch related blog posts for a given service ID (max 3) */
+export async function getRelatedBlogPosts(
+  serviceId: string,
+  limit = 3
+): Promise<BlogPostResponse[]> {
+  const category = serviceToBlogCategory[serviceId];
+  if (!category) return [];
+
+  const allPosts = await getAllBlogPosts();
+  return allPosts
+    .filter((p) => getPrimaryCategory(p.category) === category)
+    .slice(0, limit);
+}
+
 /** Format date for display (YYYY.MM.DD) */
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);

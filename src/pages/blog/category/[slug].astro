@@ -1,0 +1,137 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumb from '../../../components/seo/Breadcrumb.astro';
+import StructuredData from '../../../components/seo/StructuredData.astro';
+import {
+  getAllBlogPosts,
+  categoryLabels,
+  categoryIcons,
+  getPrimaryCategory,
+  formatDate,
+  transformBlogPost,
+} from '../../../lib/microcms';
+import type { BlogCategory } from '@shared/contracts/api';
+import { Icon } from 'astro-icon/components';
+import { siteMetadata } from '../../../lib/siteConfig';
+import '../../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const allPosts = await getAllBlogPosts();
+  const categories = Object.keys(categoryLabels) as BlogCategory[];
+
+  return categories.map((cat) => {
+    const posts = allPosts
+      .filter((p) => getPrimaryCategory(p.category) === cat)
+      .map(transformBlogPost);
+    return {
+      params: { slug: cat },
+      props: { category: cat, posts },
+    };
+  });
+}
+
+const { category, posts } = Astro.props;
+const siteUrl = siteMetadata.siteUrl;
+const categoryName = categoryLabels[category as BlogCategory];
+const categories = Object.keys(categoryLabels) as BlogCategory[];
+
+const breadcrumbItems = [
+  { name: 'ブログ', href: '/blog/' },
+  { name: categoryName, href: `/blog/category/${category}/` },
+];
+
+const collectionData = {
+  name: `${categoryName} - ブログ`,
+  url: `${siteUrl}/blog/category/${category}/`,
+  description: `${categoryName}に関するブログ記事一覧。個人事業主・中小企業の方に向けて、わかりやすく書いています。`,
+  hasPart: posts.map((post) => ({
+    '@type': 'BlogPosting',
+    headline: post.title,
+    url: `${siteUrl}/blog/${post.slug || post.id}/`,
+  })),
+};
+---
+
+<Layout
+  title={`${categoryName}の記事一覧 | ブログ | ししゃもカンパニー`}
+  description={`${categoryName}に関するブログ記事一覧。個人事業主・中小企業の方に向けて、わかりやすく書いています。`}
+  currentPage="blog"
+>
+  <StructuredData slot="head" type="CollectionPage" data={collectionData} />
+
+  <div class="blog-breadcrumb-wrapper">
+    <Breadcrumb items={breadcrumbItems} separator="›" />
+  </div>
+
+  <section class="page-header page-header--compact">
+    <h1>
+      <Icon
+        name={categoryIcons[category as BlogCategory]}
+        size={28}
+        aria-hidden="true"
+      />
+      {categoryName}
+    </h1>
+    <p>{posts.length}件の記事</p>
+  </section>
+
+  <nav class="blog-nav" aria-label="ブログカテゴリナビゲーション">
+    <div class="blog-nav-inner">
+      <a href="/blog/">
+        すべて<span class="sr-only">の記事</span>
+      </a>
+      {
+        categories.map((cat) => (
+          <a
+            href={`/blog/category/${cat}/`}
+            class={cat === category ? 'active' : ''}
+            aria-current={cat === category ? 'page' : undefined}
+          >
+            <Icon name={categoryIcons[cat]} size={14} aria-hidden="true" />
+            {categoryLabels[cat]}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <div class="blog-grid">
+    {
+      posts.length === 0 ? (
+        <div class="blog-empty">
+          <p>このカテゴリにはまだ記事がありません</p>
+          <p>
+            <a href="/blog/">すべての記事を見る →</a>
+          </p>
+        </div>
+      ) : (
+        posts.map((post) => {
+          const cat = getPrimaryCategory(post.category);
+          return (
+            <a
+              href={`/blog/${post.slug || post.id}/`}
+              class="blog-card"
+              data-category={cat}
+            >
+              <div class="blog-card__meta">
+                <span class="blog-card__category">{categoryLabels[cat]}</span>
+                <time datetime={post.publishedAt}>
+                  {formatDate(post.publishedAt)}
+                </time>
+              </div>
+              <h2 class="blog-card__title">{post.title}</h2>
+              {post.excerpt && <p class="blog-card__excerpt">{post.excerpt}</p>}
+              {post.tags && post.tags.length > 0 && (
+                <div class="blog-card__tags">
+                  {post.tags.slice(0, 3).map((tag) => (
+                    <span class="blog-card__tag">#{tag}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          );
+        })
+      )
+    }
+  </div>
+</Layout>

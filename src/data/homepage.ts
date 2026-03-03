@@ -172,6 +172,13 @@ export const careerHighlights: CareerHighlight[] = [
   },
 ];
 
+/**
+ * Evergreen blog post slugs for homepage curation.
+ * These posts are shown first in the homepage blog section.
+ * Fallback: if none are found in microCMS, show latest 3 posts.
+ */
+export const evergreenBlogSlugs: string[] = ['dx-start-sme-30'];
+
 /** Section 7: Qualifications grouped by 3 axes */
 export const qualificationGroups: QualificationGroup[] = [
   {

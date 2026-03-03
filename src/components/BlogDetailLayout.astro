@@ -18,6 +18,7 @@ import {
   sanitizeBlogContent,
 } from '../lib/microcms';
 import { siteMetadata } from '../lib/siteConfig';
+import { loadProfile } from '../data/profileLoader';
 
 interface Props {
   post: BlogPostResponse;
@@ -45,8 +46,24 @@ const articleData = {
   articleSection: categoryLabels[category],
 };
 
+// Author data for E-E-A-T box
+const profile = loadProfile();
+const authorCredentials = profile.qualifications
+  .filter((q) =>
+    [
+      '中小企業診断士(登録予定)',
+      'ITストラテジスト',
+      'E資格',
+      '税理士科目合格（簿記論）',
+    ].includes(q.name)
+  )
+  .map((q) => q.name);
+
 // Meta
-const metaDescription = post.metaDescription || blog.excerpt || `${blog.title} - ししゃもカンパニーのブログ`;
+const metaDescription =
+  post.metaDescription ||
+  blog.excerpt ||
+  `${blog.title} - ししゃもカンパニーのブログ`;
 const ogImage = post.ogImage?.url || blog.thumbnail?.url;
 ---
 
@@ -62,6 +79,19 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   <!-- BlogPosting Structured Data -->
   <StructuredData type="BlogPosting" data={articleData} slot="head" />
 
+  <!-- Article OGP: section and tags -->
+  <meta
+    property="article:section"
+    content={categoryLabels[category]}
+    slot="head"
+  />
+  {
+    blog.tags &&
+      blog.tags.map((tag) => (
+        <meta property="article:tag" content={tag} slot="head" />
+      ))
+  }
+
   <!-- Breadcrumb -->
   <div class="blog-breadcrumb-wrapper">
     <Breadcrumb items={breadcrumbItems} separator="›" />
@@ -76,58 +106,75 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
       </span>
       <span class="blog-header__date">
         <time datetime={blog.publishedAt}>{formatDate(blog.publishedAt)}</time>
-        {blog.updatedAt && blog.updatedAt !== blog.publishedAt && (
-          <span>（更新: {formatDate(blog.updatedAt)}）</span>
-        )}
+        {
+          blog.updatedAt && blog.updatedAt !== blog.publishedAt && (
+            <span>（更新: {formatDate(blog.updatedAt)}）</span>
+          )
+        }
       </span>
     </div>
     <h1>{blog.title}</h1>
-    {blog.tags && blog.tags.length > 0 && (
-      <div class="blog-header__tags">
-        {blog.tags.map((tag) => (
-          <span class="blog-header__tag">#{tag}</span>
-        ))}
-      </div>
-    )}
+    {
+      blog.tags && blog.tags.length > 0 && (
+        <div class="blog-header__tags">
+          {blog.tags.map((tag) => (
+            <a href={`/blog/tag/${tag}/`} class="blog-header__tag">
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )
+    }
   </header>
 
   <!-- Thumbnail -->
-  {blog.thumbnail && (
-    <div class="blog-thumbnail">
-      <img
-        src={`${blog.thumbnail.url}?w=960&h=540&fit=crop`}
-        alt={blog.title}
-        width="960"
-        height="540"
-        loading="eager"
-        decoding="async"
-      />
-    </div>
-  )}
+  {
+    blog.thumbnail && (
+      <div class="blog-thumbnail">
+        <img
+          src={`${blog.thumbnail.url}?w=960&h=540&fit=crop`}
+          alt={blog.title}
+          width="960"
+          height="540"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    )
+  }
 
   <!-- Article Content (Rich Editor HTML) -->
   <article class="blog-content" set:html={sanitizeBlogContent(post.content)} />
 
   <!-- Related Blogs -->
-  {post.relatedBlogs && post.relatedBlogs.length > 0 && (
-    <section class="blog-related">
-      <h2>関連記事</h2>
-      <div class="blog-related__grid">
-        {post.relatedBlogs.map((related) => {
-          const relCat = getPrimaryCategory(related.category);
-          return (
-            <a href={`/blog/${related.slug}/`} class="blog-card">
-              <div class="blog-card__meta">
-                <span class="blog-card__category">{categoryLabels[relCat]}</span>
-                <time datetime={related.publishedAt}>{formatDate(related.publishedAt)}</time>
-              </div>
-              <h3 class="blog-card__title">{related.title}</h3>
-            </a>
-          );
-        })}
-      </div>
-    </section>
-  )}
+  {
+    post.relatedBlogs && post.relatedBlogs.length > 0 && (
+      <section class="blog-related">
+        <h2>関連記事</h2>
+        <div class="blog-related__grid">
+          {post.relatedBlogs.map((related) => {
+            const relCat = getPrimaryCategory(related.category);
+            return (
+              <a
+                href={`/blog/${related.slug || related.id}/`}
+                class="blog-card"
+              >
+                <div class="blog-card__meta">
+                  <span class="blog-card__category">
+                    {categoryLabels[relCat]}
+                  </span>
+                  <time datetime={related.publishedAt}>
+                    {formatDate(related.publishedAt)}
+                  </time>
+                </div>
+                <h3 class="blog-card__title">{related.title}</h3>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )
+  }
 
   <!-- Blog Read Tracking -->
   <div
@@ -136,7 +183,8 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
     data-title={blog.title}
     data-category={categoryLabels[category]}
     hidden
-  />
+  >
+  </div>
   <script>
     import { trackBlogRead } from '../lib/analytics';
     const el = document.getElementById('blog-tracking-data');
@@ -149,10 +197,46 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
     }
   </script>
 
+  <!-- Author Box (E-E-A-T) -->
+  <aside class="blog-author-box">
+    <div class="blog-author-box__inner">
+      <img
+        src="/自画像_シンプル背景.png"
+        alt={profile.name}
+        width="80"
+        height="80"
+        class="blog-author-box__avatar"
+        loading="lazy"
+      />
+      <div class="blog-author-box__info">
+        <div class="blog-author-box__name">
+          <a href="/profile/">{profile.name}</a>
+          <span class="blog-author-box__handle">@{profile['handle-name']}</span>
+        </div>
+        <div class="blog-author-box__credentials">
+          {
+            authorCredentials.map((cred) => (
+              <span class="blog-author-box__badge">{cred}</span>
+            ))
+          }
+        </div>
+        <p class="blog-author-box__bio">{profile.subtitle}</p>
+        <a href="/profile/" class="blog-author-box__link"
+          >プロフィールを見る →</a
+        >
+      </div>
+    </div>
+  </aside>
+
   <!-- CTA -->
   <section class="cta--dark">
     <h2>「うちの場合はどうすればいい？」<br />と思ったら</h2>
-    <p>記事を読んで気になったこと、何でも聞いてください。<br />初回30分の無料相談で、状況に合わせた進め方を一緒に考えます。</p>
-    <a href="/contact/" class="btn-primary" data-track-cta="blog-detail">無料で相談する →</a>
+    <p>
+      記事を読んで気になったこと、何でも聞いてください。<br
+      />初回30分の無料相談で、状況に合わせた進め方を一緒に考えます。
+    </p>
+    <a href="/contact/" class="btn-primary" data-track-cta="blog-detail"
+      >無料で相談する →</a
+    >
   </section>
 </Layout>
