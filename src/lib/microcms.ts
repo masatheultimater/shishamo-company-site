@@ -26,25 +26,21 @@ const client = isConfigured ? createClient({ serviceDomain, apiKey }) : null;
 // ========================================
 
 export const categoryLabels: Record<BlogCategory, string> = {
-  dx: 'DX推進',
-  ai: '生成AI',
-  data: 'データ活用',
-  management: '経営',
-  accounting: '経理・税務',
-  tech: 'テクノロジー',
-  news: 'お知らせ',
-  about: 'About',
+  kaizen: '業務改善',
+  ai: 'AI活用',
+  data: 'データ分析',
+  funding: '補助金・制度',
+  accounting: '経理・届出',
+  management: '経営のヒント',
 };
 
 export const categoryIcons: Record<BlogCategory, string> = {
-  dx: 'ri:rocket-line',
+  kaizen: 'ri:tools-line',
   ai: 'ri:robot-line',
   data: 'ri:bar-chart-box-line',
-  management: 'ri:focus-3-line',
+  funding: 'ri:money-cny-circle-line',
   accounting: 'ri:file-edit-line',
-  tech: 'ri:computer-line',
-  news: 'ri:megaphone-line',
-  about: 'ri:user-line',
+  management: 'ri:lightbulb-line',
 };
 
 /** Reverse map: microCMS display name → slug */
@@ -142,11 +138,29 @@ export function transformBlogPost(response: BlogPostResponse): BlogPost {
   };
 }
 
+/** Legacy category map for migration period (old microCMS values → new slugs) */
+const legacyCategoryMap: Record<string, BlogCategory> = {
+  DX推進: 'kaizen',
+  生成AI: 'ai',
+  データ活用: 'data',
+  経営: 'management',
+  '経理・税務': 'accounting',
+  テクノロジー: 'kaizen',
+  お知らせ: 'kaizen',
+  About: 'kaizen',
+  dx: 'kaizen',
+  tech: 'kaizen',
+  news: 'kaizen',
+  about: 'kaizen',
+};
+
 /** Get primary category from array (microCMS select returns string[]) */
 export function getPrimaryCategory(categories: string[]): BlogCategory {
-  const raw = categories[0] || 'news';
-  // Normalize: accept both slugs ("dx") and display names ("DX推進")
-  return displayNameToSlug[raw] || (raw as BlogCategory);
+  const raw = categories[0] || 'kaizen';
+  // Normalize: accept both slugs and display names (current + legacy)
+  return (
+    displayNameToSlug[raw] || legacyCategoryMap[raw] || (raw as BlogCategory)
+  );
 }
 
 /** Sanitize blog HTML content from microCMS rich editor */
@@ -177,17 +191,17 @@ export function sanitizeBlogContent(html: string): string {
 
 /** Maps service IDs to their corresponding blog category */
 export const serviceToBlogCategory: Record<string, BlogCategory> = {
-  'dx-consulting': 'dx',
+  'dx-consulting': 'kaizen',
   'ai-consulting': 'ai',
   'data-analysis': 'data',
   'kpi-dashboard': 'data',
   'management-consulting': 'management',
-  'subsidy-support': 'management',
+  'subsidy-support': 'funding',
   bookkeeping: 'accounting',
-  'tax-filing': 'accounting',
-  'web-development': 'tech',
-  'cloud-setup': 'tech',
-  'it-support': 'tech',
+  'cloud-accounting': 'accounting',
+  'it-strategy': 'kaizen',
+  'ai-tools': 'ai',
+  'web-development': 'kaizen',
 };
 
 /** Fetch related blog posts for a given service ID (max 3) */
