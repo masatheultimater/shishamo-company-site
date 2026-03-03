@@ -18,6 +18,7 @@ import {
   careerHighlights,
   qualificationGroups,
   serviceIdToCategoryMap,
+  evergreenBlogSlugs,
 } from '../data/homepage';
 import { socialLinks, siteMetadata } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
@@ -28,7 +29,19 @@ import '../styles/home.css';
 const profileData = loadProfile();
 
 const allPosts = await getAllBlogPosts();
-const latestPosts = allPosts.map(transformBlogPost).slice(0, 3);
+const allTransformed = allPosts.map(transformBlogPost);
+
+// Curated blog section: evergreen posts first, then latest (up to 3 total)
+const evergreenPosts = evergreenBlogSlugs
+  .map((slug) => allTransformed.find((p) => p.slug === slug))
+  .filter(Boolean);
+const remainingPosts = allTransformed.filter(
+  (p) => !evergreenBlogSlugs.includes(p.slug)
+);
+const latestPosts =
+  evergreenPosts.length > 0
+    ? [...evergreenPosts, ...remainingPosts].slice(0, 3)
+    : allTransformed.slice(0, 3);
 ---
 
 <Layout

@@ -63,6 +63,24 @@ function getStructuredData(type: string, customData?: Record<string, unknown>) {
           '@type': 'Person',
           '@id': `${siteUrl}/#person`,
           name: '吉川昌宏',
+          url: `${siteUrl}/profile/`,
+          hasCredential: [
+            {
+              '@type': 'EducationalOccupationalCredential',
+              credentialCategory: '国家資格',
+              name: '中小企業診断士(登録予定)',
+            },
+            {
+              '@type': 'EducationalOccupationalCredential',
+              credentialCategory: '国家資格',
+              name: 'ITストラテジスト',
+            },
+            {
+              '@type': 'EducationalOccupationalCredential',
+              credentialCategory: '認定資格',
+              name: 'E資格',
+            },
+          ],
         },
         publisher: {
           '@type': 'Organization',

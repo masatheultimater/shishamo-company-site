@@ -58,6 +58,7 @@ export const footerInfoLinks: FooterLink[] = [
   { name: '利用規約', href: '/terms/' },
   { name: 'プライバシーポリシー', href: '/privacy-policy/' },
   { name: 'ブログ', href: '/blog/' },
+  { name: 'RSS', href: '/blog/rss.xml' },
 ];
 
 /**

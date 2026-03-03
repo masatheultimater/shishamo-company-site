@@ -1,0 +1,110 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Breadcrumb from '../../../components/seo/Breadcrumb.astro';
+import StructuredData from '../../../components/seo/StructuredData.astro';
+import {
+  getAllBlogPosts,
+  categoryLabels,
+  getPrimaryCategory,
+  formatDate,
+  transformBlogPost,
+} from '../../../lib/microcms';
+import { siteMetadata } from '../../../lib/siteConfig';
+import '../../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const allPosts = await getAllBlogPosts();
+
+  // Collect all unique tags
+  const tagMap = new Map<string, typeof allPosts>();
+  for (const post of allPosts) {
+    if (post.tags) {
+      for (const tag of post.tags) {
+        if (!tagMap.has(tag)) tagMap.set(tag, []);
+        tagMap.get(tag)!.push(post);
+      }
+    }
+  }
+
+  return Array.from(tagMap.entries()).map(([tag, posts]) => ({
+    params: { tag },
+    props: { tag, posts: posts.map(transformBlogPost) },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const siteUrl = siteMetadata.siteUrl;
+
+const breadcrumbItems = [
+  { name: 'ブログ', href: '/blog/' },
+  { name: `#${tag}`, href: `/blog/tag/${tag}/` },
+];
+
+const collectionData = {
+  name: `#${tag} - ブログ`,
+  url: `${siteUrl}/blog/tag/${tag}/`,
+  description: `「${tag}」タグが付いたブログ記事一覧`,
+  hasPart: posts.map((post) => ({
+    '@type': 'BlogPosting',
+    headline: post.title,
+    url: `${siteUrl}/blog/${post.slug || post.id}/`,
+  })),
+};
+---
+
+<Layout
+  title={`#${tag} の記事一覧 | ブログ | ししゃもカンパニー`}
+  description={`「${tag}」タグが付いたブログ記事一覧。個人事業主・中小企業の方に向けて、わかりやすく書いています。`}
+  currentPage="blog"
+>
+  <StructuredData slot="head" type="CollectionPage" data={collectionData} />
+
+  <div class="blog-breadcrumb-wrapper">
+    <Breadcrumb items={breadcrumbItems} separator="›" />
+  </div>
+
+  <section class="page-header page-header--compact">
+    <h1>#{tag}</h1>
+    <p>{posts.length}件の記事</p>
+  </section>
+
+  <div class="blog-grid">
+    {
+      posts.map((post) => {
+        const cat = getPrimaryCategory(post.category);
+        return (
+          <a
+            href={`/blog/${post.slug || post.id}/`}
+            class="blog-card"
+            data-category={cat}
+          >
+            <div class="blog-card__meta">
+              <span class="blog-card__category">{categoryLabels[cat]}</span>
+              <time datetime={post.publishedAt}>
+                {formatDate(post.publishedAt)}
+              </time>
+            </div>
+            <h2 class="blog-card__title">{post.title}</h2>
+            {post.excerpt && <p class="blog-card__excerpt">{post.excerpt}</p>}
+            {post.tags && post.tags.length > 0 && (
+              <div class="blog-card__tags">
+                {post.tags.slice(0, 3).map((t) => (
+                  <a
+                    href={`/blog/tag/${t}/`}
+                    class="blog-card__tag blog-card__tag--link"
+                  >
+                    #{t}
+                  </a>
+                ))}
+              </div>
+            )}
+          </a>
+        );
+      })
+    }
+  </div>
+
+  <div class="blog-tag-back">
+    <a href="/blog/" class="btn-secondary">← すべての記事を見る</a>
+  </div>
+</Layout>

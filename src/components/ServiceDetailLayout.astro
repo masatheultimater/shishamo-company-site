@@ -9,6 +9,14 @@ import StructuredData from './seo/StructuredData.astro';
 import '../styles/service-detail.css';
 import { Icon } from 'astro-icon/components';
 import type { ServiceDetailData } from '@shared/contracts/components';
+import {
+  getRelatedBlogPosts,
+  serviceToBlogCategory,
+  categoryLabels,
+  getPrimaryCategory,
+  formatDate,
+  transformBlogPost,
+} from '../lib/microcms';
 
 interface Props {
   data: ServiceDetailData;
@@ -22,8 +30,12 @@ const siteUrl = siteMetadata.siteUrl;
 // パンくずリストデータ
 const breadcrumbItems = [
   { name: 'サービス', href: '/services/' },
-  { name: data.name, href: `/services/${data.id}/` }
+  { name: data.name, href: `/services/${data.id}/` },
 ];
+
+// Related blog posts for this service
+const relatedPosts = await getRelatedBlogPosts(data.id);
+const blogCategory = serviceToBlogCategory[data.id];
 
 // Service構造化データ
 const serviceSchemaData = {
@@ -38,9 +50,9 @@ const serviceSchemaData = {
       '@type': 'PriceSpecification',
       price: data.priceRange,
       priceCurrency: 'JPY',
-      unitText: data.priceUnit
-    }
-  }
+      unitText: data.priceUnit,
+    },
+  },
 };
 ---
 
@@ -62,20 +74,31 @@ const serviceSchemaData = {
       <div class="service-hero-icon"><Icon name={data.icon} size={48} /></div>
       <h1>{data.name}</h1>
       <p>{data.tagline}</p>
-      <div class={`service-hero-price${data.originalPriceRange ? ' service-hero-price--discounted' : ''}`}>
-        {data.originalPriceRange && <span class="original">{data.originalPriceRange}</span>}
+      <div
+        class={`service-hero-price${data.originalPriceRange ? ' service-hero-price--discounted' : ''}`}
+      >
+        {
+          data.originalPriceRange && (
+            <span class="original">{data.originalPriceRange}</span>
+          )
+        }
         <span class="amount">{data.priceRange}</span>
         <span class="unit">{data.priceUnit}</span>
       </div>
-      {data.discountReason && (
-        <div class="service-hero-notice">
-          <Icon name="ri:clipboard-line" size={18} aria-hidden="true" />
-          <p>
-            {data.discountReason}
-            <br /><small>正式登録後は通常価格に改定予定です。</small>
-          </p>
-        </div>
-      )}
+      {
+        data.discountReason && (
+          <div class="service-hero-notice">
+            <Icon name="ri:clipboard-line" size={18} aria-hidden="true" />
+            <p>
+              {data.discountReason}
+              <>
+                <br />
+                <small>正式登録後は通常価格に改定予定です。</small>
+              </>
+            </p>
+          </div>
+        )
+      }
       <div class="service-hero-cta">
         <a href="/contact/" class="btn-primary">無料で相談する →</a>
         <a href="/services/" class="btn-secondary">← サービス一覧</a>
@@ -88,107 +111,183 @@ const serviceSchemaData = {
     <div class="service-content-inner">
       <!-- Problems -->
       <section class="content-section">
-        <h2><Icon name="ri:error-warning-line" size={24} /> こんな課題ありませんか？</h2>
+        <h2>
+          <Icon name="ri:error-warning-line" size={24} /> こんな課題ありませんか？
+        </h2>
         <div class="sd-problem-list">
-          {data.problems.map((problem) => (
-            <div class="sd-problem-item">
-              <p>{problem}</p>
-            </div>
-          ))}
+          {
+            data.problems.map((problem) => (
+              <div class="sd-problem-item">
+                <p>{problem}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
 
       <!-- Use Cases -->
-      {data.useCases && data.useCases.length > 0 && (
-        <section class="content-section">
-          <h2><Icon name="ri:lightbulb-line" size={24} /> こんな場面で活用されています</h2>
-          <div class="usecase-list">
-            {data.useCases.map((uc) => (
-              <div class="usecase-card">
-                <span class="usecase-label usecase-label--scene">場面</span>
-                <p class="usecase-text">{uc.scene}</p>
-                <span class="usecase-label usecase-label--action">対応</span>
-                <p class="usecase-text">{uc.action}</p>
-                <span class="usecase-label usecase-label--outcome">成果</span>
-                <p class="usecase-text usecase-text--outcome">{uc.outcome}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {
+        data.useCases && data.useCases.length > 0 && (
+          <section class="content-section">
+            <h2>
+              <Icon name="ri:lightbulb-line" size={24} />{' '}
+              こんな場面で活用されています
+            </h2>
+            <div class="usecase-list">
+              {data.useCases.map((uc) => (
+                <div class="usecase-card">
+                  <span class="usecase-label usecase-label--scene">場面</span>
+                  <p class="usecase-text">{uc.scene}</p>
+                  <span class="usecase-label usecase-label--action">対応</span>
+                  <p class="usecase-text">{uc.action}</p>
+                  <span class="usecase-label usecase-label--outcome">成果</span>
+                  <p class="usecase-text usecase-text--outcome">{uc.outcome}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       <!-- Features -->
       <section class="content-section">
         <h2><Icon name="ri:sparkling-line" size={24} /> サービスの特徴</h2>
         <div class="feature-grid">
-          {data.features.map((feature) => (
-            <div class="feature-card">
-              <div class="feature-icon"><Icon name={feature.icon} size={32} /></div>
-              <h3>{feature.title}</h3>
-              <p>{feature.description}</p>
-            </div>
-          ))}
+          {
+            data.features.map((feature) => (
+              <div class="feature-card">
+                <div class="feature-icon">
+                  <Icon name={feature.icon} size={32} />
+                </div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
 
       <!-- Expected Outcomes -->
-      {data.expectedOutcomes && data.expectedOutcomes.length > 0 && (
-        <section class="content-section">
-          <h2><Icon name="ri:bar-chart-grouped-line" size={24} /> 期待できる効果</h2>
-          <div class="outcomes-grid">
-            {data.expectedOutcomes.map((out) => (
-              <div class="outcome-card">
-                <div class="outcome-metric">{out.metric}</div>
-                <p class="outcome-desc">{out.description}</p>
-                <p class="outcome-example">{out.example}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {
+        data.expectedOutcomes && data.expectedOutcomes.length > 0 && (
+          <section class="content-section">
+            <h2>
+              <Icon name="ri:bar-chart-grouped-line" size={24} /> 期待できる効果
+            </h2>
+            <div class="outcomes-grid">
+              {data.expectedOutcomes.map((out) => (
+                <div class="outcome-card">
+                  <div class="outcome-metric">{out.metric}</div>
+                  <p class="outcome-desc">{out.description}</p>
+                  <p class="outcome-example">{out.example}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       <!-- Flow -->
       <section class="content-section">
         <h2><Icon name="ri:clipboard-line" size={24} /> 進め方</h2>
         <div class="flow-list">
-          {data.flow.map((step, index) => (
-            <div class="flow-item" data-step={index + 1}>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </div>
-          ))}
+          {
+            data.flow.map((step, index) => (
+              <div class="flow-item" data-step={index + 1}>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
 
       <!-- Pricing -->
       <section class="content-section">
-        <h2><Icon name="ri:money-dollar-circle-line" size={24} /> 料金プラン</h2>
+        <h2>
+          <Icon name="ri:money-dollar-circle-line" size={24} /> 料金プラン
+        </h2>
         <div class="pricing-cards">
-          {data.pricing.map((plan) => (
-            <div class={`pricing-card${plan.popular ? ' popular' : ''}${plan.originalAmount ? ' discounted' : ''}`}>
-              {plan.discountLabel && <span class="discount-badge">{plan.discountLabel}</span>}
-              <div class="pricing-plan">{plan.plan}</div>
-              {plan.originalAmount && <div class="pricing-original">{plan.originalAmount}<span>万円</span></div>}
-              <div class="pricing-amount">{plan.amount}</div>
-              <div class="pricing-unit">{plan.unit}</div>
-              <p class="pricing-desc">{plan.description}</p>
-            </div>
-          ))}
+          {
+            data.pricing.map((plan) => (
+              <div
+                class={`pricing-card${plan.popular ? ' popular' : ''}${plan.originalAmount ? ' discounted' : ''}`}
+              >
+                {plan.discountLabel && (
+                  <span class="discount-badge">{plan.discountLabel}</span>
+                )}
+                <div class="pricing-plan">{plan.plan}</div>
+                {plan.originalAmount && (
+                  <div class="pricing-original">
+                    {plan.originalAmount}
+                    <span>万円</span>
+                  </div>
+                )}
+                <div class="pricing-amount">{plan.amount}</div>
+                <div class="pricing-unit">{plan.unit}</div>
+                <p class="pricing-desc">{plan.description}</p>
+              </div>
+            ))
+          }
         </div>
       </section>
+
+      <!-- Related Blog Posts -->
+      {
+        relatedPosts.length > 0 && (
+          <section class="content-section">
+            <h2>
+              <Icon name="ri:article-line" size={24} /> 関連記事
+            </h2>
+            <div class="sd-related-blog">
+              {relatedPosts.map((post) => {
+                const blog = transformBlogPost(post);
+                const cat = getPrimaryCategory(blog.category);
+                return (
+                  <a
+                    href={`/blog/${blog.slug || blog.id}/`}
+                    class="sd-blog-card"
+                  >
+                    <div class="sd-blog-card__meta">
+                      <span class="sd-blog-card__category">
+                        {categoryLabels[cat]}
+                      </span>
+                      <time datetime={blog.publishedAt}>
+                        {formatDate(blog.publishedAt)}
+                      </time>
+                    </div>
+                    <h3 class="sd-blog-card__title">{blog.title}</h3>
+                  </a>
+                );
+              })}
+            </div>
+            {blogCategory && (
+              <div class="sd-related-blog-more">
+                <a href={`/blog/category/${blogCategory}/`} class="btn-ghost">
+                  {categoryLabels[blogCategory]}の記事をもっと見る →
+                </a>
+              </div>
+            )}
+          </section>
+        )
+      }
 
       <!-- Related Services -->
       <section class="content-section">
         <h2><Icon name="ri:links-line" size={24} /> 関連サービス</h2>
         <div class="related-grid">
-          {data.relatedServices.map((service) => (
-            <a href={service.href} class="related-card">
-              <div class="related-card-icon"><Icon name={service.icon} size={28} /></div>
-              <h3>{service.name}</h3>
-              <p>{service.description}</p>
-              <span class="related-link">詳しく見る →</span>
-            </a>
-          ))}
+          {
+            data.relatedServices.map((service) => (
+              <a href={service.href} class="related-card">
+                <div class="related-card-icon">
+                  <Icon name={service.icon} size={28} />
+                </div>
+                <h3>{service.name}</h3>
+                <p>{service.description}</p>
+                <span class="related-link">詳しく見る →</span>
+              </a>
+            ))
+          }
         </div>
       </section>
     </div>
@@ -198,7 +297,8 @@ const serviceSchemaData = {
   <section class="cta--dark">
     <h2>{data.cta.title}</h2>
     <p set:html={data.cta.description} />
-    <a href="/contact/" class="btn-primary" data-track-cta="service-detail">無料で相談する →</a>
+    <a href="/contact/" class="btn-primary" data-track-cta="service-detail"
+      >無料で相談する →</a
+    >
   </section>
-
 </Layout>

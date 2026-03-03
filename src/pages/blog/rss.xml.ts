@@ -1,20 +1,29 @@
 import rss from '@astrojs/rss';
 import type { APIContext } from 'astro';
-import { getAllBlogPosts, categoryLabels, getPrimaryCategory } from '../../lib/microcms';
+import {
+  getAllBlogPosts,
+  categoryLabels,
+  getPrimaryCategory,
+} from '../../lib/microcms';
 
 export async function GET(context: APIContext) {
   const posts = await getAllBlogPosts();
 
   return rss({
     title: 'ブログ | ししゃもカンパニー',
-    description: 'DX推進・生成AI・データ活用・経営改善に関するナレッジ・事例・お知らせ',
+    description:
+      'IT・経営・会計の「で、うちはどうすればいい？」に答えるブログ。個人事業主・中小企業の方に向けて、わかりやすく書いています。',
     site: context.site!.toString(),
-    items: posts.map((post) => ({
-      title: post.title,
-      pubDate: new Date(post.publishedAt),
-      description: post.excerpt || post.metaDescription || post.title,
-      link: `/blog/${post.slug || post.id}/`,
-    })),
+    items: posts.map((post) => {
+      const cat = getPrimaryCategory(post.category);
+      return {
+        title: post.title,
+        pubDate: new Date(post.publishedAt),
+        description: post.excerpt || post.metaDescription || post.title,
+        link: `/blog/${post.slug || post.id}/`,
+        categories: [categoryLabels[cat], ...(post.tags || [])],
+      };
+    }),
     customData: '<language>ja</language>',
   });
 }
