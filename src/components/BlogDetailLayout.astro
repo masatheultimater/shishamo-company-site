@@ -63,6 +63,20 @@ const authorCredentials = profile.qualifications
   )
   .map((q) => q.name);
 
+// Category-specific credential context for E-E-A-T
+import type { BlogCategory } from '@shared/contracts/api';
+const categoryCredentialContext: Record<BlogCategory, string> = {
+  kaizen: 'ITストラテジスト保有。システムと業務の両面から改善策を考えます。',
+  ai: 'E資格保有。AIの技術的な限界も正直にお伝えできます。',
+  data: 'データサイエンス3年の実務経験。数字の裏にある意味を読み解きます。',
+  funding:
+    '中小企業診断士（登録予定）。事業計画書の策定から申請まで経験しています。',
+  accounting: '簿記論合格。帳簿の中身がわかる上でのアドバイスです。',
+  management:
+    '中小企業診断士（登録予定）。財務分析と経営戦略の両面から考えます。',
+};
+const credentialContext = categoryCredentialContext[category];
+
 // Related services for this category
 const relatedServiceIds = blogCategoryToServices[category] || [];
 const relatedServices = relatedServiceIds
@@ -231,6 +245,11 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
             ))
           }
         </div>
+        {
+          credentialContext && (
+            <p class="blog-author-box__context">{credentialContext}</p>
+          )
+        }
         <p class="blog-author-box__bio">{profile.bio}</p>
         <a href="/profile/" class="blog-author-box__link"
           >プロフィールを見る →</a

@@ -503,6 +503,14 @@
   font-weight: 600;
 }
 
+.blog-author-box__context {
+  font-size: 0.8rem;
+  color: var(--color-accent-text);
+  line-height: 1.5;
+  margin-bottom: var(--space-sm);
+  font-style: italic;
+}
+
 .blog-author-box__bio {
   font-size: 0.875rem;
   color: var(--color-text-secondary);
