@@ -52,7 +52,8 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/404') &&
         !page.includes('/CLAUDE') &&
-        !page.includes('/contact/thanks'),
+        !page.includes('/contact/thanks') &&
+        !page.includes('/analytics-optout'),
       // 変更頻度と優先度の設定
       serialize(item) {
         // Inject lastmod from microCMS updatedAt
