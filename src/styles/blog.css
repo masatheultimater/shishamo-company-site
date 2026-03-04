@@ -528,81 +528,6 @@
   text-decoration: underline;
 }
 
-/* ===== RELATED SERVICES ===== */
-.blog-related-services {
-  max-width: var(--container-sm);
-  margin: 0 auto;
-  padding: var(--space-xl) var(--space-md);
-  border-top: 1px solid var(--color-border);
-}
-
-.blog-related-services h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: var(--space-lg);
-  color: var(--color-text-heading);
-}
-
-.blog-related-services__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--space-md);
-}
-
-.blog-service-card {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-  padding: var(--space-md) var(--space-lg);
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  color: inherit;
-  transition:
-    border-color var(--transition-base),
-    box-shadow var(--transition-base),
-    transform var(--transition-base);
-}
-
-.blog-service-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-semantic-lg);
-}
-
-.blog-service-card :global(svg) {
-  flex-shrink: 0;
-  color: var(--color-accent);
-  margin-top: 0.15rem;
-}
-
-.blog-service-card h3 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--color-text-heading);
-  margin-bottom: 0.25rem;
-}
-
-.blog-service-card p {
-  font-size: 0.8rem;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* ===== BLOG CTA ACTIONS ===== */
-.blog-cta__actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
-}
-
 /* ===== CATEGORY SERVICE HINT ===== */
 .category-service-hint {
   max-width: var(--container-sm);
@@ -693,15 +618,6 @@
 
   .blog-related__grid {
     grid-template-columns: 1fr;
-  }
-
-  .blog-related-services__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-cta__actions {
-    flex-direction: column;
-    align-items: center;
   }
 
   .category-service-hint {
