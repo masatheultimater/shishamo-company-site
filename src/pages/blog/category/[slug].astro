@@ -9,10 +9,12 @@ import {
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
+  blogCategoryToServices,
 } from '../../../lib/microcms';
 import type { BlogCategory } from '@shared/contracts/api';
 import { Icon } from 'astro-icon/components';
 import { siteMetadata } from '../../../lib/siteConfig';
+import { serviceData } from '../../../data/services';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -34,6 +36,13 @@ const { category, posts } = Astro.props;
 const siteUrl = siteMetadata.siteUrl;
 const categoryName = categoryLabels[category as BlogCategory];
 const categories = Object.keys(categoryLabels) as BlogCategory[];
+
+const relatedServiceIds =
+  blogCategoryToServices[category as BlogCategory] || [];
+const relatedServices = relatedServiceIds
+  .map((id) => serviceData[id])
+  .filter(Boolean)
+  .slice(0, 2);
 
 const breadcrumbItems = [
   { name: 'ブログ', href: '/blog/' },
@@ -94,6 +103,22 @@ const collectionData = {
       }
     </div>
   </nav>
+
+  {
+    relatedServices.length > 0 && (
+      <div class="category-service-hint">
+        <p>このテーマのサポートもあります：</p>
+        <div class="category-service-hint__links">
+          {relatedServices.map((s) => (
+            <a href={`/services/${s.id}/`}>
+              <Icon name={s.icon} size={16} aria-hidden="true" />
+              {s.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   <div class="blog-grid">
     {
