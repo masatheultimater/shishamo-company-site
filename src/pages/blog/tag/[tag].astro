@@ -8,8 +8,12 @@ import {
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
+  blogCategoryToServices,
 } from '../../../lib/microcms';
+import type { BlogCategory } from '@shared/contracts/api';
+import { Icon } from 'astro-icon/components';
 import { siteMetadata } from '../../../lib/siteConfig';
+import { serviceData } from '../../../data/services';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
@@ -34,6 +38,23 @@ export async function getStaticPaths() {
 
 const { tag, posts } = Astro.props;
 const siteUrl = siteMetadata.siteUrl;
+
+// Find dominant category among tagged posts for service hints
+const catCounts: Record<string, number> = {};
+for (const post of posts) {
+  const cat = getPrimaryCategory(post.category);
+  catCounts[cat] = (catCounts[cat] || 0) + 1;
+}
+const dominantCategory = Object.entries(catCounts).sort(
+  (a, b) => b[1] - a[1]
+)[0]?.[0] as BlogCategory | undefined;
+const relatedServiceIds = dominantCategory
+  ? blogCategoryToServices[dominantCategory] || []
+  : [];
+const relatedServices = relatedServiceIds
+  .map((id) => serviceData[id])
+  .filter(Boolean)
+  .slice(0, 2);
 
 const breadcrumbItems = [
   { name: 'ブログ', href: '/blog/' },
@@ -67,6 +88,22 @@ const collectionData = {
     <h1>#{tag}</h1>
     <p>{posts.length}件の記事</p>
   </section>
+
+  {
+    relatedServices.length > 0 && (
+      <div class="category-service-hint">
+        <p>このテーマのサポートもあります：</p>
+        <div class="category-service-hint__links">
+          {relatedServices.map((s) => (
+            <a href={`/services/${s.id}/`}>
+              <Icon name={s.icon} size={16} aria-hidden="true" />
+              {s.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   <div class="blog-grid">
     {
