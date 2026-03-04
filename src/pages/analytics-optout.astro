@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="アクセス解析の除外設定 | ししゃもカンパニー"
+  description="自分のアクセスをアナリティクスから除外する設定ページです。"
+  currentPage=""
+  noIndex={true}
+>
+  <section class="optout-section">
+    <div class="optout-card">
+      <h1>アクセス解析の除外設定</h1>
+      <p class="optout-desc">
+        このブラウザからのアクセスをGoogle Analyticsのカウントから除外します。
+      </p>
+
+      <div class="optout-status" id="status">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">確認中...</span>
+      </div>
+
+      <button class="btn-primary" id="toggle-btn" type="button">
+        読み込み中...
+      </button>
+
+      <p class="optout-note">
+        設定はこのブラウザに保存されます。PC・スマホそれぞれで設定してください。<br
+        />
+        ブラウザのデータを消去すると再設定が必要です。
+      </p>
+    </div>
+  </section>
+
+  <script is:inline>
+    let isDisabled = localStorage.getItem('disable-analytics') === 'true';
+    const dot = document.getElementById('status-dot');
+    const text = document.getElementById('status-text');
+    const btn = document.getElementById('toggle-btn');
+
+    function update() {
+      isDisabled = localStorage.getItem('disable-analytics') === 'true';
+      if (isDisabled) {
+        dot.className = 'status-dot disabled';
+        text.textContent = '除外中（カウントされません）';
+        btn.textContent = '除外を解除する';
+        btn.className = 'btn-secondary';
+      } else {
+        dot.className = 'status-dot enabled';
+        text.textContent = 'カウント中（通常どおり）';
+        btn.textContent = 'このブラウザを除外する';
+        btn.className = 'btn-primary';
+      }
+    }
+
+    btn.addEventListener('click', function () {
+      if (isDisabled) {
+        localStorage.removeItem('disable-analytics');
+      } else {
+        localStorage.setItem('disable-analytics', 'true');
+      }
+      update();
+    });
+
+    update();
+  </script>
+</Layout>
+
+<style>
+  .optout-section {
+    min-height: calc(100vh - 200px);
+    padding: 8rem 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .optout-card {
+    max-width: 480px;
+    width: 100%;
+    background: var(--color-card-bg);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow-semantic-xl);
+    text-align: center;
+  }
+
+  .optout-card h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .optout-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .optout-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .status-dot.disabled {
+    background: var(--color-success, #10b981);
+  }
+
+  .status-dot.enabled {
+    background: var(--color-accent);
+  }
+
+  .optout-note {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .optout-section {
+      padding: 6rem 1.5rem 3rem;
+    }
+
+    .optout-card {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>
