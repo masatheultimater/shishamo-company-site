@@ -18,9 +18,11 @@ import {
   formatDate,
   transformBlogPost,
   sanitizeBlogContent,
+  blogCategoryToServices,
 } from '../lib/microcms';
 import { siteMetadata } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
+import { serviceData } from '../data/services';
 
 interface Props {
   post: BlogPostResponse;
@@ -60,6 +62,13 @@ const authorCredentials = profile.qualifications
     ].includes(q.name)
   )
   .map((q) => q.name);
+
+// Related services for this category
+const relatedServiceIds = blogCategoryToServices[category] || [];
+const relatedServices = relatedServiceIds
+  .map((id) => serviceData[id])
+  .filter(Boolean)
+  .slice(0, 3);
 
 // Meta
 const metaDescription =
@@ -230,6 +239,26 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
     </div>
   </aside>
 
+  <!-- Related Services -->
+  {
+    relatedServices.length > 0 && (
+      <section class="blog-related-services">
+        <h2>この記事に関連するサービス</h2>
+        <div class="blog-related-services__grid">
+          {relatedServices.map((service) => (
+            <a href={`/services/${service.id}/`} class="blog-service-card">
+              <Icon name={service.icon} size={24} aria-hidden="true" />
+              <div>
+                <h3>{service.name}</h3>
+                <p>{service.tagline}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
   <!-- CTA -->
   <section class="cta--dark">
     <h2>「うちの場合はどうすればいい？」<br />と思ったら</h2>
@@ -237,8 +266,21 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
       記事を読んで気になったこと、何でも聞いてください。<br
       />初回30分の無料相談で、状況に合わせた進め方を一緒に考えます。
     </p>
-    <a href="/contact/" class="btn-primary" data-track-cta="blog-detail"
-      >無料で相談する →</a
-    >
+    <div class="blog-cta__actions">
+      {
+        relatedServices.length > 0 && (
+          <a
+            href={`/services/${relatedServices[0].id}/`}
+            class="btn-secondary"
+            data-track-cta="blog-service"
+          >
+            {relatedServices[0].name}を見る →
+          </a>
+        )
+      }
+      <a href="/contact/" class="btn-primary" data-track-cta="blog-detail"
+        >無料で相談する →</a
+      >
+    </div>
   </section>
 </Layout>

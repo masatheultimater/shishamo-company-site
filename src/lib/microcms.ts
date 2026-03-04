@@ -204,6 +204,17 @@ export const serviceToBlogCategory: Record<string, BlogCategory> = {
   'web-development': 'kaizen',
 };
 
+/** Reverse lookup: blog category → service IDs */
+export const blogCategoryToServices: Record<BlogCategory, string[]> =
+  Object.entries(serviceToBlogCategory).reduce(
+    (acc, [serviceId, category]) => {
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(serviceId);
+      return acc;
+    },
+    {} as Record<string, string[]>
+  );
+
 /** Fetch related blog posts for a given service ID (max 3) */
 export async function getRelatedBlogPosts(
   serviceId: string,
