@@ -189,6 +189,20 @@
   text-wrap: balance;
 }
 
+.profile-detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: opacity 0.2s;
+}
+.profile-detail-link:hover {
+  opacity: 0.8;
+}
+
 .profile-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
