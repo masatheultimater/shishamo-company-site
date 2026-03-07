@@ -44,6 +44,11 @@ export interface ProfilePhilosophy {
   content: string;
 }
 
+export interface ProfileBrand {
+  title: string;
+  content: string;
+}
+
 export interface ProfileCTA {
   title: string;
   description: string;
@@ -60,9 +65,11 @@ export interface ProfileData {
   icon: string;
   badges: ProfileBadge[];
   stats: ProfileStat[];
+  careerIntro: string;
   career: ProfileCareer[];
   qualifications: ProfileQualification[];
   story: ProfileStory;
+  brand: ProfileBrand;
   mottos: ProfileMotto[];
   philosophy: ProfilePhilosophy[];
   cta: ProfileCTA;

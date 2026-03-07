@@ -15,11 +15,15 @@ const qualIconMap: Record<string, string> = {
   応用情報技術者: 'ri:smartphone-line',
   '税理士科目合格（簿記論）': 'ri:calculator-line',
 };
+
+const storyParagraphs = profileData.story.content
+  .split('\n\n')
+  .filter((p) => p.trim());
 ---
 
 <Layout
   title="プロフィール | ししゃもカンパニー"
-  description="吉川昌宏のプロフィール。エンジニア12年＋会計事務所勤務。IT・会計・経営の3つの視点で、中小企業の経営課題を一緒に整理します。"
+  description="吉川昌宏のプロフィール。エンジニア12年＋会計事務所勤務。IT・会計・経営の3つの視点で、中小企業の経営課題に向き合っています。"
   currentPage="profile"
   showPersonSchema={true}
 >
@@ -55,7 +59,7 @@ const qualIconMap: Record<string, string> = {
   <section class="stats-section">
     <div class="stats-grid">
       {
-        profileData.stats.slice(0, 3).map((stat) => (
+        profileData.stats.slice(0, 4).map((stat) => (
           <div class="stat-card">
             <div class="stat-number">
               {stat.number}
@@ -74,31 +78,45 @@ const qualIconMap: Record<string, string> = {
     </div>
   </section>
 
+  <!-- Origin Story -->
+  <section class="section story-section">
+    <div class="section-inner">
+      <h2 class="section-title">{profileData.story.title}</h2>
+      <div class="story-content">
+        <blockquote class="story-quote">
+          <p>{profileData.story.grandfatherWords}</p>
+        </blockquote>
+        <div class="story-text">
+          {storyParagraphs.map((paragraph) => <p set:html={paragraph} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- About My Work -->
-  <section class="section">
+  <section class="section section--alt">
     <div class="section-inner">
       <h2 class="section-title">私の仕事</h2>
       <div class="about-work">
         <p class="about-lead">
-          壊れているものを見つけて、正しい状態に戻す。<br />
-          SE時代はシステムの不具合を直し、会計事務所では数字の乱れを整え、今は経営の仕組みに取り組んでいます。<br
+          ITの話は税理士に通じない。税務の話はエンジニアに通じない。<br />
+          中小企業の経営者は、相談相手ごとに言葉を使い分ける必要があります。<br
           />
-          対象は変わっても、やっていることの根っこは同じです。
+          その「通訳」が、私の仕事です。
         </p>
         <p class="about-desc">
           Web開発12年、データサイエンス3年、会計事務所1年。<br />
-          ITも数字もわかるから、「何のために」「今の体制でできるか」を一緒に考えられます。<br
-          />
-          記帳・月次の整備から、業務フロー改善、ツール導入まで一気通貫で対応します。
+          3つの領域を渡り歩いてきたから、どの話も同じ目線で聞けます。<br />
+          「何のために」「今の体制でできるか」を踏まえて、記帳・月次の整備から業務フロー改善、ツール導入まで一気通貫で対応します。
         </p>
 
-        <h3 class="about-subtitle">大切にしている3つのこと</h3>
+        <h3 class="about-subtitle">仕事の進め方</h3>
         <div class="pillars-grid">
           <div class="pillar-card">
             <div class="pillar-number">01</div>
             <h4>数字の土台づくり</h4>
             <p>
-              「今どうなってるの？」がわかる状態を一緒に作ります。記帳・月次を整え、経営判断に使える数字に。
+              「今どうなってるの？」がわかる状態をつくります。記帳・月次を整え、経営判断に使える数字に。
             </p>
           </div>
           <div class="pillar-card">
@@ -112,7 +130,7 @@ const qualIconMap: Record<string, string> = {
             <div class="pillar-number">03</div>
             <h4>省力化と定着</h4>
             <p>
-              ツールは入れて終わりじゃない。「ちゃんと使える・続けられる」まで一緒に走ります。
+              ツールは入れて終わりじゃない。「ちゃんと使える・続けられる」まで付き合います。
             </p>
           </div>
         </div>
@@ -120,7 +138,7 @@ const qualIconMap: Record<string, string> = {
         <div class="about-note">
           <p>
             DX支援やIT戦略もお受けしますが、派手な提案はしません。<br />
-            「何のために？」「今の人員・予算でできる？」を一緒に考えて、<br />
+            「何のために？」「今の人員・予算でできる？」を踏まえて、<br />
             <strong>本当に回る形</strong>に落とし込むことを大事にしています。
           </p>
         </div>
@@ -134,6 +152,35 @@ const qualIconMap: Record<string, string> = {
             >
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Career Timeline -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-title">経歴</h2>
+      <p
+        class="career-intro"
+        set:html={profileData.careerIntro.replace(/\n/g, '<br>')}
+      />
+      <div class="timeline">
+        {
+          profileData.career.map((item) => (
+            <div class="timeline-item">
+              <div class="timeline-date">
+                {item.period.replace('〜', ' - ')}
+              </div>
+              <div class="timeline-title">{item.title}</div>
+              <div class="timeline-desc">{item.description}</div>
+              <div class="timeline-tags">
+                {item.tags.map((tag) => (
+                  <span class="timeline-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -158,35 +205,13 @@ const qualIconMap: Record<string, string> = {
     </div>
   </section>
 
-  <!-- Career Timeline -->
+  <!-- Qualifications -->
   <section class="section">
     <div class="section-inner">
-      <h2 class="section-title">経歴</h2>
-      <div class="timeline">
-        {
-          profileData.career.map((item) => (
-            <div class="timeline-item">
-              <div class="timeline-date">
-                {item.period.replace('〜', ' - ')}
-              </div>
-              <div class="timeline-title">{item.title}</div>
-              <div class="timeline-desc">{item.description}</div>
-              <div class="timeline-tags">
-                {item.tags.map((tag) => (
-                  <span class="timeline-tag">{tag}</span>
-                ))}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- Qualifications -->
-  <section class="section section--alt">
-    <div class="section-inner">
       <h2 class="section-title">保有資格</h2>
+      <p class="section-subtitle">
+        この組み合わせで、IT・会計・経営の3領域をカバーしています
+      </p>
       <div class="qual-grid">
         {
           profileData.qualifications.map((qual) => (
@@ -204,6 +229,16 @@ const qualIconMap: Record<string, string> = {
             </div>
           ))
         }
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Story -->
+  <section class="section section--alt">
+    <div class="section-inner">
+      <h2 class="section-title">{profileData.brand.title}</h2>
+      <div class="brand-content">
+        <p set:html={profileData.brand.content.trim().replace(/\n/g, '<br>')} />
       </div>
     </div>
   </section>
@@ -310,7 +345,7 @@ const qualIconMap: Record<string, string> = {
     max-width: 900px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
   .stat-card {
@@ -376,6 +411,41 @@ const qualIconMap: Record<string, string> = {
     margin-bottom: 32px;
   }
 
+  /* Origin Story */
+  .story-content {
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    box-shadow: var(--shadow-semantic-sm);
+  }
+  .story-quote {
+    border-left: 4px solid var(--color-accent);
+    padding: 16px 24px;
+    margin-bottom: 32px;
+    background: var(--color-accent-subtle);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+  .story-quote p {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .story-text p {
+    font-size: 0.9375rem;
+    line-height: 2;
+    color: var(--color-text);
+    margin-bottom: 16px;
+  }
+  .story-text p:last-child {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: var(--color-text-heading);
+  }
+
   /* About My Work */
   .about-work {
     background: var(--color-card-bg);
@@ -396,6 +466,9 @@ const qualIconMap: Record<string, string> = {
     line-height: 2;
     color: var(--color-text);
     margin-bottom: 32px;
+  }
+  .about-desc strong {
+    color: var(--color-accent);
   }
   .about-subtitle {
     font-family: var(--font-display);
@@ -445,6 +518,7 @@ const qualIconMap: Record<string, string> = {
     line-height: 1.7;
     color: var(--color-text-secondary);
   }
+
   /* Philosophy Grid */
   .philosophy-grid {
     display: grid;
@@ -503,6 +577,16 @@ const qualIconMap: Record<string, string> = {
   }
   .about-stance strong {
     color: var(--color-accent);
+  }
+
+  /* Career Intro */
+  .career-intro {
+    font-size: 0.9375rem;
+    line-height: 1.9;
+    color: var(--color-text-secondary);
+    margin-top: -16px;
+    margin-bottom: 32px;
+    font-style: italic;
   }
 
   /* Timeline */
@@ -601,7 +685,7 @@ const qualIconMap: Record<string, string> = {
     justify-content: center;
     flex-shrink: 0;
   }
-  .qual-icon svg {
+  .qual-icon :global(svg) {
     width: 22px;
     height: 22px;
     color: var(--color-accent);
@@ -615,6 +699,16 @@ const qualIconMap: Record<string, string> = {
   .qual-info p {
     font-size: var(--font-size-xs);
     color: var(--color-text-secondary);
+  }
+
+  /* Brand Story */
+  .brand-content {
+    max-width: 640px;
+  }
+  .brand-content p {
+    font-size: 0.9375rem;
+    line-height: 2;
+    color: var(--color-text);
   }
 
   /* Responsive */
@@ -641,7 +735,7 @@ const qualIconMap: Record<string, string> = {
       margin-top: -30px;
     }
     .stats-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
     .stat-card {
@@ -655,6 +749,15 @@ const qualIconMap: Record<string, string> = {
     }
     .section-title {
       font-size: 1.1875rem;
+    }
+    .story-content {
+      padding: 24px 16px;
+    }
+    .story-quote {
+      padding: 12px 16px;
+    }
+    .story-quote p {
+      font-size: 1.0625rem;
     }
     .qual-grid {
       grid-template-columns: 1fr;
