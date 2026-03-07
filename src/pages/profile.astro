@@ -78,21 +78,6 @@ const storyParagraphs = profileData.story.content
     </div>
   </section>
 
-  <!-- Origin Story -->
-  <section class="section story-section">
-    <div class="section-inner">
-      <h2 class="section-title">{profileData.story.title}</h2>
-      <div class="story-content">
-        <blockquote class="story-quote">
-          <p>{profileData.story.grandfatherWords}</p>
-        </blockquote>
-        <div class="story-text">
-          {storyParagraphs.map((paragraph) => <p set:html={paragraph} />)}
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- About My Work -->
   <section class="section section--alt">
     <div class="section-inner">
@@ -239,6 +224,21 @@ const storyParagraphs = profileData.story.content
       <h2 class="section-title">{profileData.brand.title}</h2>
       <div class="brand-content">
         <p set:html={profileData.brand.content.trim().replace(/\n/g, '<br>')} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Origin Story -->
+  <section class="section story-section">
+    <div class="section-inner">
+      <h2 class="section-title">{profileData.story.title}</h2>
+      <div class="story-content">
+        <blockquote class="story-quote">
+          <p>{profileData.story.grandfatherWords}</p>
+        </blockquote>
+        <div class="story-text">
+          {storyParagraphs.map((paragraph) => <p set:html={paragraph} />)}
+        </div>
       </div>
     </div>
   </section>
