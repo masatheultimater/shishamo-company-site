@@ -1,174 +1,84 @@
 /**
  * Homepage Structured Data
- * Content for the restructured homepage sections.
+ * Phase 1: 8 sections — HERO, Insight, Problems, Changes, Spiral, About, CTA, Blog
+ *
+ * Text-only sections (insight, spiral, about, CTA) are hardcoded in the template.
+ * This file holds structured data that benefits from type safety.
  */
 
 export interface ProblemItem {
   text: string;
-  serviceId: string;
-  serviceName: string;
+  guideTopic: string;
+  /** Phase 2: /guide/{topic}/. Until then: temporary blog/service link */
+  guideLink: string;
 }
 
-export interface YarukotoItem {
-  number: string;
-  title: string;
-  description: string;
+export interface ChangeItem {
+  before: string;
+  after: string;
+  method: string;
+  /** Set to false when replaced with real client data */
+  isPlaceholder: boolean;
 }
 
-export interface ServiceCategoryItem {
-  text: string;
-  serviceId?: string;
-}
-
-export interface ServiceCategory {
-  title: string;
-  items: ServiceCategoryItem[];
-  note?: string;
-}
-
-export interface CareerHighlight {
-  years: string;
-  title: string;
-  benefit: string;
-}
-
-export interface QualificationGroup {
-  axis: string;
-  items: string[];
-}
-
-/** Maps serviceId to contact form category value */
-export const serviceIdToCategoryMap: Record<string, string> = {
-  'web-development': 'dx',
-  'dx-consulting': 'dx',
-  bookkeeping: 'accounting',
-  'subsidy-support': 'management',
-  'management-consulting': 'management',
-};
-
-/** Section 3: Checkbox-style problem items with service mapping */
+/** Section 3: Checkbox-style problem items → guide links */
 export const problemItems: ProblemItem[] = [
   {
     text: '独立したけど、HPも名刺もまだない',
-    serviceId: 'web-development',
-    serviceName: 'Web開発',
+    guideTopic: '業務効率化',
+    guideLink: '/services/web-development/',
   },
   {
     text: 'デジタル化したいけど、何から手をつければいいかわからない',
-    serviceId: 'dx-consulting',
-    serviceName: 'DX推進',
+    guideTopic: '業務効率化',
+    guideLink: '/blog/excel-dependency-escape-guide/',
   },
   {
     text: '数字の管理がどんぶり勘定のまま',
-    serviceId: 'bookkeeping',
-    serviceName: '記帳代行',
+    guideTopic: 'データ活用',
+    guideLink: '/blog/data-utilization-honest-guide-sme/',
   },
   {
     text: '業務が属人化して、自分が倒れたら回らない',
-    serviceId: 'dx-consulting',
-    serviceName: 'DX推進',
+    guideTopic: '業務効率化',
+    guideLink: '/blog/nocode-automation-guide-sme/',
   },
   {
     text: 'ITツールを入れたけど、誰も使いこなせていない',
-    serviceId: 'dx-consulting',
-    serviceName: 'DX推進',
+    guideTopic: '業務効率化',
+    guideLink: '/blog/ai-adoption-pitfalls-sme/',
   },
   {
     text: '補助金・助成金を使いたいけど、申請が難しそう',
-    serviceId: 'subsidy-support',
-    serviceName: '補助金申請',
+    guideTopic: '補助金活用',
+    guideLink: '/blog/subsidy-application-guide/',
   },
   {
     text: '事業承継を考え始めたけど、何を準備すればいいのかわからない',
-    serviceId: 'management-consulting',
-    serviceName: '経営支援',
+    guideTopic: '経営整理',
+    guideLink: '/blog/management-issues-3-steps/',
   },
 ];
 
-/** Section 4: What we do (3 cards) */
-export const yarukotoItems: YarukotoItem[] = [
+/** Section 4: Changes that happened (placeholder until real client data) */
+export const changeItems: ChangeItem[] = [
   {
-    number: '01',
-    title: 'まず現状を「見える化」する',
-    description:
-      '帳簿、業務フロー、売上構成——今どうなっているかを一緒に整理します。見えない状態では正しい判断はできない。まずは数字と事実を揃えるところから。',
+    before: '経理に月10時間',
+    after: '2時間に',
+    method: '会計ソフトの仕組み化',
+    isPlaceholder: true,
   },
   {
-    number: '02',
-    title: '「回る仕組み」を作る',
-    description:
-      'ツールを入れて終わりにしません。誰がやっても同じ結果が出るフロー、続けられる運用ルール、その会社の人員と予算で本当に回る形に落とし込みます。',
+    before: '補助金の存在を知らなかった',
+    after: '4/5補助で導入',
+    method: '制度の活用',
+    isPlaceholder: true,
   },
   {
-    number: '03',
-    title: 'ITは手段。目的は、困りごとを減らすこと。',
-    description:
-      'このサイトは Astro + microCMS + Cloudflare で構築しています（年間運用コストはドメイン代だけ）。同じ考え方で、「必要十分な技術を、最小コストで」提案します。大がかりな改革より、明日から使える改善を。',
-  },
-];
-
-/** Section 5: Service categories overview */
-export const serviceCategories: ServiceCategory[] = [
-  {
-    title: '経営の伴走支援',
-    items: [
-      {
-        text: '事業計画の策定、経営数値の分析、経営改善の提案',
-        serviceId: 'management-consulting',
-      },
-      { text: '補助金・助成金の申請支援', serviceId: 'subsidy-support' },
-      { text: '事業承継・M&Aの初期相談', serviceId: 'management-consulting' },
-    ],
-  },
-  {
-    title: 'IT・DX支援',
-    items: [
-      {
-        text: 'Webサイトの企画・構築・運用（自社で保守可能な形で）',
-        serviceId: 'web-development',
-      },
-      {
-        text: '業務システムの選定・導入・定着支援',
-        serviceId: 'dx-consulting',
-      },
-      {
-        text: 'データ分析基盤の構築、経営ダッシュボードの作成',
-        serviceId: 'kpi-dashboard',
-      },
-    ],
-  },
-  {
-    title: '財務・会計の整備',
-    items: [
-      { text: '記帳・月次の仕組みづくり', serviceId: 'bookkeeping' },
-      {
-        text: '管理会計の導入、経営判断に使える数字の整備',
-        serviceId: 'data-analysis',
-      },
-    ],
-    note: '※ 税理士資格取得後、税務顧問サービスを開始予定です。現在は税理士科目合格（簿記論）の状態で、法人税法・相続税法を学習中です。',
-  },
-];
-
-/** Section 6: Career highlights (customer-benefit oriented) */
-export const careerHighlights: CareerHighlight[] = [
-  {
-    years: '12年',
-    title: 'Web開発経験',
-    benefit:
-      'フロントエンドからバックエンド、データベース設計まで。「作れる」だけでなく「なぜこの技術を選ぶべきか」を判断できます。',
-  },
-  {
-    years: '3年',
-    title: 'データサイエンス・PM経験',
-    benefit:
-      'SaaSスタートアップでプロダクト戦略の立案から分析基盤構築まで。データを「集めて終わり」ではなく「経営判断に使える形」にする経験があります。',
-  },
-  {
-    years: '1年',
-    title: '会計事務所実務',
-    benefit:
-      '税務申告、記帳代行の現場を経験。ITだけ・経営だけではなく、財務の実務感覚を持って支援できます。',
+    before: '顧客データが放置されていた',
+    after: '新しい売上につながった',
+    method: 'データの活用',
+    isPlaceholder: true,
   },
 ];
 
@@ -178,24 +88,3 @@ export const careerHighlights: CareerHighlight[] = [
  * Fallback: if none are found in microCMS, show latest 3 posts.
  */
 export const evergreenBlogSlugs: string[] = ['dx-start-sme-30'];
-
-/** Section 7: Qualifications grouped by 3 axes */
-export const qualificationGroups: QualificationGroup[] = [
-  {
-    axis: '経営がわかる',
-    items: ['中小企業診断士（登録予定）'],
-  },
-  {
-    axis: 'ITがわかる',
-    items: [
-      'ITストラテジスト',
-      'データベーススペシャリスト',
-      '応用情報技術者',
-      'E資格（ディープラーニング）',
-    ],
-  },
-  {
-    axis: '数字がわかる',
-    items: ['税理士科目合格（簿記論）※法人税法・相続税法 学習中'],
-  },
-];
