@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
 import FAQSection from '../../components/ui/FAQSection.astro';
 import StructuredData from '../../components/seo/StructuredData.astro';
 import { externalAPIs, siteMetadata } from '../../lib/siteConfig';
@@ -47,6 +48,13 @@ const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
         'ご相談・お見積りは無料です。DX推進・生成AI導入・データ活用・経営改善について、お気軽にご連絡ください。',
     }}
   />
+
+  <div class="page-breadcrumb">
+    <Breadcrumb
+      items={[{ name: 'お問い合わせ', href: '/contact/' }]}
+      separator="›"
+    />
+  </div>
 
   <section class="page-header">
     <h1>お問い合わせ</h1>

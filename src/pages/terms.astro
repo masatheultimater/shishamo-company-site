@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/seo/Breadcrumb.astro';
 import StructuredData from '../components/seo/StructuredData.astro';
 import { externalAPIs, siteMetadata } from '../lib/siteConfig';
 import '../styles/policy.css';
@@ -21,6 +22,10 @@ const contactEmail = externalAPIs.contactEmail;
         'ししゃもカンパニーのウェブサイト及びサービスの利用規約です。',
     }}
   />
+
+  <div class="page-breadcrumb">
+    <Breadcrumb items={[{ name: '利用規約', href: '/terms/' }]} separator="›" />
+  </div>
 
   <section class="page-header">
     <div class="page-header-blob"></div>
