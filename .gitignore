@@ -21,6 +21,12 @@ Thumbs.db
 .codex/
 .gemini/
 
+# CMS operational files
+blog-rewrite/
+scripts/create-blog-post.mjs
+scripts/update-single-post.mjs
+scripts/update-microcms.mjs
+
 # Old project artifacts
 wireframe/
 reports/
