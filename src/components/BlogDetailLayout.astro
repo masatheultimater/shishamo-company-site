@@ -10,10 +10,11 @@ import '../styles/blog.css';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
-import type { BlogPostResponse } from '@shared/contracts/api';
+import type { BlogPostResponse, BlogTag } from '@shared/contracts/api';
 import {
   categoryLabels,
   categoryIcons,
+  tagLabels,
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
@@ -104,7 +105,11 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   {
     blog.tags &&
       blog.tags.map((tag) => (
-        <meta property="article:tag" content={tag} slot="head" />
+        <meta
+          property="article:tag"
+          content={tagLabels[tag as BlogTag] || tag}
+          slot="head"
+        />
       ))
   }
 
@@ -135,7 +140,7 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
         <div class="blog-header__tags">
           {blog.tags.map((tag) => (
             <a href={`/blog/tag/${tag}/`} class="blog-header__tag">
-              #{tag}
+              #{tagLabels[tag as BlogTag] || tag}
             </a>
           ))}
         </div>

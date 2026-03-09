@@ -6,12 +6,13 @@ import {
   getAllBlogPosts,
   categoryLabels,
   categoryIcons,
+  tagLabels,
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
   blogCategoryToServices,
 } from '../../../lib/microcms';
-import type { BlogCategory } from '@shared/contracts/api';
+import type { BlogCategory, BlogTag } from '@shared/contracts/api';
 import { Icon } from 'astro-icon/components';
 import { siteMetadata } from '../../../lib/siteConfig';
 import { serviceData } from '../../../data/services';
@@ -156,7 +157,7 @@ const collectionData = {
                       href={`/blog/tag/${tag}/`}
                       class="blog-card__tag blog-card__tag--link"
                     >
-                      #{tag}
+                      #{tagLabels[tag as BlogTag] || tag}
                     </a>
                   ))}
                 </div>

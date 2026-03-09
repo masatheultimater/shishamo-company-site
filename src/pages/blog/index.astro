@@ -6,11 +6,12 @@ import {
   getAllBlogPosts,
   categoryLabels,
   categoryIcons,
+  tagLabels,
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
 } from '../../lib/microcms';
-import type { BlogCategory } from '@shared/contracts/api';
+import type { BlogCategory, BlogTag } from '@shared/contracts/api';
 import { Icon } from 'astro-icon/components';
 import { siteMetadata } from '../../lib/siteConfig';
 import '../../styles/blog.css';
@@ -113,7 +114,7 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
                       href={`/blog/tag/${tag}/`}
                       class="blog-card__tag blog-card__tag--link"
                     >
-                      #{tag}
+                      #{tagLabels[tag as BlogTag] || tag}
                     </a>
                   ))}
                 </div>
