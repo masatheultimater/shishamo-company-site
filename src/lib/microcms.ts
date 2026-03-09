@@ -8,6 +8,7 @@ import type {
   MicroCMSListResponse,
   MicroCMSQueries,
   BlogCategory,
+  BlogTag,
 } from '@shared/contracts/api';
 import type { BlogPost } from '@shared/contracts/components';
 
@@ -50,6 +51,26 @@ const displayNameToSlug: Record<string, BlogCategory> = Object.fromEntries(
     slug as BlogCategory,
   ])
 );
+
+export const tagLabels: Record<BlogTag, string> = {
+  subsidy: '補助金・助成金',
+  automation: '業務自動化',
+  'cloud-accounting': 'クラウド会計',
+  'cost-saving': 'コスト削減',
+  kpi: 'KPI管理',
+  compliance: '法改正対応',
+  'first-step': 'はじめの一歩',
+};
+
+/** Reverse map: microCMS tag display name → slug */
+const tagDisplayNameToSlug: Record<string, BlogTag> = Object.fromEntries(
+  Object.entries(tagLabels).map(([slug, label]) => [label, slug as BlogTag])
+);
+
+/** Normalize a tag value from microCMS to English slug */
+export function normalizeTag(raw: string): string {
+  return tagDisplayNameToSlug[raw] || raw;
+}
 
 // ========================================
 // API functions
@@ -123,7 +144,7 @@ export function transformBlogPost(response: BlogPostResponse): BlogPost {
     title: response.title,
     slug: response.slug,
     category: response.category,
-    tags: response.tags,
+    tags: response.tags?.map(normalizeTag),
     excerpt: response.excerpt,
     content: response.content,
     thumbnail: response.thumbnail
@@ -138,29 +159,10 @@ export function transformBlogPost(response: BlogPostResponse): BlogPost {
   };
 }
 
-/** Legacy category map for migration period (old microCMS values → new slugs) */
-const legacyCategoryMap: Record<string, BlogCategory> = {
-  DX推進: 'kaizen',
-  生成AI: 'ai',
-  データ活用: 'data',
-  経営: 'management',
-  '経理・税務': 'accounting',
-  テクノロジー: 'kaizen',
-  お知らせ: 'kaizen',
-  About: 'kaizen',
-  dx: 'kaizen',
-  tech: 'kaizen',
-  news: 'kaizen',
-  about: 'kaizen',
-};
-
 /** Get primary category from array (microCMS select returns string[]) */
 export function getPrimaryCategory(categories: string[]): BlogCategory {
   const raw = categories[0] || 'kaizen';
-  // Normalize: accept both slugs and display names (current + legacy)
-  return (
-    displayNameToSlug[raw] || legacyCategoryMap[raw] || (raw as BlogCategory)
-  );
+  return displayNameToSlug[raw] || (raw as BlogCategory);
 }
 
 /** Sanitize blog HTML content from microCMS rich editor */

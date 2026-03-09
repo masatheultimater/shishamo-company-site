@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/seo/Breadcrumb.astro';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import { Icon } from 'astro-icon/components';
@@ -27,6 +28,13 @@ const storyParagraphs = profileData.story.content
   currentPage="profile"
   showPersonSchema={true}
 >
+  <div class="page-breadcrumb">
+    <Breadcrumb
+      items={[{ name: 'プロフィール', href: '/profile/' }]}
+      separator="›"
+    />
+  </div>
+
   <!-- Profile Hero -->
   <section class="profile-hero">
     <div class="profile-hero-inner">

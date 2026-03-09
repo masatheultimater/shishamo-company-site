@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
 import StructuredData from '../../components/seo/StructuredData.astro';
 import { Icon } from 'astro-icon/components';
 import '../../styles/diagnostic.css';
@@ -29,6 +30,13 @@ const treeValues = Object.values(diagnosticTree);
         '5分で経営課題を診断。あなたの事業に必要なサービスを提案します。',
     }}
   />
+
+  <div class="page-breadcrumb">
+    <Breadcrumb
+      items={[{ name: '簡易経営診断', href: '/diagnostic/' }]}
+      separator="›"
+    />
+  </div>
 
   <section class="page-header">
     <div class="page-header-content">

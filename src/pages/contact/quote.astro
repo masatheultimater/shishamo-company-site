@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
 import FAQSection from '../../components/ui/FAQSection.astro';
 import { externalAPIs } from '../../lib/siteConfig';
 import { Icon } from 'astro-icon/components';
@@ -8,11 +9,31 @@ import '../../styles/forms.css';
 const FORMSPREE_ENDPOINT = externalAPIs.formspreeEndpoint;
 
 const quoteFAQ = [
-  { question: '見積もりは本当に無料ですか？', answer: 'はい、お見積もりは完全無料です。ご契約に至らなかった場合でも費用は一切かかりません。' },
-  { question: '見積もりにはどのくらい時間がかかりますか？', answer: '通常3営業日以内にご連絡いたします。内容によってはヒアリングをお願いする場合があります。' },
-  { question: '予算が決まっていなくても依頼できますか？', answer: 'もちろんです。ご予算が未定の場合は、複数のプランをご提案いたします。ご予算に応じて調整も可能です。' },
-  { question: '料金体系を教えてください', answer: 'サービスによって異なります。月額制、プロジェクト単位、時間単位など、ご要望に応じて柔軟に対応いたします。詳細は<a href="/services/">サービスページ</a>をご覧ください。' },
-  { question: 'まずは相談だけしたいのですが', answer: '具体的なプロジェクトがまだ決まっていない場合は、<a href="/contact/">無料相談</a>からお申し込みください。課題の整理からお手伝いします。' },
+  {
+    question: '見積もりは本当に無料ですか？',
+    answer:
+      'はい、お見積もりは完全無料です。ご契約に至らなかった場合でも費用は一切かかりません。',
+  },
+  {
+    question: '見積もりにはどのくらい時間がかかりますか？',
+    answer:
+      '通常3営業日以内にご連絡いたします。内容によってはヒアリングをお願いする場合があります。',
+  },
+  {
+    question: '予算が決まっていなくても依頼できますか？',
+    answer:
+      'もちろんです。ご予算が未定の場合は、複数のプランをご提案いたします。ご予算に応じて調整も可能です。',
+  },
+  {
+    question: '料金体系を教えてください',
+    answer:
+      'サービスによって異なります。月額制、プロジェクト単位、時間単位など、ご要望に応じて柔軟に対応いたします。詳細は<a href="/services/">サービスページ</a>をご覧ください。',
+  },
+  {
+    question: 'まずは相談だけしたいのですが',
+    answer:
+      '具体的なプロジェクトがまだ決まっていない場合は、<a href="/contact/">無料相談</a>からお申し込みください。課題の整理からお手伝いします。',
+  },
 ];
 ---
 
@@ -21,27 +42,52 @@ const quoteFAQ = [
   description="具体的なプロジェクトのお見積もりをご希望の方はこちらからお申し込みください。DX推進・生成AI導入・データ活用・経営改善のお見積もりは無料です。"
   currentPage="contact"
 >
+  <div class="page-breadcrumb">
+    <Breadcrumb
+      items={[
+        { name: 'お問い合わせ', href: '/contact/' },
+        { name: 'お見積もり依頼', href: '/contact/quote/' },
+      ]}
+      separator="›"
+    />
+  </div>
+
   <section class="page-header">
     <p class="page-header-label">Quote Request</p>
     <h1>お見積もり依頼</h1>
-    <p>具体的なプロジェクトのお見積もりをご希望の方はこちらからお申し込みください。</p>
+    <p>
+      具体的なプロジェクトのお見積もりをご希望の方はこちらからお申し込みください。
+    </p>
   </section>
 
   <section class="contact-section">
     <div class="contact-inner">
       <div class="contact-form-card">
         <h2>お見積もりを依頼する</h2>
-        <p>以下のフォームにプロジェクトの詳細をご記入ください。内容を確認の上、ご連絡いたします。</p>
+        <p>
+          以下のフォームにプロジェクトの詳細をご記入ください。内容を確認の上、ご連絡いたします。
+        </p>
         <form action={FORMSPREE_ENDPOINT} method="POST" id="quoteForm">
-          <input type="hidden" name="form_type" value="quote">
-          <input type="hidden" name="_subject" value="【ししゃも】お見積り依頼">
+          <input type="hidden" name="form_type" value="quote" />
+          <input
+            type="hidden"
+            name="_subject"
+            value="【ししゃも】お見積り依頼"
+          />
 
           <div class="form-group">
             <label for="quote-name">
               お名前<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <input type="text" id="quote-name" name="name" required aria-required="true" placeholder="山田 太郎">
+            <input
+              type="text"
+              id="quote-name"
+              name="name"
+              required
+              aria-required="true"
+              placeholder="山田 太郎"
+            />
           </div>
 
           <div class="form-group">
@@ -49,7 +95,14 @@ const quoteFAQ = [
               会社名<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <input type="text" id="quote-company" name="company" required aria-required="true" placeholder="株式会社〇〇">
+            <input
+              type="text"
+              id="quote-company"
+              name="company"
+              required
+              aria-required="true"
+              placeholder="株式会社〇〇"
+            />
           </div>
 
           <div class="form-group">
@@ -57,20 +110,39 @@ const quoteFAQ = [
               メールアドレス<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <input type="email" id="quote-email" name="email" required aria-required="true" placeholder="example@company.com">
+            <input
+              type="email"
+              id="quote-email"
+              name="email"
+              required
+              aria-required="true"
+              placeholder="example@company.com"
+            />
           </div>
 
           <div class="form-group">
             <label for="quote-phone">電話番号</label>
-            <input type="tel" id="quote-phone" name="phone" placeholder="03-1234-5678">
+            <input
+              type="tel"
+              id="quote-phone"
+              name="phone"
+              placeholder="03-1234-5678"
+            />
           </div>
 
           <div class="form-group">
             <label for="quote-category">
-              依頼したいサービス<span class="required" aria-hidden="true">*</span>
+              依頼したいサービス<span class="required" aria-hidden="true"
+                >*</span
+              >
               <span class="sr-only">（必須）</span>
             </label>
-            <select id="quote-category" name="category" required aria-required="true">
+            <select
+              id="quote-category"
+              name="category"
+              required
+              aria-required="true"
+            >
               <option value="">選択してください</option>
               <option value="dx-consulting">DX推進サポート</option>
               <option value="it-strategy">IT戦略策定</option>
@@ -112,7 +184,9 @@ const quoteFAQ = [
               <option value="over500">500万円以上</option>
               <option value="undecided">未定・相談したい</option>
             </select>
-            <p class="form-note">あくまで目安です。ご予算に応じたご提案をいたします。</p>
+            <p class="form-note">
+              あくまで目安です。ご予算に応じたご提案をいたします。
+            </p>
           </div>
 
           <div class="form-group">
@@ -120,44 +194,85 @@ const quoteFAQ = [
               プロジェクト概要<span class="required" aria-hidden="true">*</span>
               <span class="sr-only">（必須）</span>
             </label>
-            <textarea id="quote-project" name="project_overview" class="large" required aria-required="true" placeholder="実現したいこと、現在の課題、プロジェクトの背景などをできるだけ詳しくお書きください。"></textarea>
-            <p class="form-note">詳しくご記入いただくほど、正確なお見積もりが可能です。</p>
+            <textarea
+              id="quote-project"
+              name="project_overview"
+              class="large"
+              required
+              aria-required="true"
+              placeholder="実現したいこと、現在の課題、プロジェクトの背景などをできるだけ詳しくお書きください。"
+            ></textarea>
+            <p class="form-note">
+              詳しくご記入いただくほど、正確なお見積もりが可能です。
+            </p>
           </div>
 
           <div class="form-group">
             <label for="quote-additional">その他ご要望・ご質問</label>
-            <textarea id="quote-additional" name="additional_notes" placeholder="気になる点やご質問があればお書きください。"></textarea>
+            <textarea
+              id="quote-additional"
+              name="additional_notes"
+              placeholder="気になる点やご質問があればお書きください。"
+            ></textarea>
           </div>
 
           <div class="form-group">
             <div class="checkbox-group">
-              <input type="checkbox" id="privacy" name="privacy" required>
-              <label for="privacy"><a href="/privacy-policy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意する</label>
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <label for="privacy"
+                ><a
+                  href="/privacy-policy/"
+                  target="_blank"
+                  rel="noopener noreferrer">プライバシーポリシー</a
+                >に同意する</label
+              >
             </div>
           </div>
 
-          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+          <button
+            type="submit"
+            class="btn-primary"
+            style="width: 100%; justify-content: center;"
+          >
             お見積もりを依頼する
             <Icon name="ri:arrow-right-line" size={14} />
           </button>
         </form>
         <script>
-          import { trackFormSubmit, initFormAbandonmentTracking } from '../../lib/analytics';
-          const form = document.getElementById('quoteForm') as HTMLFormElement | null;
+          import {
+            trackFormSubmit,
+            initFormAbandonmentTracking,
+          } from '../../lib/analytics';
+          const form = document.getElementById(
+            'quoteForm'
+          ) as HTMLFormElement | null;
           form?.addEventListener('submit', async (e) => {
             e.preventDefault();
             trackFormSubmit({ form_type: 'quote' });
-            const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+            const btn = form.querySelector(
+              'button[type="submit"]'
+            ) as HTMLButtonElement;
             const originalText = btn?.innerHTML || '';
-            const resetBtn = () => { if (btn) { btn.disabled = false; btn.innerHTML = originalText; } };
-            if (btn) { btn.disabled = true; btn.textContent = '送信中...'; }
+            const resetBtn = () => {
+              if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+              }
+            };
+            if (btn) {
+              btn.disabled = true;
+              btn.textContent = '送信中...';
+            }
             try {
               const res = await fetch(form.action, {
                 method: 'POST',
                 body: new FormData(form),
-                headers: { 'Accept': 'application/json' },
+                headers: { Accept: 'application/json' },
               });
-              if (res.ok) { window.location.href = '/contact/thanks/'; return; }
+              if (res.ok) {
+                window.location.href = '/contact/thanks/';
+                return;
+              }
               alert('送信に失敗しました。もう一度お試しください。');
               resetBtn();
             } catch {
@@ -184,7 +299,9 @@ const quoteFAQ = [
             <Icon name="ri:chat-3-line" size={18} />
             詳細ヒアリング
           </h3>
-          <p>いただいた内容をもとに、必要に応じてオンラインでヒアリングさせていただきます。</p>
+          <p>
+            いただいた内容をもとに、必要に応じてオンラインでヒアリングさせていただきます。
+          </p>
         </div>
 
         <div class="sidebar-card">
@@ -192,7 +309,9 @@ const quoteFAQ = [
             <Icon name="ri:check-double-line" size={18} />
             具体的な提案
           </h3>
-          <p>ご予算・ご要望に応じた最適なプランをご提案。実現可能な範囲で柔軟に対応します。</p>
+          <p>
+            ご予算・ご要望に応じた最適なプランをご提案。実現可能な範囲で柔軟に対応します。
+          </p>
         </div>
 
         <div class="sidebar-card">
@@ -207,7 +326,12 @@ const quoteFAQ = [
   </section>
 
   <!-- FAQ SECTION -->
-  <FAQSection title="お見積もりについてよくあるご質問" items={quoteFAQ} variant="detailed" generateSchema />
+  <FAQSection
+    title="お見積もりについてよくあるご質問"
+    items={quoteFAQ}
+    variant="detailed"
+    generateSchema
+  />
 </Layout>
 
 <style>
@@ -303,7 +427,7 @@ const quoteFAQ = [
   .checkbox-group {
     gap: 10px;
   }
-  .checkbox-group input[type="checkbox"] {
+  .checkbox-group input[type='checkbox'] {
     width: 18px;
     height: 18px;
   }

@@ -5,21 +5,25 @@ import StructuredData from '../../../components/seo/StructuredData.astro';
 import {
   getAllBlogPosts,
   categoryLabels,
+  tagLabels,
+  normalizeTag,
   getPrimaryCategory,
   formatDate,
   transformBlogPost,
 } from '../../../lib/microcms';
+import type { BlogTag } from '@shared/contracts/api';
 import { siteMetadata } from '../../../lib/siteConfig';
 import '../../../styles/blog.css';
 
 export async function getStaticPaths() {
   const allPosts = await getAllBlogPosts();
 
-  // Collect all unique tags
+  // Collect all unique tags (normalized to English slugs)
   const tagMap = new Map<string, typeof allPosts>();
   for (const post of allPosts) {
     if (post.tags) {
-      for (const tag of post.tags) {
+      for (const rawTag of post.tags) {
+        const tag = normalizeTag(rawTag);
         if (!tagMap.has(tag)) tagMap.set(tag, []);
         tagMap.get(tag)!.push(post);
       }
@@ -34,16 +38,17 @@ export async function getStaticPaths() {
 
 const { tag, posts } = Astro.props;
 const siteUrl = siteMetadata.siteUrl;
+const tagLabel = tagLabels[tag as BlogTag] || tag;
 
 const breadcrumbItems = [
   { name: 'ブログ', href: '/blog/' },
-  { name: `#${tag}`, href: `/blog/tag/${tag}/` },
+  { name: `#${tagLabel}`, href: `/blog/tag/${tag}/` },
 ];
 
 const collectionData = {
-  name: `#${tag} - ブログ`,
+  name: `#${tagLabel} - ブログ`,
   url: `${siteUrl}/blog/tag/${tag}/`,
-  description: `「${tag}」タグが付いたブログ記事一覧`,
+  description: `「${tagLabel}」タグが付いたブログ記事一覧`,
   hasPart: posts.map((post) => ({
     '@type': 'BlogPosting',
     headline: post.title,
@@ -53,8 +58,8 @@ const collectionData = {
 ---
 
 <Layout
-  title={`#${tag} の記事一覧 | ブログ | ししゃもカンパニー`}
-  description={`「${tag}」タグが付いたブログ記事一覧。個人事業主・中小企業の方に向けて、わかりやすく書いています。`}
+  title={`#${tagLabel} の記事一覧 | ブログ | ししゃもカンパニー`}
+  description={`「${tagLabel}」タグが付いたブログ記事一覧。個人事業主・中小企業の方に向けて、わかりやすく書いています。`}
   currentPage="blog"
 >
   <StructuredData slot="head" type="CollectionPage" data={collectionData} />
@@ -64,7 +69,7 @@ const collectionData = {
   </div>
 
   <section class="page-header page-header--compact">
-    <h1>#{tag}</h1>
+    <h1>#{tagLabel}</h1>
     <p>{posts.length}件の記事</p>
   </section>
 
@@ -93,7 +98,7 @@ const collectionData = {
                     href={`/blog/tag/${t}/`}
                     class="blog-card__tag blog-card__tag--link"
                   >
-                    #{t}
+                    #{tagLabels[t as BlogTag] || t}
                   </a>
                 ))}
               </div>

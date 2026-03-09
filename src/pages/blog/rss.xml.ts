@@ -3,8 +3,10 @@ import type { APIContext } from 'astro';
 import {
   getAllBlogPosts,
   categoryLabels,
+  tagLabels,
   getPrimaryCategory,
 } from '../../lib/microcms';
+import type { BlogTag } from '@shared/contracts/api';
 
 export async function GET(context: APIContext) {
   const posts = await getAllBlogPosts();
@@ -21,7 +23,10 @@ export async function GET(context: APIContext) {
         pubDate: new Date(post.publishedAt),
         description: post.excerpt || post.metaDescription || post.title,
         link: `/blog/${post.slug || post.id}/`,
-        categories: [categoryLabels[cat], ...(post.tags || [])],
+        categories: [
+          categoryLabels[cat],
+          ...(post.tags || []).map((t) => tagLabels[t as BlogTag] || t),
+        ],
       };
     }),
     customData: '<language>ja</language>',
