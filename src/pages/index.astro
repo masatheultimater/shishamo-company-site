@@ -13,14 +13,10 @@ import {
 } from '../lib/microcms';
 import {
   problemItems,
-  yarukotoItems,
-  serviceCategories,
-  careerHighlights,
-  qualificationGroups,
-  serviceIdToCategoryMap,
+  changeItems,
   evergreenBlogSlugs,
 } from '../data/homepage';
-import { socialLinks, siteMetadata } from '../lib/siteConfig';
+import { socialLinks } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
 import StructuredData from '../components/seo/StructuredData.astro';
 import XIcon from '../components/ui/XIcon.astro';
@@ -65,7 +61,7 @@ const latestPosts =
         </p>
         <div class="hero-cta">
           <a href="/contact/" class="btn-primary" data-track-cta="hero"
-            >無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a
+            >まず話してみる <Icon name="ri:arrow-right-line" size={14} /></a
           >
           <a href="/services/" class="btn-secondary" data-track-cta="hero"
             >できることを見る</a
@@ -149,7 +145,24 @@ const latestPosts =
     </div>
   </section>
 
-  <!-- 2. PROBLEMS -->
+  <!-- 2. 見えてきたこと -->
+  <section class="section insight">
+    <div class="container">
+      <div class="insight-content">
+        <p>
+          データはあるのに活かされていない。使える制度が使われていない。<br />
+          自分たちの強みに気づいていない。
+        </p>
+        <p>そういう会社が、想像よりずっと多かった。</p>
+        <p>
+          もったいないな、と思いました。<br />
+          同時に、ここを一緒に考えられる人間がいたら、けっこう力になれるんじゃないかとも。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 困りごと -->
   <section class="section problems">
     <div class="container">
       <div class="section-header section-header--compact">
@@ -170,7 +183,6 @@ const latestPosts =
               aria-checked="false"
               tabindex="0"
               data-problem-index={index}
-              data-service-id={item.serviceId}
             >
               <Icon
                 name="ri:checkbox-blank-line"
@@ -184,11 +196,11 @@ const latestPosts =
               />
               <span class="problem-text">{item.text}</span>
               <a
-                href={`/services/${item.serviceId}/`}
-                class="problem-service"
+                href={item.guideLink}
+                class="problem-guide"
                 data-track="problem"
               >
-                {item.serviceName}{' '}
+                {item.guideTopic}{' '}
                 <Icon name="ri:arrow-right-s-line" size={14} />
               </a>
             </div>
@@ -197,88 +209,41 @@ const latestPosts =
       </div>
       <div class="problem-cta">
         <a
-          href="/contact/"
-          class="btn-primary"
-          id="problem-cta-btn"
-          data-track-cta="problems"
-        >
-          <span id="problem-cta-text">無料で相談する</span>
-          <Icon name="ri:arrow-right-line" size={14} />
-        </a>
-        <a
           href="/diagnostic/"
           class="btn-secondary"
           data-track-cta="diagnostic"
         >
           <Icon name="ri:stethoscope-line" size={14} />
-          <span>まずは5分で経営診断</span>
+          <span>何から始めればいいかわからない方へ</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 3. SERVICES -->
-  <section class="section dekiru">
+  <!-- 4. 実際に起きた変化 -->
+  <section class="section changes">
     <div class="container">
       <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Services</div>
-        <h2 class="section-title section-title--compact">できること</h2>
+        <div class="section-label section-label--compact">Results</div>
+        <h2 class="section-title section-title--compact">実際に起きた変化</h2>
         <p class="section-desc section-desc--compact">
-          IT・データ・経営財務を横断的に支援します
+          一緒に考えて動いた結果、こういう変化が起きた会社があります。
         </p>
       </div>
-      <div class="dekiru-grid">
+      <div class="changes-list">
         {
-          serviceCategories.map((cat) => (
-            <div class="dekiru-category">
-              <h3>{cat.title}</h3>
-              <ul>
-                {cat.items.map((item) => (
-                  <li>
-                    {item.serviceId ? (
-                      <a
-                        href={`/services/${item.serviceId}/`}
-                        class="dekiru-link"
-                      >
-                        {item.text}{' '}
-                        <Icon name="ri:arrow-right-s-line" size={13} />
-                      </a>
-                    ) : (
-                      <span>{item.text}</span>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              {cat.note && <p class="dekiru-note">{cat.note}</p>}
-            </div>
-          ))
-        }
-      </div>
-      <div class="dekiru-all">
-        <a href="/services/" class="btn-secondary" data-track-cta="services"
-          >すべてのサービスを見る <Icon
-            name="ri:arrow-right-line"
-            size={14}
-          /></a
-        >
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. YARUKOTO -->
-  <section class="section yarukoto">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">What I Do</div>
-        <h2 class="section-title section-title--compact">やること</h2>
-      </div>
-      <div class="yarukoto-grid">
-        {
-          yarukotoItems.map((item) => (
-            <div class="yarukoto-card">
-              <div class="yarukoto-number">{item.number}</div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+          changeItems.map((item) => (
+            <div class="change-item">
+              <div class="change-flow">
+                <span class="change-before">{item.before}</span>
+                <Icon
+                  name="ri:arrow-right-line"
+                  size={16}
+                  class="change-arrow"
+                />
+                <span class="change-after">{item.after}</span>
+              </div>
+              <span class="change-method">{item.method}</span>
             </div>
           ))
         }
@@ -286,113 +251,90 @@ const latestPosts =
     </div>
   </section>
 
-  <!-- 5. CAREER -->
-  <section class="section career">
+  <!-- 5. 螺旋 -->
+  <section class="section spiral">
     <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Career</div>
-        <h2 class="section-title section-title--compact">経歴</h2>
-      </div>
-      <div class="career-grid">
-        {
-          careerHighlights.map((item) => (
-            <div class="career-item">
-              <div class="career-years">{item.years}</div>
-              <h3>{item.title}</h3>
-              <p>{item.benefit}</p>
-            </div>
-          ))
-        }
+      <div class="spiral-content">
+        <div class="spiral-visual" aria-hidden="true">
+          <div class="spiral-step">
+            <span class="spiral-dot"></span>
+            <span>数字で見る</span>
+          </div>
+          <div class="spiral-step">
+            <span class="spiral-dot"></span>
+            <span>軸を決める</span>
+          </div>
+          <div class="spiral-step">
+            <span class="spiral-dot"></span>
+            <span>仕組みにする</span>
+          </div>
+        </div>
+        <div class="spiral-text">
+          <p>
+            まず現状を数字で見る。<br />
+            そこから軸を決める。<br />
+            決めたことを仕組みにする。
+          </p>
+          <p>
+            仕組みが回ると、次の課題が見えてくる。<br />
+            そしてまた、数字で見る。
+          </p>
+          <p class="spiral-emphasis">
+            この繰り返しで、会社は少しずつ強くなります。
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. QUALIFICATIONS -->
-  <section class="section quals">
+  <!-- 6. ABOUT -->
+  <section class="section about">
     <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Qualifications</div>
-        <h2 class="section-title section-title--compact">保有資格</h2>
-      </div>
-      <div class="quals-grid">
-        {
-          qualificationGroups.map((group) => (
-            <div class="quals-group">
-              <h3>{group.axis}</h3>
-              <ul>
-                {group.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+      <div class="about-content">
+        <p>
+          人の困りごとを聞くことを仕事にしたいと思って、ずっと動いてきました。
+        </p>
+        <p>
+          問題を一緒に考えて、解決策を形にする。<br />
+          それがアプリを作ることだったり、経営の整理だったり、会計処理だったり。<br
+          />
+          方法はバリエーションがあります。
+        </p>
+        <p>
+          ITを12年、会計事務所を1年やってきた結果、<br />
+          そのバリエーションがだいぶ増えました。
+        </p>
 
-  <!-- 7. ORIGIN -->
-  <section class="section origin">
-    <div class="container">
-      <div class="section-header section-header--compact">
-        <div class="section-label section-label--compact">Origin</div>
-        <h2 class="section-title section-title--compact">私の原点</h2>
-      </div>
-      <div class="origin-content">
-        <blockquote class="origin-quote">
+        <blockquote class="about-quote">
           「{profileData.story.grandfatherWords}」
         </blockquote>
-        <p>祖父がいつも言っていた言葉です。</p>
         <p>
-          祖父は小さな印刷会社を営んでいました。地域の商店のチラシ、名刺、パンフレット。一つひとつ丁寧に、お客さんの商売がうまくいくようにと、夜遅くまで働いていました。
+          祖父がいつも言っていた言葉です。小さな印刷会社を営んでいた祖父の会社は、デジタルの波で廃業しました。あの時何もできなかった悔しさが、今の自分の原点です。
         </p>
-        <p>でも、紙からデジタルへ。時代が変わり、祖父の会社は廃業しました。</p>
-        <p>
-          何十年も続けてきた会社が、時代の波に飲み込まれていく。その時の自分には、ITの知識も、経営の知識も、財務の知識もなく、ただ見ていることしかできませんでした。
+
+        <p class="about-style">
+          「やめた方がいい」も言います。根拠をもって、一緒に動く。それが自分のスタイルです。
         </p>
-        <p class="origin-highlight">あの悔しさが、今の自分の原点です。</p>
-        <p>
-          Web開発を12年。データサイエンスを3年。会計事務所で実務を1年。<br
-          />「次に同じ場面に出会ったら、絶対に助けられる自分になる」——その一心で、ここまで来ました。
-        </p>
+
+        <a href="/profile/" class="about-link">
+          もっと詳しいプロフィールを見る
+          <Icon name="ri:arrow-right-line" size={14} />
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 8. STYLE -->
-  <section class="section style-section">
-    <div class="container">
-      <div class="style-content">
-        <h2>正直に言います。</h2>
-        <p>「やめた方がいい」も言います。<br />「今はまだ早い」も言います。</p>
-        <p>
-          お気持ちは大切にしますが、結論は根拠をもってお伝えします。<br
-          />外から「こうすべき」と教える先生ではなく、同じ立場で一緒に考えます。
-        </p>
-        <p class="style-emphasis">
-          対等に、誠実に、長く効く改善を一緒に作る。<br
-          />それが自分のスタイルです。
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. CTA -->
-  <section class="section cta">
+  <!-- 7. CTA -->
+  <section class="section cta cta--dark">
     <div class="cta-inner">
-      <h2 class="cta-title">「こんなこと聞いていいのかな？」——大歓迎です。</h2>
-      <p class="cta-desc">
-        踏み出すかどうか迷っている段階でも構いません。<br />
-        まずは話を聞かせてください。
-      </p>
-      <p class="cta-reassure">初回30分の無料相談。雑談だけでも構いません。</p>
+      <p class="cta-desc">気になることがあれば、話してみてください。</p>
       <a href="/contact/" class="btn-primary" data-track-cta="bottom"
-        >無料で相談する <Icon name="ri:arrow-right-line" size={14} /></a
+        >まず話してみる <Icon name="ri:arrow-right-line" size={14} /></a
       >
     </div>
   </section>
 
-  <!-- 10. BLOG -->
+  <!-- 8. BLOG -->
   {
     latestPosts.length > 0 && (
       <section class="section blog" id="blog">
@@ -436,6 +378,7 @@ const latestPosts =
     )
   }
 
+  <!-- Profile card stat tooltips -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const statItems = Array.from(
@@ -471,79 +414,23 @@ const latestPosts =
     });
   </script>
 
-  <!-- Problem checkbox interactions -->
+  <!-- Problem checkbox interactions (visual toggle only, no CTA connection) -->
   <script>
     import { trackProblemClick } from '../lib/analytics';
 
     const problemItems =
       document.querySelectorAll<HTMLElement>('.problem-item');
-    const ctaBtn = document.getElementById(
-      'problem-cta-btn'
-    ) as HTMLAnchorElement | null;
-    const ctaText = document.getElementById('problem-cta-text');
-    const defaultCtaText = '無料で相談する';
-    const defaultCtaHref = '/contact/';
-    const STORAGE_KEY = 'problem-checked';
-
-    function getCheckedIndices(): number[] {
-      const indices: number[] = [];
-      problemItems.forEach((el) => {
-        if (el.getAttribute('aria-checked') === 'true') {
-          indices.push(Number(el.dataset.problemIndex));
-        }
-      });
-      return indices;
-    }
-
-    function saveState() {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(getCheckedIndices()));
-    }
-
-    function restoreState() {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (!saved) return;
-      try {
-        const indices: number[] = JSON.parse(saved);
-        problemItems.forEach((el) => {
-          const idx = Number(el.dataset.problemIndex);
-          if (indices.includes(idx)) {
-            el.setAttribute('aria-checked', 'true');
-            el.classList.add('problem-item--checked');
-          }
-        });
-        updateCTA();
-      } catch {
-        /* ignore corrupt data */
-      }
-    }
-
-    function updateCTA() {
-      const checked = getCheckedIndices();
-      if (!ctaBtn || !ctaText) return;
-      if (checked.length > 0) {
-        ctaText.textContent = `${checked.length}件の悩みをまとめて相談する`;
-        ctaBtn.href = `/contact/?problems=${checked.join(',')}`;
-      } else {
-        ctaText.textContent = defaultCtaText;
-        ctaBtn.href = defaultCtaHref;
-      }
-    }
 
     function toggleItem(el: HTMLElement) {
       const isChecked = el.getAttribute('aria-checked') === 'true';
       el.setAttribute('aria-checked', String(!isChecked));
       el.classList.toggle('problem-item--checked', !isChecked);
-      updateCTA();
-      saveState();
     }
-
-    // Restore previous selections
-    restoreState();
 
     problemItems.forEach((el) => {
       el.addEventListener('click', (e) => {
         const target = e.target as HTMLElement;
-        if (target.closest('.problem-service')) return;
+        if (target.closest('.problem-guide')) return;
         toggleItem(el);
       });
 
@@ -555,9 +442,9 @@ const latestPosts =
       });
     });
 
-    // Track service link clicks
+    // Track guide link clicks
     document
-      .querySelectorAll<HTMLAnchorElement>('.problem-service')
+      .querySelectorAll<HTMLAnchorElement>('.problem-guide')
       .forEach((link) => {
         link.addEventListener('click', (e) => {
           e.stopPropagation();
