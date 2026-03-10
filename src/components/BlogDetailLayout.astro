@@ -183,7 +183,7 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   >
   </div>
   <script>
-    import { trackBlogRead } from '../lib/analytics';
+    import { trackBlogRead, trackNextReadClick } from '../lib/analytics';
     const el = document.getElementById('blog-tracking-data');
     if (el) {
       trackBlogRead({
@@ -192,6 +192,16 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
         blog_category: el.dataset.category || '',
       });
     }
+
+    // NextRead link tracking
+    document
+      .querySelectorAll<HTMLAnchorElement>('[data-track-next-read]')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          trackNextReadClick(link.dataset.articleTitle || '', link.href);
+        });
+      });
   </script>
 
   <!-- Author Box (E-E-A-T) -->

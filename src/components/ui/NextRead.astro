@@ -51,7 +51,12 @@ if (relatedPosts.length === 0) {
         {relatedPosts.map((post) => {
           const cat = getPrimaryCategory(post.category);
           return (
-            <a href={`/blog/${post.slug || post.id}/`} class="next-read__card">
+            <a
+              href={`/blog/${post.slug || post.id}/`}
+              class="next-read__card"
+              data-track-next-read
+              data-article-title={post.title}
+            >
               <div class="next-read__meta">
                 <span class="next-read__category">
                   <Icon name={categoryIcons[cat]} size={14} />

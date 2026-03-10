@@ -56,7 +56,12 @@ const { guide } = Astro.props;
       <div class="guide-step-list">
         {
           guide.steps.map((step, index) => (
-            <a href={`/blog/${step.articleSlug}/`} class="guide-step">
+            <a
+              href={`/blog/${step.articleSlug}/`}
+              class="guide-step"
+              data-track-guide="step"
+              data-guide-label={step.title}
+            >
               <span class="guide-step__number">{index + 1}</span>
               <div class="guide-step__content">
                 <div class="guide-step__title">
@@ -89,4 +94,19 @@ const { guide } = Astro.props;
       </a>
     </div>
   </div>
+
+  <script>
+    import { trackGuideClick } from '../../lib/analytics';
+
+    document
+      .querySelectorAll<HTMLAnchorElement>('[data-track-guide]')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const type = link.dataset.trackGuide as 'step' | 'back';
+          const label = link.dataset.guideLabel || '';
+          trackGuideClick(type, label, link.href);
+        });
+      });
+  </script>
 </Layout>

@@ -69,7 +69,12 @@ import '../../styles/guide.css';
       <div class="guide-topics-grid">
         {
           guides.map((guide) => (
-            <a href={`/guide/${guide.slug}/`} class="guide-topic-card">
+            <a
+              href={`/guide/${guide.slug}/`}
+              class="guide-topic-card"
+              data-track-guide="topic_card"
+              data-guide-label={guide.title}
+            >
               <div class="guide-topic-card__icon">
                 <Icon name={guide.icon} size={28} />
               </div>
@@ -100,4 +105,19 @@ import '../../styles/guide.css';
       </a>
     </div>
   </div>
+
+  <script>
+    import { trackGuideClick } from '../../lib/analytics';
+
+    document
+      .querySelectorAll<HTMLAnchorElement>('[data-track-guide]')
+      .forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const type = link.dataset.trackGuide as 'topic_card';
+          const label = link.dataset.guideLabel || '';
+          trackGuideClick(type, label, link.href);
+        });
+      });
+  </script>
 </Layout>

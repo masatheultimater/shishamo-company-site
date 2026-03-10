@@ -262,6 +262,40 @@ export function initEngagementTracking(thresholdMs: number = 60000): void {
   schedule();
 }
 
+// --- Guide & NextRead Navigation Tracking ---
+
+export function trackGuideClick(
+  linkType: 'topic_card' | 'step' | 'banner' | 'back',
+  label: string,
+  targetUrl: string
+): void {
+  pushEventAndNavigate(
+    'guide_click',
+    {
+      guide_link_type: linkType,
+      guide_label: label,
+      destination_url: targetUrl,
+      page_path: window.location.pathname,
+    },
+    targetUrl
+  );
+}
+
+export function trackNextReadClick(
+  articleTitle: string,
+  targetUrl: string
+): void {
+  pushEventAndNavigate(
+    'next_read_click',
+    {
+      next_read_title: articleTitle,
+      destination_url: targetUrl,
+      page_path: window.location.pathname,
+    },
+    targetUrl
+  );
+}
+
 export function trackDiagnosticStart(): void {
   if (typeof window === 'undefined') return;
   pushEvent('diagnostic_start', {

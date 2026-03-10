@@ -93,7 +93,12 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
           return (
             <>
               {index === 4 && (
-                <a href="/guide/" class="blog-guide-banner">
+                <a
+                  href="/guide/"
+                  class="blog-guide-banner"
+                  data-track-guide="banner"
+                  data-guide-label="blog-index-banner"
+                >
                   <Icon name="ri:compass-3-line" size={18} />
                   <span>どの記事から読めばいい？→ ガイドを見る</span>
                   <Icon name="ri:arrow-right-s-line" size={16} />
@@ -139,6 +144,19 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
 </Layout>
 
 <script>
+  import { trackGuideClick } from '../../lib/analytics';
+
+  // Guide banner tracking
+  const banner = document.querySelector<HTMLAnchorElement>(
+    '[data-track-guide="banner"]'
+  );
+  if (banner) {
+    banner.addEventListener('click', (e) => {
+      e.preventDefault();
+      trackGuideClick('banner', 'blog-index-banner', banner.href);
+    });
+  }
+
   // Client-side category filtering (JS enhancement for "すべて" tab)
   // Category-specific links navigate to /blog/category/{slug}/
   const nav = document.querySelector('.blog-nav-inner');
