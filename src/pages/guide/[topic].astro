@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
+import StructuredData from '../../components/seo/StructuredData.astro';
+import { Icon } from 'astro-icon/components';
+import { guides } from '../../data/guides';
+import { siteMetadata } from '../../lib/siteConfig';
+import '../../styles/guide.css';
+
+export function getStaticPaths() {
+  return guides.map((guide) => ({
+    params: { topic: guide.slug },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+---
+
+<Layout
+  title={`${guide.title}ガイド｜ししゃもカンパニー`}
+  description={guide.metaDescription}
+  currentPage="guide"
+>
+  <StructuredData
+    slot="head"
+    type="WebPage"
+    data={{
+      name: `${guide.title}ガイド`,
+      description: guide.metaDescription,
+      url: `${siteMetadata.siteUrl}/guide/${guide.slug}/`,
+    }}
+  />
+
+  <Breadcrumb
+    items={[
+      { name: 'ホーム', href: '/' },
+      { name: 'ガイド', href: '/guide/' },
+      { name: guide.title, href: `/guide/${guide.slug}/` },
+    ]}
+  />
+
+  <div class="guide-container">
+    <!-- Header -->
+    <div class="guide-topic-header">
+      <div class="guide-topic-header__icon">
+        <Icon name={guide.icon} size={32} />
+      </div>
+      <h1>{guide.title}</h1>
+      <p>{guide.description}</p>
+    </div>
+
+    <!-- Reading path -->
+    <div class="guide-steps">
+      <div class="guide-steps__label">この順番で読むとわかりやすい</div>
+      <div class="guide-step-list">
+        {
+          guide.steps.map((step, index) => (
+            <a href={`/blog/${step.articleSlug}/`} class="guide-step">
+              <span class="guide-step__number">{index + 1}</span>
+              <div class="guide-step__content">
+                <div class="guide-step__title">
+                  {step.title}
+                  <span class="guide-step__arrow">
+                    <Icon name="ri:arrow-right-s-line" size={16} />
+                  </span>
+                </div>
+                <p class="guide-step__summary">{step.summary}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Back to hub -->
+    <div class="guide-back">
+      <a href="/guide/">
+        <Icon name="ri:arrow-left-line" size={14} />
+        ガイド一覧に戻る
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div class="guide-cta">
+      <p>このテーマについて相談したい方は、お気軽にどうぞ。</p>
+      <a href="/contact/" class="btn-primary" data-track-cta="guide-topic">
+        まず話してみる <Icon name="ri:arrow-right-line" size={14} />
+      </a>
+    </div>
+  </div>
+</Layout>

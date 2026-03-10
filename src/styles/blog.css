@@ -640,4 +640,104 @@
   .blog-author-box__credentials {
     justify-content: center;
   }
+
+  .next-read__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== NEXT READ ===== */
+
+.next-read {
+  max-width: var(--container-md);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md) var(--space-2xl);
+}
+
+.next-read__title {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-lg);
+}
+
+.next-read__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.next-read__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.next-read__card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-semantic-md);
+}
+
+.next-read__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-xs);
+}
+
+.next-read__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.next-read__date {
+  color: var(--color-text-muted);
+}
+
+.next-read__card-title {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== GUIDE BANNER (blog index) ===== */
+
+.blog-guide-banner {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+  transition: border-color 0.2s;
+}
+
+.blog-guide-banner:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.blog-guide-banner :global(svg) {
+  color: var(--color-accent);
+  flex-shrink: 0;
 }

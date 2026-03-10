@@ -9,6 +9,7 @@ import type {
   MicroCMSQueries,
   BlogCategory,
   BlogTag,
+  ConcernTag,
 } from '@shared/contracts/api';
 import type { BlogPost } from '@shared/contracts/components';
 
@@ -66,6 +67,40 @@ export const tagLabels: Record<BlogTag, string> = {
 const tagDisplayNameToSlug: Record<string, BlogTag> = Object.fromEntries(
   Object.entries(tagLabels).map(([slug, label]) => [label, slug as BlogTag])
 );
+
+// ========================================
+// ConcernTag labels / icons
+// ========================================
+
+export const concernTagLabels: Record<ConcernTag, string> = {
+  tax: '制度対応',
+  data: 'データ活用',
+  efficiency: '業務効率化',
+  management: '経営整理',
+  subsidy: '補助金活用',
+};
+
+export const concernTagIcons: Record<ConcernTag, string> = {
+  tax: 'ri:file-list-3-line',
+  data: 'ri:bar-chart-box-line',
+  efficiency: 'ri:speed-line',
+  management: 'ri:compass-3-line',
+  subsidy: 'ri:money-cny-circle-line',
+};
+
+/** Reverse map: microCMS concernTag display name → slug */
+const concernTagDisplayNameToSlug: Record<string, ConcernTag> =
+  Object.fromEntries(
+    Object.entries(concernTagLabels).map(([slug, label]) => [
+      label,
+      slug as ConcernTag,
+    ])
+  );
+
+/** Normalize a concernTag value from microCMS to English slug */
+export function normalizeConcernTag(raw: string): string {
+  return concernTagDisplayNameToSlug[raw] || raw;
+}
 
 /** Normalize a tag value from microCMS to English slug */
 export function normalizeTag(raw: string): string {
@@ -145,6 +180,8 @@ export function transformBlogPost(response: BlogPostResponse): BlogPost {
     slug: response.slug,
     category: response.category,
     tags: response.tags?.map(normalizeTag),
+    concernTags: response.concernTags?.map(normalizeConcernTag),
+    relatedSlugs: response.relatedSlugs,
     excerpt: response.excerpt,
     content: response.content,
     thumbnail: response.thumbnail
