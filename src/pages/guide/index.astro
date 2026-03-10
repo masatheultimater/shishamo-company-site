@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/seo/Breadcrumb.astro';
+import StructuredData from '../../components/seo/StructuredData.astro';
+import { Icon } from 'astro-icon/components';
+import { guides } from '../../data/guides';
+import { siteMetadata } from '../../lib/siteConfig';
+import '../../styles/guide.css';
+---
+
+<Layout
+  title="経営強化ガイド｜ししゃもカンパニー"
+  description="困りごと別に読む順序がわかるガイド。知る→決める→変わるの繰り返しで会社を強くする。"
+  currentPage="guide"
+>
+  <StructuredData
+    slot="head"
+    type="WebPage"
+    data={{
+      name: '経営強化ガイド',
+      description:
+        '困りごと別に読む順序がわかるガイド。知る→決める→変わるの繰り返しで会社を強くする。',
+      url: `${siteMetadata.siteUrl}/guide/`,
+    }}
+  />
+
+  <Breadcrumb
+    items={[
+      { name: 'ホーム', href: '/' },
+      { name: 'ガイド', href: '/guide/' },
+    ]}
+  />
+
+  <div class="guide-container">
+    <!-- Intro -->
+    <div class="guide-intro">
+      <p>
+        経営は、一度で正解にたどり着くものではありません。<br />
+        現状を知り、方向を決め、仕組みにする。<br />
+        その繰り返しで、会社は少しずつ強くなります。
+      </p>
+    </div>
+
+    <!-- Spiral visualization -->
+    <div class="guide-spiral">
+      <div class="guide-spiral-visual" aria-hidden="true">
+        <div class="guide-spiral-step">
+          <span class="spiral-dot"></span>
+          <span>数字で見る</span>
+        </div>
+        <div class="guide-spiral-connector"></div>
+        <div class="guide-spiral-step">
+          <span class="spiral-dot"></span>
+          <span>軸を決める</span>
+        </div>
+        <div class="guide-spiral-connector"></div>
+        <div class="guide-spiral-step">
+          <span class="spiral-dot"></span>
+          <span>仕組みにする</span>
+        </div>
+      </div>
+      <p class="guide-spiral-desc">
+        この3つのステップを、困りごとに合わせて繰り返します。
+      </p>
+    </div>
+
+    <!-- Topic cards -->
+    <div class="guide-topics">
+      <div class="guide-topics-grid">
+        {
+          guides.map((guide) => (
+            <a href={`/guide/${guide.slug}/`} class="guide-topic-card">
+              <div class="guide-topic-card__icon">
+                <Icon name={guide.icon} size={28} />
+              </div>
+              <h2 class="guide-topic-card__title">{guide.title}</h2>
+              <p class="guide-topic-card__desc">{guide.description}</p>
+              <span class="guide-topic-card__count">
+                {guide.steps.length}本の記事で構成
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Diagnostic link -->
+    <div class="guide-diagnostic">
+      <p>
+        どこから始めればいいかわからない方は →
+        <a href="/diagnostic/">かんたん経営診断</a>
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="guide-cta">
+      <p>気になるテーマがあれば、話してみてください。</p>
+      <a href="/contact/" class="btn-primary" data-track-cta="guide">
+        まず話してみる <Icon name="ri:arrow-right-line" size={14} />
+      </a>
+    </div>
+  </div>
+</Layout>

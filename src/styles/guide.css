@@ -1,0 +1,320 @@
+/**
+ * Guide Page Styles
+ * Hub page (/guide/) and topic pages (/guide/[topic]/)
+ * Uses semantic tokens exclusively.
+ */
+
+/* ===== SHARED ===== */
+
+.guide-container {
+  max-width: var(--container-md);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== HUB PAGE ===== */
+
+.guide-intro {
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.guide-intro p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-base);
+  line-height: 1.8;
+  max-width: 640px;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* Spiral visualization */
+.guide-spiral {
+  padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+.guide-spiral-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl) 0;
+}
+
+.guide-spiral-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.guide-spiral-step .spiral-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.guide-spiral-step:nth-child(2) .spiral-dot {
+  width: 16px;
+  height: 16px;
+}
+
+.guide-spiral-step:nth-child(3) .spiral-dot {
+  width: 20px;
+  height: 20px;
+}
+
+.guide-spiral-connector {
+  width: 40px;
+  height: 2px;
+  background: var(--color-border);
+}
+
+.guide-spiral-desc {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+  margin-top: var(--space-sm);
+}
+
+/* Topic cards grid */
+.guide-topics {
+  padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+.guide-topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-lg);
+}
+
+.guide-topic-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.guide-topic-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-semantic-md);
+}
+
+.guide-topic-card__icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+}
+
+.guide-topic-card__title {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: 0;
+}
+
+.guide-topic-card__desc {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.guide-topic-card__count {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+/* Diagnostic CTA */
+.guide-diagnostic {
+  text-align: center;
+  padding: var(--space-xl) 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-sm);
+}
+
+.guide-diagnostic a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.guide-diagnostic a:hover {
+  text-decoration: underline;
+}
+
+/* CTA */
+.guide-cta {
+  text-align: center;
+  padding: var(--space-2xl) 0;
+}
+
+.guide-cta p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+/* ===== TOPIC PAGE ===== */
+
+.guide-topic-header {
+  padding: var(--space-2xl) 0 var(--space-lg);
+}
+
+.guide-topic-header__icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.guide-topic-header h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-sm);
+  text-wrap: balance;
+}
+
+.guide-topic-header p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-base);
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+/* Reading path */
+.guide-steps {
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.guide-steps__label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-lg);
+}
+
+.guide-step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* Vertical connecting line */
+.guide-step-list::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border-subtle);
+}
+
+.guide-step {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: opacity 0.2s;
+}
+
+.guide-step:hover {
+  opacity: 0.8;
+}
+
+.guide-step__number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--palette-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.guide-step__content {
+  padding-top: 4px;
+}
+
+.guide-step__title {
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-xs);
+}
+
+.guide-step__summary {
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.guide-step__arrow {
+  display: inline-flex;
+  color: var(--color-accent);
+  margin-left: var(--space-xs);
+  vertical-align: middle;
+}
+
+/* Back to hub */
+.guide-back {
+  padding: var(--space-lg) 0;
+}
+
+.guide-back a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: var(--font-sm);
+}
+
+.guide-back a:hover {
+  color: var(--color-accent);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 640px) {
+  .guide-spiral-visual {
+    gap: var(--space-sm);
+  }
+
+  .guide-spiral-connector {
+    width: 24px;
+  }
+
+  .guide-topics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-topic-header h1 {
+    font-size: 1.5rem;
+  }
+}

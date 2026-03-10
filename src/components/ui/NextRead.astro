@@ -1,0 +1,71 @@
+---
+/**
+ * NextRead Component
+ * Shows related articles at the bottom of a blog post.
+ * Uses relatedSlugs from microCMS if available, falls back to same-category posts.
+ */
+import type { BlogPost } from '@shared/contracts/components';
+import { Icon } from 'astro-icon/components';
+import {
+  getPrimaryCategory,
+  categoryLabels,
+  categoryIcons,
+  formatDate,
+} from '../../lib/microcms';
+import type { BlogCategory } from '@shared/contracts/api';
+
+interface Props {
+  currentPost: BlogPost;
+  allPosts: BlogPost[];
+}
+
+const { currentPost, allPosts } = Astro.props;
+
+// Resolve related posts: prefer relatedSlugs, fallback to same category
+let relatedPosts: BlogPost[] = [];
+
+if (currentPost.relatedSlugs && currentPost.relatedSlugs.length > 0) {
+  relatedPosts = currentPost.relatedSlugs
+    .map((slug) => allPosts.find((p) => (p.slug || p.id) === slug))
+    .filter((p): p is BlogPost => p !== undefined)
+    .slice(0, 3);
+}
+
+// Fallback: same category, exclude current, take latest 3
+if (relatedPosts.length === 0) {
+  const currentCat = getPrimaryCategory(currentPost.category);
+  relatedPosts = allPosts
+    .filter(
+      (p) =>
+        p.id !== currentPost.id && getPrimaryCategory(p.category) === currentCat
+    )
+    .slice(0, 3);
+}
+---
+
+{
+  relatedPosts.length > 0 && (
+    <aside class="next-read">
+      <h2 class="next-read__title">この記事を読んだ方はこちらも</h2>
+      <div class="next-read__list">
+        {relatedPosts.map((post) => {
+          const cat = getPrimaryCategory(post.category);
+          return (
+            <a href={`/blog/${post.slug || post.id}/`} class="next-read__card">
+              <div class="next-read__meta">
+                <span class="next-read__category">
+                  <Icon name={categoryIcons[cat]} size={14} />
+                  {categoryLabels[cat]}
+                </span>
+                <time class="next-read__date" datetime={post.publishedAt}>
+                  {formatDate(post.publishedAt)}
+                </time>
+              </div>
+              <h3 class="next-read__card-title">{post.title}</h3>
+            </a>
+          );
+        })}
+      </div>
+    </aside>
+  )
+}
