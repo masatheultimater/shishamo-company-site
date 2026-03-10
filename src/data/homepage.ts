@@ -26,37 +26,37 @@ export const problemItems: ProblemItem[] = [
   {
     text: '独立したけど、HPも名刺もまだない',
     guideTopic: '業務効率化',
-    guideLink: '/services/web-development/',
+    guideLink: '/guide/efficiency/',
   },
   {
     text: 'デジタル化したいけど、何から手をつければいいかわからない',
     guideTopic: '業務効率化',
-    guideLink: '/blog/excel-dependency-escape-guide/',
+    guideLink: '/guide/efficiency/',
   },
   {
     text: '数字の管理がどんぶり勘定のまま',
     guideTopic: 'データ活用',
-    guideLink: '/blog/data-utilization-honest-guide-sme/',
+    guideLink: '/guide/data/',
   },
   {
     text: '業務が属人化して、自分が倒れたら回らない',
     guideTopic: '業務効率化',
-    guideLink: '/blog/nocode-automation-guide-sme/',
+    guideLink: '/guide/efficiency/',
   },
   {
     text: 'ITツールを入れたけど、誰も使いこなせていない',
     guideTopic: '業務効率化',
-    guideLink: '/blog/ai-adoption-pitfalls-sme/',
+    guideLink: '/guide/efficiency/',
   },
   {
     text: '補助金・助成金を使いたいけど、申請が難しそう',
     guideTopic: '補助金活用',
-    guideLink: '/blog/subsidy-application-guide/',
+    guideLink: '/guide/subsidy/',
   },
   {
     text: '事業承継を考え始めたけど、何を準備すればいいのかわからない',
     guideTopic: '経営整理',
-    guideLink: '/blog/management-issues-3-steps/',
+    guideLink: '/guide/management/',
   },
 ];
 

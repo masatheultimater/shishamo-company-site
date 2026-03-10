@@ -27,7 +27,7 @@ export interface BaseLayoutProps {
  * 実装はsiteConfig.tsのnavigationItemsを使用
  */
 export interface HeaderProps {
-  currentPage?: 'home' | 'services' | 'profile' | 'blog' | 'contact';
+  currentPage?: 'home' | 'services' | 'profile' | 'blog' | 'contact' | 'guide';
   transparent?: boolean;
 }
 
@@ -132,8 +132,10 @@ export interface BlogPost {
   id: string;
   title: string;
   slug: string;
-  category: string[];          // microCMSセレクトフィールド（単一選択でも配列）
-  tags?: string[];             // microCMS複数セレクトフィールド
+  category: string[]; // microCMSセレクトフィールド（単一選択でも配列）
+  tags?: string[]; // microCMS複数セレクトフィールド
+  concernTags?: string[]; // 困りごとタグ
+  relatedSlugs?: string[]; // 関連記事slug
   excerpt?: string;
   content?: string;
   thumbnail?: ImageAsset;

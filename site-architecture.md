@@ -204,7 +204,7 @@ export interface GuideData {
 - Sitemap priority: 0.7
 - OGP画像: 共通OGP
 
-**ガイドとカテゴリページの関係性：** 保留。Phase 2実装前に方針決定。ガイド＝読む順序のある道筋、カテゴリ＝分類ラベル、という区分を候補として検討中。統合か併存かは記事数とユーザー行動を見て判断。
+**ガイドとカテゴリページの関係性：** 併存。ガイド＝読む順序のある道筋（/guide/[topic]/）、カテゴリ＝分類ラベル（/blog/category/[slug]/）。役割が異なるため両方維持。ガイドは「この順番で読むとわかりやすい」、カテゴリは「このジャンルの記事一覧」。
 
 ### 3-3. 事例ページ（/cases/）
 
@@ -282,11 +282,13 @@ export interface GuideData {
   - 管理用。読者には表示しない
   - コンテンツバランスの可視化に使用
 
-**保留：concernTags（困りごとタグ）**
+**④ concernTags（困りごとタグ）**
 
-- Phase 2実装前に必要性を再評価
-- 既存categoryで代替できるか検証
-- 記事数50本超で価値が出る可能性。現状20本では運用コストが高い
+- microCMSのブログスキーマに `concernTags` フィールド追加
+  - マルチセレクト：tax / data / efficiency / management / subsidy
+  - 記事が扱う「困りごと」を1〜3個選択
+  - ガイドページとの紐付けに使用（ガイド側のarticle listの自動生成に活用可能）
+  - ブログ一覧でのフィルタリングにも使用
 
 **独立フェーズに分離：ツールチップ（用語辞書）**
 
@@ -299,7 +301,7 @@ export interface GuideData {
 
 - 記事3〜4件ごとにガイドへの誘導バナーを差し込む
   - 「どの記事から読めばいい？→ ガイドを見る」
-- concernTagsによるフィルタリングは保留（タグ自体が保留のため）
+- concernTagsによるフィルタリングUI追加（タブまたはピルUI）
 - 実装：`src/pages/blog/index.astro` + `src/styles/blog.css`
 
 ### 4-3. サービスページ（/services/）
@@ -329,10 +331,14 @@ export interface GuideData {
     ※ 管理用。読者には表示しない
 ```
 
+```
+  - concernTags: マルチセレクト（tax / data / efficiency / management / subsidy）
+    ※ ガイドとの紐付け＋ブログフィルタに使用
+```
+
 ### 保留
 
 ```
-- concernTags: Phase 2前に再評価
 - glossary API（用語辞書）: ツールチップ独立フェーズ時に判断
 ```
 
@@ -344,7 +350,22 @@ export interface GuideData {
 // siteBranding の concept は維持（HEROを変更しないため）
 // export const siteBranding = { concept: '踏み出す人の、すぐ横にいる。' };
 
-// concernTagLabels / concernTagIcons は保留（Phase 2前に再評価）
+// concernTags のラベルとアイコンを追加
+export const concernTagLabels: Record<ConcernTag, string> = {
+  tax: '制度対応',
+  data: 'データ活用',
+  efficiency: '業務効率化',
+  management: '経営整理',
+  subsidy: '補助金活用',
+};
+
+export const concernTagIcons: Record<ConcernTag, string> = {
+  tax: 'ri:file-list-3-line',
+  data: 'ri:bar-chart-box-line',
+  efficiency: 'ri:speed-line',
+  management: 'ri:compass-3-line',
+  subsidy: 'ri:money-cny-circle-line',
+};
 ```
 
 ---
@@ -371,15 +392,14 @@ export interface GuideData {
 
 主な作業：
 
-1. microCMSスキーマ変更（relatedSlugs, phase追加）
-2. 既存全記事にphase・relatedSlugsを設定
+1. microCMSスキーマ変更（relatedSlugs, phase, concernTags追加）
+2. 既存全記事にphase・relatedSlugs・concernTagsを設定
 3. ブログ記事ページに仕組み実装（次に読む、更新日）
-4. ブログ一覧ページにガイド誘導バナー追加
+4. ブログ一覧ページにガイド誘導バナー＋concernTagsフィルタ追加
 5. ガイド全体像ページ作成（/guide/）
 6. 困りごと別ガイド5本作成（/guide/[topic]/）
 7. ナビゲーション更新（siteConfig.ts + Header.astro — ガイド追加、プロフィール削除）
 8. シミュレーター実装（CSS + vanilla JS。ガイド /guide/tax/ 内に配置）
-9. concernTags の要否を最終判断
 
 **シミュレーター注意事項：**
 
@@ -507,15 +527,15 @@ src/data/services.ts             — 構造変更
 ### 知る（know）
 
 - data-utilization-honest-guide-sme
-- customer-data-sales-growth-sme
+- sales-data-analysis-for-sme
 - kpi-dashboard-guide
-- moneyforward-cloud-bi-dashboard-guide
+- （MF BI記事は未公開）
 - database-thinking-for-sme
 
 ### 決める（decide）
 
-- management-issues-3-steps
-- management-triple-crisis-2025
+- management-issues-5-steps
+- management-triple-crisis-2026
 - simplified-vs-standard-tax-simulation-2026
 - freee-vs-moneyforward
 - 取引先棚卸し（新規予定）
@@ -527,8 +547,8 @@ src/data/services.ts             — 構造変更
 - nocode-automation-guide-sme
 - 会計ソフト消費税設定ガイド（新規予定）
 - ai-tools-comparison-2026
-- chatgpt-acceptance-honest-prompt
-- shotgun-prompts-for-sme
+- chatgpt-prompts-for-sme
+- （shotgun-prompts記事は未公開）
 - ai-adoption-pitfalls-sme
 
 ### 外部環境トリガー（trigger）
@@ -624,12 +644,12 @@ src/
 
 Phase 2実装前に決定が必要な項目：
 
-| 項目                             | 判断時期          | 選択肢                                         |
-| -------------------------------- | ----------------- | ---------------------------------------------- |
-| ガイド vs カテゴリページの関係性 | Phase 2前         | 統合 / 併存 / カテゴリ廃止                     |
-| concernTags の要否               | Phase 2前         | 導入 / 既存categoryで代替 / 記事50本超まで延期 |
-| 事例ナビ昇格                     | Phase 3後         | 実績数次第でナビに追加                         |
-| ツールチップ実装                 | Phase 2効果測定後 | 実装 / 見送り                                  |
+| 項目                                 | 判断時期          | 選択肢                                                   |
+| ------------------------------------ | ----------------- | -------------------------------------------------------- |
+| ~~ガイド vs カテゴリページの関係性~~ | ~~Phase 2前~~     | **決定：併存**（ガイド＝道筋、カテゴリ＝分類）           |
+| ~~concernTags の要否~~               | ~~Phase 2前~~     | **決定：導入**（tax/data/efficiency/management/subsidy） |
+| 事例ナビ昇格                         | Phase 3後         | 実績数次第でナビに追加                                   |
+| ツールチップ実装                     | Phase 2効果測定後 | 実装 / 見送り                                            |
 
 ---
 
@@ -637,21 +657,21 @@ Phase 2実装前に決定が必要な項目：
 
 議論の結果、以下の方針を確定：
 
-| #   | 決定事項                                                                  | 結果                      |
-| --- | ------------------------------------------------------------------------- | ------------------------- |
-| 1   | シミュレーター: React → CSS + vanilla JS、トップから外してガイド/ブログへ | 採用                      |
-| 2   | 「見えてきたこと」にリンク追加                                            | 却下（誘導感が出る）      |
-| 3   | 「実際に起きた変化」: 架空OK、実績で差替え明記                            | 採用                      |
-| 4   | ガイド vs カテゴリの関係性明記                                            | 保留（Phase 2前に相談）   |
-| 5   | ナビ: Home, Guide, Services, Blog の4項目                                 | 採用                      |
-| 6   | concernTags の再検討                                                      | 保留（Phase 2前に再評価） |
-| 7   | ツールチップをPhase 2から独立フェーズに分離                               | 採用                      |
-| 8   | 設計書にSEO項目追加                                                       | 採用                      |
-| 9   | アイコン名: ri:money-cny-circle-line（Remix Icon準拠）                    | 採用                      |
-| 10  | HERO: 「すぐ横にいる」現状維持、じいちゃんはABOUTで                       | 採用                      |
-| 11  | 困りごと: チェックボックス維持、CTA接続なし、ガイドへリンク               | 採用                      |
-| 12  | やること → 螺旋: テキスト＋図、フレームワーク名出さない                   | 採用                      |
-| 13  | ABOUT: 原案ベース、旧セクション4つを統合                                  | 採用                      |
-| 14  | 入口B/C: 独立セクションではなく文脈に溶かす                               | 採用                      |
-| 15  | CTA: 1行＋ボタンの軽量版                                                  | 採用                      |
-| 16  | BLOG: エバーグリーン記事固定、一番下                                      | 採用                      |
+| #   | 決定事項                                                                  | 結果                                               |
+| --- | ------------------------------------------------------------------------- | -------------------------------------------------- |
+| 1   | シミュレーター: React → CSS + vanilla JS、トップから外してガイド/ブログへ | 採用                                               |
+| 2   | 「見えてきたこと」にリンク追加                                            | 却下（誘導感が出る）                               |
+| 3   | 「実際に起きた変化」: 架空OK、実績で差替え明記                            | 採用                                               |
+| 4   | ガイド vs カテゴリの関係性明記                                            | **併存**（ガイド＝道筋、カテゴリ＝分類）           |
+| 5   | ナビ: Home, Guide, Services, Blog の4項目                                 | 採用                                               |
+| 6   | concernTags の再検討                                                      | **導入**（tax/data/efficiency/management/subsidy） |
+| 7   | ツールチップをPhase 2から独立フェーズに分離                               | 採用                                               |
+| 8   | 設計書にSEO項目追加                                                       | 採用                                               |
+| 9   | アイコン名: ri:money-cny-circle-line（Remix Icon準拠）                    | 採用                                               |
+| 10  | HERO: 「すぐ横にいる」現状維持、じいちゃんはABOUTで                       | 採用                                               |
+| 11  | 困りごと: チェックボックス維持、CTA接続なし、ガイドへリンク               | 採用                                               |
+| 12  | やること → 螺旋: テキスト＋図、フレームワーク名出さない                   | 採用                                               |
+| 13  | ABOUT: 原案ベース、旧セクション4つを統合                                  | 採用                                               |
+| 14  | 入口B/C: 独立セクションではなく文脈に溶かす                               | 採用                                               |
+| 15  | CTA: 1行＋ボタンの軽量版                                                  | 採用                                               |
+| 16  | BLOG: エバーグリーン記事固定、一番下                                      | 採用                                               |

@@ -33,8 +33,8 @@ export const siteBranding = {
  */
 export const navigationItems: NavigationItem[] = [
   { slug: 'home', title: 'ホーム', href: '/' },
+  { slug: 'guide', title: 'ガイド', href: '/guide/' },
   { slug: 'services', title: 'サービス', href: '/services/' },
-  { slug: 'profile', title: 'プロフィール', href: '/profile/' },
   { slug: 'blog', title: 'ブログ', href: '/blog/' },
 ];
 
@@ -52,6 +52,7 @@ export const footerServiceLinks: FooterLink[] = [
  * Footer info links
  */
 export const footerInfoLinks: FooterLink[] = [
+  { name: 'ガイド', href: '/guide/' },
   { name: 'プロフィール', href: '/profile/' },
   { name: '簡易経営診断', href: '/diagnostic/' },
   { name: 'よくある質問', href: '/faq/' },

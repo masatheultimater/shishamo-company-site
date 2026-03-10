@@ -88,38 +88,49 @@ const categories = Object.keys(categoryLabels) as BlogCategory[];
           <p>ただいま準備中です。もう少しお待ちください。</p>
         </div>
       ) : (
-        posts.map((post) => {
+        posts.map((post, index) => {
           const cat = getPrimaryCategory(post.category);
           return (
-            <div class="blog-card" data-category={cat}>
-              <div class="blog-card__meta">
-                <span class="blog-card__category">{categoryLabels[cat]}</span>
-                <time datetime={post.publishedAt}>
-                  {formatDate(post.publishedAt)}
-                </time>
-              </div>
-              <h2 class="blog-card__title">
-                <a
-                  href={`/blog/${post.slug || post.id}/`}
-                  class="blog-card__title-link"
-                >
-                  {post.title}
+            <>
+              {index === 4 && (
+                <a href="/guide/" class="blog-guide-banner">
+                  <Icon name="ri:compass-3-line" size={18} />
+                  <span>どの記事から読めばいい？→ ガイドを見る</span>
+                  <Icon name="ri:arrow-right-s-line" size={16} />
                 </a>
-              </h2>
-              {post.excerpt && <p class="blog-card__excerpt">{post.excerpt}</p>}
-              {post.tags && post.tags.length > 0 && (
-                <div class="blog-card__tags">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <a
-                      href={`/blog/tag/${tag}/`}
-                      class="blog-card__tag blog-card__tag--link"
-                    >
-                      #{tagLabels[tag as BlogTag] || tag}
-                    </a>
-                  ))}
-                </div>
               )}
-            </div>
+              <div class="blog-card" data-category={cat}>
+                <div class="blog-card__meta">
+                  <span class="blog-card__category">{categoryLabels[cat]}</span>
+                  <time datetime={post.publishedAt}>
+                    {formatDate(post.publishedAt)}
+                  </time>
+                </div>
+                <h2 class="blog-card__title">
+                  <a
+                    href={`/blog/${post.slug || post.id}/`}
+                    class="blog-card__title-link"
+                  >
+                    {post.title}
+                  </a>
+                </h2>
+                {post.excerpt && (
+                  <p class="blog-card__excerpt">{post.excerpt}</p>
+                )}
+                {post.tags && post.tags.length > 0 && (
+                  <div class="blog-card__tags">
+                    {post.tags.slice(0, 3).map((tag) => (
+                      <a
+                        href={`/blog/tag/${tag}/`}
+                        class="blog-card__tag blog-card__tag--link"
+                      >
+                        #{tagLabels[tag as BlogTag] || tag}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
           );
         })
       )

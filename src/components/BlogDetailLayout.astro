@@ -11,6 +11,7 @@ import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import profileImage from '../assets/images/profile.jpg';
 import type { BlogPostResponse, BlogTag } from '@shared/contracts/api';
+import type { BlogPost } from '@shared/contracts/components';
 import {
   categoryLabels,
   categoryIcons,
@@ -22,12 +23,14 @@ import {
 } from '../lib/microcms';
 import { siteMetadata } from '../lib/siteConfig';
 import { loadProfile } from '../data/profileLoader';
+import NextRead from './ui/NextRead.astro';
 
 interface Props {
   post: BlogPostResponse;
+  allPosts?: BlogPost[];
 }
 
-const { post } = Astro.props;
+const { post, allPosts = [] } = Astro.props;
 const siteUrl = siteMetadata.siteUrl;
 const blog = transformBlogPost(post);
 const category = getPrimaryCategory(blog.category);
@@ -167,35 +170,8 @@ const ogImage = post.ogImage?.url || blog.thumbnail?.url;
   <!-- Article Content (Rich Editor HTML) -->
   <article class="blog-content" set:html={sanitizeBlogContent(post.content)} />
 
-  <!-- Related Blogs -->
-  {
-    post.relatedBlogs && post.relatedBlogs.length > 0 && (
-      <section class="blog-related">
-        <h2>関連記事</h2>
-        <div class="blog-related__grid">
-          {post.relatedBlogs.map((related) => {
-            const relCat = getPrimaryCategory(related.category);
-            return (
-              <a
-                href={`/blog/${related.slug || related.id}/`}
-                class="blog-card"
-              >
-                <div class="blog-card__meta">
-                  <span class="blog-card__category">
-                    {categoryLabels[relCat]}
-                  </span>
-                  <time datetime={related.publishedAt}>
-                    {formatDate(related.publishedAt)}
-                  </time>
-                </div>
-                <h3 class="blog-card__title">{related.title}</h3>
-              </a>
-            );
-          })}
-        </div>
-      </section>
-    )
-  }
+  <!-- Next Read (related articles) -->
+  {allPosts.length > 0 && <NextRead currentPost={blog} allPosts={allPosts} />}
 
   <!-- Blog Read Tracking -->
   <div

@@ -53,11 +53,27 @@ export type BlogTag =
   | 'compliance' // 法改正対応
   | 'first-step'; // はじめの一歩
 
+export type ConcernTag =
+  | 'tax' // 制度対応
+  | 'data' // データ活用
+  | 'efficiency' // 業務効率化
+  | 'management' // 経営整理
+  | 'subsidy'; // 補助金活用
+
+export type BlogPhase =
+  | 'know' // 知る
+  | 'decide' // 決める
+  | 'change' // 変わる
+  | 'trigger'; // 外部環境トリガー
+
 export interface BlogPostResponse extends MicroCMSBase {
   title: string;
   slug: string;
   category: string[]; // microCMSセレクトフィールド → string[]（単一選択でも配列）
   tags?: string[]; // microCMS複数セレクトフィールド → string[]
+  concernTags?: string[]; // 困りごとタグ（Phase 2追加）
+  phase?: string; // 管理用フェーズ（Phase 2追加、読者非表示）
+  relatedSlugs?: string[]; // 関連記事slug（Phase 2追加）
   excerpt?: string; // 抜粋（プレーンテキスト、120〜160文字）
   thumbnail?: MicroCMSImage;
   content: string; // リッチエディタ（HTML）
